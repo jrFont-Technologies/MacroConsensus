@@ -55,18 +55,16 @@ async function fetchYouTubeTranscript(videoId) {
     });
     const html = await res.text();
 
-    // Extraer título si es posible
-    let title = '';
-    const titleMatch = html.match(/<title>(.*?)<\/title>/);
-    if (titleMatch) {
-      title = titleMatch[1].replace(' - YouTube', '').trim();
+    // Extraer título si no vino de oEmbed
+    if (!title) {
+      const titleMatch = html.match(/<title>(.*?)<\/title>/);
+      if (titleMatch) title = titleMatch[1].replace(' - YouTube', '').trim();
     }
 
-    // Extraer autor/canal
-    let author = '';
-    const authorMatch = html.match(/"ownerChannelName":"(.*?)"/) || html.match(/"author":"(.*?)"/);
-    if (authorMatch) {
-      author = authorMatch[1];
+    // Extraer autor/canal si no vino de oEmbed
+    if (!author) {
+      const authorMatch = html.match(/"ownerChannelName":"(.*?)"/) || html.match(/"author":"(.*?)"/);
+      if (authorMatch) author = authorMatch[1];
     }
 
     // Buscar bloque de subtítulos en ytInitialPlayerResponse
