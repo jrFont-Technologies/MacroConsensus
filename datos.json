@@ -4,42 +4,111 @@
     "githubRepo": "jrFont-Technologies/MacroConsensus",
     "githubToken": "",
     "autoSync": true,
-    "lastSync": "2026-09-22T23:55:00.000Z"
+    "lastSync": "2026-09-22T23:24:43.500Z"
   },
   "meta_analisis": {
-    "fecha": "05/09/2026 01:06",
-    "titulo": "Consenso Macro: Complacencia de Mercado ante Shock Inflacionario y Geopolítico",
-    "resumen_ejecutivo": "El mercado global se encuentra en una encrucijada crítica entre la complacencia récord en renta variable (VIX y COR3M en mínimos) y una triple presión: crisis geopolítica en Oriente Medio con riesgo de oferta energética, monetización de deuda en EE. UU. (Debasement Trade) y divergencia abierta entre la política fiscal del Tesoro y la postura restrictiva de la Reserva Federal.",
-    "consenso_macro": "Todos los analistas coinciden en que la inflación repuntará y que la sostenibilidad de la deuda pública de EE. UU. (superando los $40 billones) obligará a maniobras extraordinarias. Hay acuerdo total en la fortaleza del Oro y las materias primas como cobertura indispensable ante la degradación de las monedas fiduciarias.",
+    "fecha": "23/09/2026 01:24",
+    "titulo": "La Gran Encrucijada: Represión Financiera, Debasement Trade y el Fin de la Complacencia",
+    "resumen_ejecutivo": "El mercado transita hacia un régimen de estanflación estructural donde la deuda pública insostenible obliga a los bancos centrales a elegir entre el colapso del sistema o la licuación monetaria. La llegada de figuras como Kevin Warsh a la Fed introduce una volatilidad táctica ante la expectativa de una política más ortodoxa, chocando con la necesidad política de estímulos pre-electorales. La liquidez global, aunque volátil, sigue siendo el motor principal, mientras el 'Debasement Trade' posiciona a activos duros como el oro y Bitcoin como coberturas necesarias frente a la degradación fiduciaria y el riesgo geopolítico creciente.",
+    "consenso_macro": "Existe un consenso inequívoco sobre la insostenibilidad de la deuda soberana global, la pérdida de poder adquisitivo de las divisas fiat (Debasement Trade) y la necesidad de mantener oro como seguro sistémico. Asimismo, se reconoce que la inflación no es transitoria, sino un fenómeno estructural impulsado por la desglobalización, la transición energética y el gasto fiscal descontrolado.",
     "duelo_tesis": [
       {
-        "titulo": "S&P 500: ¿Corrección puntual como oportunidad histórica vs Caída estructural > 50%?",
-        "analistaA": "José Luis Cava",
-        "posturaA": "Oportunidad de Compra Histórica",
-        "argumentosA": "Anticipa una corrección del 8-10% en septiembre por estacionalidad y falta de puts, pero defiende que el soporte de 7637 aguantará y que la intervención gubernamental / QE de la Fed creará una oportunidad de compra épica.",
-        "analistaB": "Pablo Gil",
-        "posturaB": "Bolsa al Borde del Abismo (> 50% caída)",
-        "argumentosB": "Sostiene que la corrección del 10-12% es ridícula ante un shock petrolero en Irán y que la ruptura de canales alcistas de largo plazo provocará desplomes superiores al 50% con spreads de crédito en alerta máxima."
+        "titulo": "Burbuja IA vs. Motor de Productividad",
+        "analistaA": "Alberto Iturralde",
+        "posturaA": "Escepticismo total / Burbuja",
+        "argumentosA": "Considera el rally de la IA una farsa de marketing sin rentabilidad operativa real, diseñada para sostener valoraciones infladas.",
+        "analistaB": "Juan Ramón Rallo",
+        "posturaB": "Potencial de productividad secular",
+        "argumentosB": "Reconoce el potencial de la IA como un shock positivo de productividad, aunque advierte que la regulación excesiva podría frenar su adopción."
       },
       {
-        "titulo": "Gobernanza Monetaria: ¿Coordinación en la sombra vs Enfrentamiento real Tesoro-Fed?",
+        "titulo": "Corrección Táctica vs. Crash Sistémico",
         "analistaA": "José Luis Cava",
-        "posturaA": "Montaje Coordinado",
-        "argumentosA": "Afirma que el Secretario del Tesoro (Bessent), Kevin Warsh y Druckenmiller actúan de forma coordinada para forzar un 'short squeeze' en bonos a 30 años y abaratar costes de financiación simulando independencia.",
-        "analistaB": "Juan Ramón Rallo",
-        "posturaB": "Tensión y Choque Institucional Real",
-        "argumentosB": "Argumenta que existe una contradicción macroeconómica genuina: el Tesoro necesita inflación para licuar la deuda, mientras que la Fed de Warsh está obligada por mandato a subir tipos para no perder el ancla de credibilidad."
+        "posturaA": "Corrección táctica saludable",
+        "argumentosA": "Ve caídas estacionales como oportunidades de compra históricas; el sistema está siendo manipulado para un reset controlado.",
+        "analistaB": "Pablo Gil",
+        "posturaB": "Riesgo de colapso estructural",
+        "argumentosB": "Advierte que si se pierden soportes clave, el riesgo es un desplome superior al 50% debido a la fragilidad del sistema y el shock energético."
       }
     ],
     "matriz_activos": [
-      { "activo": "Oro / Metales Preciosos", "sesgo": "Bullish", "consenso_pct": 100, "detalle": "Refugio unánime frente a la dilución fiduciaria, tensiones geopolíticas y debasement trade." },
-      { "activo": "Energía / Petróleo (Brent/WTI)", "sesgo": "Bullish", "consenso_pct": 85, "detalle": "Fuerte presión alcista por riesgo de estrangulamiento en Ormuz y compras estratégicas." },
-      { "activo": "Bitcoin / Cripto", "sesgo": "Bullish (Medio Plazo)", "consenso_pct": 75, "detalle": "Máximo beneficiario del debasement trade por oferta inelástica, con cautela a corto por riesgo sistémico." },
-      { "activo": "Renta Variable (S&P 500 / Nasdaq)", "sesgo": "Bearish / Cautela", "consenso_pct": 30, "detalle": "Divergencia extrema: rotación hacia defensivos (Salud, Consumo Básico, Utilities) y materias primas." },
-      { "activo": "Renta Fija / Bonos Soberanos", "sesgo": "Bearish", "consenso_pct": 20, "detalle": "Aumento del coste de financiación y primas de riesgo, salvo rebotes tácticos por cancelaciones de cortos." },
-      { "activo": "Dólar DXY", "sesgo": "Neutral / Bearish LP", "consenso_pct": 40, "detalle": "Refugio táctico inmediato por guerra, pero con tendencia a la depreciación estructural por dilución de deuda." }
+      {
+        "activo": "Oro / Metales Preciosos",
+        "sesgo": "Bullish",
+        "consenso_pct": 95,
+        "detalle": "Activo refugio indiscutible ante la desdolarización, la degradación de divisas y la incertidumbre geopolítica."
+      },
+      {
+        "activo": "Energía / Petróleo (Brent/WTI)",
+        "sesgo": "Bullish / Neutral",
+        "consenso_pct": 75,
+        "detalle": "Prima de riesgo geopolítico elevada y escasez estructural de oferta garantizan precios altos, aunque la demanda cíclica es una incógnita."
+      },
+      {
+        "activo": "Bitcoin / Cripto",
+        "sesgo": "Bullish (Medio Plazo)",
+        "consenso_pct": 80,
+        "detalle": "Consolidado como activo de reserva digital y cobertura contra la inflación monetaria, pese a su alta sensibilidad a la liquidez global."
+      },
+      {
+        "activo": "Renta Variable (S&P 500 / Nasdaq)",
+        "sesgo": "Neutral / Bearish",
+        "consenso_pct": 45,
+        "detalle": "Valoraciones extremas y compresión de márgenes generan cautela, con una fuerte división entre quienes ven un rally de liquidez y quienes ven una burbuja."
+      },
+      {
+        "activo": "Renta Fija / Bonos Soberanos",
+        "sesgo": "Bearish",
+        "consenso_pct": 25,
+        "detalle": "Poco atractivos por rentabilidades reales negativas y riesgo de duración ante una inflación persistente y deuda desbocada."
+      },
+      {
+        "activo": "Dólar DXY",
+        "sesgo": "Neutral / Bearish LP",
+        "consenso_pct": 40,
+        "detalle": "Fortaleza táctica por refugio, pero erosión de confianza a largo plazo debido a la política de envilecimiento monetario."
+      }
     ],
     "videos_incluidos": [
+      "vid_1790119062066_59007",
+      "vid_1790119062066_38390",
+      "vid_1790119062066_61625",
+      "vid_1790119062066_13287",
+      "vid_1790119080609_40889",
+      "vid_1790119080609_64920",
+      "vid_1790119080609_57530",
+      "vid_1790119080609_68237",
+      "vid_1790119101885_93003",
+      "vid_1790119101885_95232",
+      "vid_1790119101885_86483",
+      "vid_1790119101885_4425",
+      "vid_1790119135459_26029",
+      "vid_1790119135459_38757",
+      "vid_1790119135459_25071",
+      "vid_1790119135459_50392",
+      "vid_1790119164491_1579",
+      "vid_1790119164491_42427",
+      "vid_1790119164491_4887",
+      "vid_1790119164491_70050",
+      "vid_1790119180876_28943",
+      "vid_1790119180876_31301",
+      "vid_1790119180876_32798",
+      "vid_1790119180876_94099",
+      "vid_1790119193667_74334",
+      "vid_1790119193667_17073",
+      "vid_1790119193667_17213",
+      "vid_1790119193667_78289",
+      "vid_1790119214821_32862",
+      "vid_1790119214821_51615",
+      "vid_1790119214821_59685",
+      "vid_1790119214821_32610",
+      "vid_1790119231665_2676",
+      "vid_1790119231665_17428",
+      "vid_1790119231665_9343",
+      "vid_1790119231665_9058",
+      "vid_1790119256651_22894",
+      "vid_1790119256651_26071",
+      "vid_1790119256651_92377",
       "vid_20260905001626014895",
       "vid_0_20260830172736781749",
       "vid_20260830173849106301",
@@ -47,6 +116,1336 @@
     ]
   },
   "videos": [
+    {
+      "id": "vid_1790119062066_59007",
+      "url": "https://www.youtube.com/watch?v=kchTppEppJ0",
+      "title": "José Luis Cava: lo que NADIE te explica del TRADING | Riesgo, Psicología y Mercados",
+      "author": "David Trullás",
+      "channel": "David Trullás",
+      "fecha": "22/09/2026",
+      "fecha_registro": "22/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/kchTppEppJ0/hqdefault.jpg",
+      "consulta": "¿Cómo influye la psicología del inversor y la gestión de riesgos en la consistencia del trading profesional?",
+      "tags": [
+        "Psicología",
+        "Gestión de Riesgos",
+        "Trading",
+        "Disciplina"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "La consistencia no deriva de la predicción, sino de la gestión estricta del riesgo y la eliminación de sesgos cognitivos que impiden ejecutar el plan de trading bajo presión.",
+        "tesis_macro": "El mercado es un entorno de incertidumbre probabilística donde la supervivencia depende de la preservación del capital mediante la gestión de stops y el control emocional.",
+        "matriz_activos": {
+          "renta_variable": "Neutral: Depende exclusivamente de la ejecución técnica del sistema.",
+          "bonos": "Neutral: Activo irrelevante para la metodología de trading intradía.",
+          "oro": "Neutral: Activo de cobertura sin sesgo direccional en el análisis.",
+          "petroleo": "Neutral: Activo de alta volatilidad sujeto a gestión de riesgo.",
+          "dolar": "Neutral: Activo de referencia sin sesgo macro.",
+          "bitcoin": "Neutral: Activo de alta volatilidad que requiere gestión de riesgo estricta."
+        },
+        "timestamps_citas": [
+          "04:20 - La importancia de aceptar la pérdida como parte del coste operativo.",
+          "12:45 - El sesgo de confirmación como principal enemigo del trader."
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119062066_38390",
+      "url": "https://www.youtube.com/watch?v=5ELPqd3DFXI",
+      "title": "BITCOIN: Ha Arrancado Ya la Subida...  y de las BOLSAS | José Luis Cava",
+      "author": "Jose Luis Cava",
+      "channel": "Jose Luis Cava",
+      "fecha": "22/09/2026",
+      "fecha_registro": "22/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/5ELPqd3DFXI/hqdefault.jpg",
+      "consulta": "¿Qué indicadores técnicos y macroeconómicos confirman el inicio de un ciclo alcista en Bitcoin y los índices bursátiles?",
+      "tags": [
+        "Bitcoin",
+        "Bolsas",
+        "Análisis Técnico",
+        "Ciclos"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El cambio en la estructura de precios y la superación de niveles de resistencia clave sugieren una reversión alcista, apoyada por una mejora en la liquidez global.",
+        "tesis_macro": "La liquidez inyectada por los bancos centrales está comenzando a fluir hacia activos de riesgo, validando una tendencia alcista sostenida en el corto y medio plazo.",
+        "matriz_activos": {
+          "renta_variable": "Favorable: Superación de resistencias técnicas clave.",
+          "bonos": "Desfavorable: La rotación hacia riesgo penaliza la renta fija.",
+          "oro": "Favorable: Correlación positiva con la expansión de liquidez.",
+          "petroleo": "Neutral: Sujeto a factores geopolíticos más que a liquidez.",
+          "dolar": "Desfavorable: Debilidad ante el apetito por el riesgo.",
+          "bitcoin": "Favorable: Rompimiento de estructura bajista y entrada de capital institucional."
+        },
+        "timestamps_citas": [
+          "03:15 - Confirmación de ruptura en el S&P 500.",
+          "09:40 - Bitcoin superando la media móvil de 200 sesiones."
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119062066_61625",
+      "url": "https://www.youtube.com/watch?v=JeBiHBb68Vo",
+      "title": "Warsh sacudirá más al mercado (y así debes actuar)",
+      "author": "Hector Chamizo",
+      "channel": "Hector Chamizo",
+      "fecha": "22/09/2026",
+      "fecha_registro": "22/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/JeBiHBb68Vo/hqdefault.jpg",
+      "consulta": "¿Qué impacto tendrá el nombramiento de Warsh en la política monetaria y la volatilidad de los mercados financieros?",
+      "tags": [
+        "Warsh",
+        "FED",
+        "Política Monetaria",
+        "Volatilidad"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "La posible influencia de Warsh sugiere una postura más ortodoxa y menos complaciente con la inflación, lo que podría generar episodios de volatilidad ante el ajuste de expectativas de tipos.",
+        "tesis_macro": "El mercado subestima el endurecimiento de las condiciones financieras si Warsh impone una agenda de disciplina fiscal y monetaria más estricta.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable: Riesgo de compresión de múltiplos por tipos altos.",
+          "bonos": "Desfavorable: Presión al alza en los rendimientos de largo plazo.",
+          "oro": "Favorable: Cobertura ante la incertidumbre política y monetaria.",
+          "petroleo": "Neutral: Dependiente de la demanda global.",
+          "dolar": "Favorable: Fortalecimiento por diferencial de tipos.",
+          "bitcoin": "Desfavorable: Sensibilidad extrema a la liquidez global."
+        },
+        "timestamps_citas": [
+          "05:20 - El perfil de Warsh como halcón monetario.",
+          "11:10 - Estrategia de cobertura ante la volatilidad inminente."
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119062066_13287",
+      "url": "https://www.youtube.com/watch?v=cIQCt83TW0g",
+      "title": "Bitcoin: ¿fin del criptoinvierno o falsa señal?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "21/09/2026",
+      "fecha_registro": "21/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/cIQCt83TW0g/hqdefault.jpg",
+      "consulta": "¿Es el reciente movimiento de Bitcoin una señal de cambio de tendencia o una trampa de liquidez?",
+      "tags": [
+        "Bitcoin",
+        "Cripto",
+        "Análisis Técnico",
+        "Liquidez"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El movimiento actual carece de volumen institucional suficiente para confirmar un cambio de tendencia, sugiriendo cautela ante una posible trampa de toros.",
+        "tesis_macro": "La falta de catalizadores macroeconómicos claros mantiene a Bitcoin en un rango lateral, donde la volatilidad es más un síntoma de indecisión que de convicción.",
+        "matriz_activos": {
+          "renta_variable": "Neutral: Mercado en fase de consolidación.",
+          "bonos": "Neutral: Estabilización tras la volatilidad reciente.",
+          "oro": "Favorable: Activo refugio ante la falta de dirección en cripto.",
+          "petroleo": "Neutral: Sin tendencia definida.",
+          "dolar": "Neutral: Rango lateral frente a divisas principales.",
+          "bitcoin": "Neutral: Riesgo de reversión si no supera niveles de volumen."
+        },
+        "timestamps_citas": [
+          "02:45 - Análisis del volumen como filtro de falsas rupturas.",
+          "07:30 - Niveles críticos de soporte para evitar el criptoinvierno."
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119080609_40889",
+      "url": "https://www.youtube.com/watch?v=vbjypvuY1q4",
+      "title": "Claves del día: La pesadilla de Europa, el dilema de Trump y la inflación al acecho",
+      "author": "Negocios TV",
+      "channel": "Negocios TV",
+      "fecha": "21/09/2026",
+      "fecha_registro": "21/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/vbjypvuY1q4/hqdefault.jpg",
+      "consulta": "¿Cuáles son los riesgos estructurales que enfrenta la Eurozona y cómo impacta la incertidumbre política de EE. UU. en la inflación global?",
+      "tags": [
+        "Eurozona",
+        "Inflación",
+        "Geopolítica",
+        "Trump"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "La Eurozona enfrenta una crisis de competitividad y estancamiento, mientras que la política fiscal de Trump introduce riesgos inflacionarios por proteccionismo.",
+        "tesis_macro": "Escenario de estanflación en Europa agravado por la fragmentación comercial y la incertidumbre sobre la política fiscal estadounidense post-electoral.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable: Riesgo de compresión de márgenes por costes energéticos.",
+          "bonos": "Neutral: Volatilidad por riesgo soberano europeo.",
+          "oro": "Favorable: Activo refugio ante la inestabilidad geopolítica.",
+          "petroleo": "Favorable: Presión alcista por tensiones en el suministro.",
+          "dolar": "Favorable: Activo de reserva ante la debilidad europea.",
+          "bitcoin": "Neutral: Alta correlación con la liquidez global."
+        },
+        "timestamps_citas": [
+          "03:15 - La pesadilla europea: desindustrialización acelerada",
+          "12:45 - El dilema de Trump: aranceles como motor inflacionario"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119080609_64920",
+      "url": "https://www.youtube.com/watch?v=9A_lvhDo9e4",
+      "title": "Bitcoin vuelve a atacar la zona CLAVE… ¿empieza el siguiente tramo alcista?",
+      "author": "Jon Economist",
+      "channel": "Jon Economist",
+      "fecha": "21/09/2026",
+      "fecha_registro": "21/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/9A_lvhDo9e4/hqdefault.jpg",
+      "consulta": "¿Qué indicadores técnicos sugieren un cambio de tendencia en Bitcoin hacia un nuevo tramo alcista?",
+      "tags": [
+        "Bitcoin",
+        "Criptoactivos",
+        "Análisis Técnico",
+        "Liquidez"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "Bitcoin muestra una consolidación en niveles clave de soporte, sugiriendo una acumulación institucional previa a una ruptura alcista.",
+        "tesis_macro": "La liquidez global y el ciclo de halving actúan como catalizadores fundamentales para una revalorización del activo digital.",
+        "matriz_activos": {
+          "renta_variable": "Neutral: Dependencia de los tipos de interés de la Fed.",
+          "bonos": "Desfavorable: Rendimientos reales poco atractivos.",
+          "oro": "Neutral: Competencia por el flujo de capital refugio.",
+          "petroleo": "Neutral: Sin correlación directa con el activo.",
+          "dolar": "Desfavorable: Correlación inversa histórica.",
+          "bitcoin": "Favorable: Configuración técnica de ruptura de resistencia."
+        },
+        "timestamps_citas": [
+          "04:20 - Análisis de la zona de soporte crítico",
+          "11:10 - Proyección de objetivos tras la ruptura"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119080609_57530",
+      "url": "https://www.youtube.com/watch?v=vaNUG44ZgaE",
+      "title": "JP Morgan, PERDIDOS. Franci Necesitará RESCATE. José Luis Cava",
+      "author": "Jose Luis Cava",
+      "channel": "Jose Luis Cava",
+      "fecha": "21/09/2026",
+      "fecha_registro": "21/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/vaNUG44ZgaE/hqdefault.jpg",
+      "consulta": "¿Por qué la situación financiera de Francia y la gestión de JP Morgan señalan una crisis sistémica inminente?",
+      "tags": [
+        "Francia",
+        "JP Morgan",
+        "Riesgo Sistémico",
+        "Deuda"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "La insostenibilidad de la deuda francesa y la exposición de grandes bancos sugieren una crisis de solvencia que requerirá intervención estatal.",
+        "tesis_macro": "El sistema financiero global está sobreapalancado, con Francia como el eslabón débil que podría desencadenar un contagio en la Eurozona.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable: Riesgo de corrección severa por crisis bancaria.",
+          "bonos": "Desfavorable: Riesgo de crédito en deuda soberana periférica.",
+          "oro": "Favorable: Cobertura necesaria ante el colapso del sistema fiduciario.",
+          "petroleo": "Neutral: Volatilidad por caída de demanda.",
+          "dolar": "Favorable: Refugio temporal ante el pánico bancario.",
+          "bitcoin": "Favorable: Activo descorrelacionado del sistema bancario tradicional."
+        },
+        "timestamps_citas": [
+          "05:30 - La fragilidad de la deuda francesa",
+          "14:15 - Fallos en la gestión de riesgos de JP Morgan"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119080609_68237",
+      "url": "https://www.youtube.com/watch?v=FtZRp6_dwXw",
+      "title": "\"El mercado del oro hace movimientos fuera de toda lógica. El libro de recetas está roto\"",
+      "author": "Negocios TV",
+      "channel": "Negocios TV",
+      "fecha": "20/09/2026",
+      "fecha_registro": "20/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/FtZRp6_dwXw/hqdefault.jpg",
+      "consulta": "¿Por qué el comportamiento actual del mercado del oro desafía los modelos económicos tradicionales?",
+      "tags": [
+        "Oro",
+        "Mercados",
+        "Banca Central",
+        "Anomalías"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El oro se desvincula de los tipos reales, sugiriendo compras masivas de bancos centrales y una pérdida de confianza en el sistema monetario.",
+        "tesis_macro": "Estamos ante un cambio de paradigma donde el oro actúa como seguro contra la degradación de las divisas fiat, ignorando los modelos de valoración estándar.",
+        "matriz_activos": {
+          "renta_variable": "Neutral: Desconexión entre fundamentales y precio.",
+          "bonos": "Desfavorable: Pérdida de atractivo frente al metal precioso.",
+          "oro": "Favorable: Activo con momentum estructural alcista.",
+          "petroleo": "Neutral: Sin impacto directo en la tesis del oro.",
+          "dolar": "Desfavorable: Erosión de confianza a largo plazo.",
+          "bitcoin": "Neutral: Activo especulativo frente al valor refugio del oro."
+        },
+        "timestamps_citas": [
+          "02:45 - El libro de recetas está roto: anomalías en el precio",
+          "09:20 - Acumulación masiva por parte de bancos centrales"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119101885_93003",
+      "url": "https://www.youtube.com/watch?v=YF_G6vH8TH4",
+      "title": "Por esto el ORO ya no hace caso a la FED",
+      "author": "Panda Stacker",
+      "channel": "Panda Stacker",
+      "fecha": "20/09/2026",
+      "fecha_registro": "20/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/YF_G6vH8TH4/hqdefault.jpg",
+      "consulta": "¿Por qué el precio del oro ha desacoplado su correlación histórica con la política monetaria de la FED?",
+      "tags": [
+        "Oro",
+        "FED",
+        "Política Monetaria",
+        "Cobertura"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El oro actúa actualmente como activo de reserva soberana frente al riesgo de deuda y la desdolarización, ignorando la volatilidad de los tipos de interés reales.",
+        "tesis_macro": "El mercado ha perdido la fe en la capacidad de la FED para controlar la inflación a largo plazo, priorizando la protección de valor ante el deterioro fiscal de EE. UU.",
+        "matriz_activos": {
+          "renta_variable": "Neutral - Vulnerable a la compresión de múltiplos por tipos altos.",
+          "bonos": "Desfavorable - Riesgo de duración ante la persistencia inflacionaria.",
+          "oro": "Favorable - Activo refugio contra la degradación monetaria.",
+          "petroleo": "Neutral - Dependiente de la demanda global.",
+          "dolar": "Desfavorable - Erosión de confianza por el exceso de oferta monetaria.",
+          "bitcoin": "Favorable - Correlación creciente con el oro como activo de reserva digital."
+        },
+        "timestamps_citas": [
+          "03:12 - El oro ignora la FED por la crisis de deuda soberana",
+          "07:45 - La desdolarización como motor estructural del metal"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119101885_95232",
+      "url": "https://www.youtube.com/watch?v=too2gTd6als",
+      "title": "El Deutsche Bank advierte: llega una era de escasez, inflación y tipos altos",
+      "author": "Juan Ramón Rallo",
+      "channel": "Juan Ramón Rallo",
+      "fecha": "20/09/2026",
+      "fecha_registro": "20/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/too2gTd6als/hqdefault.jpg",
+      "consulta": "¿Cuáles son los fundamentos estructurales que sostienen la tesis de una era de escasez e inflación persistente?",
+      "tags": [
+        "Inflación",
+        "Deutsche Bank",
+        "Macroeconomía",
+        "Ciclos Económicos"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "La combinación de desglobalización, envejecimiento demográfico y transición energética genera un shock de oferta permanente que impide el retorno a tipos de interés cercanos a cero.",
+        "tesis_macro": "El fin de la era de la hiperglobalización y el exceso de ahorro global obliga a una reasignación de capital hacia sectores productivos, manteniendo la inflación estructuralmente alta.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable - Márgenes presionados por costes de insumos y capital.",
+          "bonos": "Desfavorable - Ajuste al alza de las primas de riesgo por inflación.",
+          "oro": "Favorable - Cobertura necesaria ante la pérdida de poder adquisitivo.",
+          "petroleo": "Favorable - Escasez de oferta frente a una demanda inelástica.",
+          "dolar": "Neutral - Fortaleza relativa frente a otras divisas fiat.",
+          "bitcoin": "Neutral - Activo especulativo en un entorno de alta volatilidad."
+        },
+        "timestamps_citas": [
+          "05:20 - El fin de la globalización como motor inflacionario",
+          "12:10 - Tipos de interés altos como nueva normalidad"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119101885_86483",
+      "url": "https://www.youtube.com/watch?v=l-DkKyBFzOk",
+      "title": "Deutsche Bank alerta de una nueva era en la economía mundial: escasez e inflación amenazan",
+      "author": "elEconomista",
+      "channel": "elEconomista",
+      "fecha": "18/09/2026",
+      "fecha_registro": "18/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/l-DkKyBFzOk/hqdefault.jpg",
+      "consulta": "¿Qué impacto tendrá la nueva era de escasez advertida por Deutsche Bank en la estabilidad de los mercados globales?",
+      "tags": [
+        "Deutsche Bank",
+        "Escasez",
+        "Inflación",
+        "Mercados"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "La escasez de recursos y mano de obra forzará una volatilidad macroeconómica superior, obligando a los bancos centrales a mantener una postura restrictiva prolongada.",
+        "tesis_macro": "La economía mundial transita hacia un modelo de oferta restringida donde la eficiencia productiva ya no es suficiente para contener los precios, alterando el equilibrio de los activos financieros.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable - Riesgo de estanflación en mercados desarrollados.",
+          "bonos": "Desfavorable - Curva de tipos bajo presión por el riesgo inflacionario.",
+          "oro": "Favorable - Activo de preservación ante la incertidumbre sistémica.",
+          "petroleo": "Favorable - La escasez estructural garantiza precios elevados.",
+          "dolar": "Favorable - Activo refugio en momentos de tensión global.",
+          "bitcoin": "Neutral - Alta sensibilidad a la liquidez global."
+        },
+        "timestamps_citas": [
+          "02:30 - La escasez como factor disruptivo de la oferta",
+          "09:15 - Implicaciones para la política monetaria restrictiva"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119101885_4425",
+      "url": "https://www.youtube.com/watch?v=cq4ZCkrqRXE",
+      "title": "ECONOMÍA: Wall Street prepara el rally, el yen se hunde y EEUU vende $24.000 millones en cazas",
+      "author": "Negocios TV",
+      "channel": "Negocios TV",
+      "fecha": "18/09/2026",
+      "fecha_registro": "18/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/cq4ZCkrqRXE/hqdefault.jpg",
+      "consulta": "¿Cómo se posiciona Wall Street ante la debilidad del yen y la actual coyuntura geopolítica?",
+      "tags": [
+        "Wall Street",
+        "Yen",
+        "Geopolítica",
+        "Rally"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El mercado descuenta un rally impulsado por la liquidez, mientras la debilidad del yen actúa como catalizador de carry trade y la industria militar se beneficia del gasto estatal.",
+        "tesis_macro": "La divergencia entre la política monetaria de Japón y EE. UU. crea distorsiones en los flujos de capital, mientras el gasto en defensa sostiene sectores específicos del S&P 500.",
+        "matriz_activos": {
+          "renta_variable": "Favorable - Impulso técnico y sectorial (defensa).",
+          "bonos": "Neutral - Volatilidad por flujos de repatriación de capital.",
+          "oro": "Neutral - Pendiente de la fortaleza del dólar.",
+          "petroleo": "Neutral - Estabilizado por la geopolítica.",
+          "dolar": "Favorable - Beneficiado por el diferencial de tipos frente al yen.",
+          "bitcoin": "Neutral - Dependiente del apetito por el riesgo en Wall Street."
+        },
+        "timestamps_citas": [
+          "04:50 - El yen como motor de volatilidad en los mercados",
+          "11:20 - El gasto en defensa como pilar del rally bursátil"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119135459_26029",
+      "url": "https://www.youtube.com/watch?v=jS-AEMrzVI0",
+      "title": "Un Dato BRUTAL, impactará la próxima semana en las BOLSAS. José Luis Cava",
+      "author": "Jose Luis Cava",
+      "channel": "Jose Luis Cava",
+      "fecha": "18/09/2026",
+      "fecha_registro": "18/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/jS-AEMrzVI0/hqdefault.jpg",
+      "consulta": "¿Qué dato macroeconómico de liquidez impactará a los mercados de renta variable la próxima semana y cuáles son los niveles de control técnico clave en el S&P 500?",
+      "tags": [
+        "Liquidez",
+        "S&P 500",
+        "Bancos Centrales",
+        "Análisis Técnico"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El mercado se enfrenta a una inminente inyección o retirada de liquidez condicionada por los vencimientos de derivados y datos clave de inflación/empleo. Se recomienda mantener exposición alcista mientras el S&P 500 cotice por encima de los niveles de soporte operativo señalados por la gamma de los creadores de mercado.",
+        "tesis_macro": "El escenario base contempla un entorno de volatilidad comprimida artificialmente por la operativa de opciones (0DTE), donde la liquidez neta del sistema sigue siendo el catalizador determinante por encima de la narrativa macroeconómica tradicional.",
+        "matriz_activos": {
+          "renta_variable": "Favorable mientras se mantengan los soportes estructurales del S&P 500.",
+          "bonos": "Neutral a la espera de la reacción de la curva de rendimientos tras el dato macro.",
+          " oro": "Favorable como cobertura ante sorpresas monetarias.",
+          "petroleo": "Neutral con sesgo bajista por desaceleración industrial.",
+          "dolar": "Desfavorable por expectativas de pívot en la política monetaria.",
+          "bitcoin": "Favorable dada su alta correlación con el exceso de liquidez global."
+        },
+        "timestamps_citas": [
+          "01:45 - Análisis del impacto del dato macroeconómico en el flujo de liquidez",
+          "06:20 - Niveles críticos de soporte y resistencia operativa en el S&P 500"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119135459_38757",
+      "url": "https://www.youtube.com/watch?v=n_xOi8m4tCk",
+      "title": "Todo el mundo sube los tipos de interés menos China  ¿qué está pasando?",
+      "author": "Juan Ramón Rallo",
+      "channel": "Juan Ramón Rallo",
+      "fecha": "18/09/2026",
+      "fecha_registro": "18/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/n_xOi8m4tCk/hqdefault.jpg",
+      "consulta": "¿A qué se debe la divergencia monetaria entre la flexibilización del Banco Popular de China y el endurecimiento o mantenimiento de tipos altos en las economías occidentales?",
+      "tags": [
+        "China",
+        "Política Monetaria",
+        "Deflación",
+        "Bancos Centrales"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "China atraviesa un proceso de desapalancamiento del sector inmobiliario que genera presiones deflacionarias y debilidad en la demanda interna, lo que obliga al PBoC a recortar tipos mientras Occidente sigue combatiendo tensiones inflacionarias estructurales.",
+        "tesis_macro": "Divergencia profunda en el ciclo crediticio global. China se halla inmersa en una trampa de liquidez parcial con riesgo de 'japonización', requiriendo estímulo crediticio contundente, mientras la demanda agregada occidental exige contención monetaria.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable para RV china por compresión de márgenes; Neutral/Favorable relativa para RV occidental.",
+          "bonos": "Favorable para deuda soberana china por caídas sostenidas en las tir.",
+          "oro": "Favorable ante la depreciación de divisas emergentes y riesgo macro sistémico.",
+          "petroleo": "Desfavorable por la menor demanda de materias primas derivada del estancamiento industrial chino.",
+          "dolar": "Favorable frente al Yuan (USD/CNY al alza).",
+          "bitcoin": "Neutral, condicionado al apetito global por el riesgo y restricciones de capital."
+        },
+        "timestamps_citas": [
+          "02:30 - Mecanismos de la deflación y crisis del sector inmobiliario chino",
+          "08:15 - Consecuencias globales de la divergencia de políticas entre la Fed y el PBoC"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119135459_25071",
+      "url": "https://www.youtube.com/watch?v=5DKPVpzS93Q",
+      "title": "Consultorio | Alberto Iturralde: “Estaría ya comprado con cierta tranquilidad”",
+      "author": "Capital Radio",
+      "channel": "Capital Radio",
+      "fecha": "18/09/2026",
+      "fecha_registro": "18/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/5DKPVpzS93Q/hqdefault.jpg",
+      "consulta": "¿Cuál es la estructura técnica subyacente que justifica una postura comprada en renta variable a pesar de las alertas del consenso de mercado?",
+      "tags": [
+        "Renta Variable",
+        "Trading",
+        "Psicología de Mercado",
+        "Análisis Técnico"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "La acumulación institucional en niveles clave y la barrida de posiciones cortas muestran una pauta alcista sólida, sugiriendo que el dinero inteligente está posicionado al alza antes de que el inversor minorista perciba la mejora técnica.",
+        "tesis_macro": "Desconexión entre el sentimiento minorista/narrativa mediática y la acción del precio. Los grandes operadores aprovechan el pesimismo infundado para acumular renta variable en zonas de soporte relevante.",
+        "matriz_activos": {
+          "renta_variable": "Favorable dada la fortaleza de la pauta técnica subyacente y la falta de distribución masiva.",
+          "bonos": "Neutral sin señales claras de giro en la curva.",
+          "oro": "Favorable por continuidad en la tendencia primaria de largo plazo.",
+          "petroleo": "Neutral en rango lateral dinámico.",
+          "dolar": "Desfavorable por consolidación de techos en el índice DXY.",
+          "bitcoin": "Favorable con apoyo en la inercia del apetito por el riesgo."
+        },
+        "timestamps_citas": [
+          "01:10 - Justificación técnica para estar comprado con tranquilidad en los índices europeos y de EE.UU.",
+          "05:50 - Análisis de valores específicos y sus stops de protección operativa"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119135459_50392",
+      "url": "https://www.youtube.com/watch?v=FZ0-mQFZYv8",
+      "title": "Inflación: el verdadero riesgo que se avecina | Clase Magistral con Alberto Iturralde y Laura Blanco",
+      "author": "Capital Radio",
+      "channel": "Capital Radio",
+      "fecha": "18/09/2026",
+      "fecha_registro": "18/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/FZ0-mQFZYv8/hqdefault.jpg",
+      "consulta": "¿Por qué el repunte inflacionario representa un riesgo estructural persistente que los modelos oficiales de los bancos centrales no logran mitigar?",
+      "tags": [
+        "Inflación",
+        "Macroeconomía",
+        "Poder Adquisitivo",
+        "Represión Financiera"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "La inflación no es un fenómeno coyuntural sino la consecuencia directa del endeudamiento público descontrolado y la devaluación monetaria, lo que distorsiona las métricas oficiales y mella la rentabilidad real de los activos tradicionales.",
+        "tesis_macro": "Entramos en un régimen de represión financiera e inflación estructural persistente donde las subidas puntuales de tipos son insuficientes para contrarrestar el sesgo fiscal expansivo de los gobiernos.",
+        "matriz_activos": {
+          "renta_variable": "Favorable en compañías con alto poder de fijación de precios (pricing power) y activos tangibles.",
+          "bonos": "Desfavorable por rentabilidades reales negativas y destrucción del principal.",
+          "oro": "Favorable como activo de reserva supremo e inmune a la degradación fiduciaria.",
+          "petroleo": "Favorable como cobertura natural frente al shock inflacionario de oferta.",
+          "dolar": "Desfavorable en términos de poder adquisitivo real a largo plazo.",
+          "bitcoin": "Favorable como alternativa digital de oferta fija frente al crédito fiduciario."
+        },
+        "timestamps_citas": [
+          "03:40 - La distorsión en la medición de la inflación oficial frente a la pérdida de poder adquisitivo real",
+          "10:15 - Estrategias de posicionamiento en activos reales para combatir la degradación monetaria"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119164491_1579",
+      "url": "https://www.youtube.com/watch?v=cg7Xut9PtWA",
+      "title": "La FED sube tipos y avisa de otra… Bitcoin y Wall Street aguantan el golpe",
+      "author": "Jon Economist",
+      "channel": "Jon Economist",
+      "fecha": "18/09/2026",
+      "fecha_registro": "18/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/cg7Xut9PtWA/hqdefault.jpg",
+      "consulta": "¿Cómo reaccionan los mercados de riesgo ante la política monetaria restrictiva de la FED?",
+      "tags": [
+        "FED",
+        "Tipos de Interés",
+        "Bitcoin",
+        "Wall Street"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El mercado muestra una resiliencia inesperada ante el endurecimiento monetario, sugiriendo que la liquidez sistémica aún compensa el coste del capital.",
+        "tesis_macro": "Escenario de 'soft landing' donde la resiliencia de los activos de riesgo desafía la narrativa de contracción, impulsada por una expectativa de fin de ciclo de subidas.",
+        "matriz_activos": {
+          "renta_variable": "Favorable, resiliencia ante el endurecimiento",
+          "bonos": "Desfavorable, presión al alza en rendimientos",
+          "oro": "Neutral, compresión por tipos reales",
+          "petroleo": "Neutral, impacto por demanda global",
+          "dolar": "Favorable, fortalecimiento por diferencial de tipos",
+          "bitcoin": "Favorable, comportamiento como activo de cobertura especulativa"
+        },
+        "timestamps_citas": [
+          "01:45 - Resiliencia de Wall Street ante el anuncio",
+          "05:20 - Bitcoin como activo descorrelacionado a corto plazo"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119164491_42427",
+      "url": "https://www.youtube.com/watch?v=lE34sejG_xE",
+      "title": "\"Toda la alarma sobre la IA es una farsa\": ITURRALDE destapa la manipulación del mercado",
+      "author": "Negocios TV",
+      "channel": "Negocios TV",
+      "fecha": "18/09/2026",
+      "fecha_registro": "18/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/lE34sejG_xE/hqdefault.jpg",
+      "consulta": "¿Existe una burbuja especulativa en el sector de la Inteligencia Artificial?",
+      "tags": [
+        "IA",
+        "Burbuja",
+        "Manipulación",
+        "Mercado"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El analista sostiene que el rally de la IA carece de fundamentos operativos sólidos, calificándolo como una narrativa de marketing para sostener valoraciones infladas.",
+        "tesis_macro": "Desacoplamiento entre la valoración bursátil de las 'Big Tech' y la rentabilidad real de la IA, sugiriendo una corrección inminente por sobrecompra.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable, riesgo de burbuja en sector tecnológico",
+          "bonos": "Neutral, refugio ante volatilidad",
+          "oro": "Favorable, activo de valor real",
+          "petroleo": "Neutral, sin impacto directo",
+          "dolar": "Neutral, sin impacto directo",
+          "bitcoin": "Desfavorable, alta correlación con activos especulativos"
+        },
+        "timestamps_citas": [
+          "03:10 - La IA como narrativa de manipulación",
+          "07:50 - Desconexión entre fundamentales y precio"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119164491_4887",
+      "url": "https://www.youtube.com/watch?v=fQ61f9Kuv74",
+      "title": "El órdago de Kevin Warsh a Trump: Por qué la subida de tipos ha desatado la euforia en el mercado",
+      "author": "Negocios TV",
+      "channel": "Negocios TV",
+      "fecha": "18/09/2026",
+      "fecha_registro": "18/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/fQ61f9Kuv74/hqdefault.jpg",
+      "consulta": "¿Por qué la subida de tipos de la FED ha generado euforia en lugar de pánico?",
+      "tags": [
+        "Kevin Warsh",
+        "FED",
+        "Euforia",
+        "Mercados"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "La euforia responde a la percepción de que la FED ha recuperado su credibilidad, eliminando la incertidumbre sobre la inflación persistente.",
+        "tesis_macro": "El mercado interpreta la acción de la FED como un movimiento necesario para estabilizar el ciclo, reduciendo el riesgo de cola de una estanflación prolongada.",
+        "matriz_activos": {
+          "renta_variable": "Favorable, mayor claridad en el entorno macro",
+          "bonos": "Neutral, estabilización de la curva",
+          "oro": "Desfavorable, menor necesidad de cobertura",
+          "petroleo": "Neutral, estabilidad de precios",
+          "dolar": "Favorable, confianza en la política monetaria",
+          "bitcoin": "Neutral, consolidación"
+        },
+        "timestamps_citas": [
+          "02:00 - El órdago de Warsh a la política actual",
+          "06:30 - La credibilidad como motor de euforia"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119164491_70050",
+      "url": "https://www.youtube.com/watch?v=LAh9S9txjMA",
+      "title": "La Fed desafía a Trump y entierra la era del dinero barato: cómo te va a afectar",
+      "author": "Juan Ramón Rallo",
+      "channel": "Juan Ramón Rallo",
+      "fecha": "17/09/2026",
+      "fecha_registro": "17/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/LAh9S9txjMA/hqdefault.jpg",
+      "consulta": "¿Qué impacto estructural tiene el fin de la era del dinero barato para el inversor minorista?",
+      "tags": [
+        "Dinero Barato",
+        "FED",
+        "Trump",
+        "Política Monetaria"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El fin del dinero barato implica una revalorización de los activos basada en flujos de caja reales, eliminando el soporte artificial de la liquidez excesiva.",
+        "tesis_macro": "Transición hacia un régimen de tipos de interés estructuralmente más altos, lo que penaliza el apalancamiento y favorece la disciplina fiscal y operativa.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable, compresión de múltiplos",
+          "bonos": "Favorable, retorno atractivo en renta fija",
+          "oro": "Favorable, cobertura contra la erosión del poder adquisitivo",
+          "petroleo": "Neutral, impacto por desaceleración económica",
+          "dolar": "Favorable, moneda de reserva en entorno restrictivo",
+          "bitcoin": "Desfavorable, alta sensibilidad a la liquidez global"
+        },
+        "timestamps_citas": [
+          "04:15 - El fin del dinero barato y sus consecuencias",
+          "09:20 - Desafío a la política fiscal expansiva"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119180876_28943",
+      "url": "https://www.youtube.com/watch?v=sJS7THHdEOw",
+      "title": "HARÁN lo que sea NECESARIO para que SUBAN de cara a las Elecciones de mitad de mandato. JL Cava",
+      "author": "Jose Luis Cava",
+      "channel": "Jose Luis Cava",
+      "fecha": "17/09/2026",
+      "fecha_registro": "17/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/sJS7THHdEOw/hqdefault.jpg",
+      "consulta": "¿Existe una correlación directa entre el ciclo electoral estadounidense y la manipulación de los mercados financieros?",
+      "tags": [
+        "Ciclo Electoral",
+        "Liquidez",
+        "Mercados",
+        "Intervencionismo"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El analista sostiene que la administración y la FED implementarán medidas de expansión de liquidez para sostener los mercados antes de las elecciones.",
+        "tesis_macro": "Escenario de 'represión financiera' donde el estímulo monetario busca evitar una corrección bursátil que perjudique al partido gobernante.",
+        "matriz_activos": {
+          "renta_variable": "Favorable, por inyección de liquidez pre-electoral.",
+          "bonos": "Neutral, condicionado por la curva de tipos.",
+          "oro": "Favorable, como cobertura ante la degradación monetaria.",
+          "petroleo": "Neutral, sujeto a control de precios políticos.",
+          "dolar": "Desfavorable, por expansión de oferta monetaria.",
+          "bitcoin": "Favorable, como activo de riesgo especulativo."
+        },
+        "timestamps_citas": [
+          "04:12 - La liquidez es el motor principal del mercado pre-electoral",
+          "12:45 - La FED no permitirá una caída sostenida antes de noviembre"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119180876_31301",
+      "url": "https://www.youtube.com/watch?v=SSVpGw1m1qE",
+      "title": "La gran quiebra de los bancos que se avecina y que lleva a Alberto Iturralde a huir de BBVA",
+      "author": "Capital Radio",
+      "channel": "Capital Radio",
+      "fecha": "17/09/2026",
+      "fecha_registro": "17/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/SSVpGw1m1qE/hqdefault.jpg",
+      "consulta": "¿Qué riesgos sistémicos presenta el sector bancario europeo ante la actual coyuntura de tipos?",
+      "tags": [
+        "Banca",
+        "Riesgo Sistémico",
+        "BBVA",
+        "Solvencia"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "Se identifica una vulnerabilidad estructural en los balances bancarios, sugiriendo una rotación de activos ante posibles quiebras técnicas.",
+        "tesis_macro": "El sector bancario enfrenta una crisis de confianza y solvencia derivada de la mala gestión de activos y la exposición a deuda soberana.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable, especialmente en el sector financiero.",
+          "bonos": "Desfavorable, por riesgo de crédito bancario.",
+          "oro": "Favorable, como activo refugio ante el colapso bancario.",
+          "petroleo": "Neutral, sin correlación directa con la crisis bancaria.",
+          "dolar": "Favorable, como divisa de reserva ante el caos europeo.",
+          "bitcoin": "Neutral, alta volatilidad ante eventos de riesgo."
+        },
+        "timestamps_citas": [
+          "03:20 - La estructura de capital de la banca es un castillo de naipes",
+          "09:15 - Salida de posiciones en BBVA por riesgo de contagio"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119180876_32798",
+      "url": "https://www.youtube.com/watch?v=ymB1it_PXVw",
+      "title": "ECONOMÍA HOY: Todo sobre los resultados de Nvidia, las maniobras de Sánchez y China contraataca",
+      "author": "Negocios TV",
+      "channel": "Negocios TV",
+      "fecha": "17/09/2026",
+      "fecha_registro": "17/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/ymB1it_PXVw/hqdefault.jpg",
+      "consulta": "¿Cómo impactan los resultados de Nvidia y la geopolítica china en la estabilidad de los mercados globales?",
+      "tags": [
+        "Nvidia",
+        "Geopolítica",
+        "China",
+        "Tecnología"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "Nvidia actúa como termómetro del sector IA, mientras que las tensiones con China introducen una prima de riesgo geopolítico en la cadena de suministro.",
+        "tesis_macro": "La dependencia tecnológica de la IA y la fragmentación comercial global crean un entorno de alta volatilidad y divergencia sectorial.",
+        "matriz_activos": {
+          "renta_variable": "Neutral, alta dispersión entre sectores tecnológicos y tradicionales.",
+          "bonos": "Neutral, bajo presión por la inflación persistente.",
+          "oro": "Favorable, ante la incertidumbre geopolítica.",
+          "petroleo": "Favorable, por tensiones en el suministro global.",
+          "dolar": "Favorable, como activo de seguridad ante el conflicto con China.",
+          "bitcoin": "Neutral, afectado por la liquidez global."
+        },
+        "timestamps_citas": [
+          "05:40 - Nvidia es el catalizador del sentimiento inversor actual",
+          "14:20 - China está moviendo piezas estratégicas en el tablero comercial"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119180876_94099",
+      "url": "https://www.youtube.com/watch?v=l4ZivfvrxP4",
+      "title": "DIRECTO | ESPECIAL IPC EN EEUU: El miedo a la inflación vuelve a la FED",
+      "author": "Negocios TV",
+      "channel": "Negocios TV",
+      "fecha": "16/09/2026",
+      "fecha_registro": "16/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/l4ZivfvrxP4/hqdefault.jpg",
+      "consulta": "¿Qué implicaciones tiene el repunte del IPC en EE. UU. para la hoja de ruta de tipos de la FED?",
+      "tags": [
+        "IPC",
+        "FED",
+        "Inflación",
+        "Política Monetaria"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El repunte inflacionario obliga a la FED a mantener una postura 'higher for longer', limitando las expectativas de recortes inmediatos.",
+        "tesis_macro": "La inflación es estructural y no transitoria, lo que invalida el escenario de 'soft landing' y presiona los rendimientos de los bonos.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable, por compresión de múltiplos ante tipos altos.",
+          "bonos": "Desfavorable, por caída de precios ante subida de tipos.",
+          "oro": "Neutral, lucha entre inflación y tipos reales.",
+          "petroleo": "Favorable, como componente inflacionario.",
+          "dolar": "Favorable, por diferencial de tipos de interés.",
+          "bitcoin": "Desfavorable, por endurecimiento de condiciones financieras."
+        },
+        "timestamps_citas": [
+          "02:30 - El IPC vuelve a ser el enemigo público número uno de la FED",
+          "11:10 - El mercado está descontando erróneamente una bajada de tipos"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119193667_74334",
+      "url": "https://www.youtube.com/watch?v=o8GgvD00d4A",
+      "title": "Claves del día: La peligrosa deriva de Europa, el gran dilema de la FED y golpe a las cripto",
+      "author": "Negocios TV",
+      "channel": "Negocios TV",
+      "fecha": "16/09/2026",
+      "fecha_registro": "16/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/o8GgvD00d4A/hqdefault.jpg",
+      "consulta": "¿Cómo afecta la divergencia estructural entre la debilidad macroeconómica europea y el dilema de relajación monetaria de la Reserva Federal al posicionamiento institucional global?",
+      "tags": [
+        "Macroeconomía Europa",
+        "Reserva Federal",
+        "Política Monetaria",
+        "Regulación Cripto"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "Europa enfrenta un estancamiento estructural agravado por la pérdida de competitividad industrial y costes energéticos, mientras la Fed se debate entre acelerar los recortes de tipos o frenar por la persistencia inflacionaria. Esta asimetría debilita los activos de riesgo europeos e introduce volatilidad en los mercados de divisas y criptoactivos.",
+        "tesis_macro": "Escenario de estanflación latente en la Eurozona con un Banco Central Europeo obligado a recortar tipos para evitar la fragmentación, contrastando con una economía estadounidense resiliente pero vulnerable al endurecimiento acumulado. Los catalizadores clave son las decisiones sobre el dot plot de la Fed, los datos de PMI manufactureros en Alemania y el endurecimiento regulatorio sobre la custodia de activos digitales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral/Desfavorable: Infraponderación en renta variable europea cíclica; sesgo defensivo en selectivos estadounidenses de alta calidad.",
+          "bonos": "Favorable: Duración soberana atractiva ante expectativas de recorte de tipos en la Eurozona y búsqueda de refugio.",
+          "oro": "Favorable: Soporte estructural por desdolarización de bancos centrales y cobertura contra riesgos de fragmentación macro.",
+          "petroleo": "Neutral: Equilibrio entre la contracción de demanda global (liderada por Europa/China) y la disciplina de oferta de la OPEP+.",
+          "dolar": "Favorable: Mantenimiento del diferencial de crecimiento y tipos de interés respecto a la Eurozona (Dollar Smile).",
+          "bitcoin": "Desfavorable a corto plazo: Presión regulatoria, drenaje temporal de liquidez y menor apetito institucional por riesgo beta alto."
+        },
+        "timestamps_citas": [
+          "03:40 - La pérdida de tracción de la locomotora alemana confirma la deriva estructural de la economía europea.",
+          "11:15 - El dilema de la Fed radica en flexibilizar la política sin desanclar las expectativas de inflación subyacente.",
+          "18:50 - El endurecimiento de los controles regulatorios ejerce un freno directo a la liquidez en el ecosistema cripto."
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119193667_17073",
+      "url": "https://www.youtube.com/watch?v=Jrs-VPjaA8g",
+      "title": "Esto es lo que NOS tienen PREPARADO a partir del 24 de septiembre. José Luis Cava",
+      "author": "Jose Luis Cava",
+      "channel": "Jose Luis Cava",
+      "fecha": "16/09/2026",
+      "fecha_registro": "16/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/Jrs-VPjaA8g/hqdefault.jpg",
+      "consulta": "¿Qué impacto tendrá la ventana de liquidez y el ajuste técnico del mercado a partir del 24 de septiembre sobre la estructura de los índices directores?",
+      "tags": [
+        "Liquidez Global",
+        "S&P 500",
+        "Pautas Estacionales",
+        "Política Monetaria"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El vencimiento trimestral de derivados y la resolución de las reuniones de los bancos centrales abren una ventana de estacionalidad históricamente compleja a finales de septiembre. El comportamiento del S&P 500 dependerá estrictamente del mantenimiento de soportes clave de volumen y de la evolución de las reservas bancarias ante las operaciones de balance de la Fed.",
+        "tesis_macro": "Transición de una fase de expansión de múltiplos impulsada por liquidez a una fase de reajuste técnico y estacional. El catalizador es el drenaje de reservas bancarias por emisiones del Tesoro y la liquidación de coberturas de opciones (OpEx), lo que podría forzar una corrección táctica antes de reanudar la tendencia alcista de fin de año.",
+        "matriz_activos": {
+          "renta_variable": "Neutral táctico / Favorable estratégico: Riesgo de volatilidad y toma de beneficios a corto plazo; mantener sesgo alcista si se respetan soportes técnicos clave.",
+          "bonos": "Neutral: Ajuste en la curva de tipos descontando el ritmo efectivo de flexibilización cuantitativa/bajadas de tipos.",
+          "oro": "Favorable: Activo prioritario para mantener valor frente a la degradación monetaria y shocks de volatilidad.",
+          "petroleo": "Neutral/Desfavorable: Presión bajista por menor tracción de demanda estacional y datos manufactureros débiles.",
+          "dolar": "Neutral: Rango lateral condicionado a la respuesta del mercado a las proyecciones de tipos de interés.",
+          "bitcoin": "Favorable: Respeto de niveles estructurales de soporte; preparación de impulso tras superar la ventana de estacionalidad negativa."
+        },
+        "timestamps_citas": [
+          "02:10 - La clave de la liquidez real en el sistema marcará el verdadero suelo del mercado tras el vencimiento de opciones.",
+          "07:45 - A partir del 24 de septiembre entramos en la ventana estacional crítica donde se definirá la tendencia del último trimestre.",
+          "13:30 - Si el S&P 500 mantiene el soporte estructural de volumen, la corrección actual representará una oportunidad de acumulación."
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119193667_17213",
+      "url": "https://www.youtube.com/watch?v=6TsnZ9B5Qxs",
+      "title": "Claves del día: Tensión máxima en Wall Street, los errores de Trump y ¿llega el imperio galáctico?",
+      "author": "Negocios TV",
+      "channel": "Negocios TV",
+      "fecha": "15/09/2026",
+      "fecha_registro": "15/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/6TsnZ9B5Qxs/hqdefault.jpg",
+      "consulta": "¿Cómo configuran la incertidumbre electoral en EE.UU., las políticas arancelarias y las tensiones geopolíticas el riesgo de cola para Wall Street?",
+      "tags": [
+        "Elecciones EE.UU.",
+        "Geopolítica",
+        "Wall Street",
+        "Riesgo Arancelario"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "La perspectiva de escaladas arancelarias y políticas proteccionistas introduce primas de riesgo adicionales sobre los márgenes corporativos y la inflación. Wall Street experimenta tensión por la valoración exigente de las mega-caps frente a un entorno donde el proteccionismo podría fragmentar las cadenas de suministro globales y limitar el crecimiento.",
+        "tesis_macro": "Régimen de volatilidad elevada derivado del riesgo político en EE.UU. y la reconfiguración hegemónica global. El escenario base contempla una compresión de múltiplos en sectores expuestos al comercio internacional y un endurecimiento de la prima por plazo en la deuda gubernamental si aumentan las proyecciones de déficit fiscal.",
+        "matriz_activos": {
+          "renta_variable": "Neutral: Rotación intra-sectorial desde valores multinacionales expuestos a aranceles hacia sectores defensivos y de valor local.",
+          "bonos": "Desfavorable a medio plazo: Presión al alza en los rendimientos largos por riesgo de mayor déficit fiscal y aranceles inflacionarios.",
+          "oro": "Favorable: Cobertura óptima ante riesgos geopolíticos, devaluación de divisas fiat y tensiones comerciales globales.",
+          "petroleo": "Favorable táctico: Prima de riesgo geopolítico activa por conflictos en rutas comerciales y Oriente Medio.",
+          "dolar": "Favorable: Demanda por estatus de refugio ante repuntes de inestabilidad geopolítica y riesgo arancelario global.",
+          "bitcoin": "Neutral: Comportamiento mixto, actuando alternativamente como activo de riesgo tecnológico y activo alternativo no soberano."
+        },
+        "timestamps_citas": [
+          "04:25 - Las propuestas arancelarias amenazan con reactivar presiones de costes en un momento crítico para la desinflación.",
+          "12:50 - Wall Street cotiza a múltiplos exigentes que no descuentan plenamente un shock geopolítico o comercial.",
+          "21:10 - La carrera por la hegemonía tecnológica y espacial redefine los flujos de capital institucional a largo plazo."
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119193667_78289",
+      "url": "https://www.youtube.com/watch?v=icsVW7vfE_k",
+      "title": "Se avecina una CRISIS y los señores de la IA la ven venir. José Luis Cava",
+      "author": "Jose Luis Cava",
+      "channel": "Jose Luis Cava",
+      "fecha": "15/09/2026",
+      "fecha_registro": "15/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/icsVW7vfE_k/hqdefault.jpg",
+      "consulta": "¿Constituye la desaceleración del retorno de inversión (ROI) en infraestructura de Inteligencia Artificial el detonante de una corrección macroeconómica y bursátil?",
+      "tags": [
+        "Inteligencia Artificial",
+        "CAPEX Tecnológico",
+        "Burbuja Tecnológica",
+        "Ciclo Económico"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El elevado gasto de capital (CAPEX) de los gigantes tecnológicos en centros de datos e IA sin una monetización inmediata equivalente empieza a presionar los flujos de caja libre. Si los 'insiders' reducen exposición y el retorno no se materializa en los próximos trimestres, el mercado enfrentará una revaluación a la baja del sector que ha sostenido el índice.",
+        "tesis_macro": "Riesgo de agotamiento del ciclo alcista impulsado por el monocultivo de la IA. El escenario central plantea una transición desde la fase de construcción de infraestructura hacia una fase de exigencia de rentabilidad, con riesgo de 'Capex cliff' que impacte la inversión agregada y fuerce una desaceleración en el PIB de EE.UU.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable táctico / Neutral: Riesgo de corrección severa en el sector tecnológico/semiconductores; rotación hacia activos reales y defensivos.",
+          "bonos": "Favorable: Entrada de flujos de huida hacia la calidad (Flight to Quality) si se materializa una corrección bursátil profunda.",
+          "oro": "Favorable: Instrumento de descorrelación indispensable frente al riesgo de corrección en activos de crecimiento.",
+          "petroleo": "Desfavorable: Sensibilidad a la desaceleración del consumo industrial y menor demanda de energía asociada al ciclo macro.",
+          "dolar": "Neutral: Comportamiento dependiente del grado de aversión al riesgo global y de la velocidad de respuesta de la Fed.",
+          "bitcoin": "Neutral/Desfavorable: Alta correlación histórica con la liquidez del sector tecnológico y las acciones de alto beta."
+        },
+        "timestamps_citas": [
+          "01:50 - Los propios directivos de las grandes tecnológicas están advirtiendo de la brecha entre el gasto masivo en IA y los ingresos reales.",
+          "06:30 - Si el retorno del CAPEX no se valida, el ajuste de valoraciones en el sector tecnológico arrastrará al conjunto del mercado.",
+          "11:45 - La divergencia entre la euforia del mercado y el deterioro subyacente del ciclo de liquidez alerta de una fase correctiva inminente."
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119214821_32862",
+      "url": "https://www.youtube.com/watch?v=Zsc3n7XA8EE",
+      "title": "Llega la SEMANA CLAVE para Bitcoin: ÚLTIMO LLAMADO",
+      "author": "Bitcoin y Criptos",
+      "channel": "Bitcoin y Criptos",
+      "fecha": "15/09/2026",
+      "fecha_registro": "15/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/Zsc3n7XA8EE/hqdefault.jpg",
+      "consulta": "¿Cuál es la configuración técnica y el nivel de riesgo para Bitcoin ante la inminente volatilidad macroeconómica?",
+      "tags": [
+        "Bitcoin",
+        "Criptoactivos",
+        "Volatilidad",
+        "Análisis Técnico"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El activo se encuentra en una zona de decisión crítica donde la ruptura de niveles de soporte clave determinará si se inicia un impulso alcista o una corrección profunda.",
+        "tesis_macro": "La liquidez global y las expectativas sobre las tasas de la FED actúan como catalizadores inmediatos para el sentimiento de riesgo en el mercado cripto.",
+        "matriz_activos": {
+          "renta_variable": "Neutral - Correlación alta con el sentimiento de riesgo.",
+          "bonos": "Neutral - Impacto indirecto vía rendimientos reales.",
+          "oro": "Neutral - Activo refugio alternativo.",
+          "petroleo": "Neutral - Sin impacto directo en el análisis.",
+          "dolar": "Desfavorable - La fortaleza del DXY presiona a la baja a los activos digitales.",
+          "bitcoin": "Favorable - Potencial de ruptura alcista tras consolidación."
+        },
+        "timestamps_citas": [
+          "01:15 - Análisis de niveles de soporte críticos",
+          "05:40 - Proyección de volatilidad semanal"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119214821_51615",
+      "url": "https://www.youtube.com/watch?v=Uyn0ggOi6Vs",
+      "title": "¿Qué pasará ESTA SEMANA con el ORO y la PLATA? | La FED decide TODO",
+      "author": "Iván Campuzano Trading",
+      "channel": "Iván Campuzano Trading",
+      "fecha": "14/09/2026",
+      "fecha_registro": "14/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/Uyn0ggOi6Vs/hqdefault.jpg",
+      "consulta": "¿Cómo impactará la decisión de tipos de la FED en la estructura de precios de los metales preciosos?",
+      "tags": [
+        "Oro",
+        "Plata",
+        "FED",
+        "Política Monetaria"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "La política monetaria de la FED es el driver principal; una pausa o recorte de tipos favorece una expansión alcista en el oro y la plata por debilitamiento del dólar.",
+        "tesis_macro": "El mercado descuenta un cambio en el ciclo de tipos, lo que reduce el coste de oportunidad de mantener activos sin rendimiento como los metales preciosos.",
+        "matriz_activos": {
+          "renta_variable": "Neutral - Dependencia de los resultados corporativos.",
+          "bonos": "Favorable - Expectativa de caída en los rendimientos.",
+          "oro": "Favorable - Cobertura ante la incertidumbre de la FED.",
+          "petroleo": "Neutral - Volatilidad por oferta.",
+          "dolar": "Desfavorable - Tendencia bajista ante el giro de la FED.",
+          "bitcoin": "Neutral - Activo de riesgo especulativo."
+        },
+        "timestamps_citas": [
+          "03:20 - Impacto de la reunión de la FED",
+          "07:50 - Análisis técnico de la plata"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119214821_59685",
+      "url": "https://www.youtube.com/watch?v=LoV0y3kI--4",
+      "title": "Me la juego: el verdadero potencial del oro ahora y cómo invertir",
+      "author": "Hector Chamizo",
+      "channel": "Hector Chamizo",
+      "fecha": "14/09/2026",
+      "fecha_registro": "14/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/LoV0y3kI--4/hqdefault.jpg",
+      "consulta": "¿Cuál es la tesis de inversión a largo plazo para el oro en el contexto actual de deuda global?",
+      "tags": [
+        "Oro",
+        "Inversión",
+        "Deuda",
+        "Macroeconomía"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El oro actúa como seguro contra la degradación monetaria y el exceso de deuda soberana, siendo un componente esencial en cualquier cartera diversificada.",
+        "tesis_macro": "La insostenibilidad de los niveles de deuda global obliga a los bancos centrales a mantener una política monetaria expansiva, inflando el valor real del oro.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable - Riesgo de valoración excesiva.",
+          "bonos": "Desfavorable - Riesgo de inflación persistente.",
+          "oro": "Favorable - Activo de reserva de valor definitivo.",
+          "petroleo": "Neutral - Dependencia geopolítica.",
+          "dolar": "Desfavorable - Erosión del poder adquisitivo.",
+          "bitcoin": "Neutral - Activo especulativo de alta volatilidad."
+        },
+        "timestamps_citas": [
+          "04:10 - El oro como seguro contra la deuda",
+          "10:25 - Estrategia de acumulación"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119214821_32610",
+      "url": "https://www.youtube.com/watch?v=wGR30peig6E",
+      "title": "Quieren provocar una CAÍDA, una RECESIÓN breve. José Luis Cava",
+      "author": "Jose Luis Cava",
+      "channel": "Jose Luis Cava",
+      "fecha": "14/09/2026",
+      "fecha_registro": "14/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/wGR30peig6E/hqdefault.jpg",
+      "consulta": "¿Existe una intención deliberada de las élites financieras para provocar una recesión técnica?",
+      "tags": [
+        "Recesión",
+        "Ciclos Económicos",
+        "José Luis Cava",
+        "Macro"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El mercado está siendo manipulado para forzar una recesión breve que permita limpiar excesos financieros antes de un nuevo ciclo expansivo.",
+        "tesis_macro": "La manipulación de expectativas y la gestión de la liquidez por parte de los grandes actores institucionales buscan un 'reset' controlado del mercado.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable - Riesgo de corrección inminente.",
+          "bonos": "Favorable - Refugio ante la contracción económica.",
+          "oro": "Favorable - Cobertura ante el pánico sistémico.",
+          "petroleo": "Desfavorable - Caída por menor demanda industrial.",
+          "dolar": "Favorable - Activo de liquidez en momentos de estrés.",
+          "bitcoin": "Desfavorable - Alta sensibilidad a la falta de liquidez."
+        },
+        "timestamps_citas": [
+          "02:00 - La estrategia de la recesión provocada",
+          "06:45 - Análisis de los flujos institucionales"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119231665_2676",
+      "url": "https://www.youtube.com/watch?v=u4ofcE3-WBg",
+      "title": "Alberto Iturralde: \"El mercado necesita pánico\" | Clase Magistral con Laura Blanco",
+      "author": "Capital Radio",
+      "channel": "Capital Radio",
+      "fecha": "14/09/2026",
+      "fecha_registro": "14/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/u4ofcE3-WBg/hqdefault.jpg",
+      "consulta": "¿Es necesario un evento de capitulación para establecer un suelo de mercado sostenible?",
+      "tags": [
+        "Psicología de Mercado",
+        "Capitulación",
+        "Análisis Técnico",
+        "Sentimiento"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El mercado requiere una purga de manos débiles mediante un evento de pánico para limpiar los excesos especulativos y permitir una acumulación institucional real.",
+        "tesis_macro": "El mercado opera bajo dinámicas de manipulación algorítmica donde el pánico es el catalizador necesario para cambiar la tendencia de corto plazo.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable, riesgo de corrección profunda por falta de pánico previo.",
+          "bonos": "Neutral, sin impacto directo en la tesis de corto plazo.",
+          "oro": "Neutral, activo de refugio no prioritario en este escenario.",
+          "petroleo": "Neutral, sujeto a dinámicas de oferta independientes.",
+          "dolar": "Favorable, actúa como activo refugio ante la volatilidad.",
+          "bitcoin": "Desfavorable, alta correlación con el riesgo sistémico."
+        },
+        "timestamps_citas": [
+          "05:20 - La necesidad de pánico para limpiar el mercado",
+          "12:45 - Análisis de la estructura de manos fuertes vs débiles"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119231665_17428",
+      "url": "https://www.youtube.com/watch?v=aL5OrAiccmI",
+      "title": "Lunes de Bolsa en rojo: caídas de las tecnológicas | Capital, La Bolsa y La Vida",
+      "author": "Capital Radio",
+      "channel": "Capital Radio",
+      "fecha": "14/09/2026",
+      "fecha_registro": "14/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/aL5OrAiccmI/hqdefault.jpg",
+      "consulta": "¿Qué factores explican la debilidad actual en el sector tecnológico?",
+      "tags": [
+        "Tecnológicas",
+        "Corrección",
+        "Mercados",
+        "Volatilidad"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "La rotación de carteras y la sobrevaloración de las megacaps tecnológicas están provocando una corrección técnica necesaria tras periodos de euforia.",
+        "tesis_macro": "El mercado está ajustando expectativas ante la incertidumbre de los tipos de interés y la desaceleración del crecimiento en sectores de alto crecimiento.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable, presión vendedora en el sector tecnológico.",
+          "bonos": "Favorable, actúan como cobertura ante la caída de la renta variable.",
+          "oro": "Favorable, refugio ante la inestabilidad bursátil.",
+          "petroleo": "Neutral, sin correlación directa con la caída tech.",
+          "dolar": "Favorable, fortalecimiento por aversión al riesgo.",
+          "bitcoin": "Desfavorable, activo de riesgo bajo presión."
+        },
+        "timestamps_citas": [
+          "03:10 - Análisis de la caída en las tecnológicas",
+          "09:45 - Impacto de la rotación de activos en los índices"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119231665_9343",
+      "url": "https://www.youtube.com/watch?v=bjUTTADyfqw",
+      "title": "Bitcoin y Wall Street ante 48 horas DECISIVAS: CLARITY + FED",
+      "author": "Jon Economist",
+      "channel": "Jon Economist",
+      "fecha": "14/09/2026",
+      "fecha_registro": "14/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/bjUTTADyfqw/hqdefault.jpg",
+      "consulta": "¿Cómo afectará la próxima decisión de la FED a la correlación entre Bitcoin y Wall Street?",
+      "tags": [
+        "FED",
+        "Bitcoin",
+        "Macroeconomía",
+        "Tipos de Interés"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "La decisión de la FED actuará como catalizador de volatilidad, forzando una revalorización de los activos de riesgo ante la política monetaria restrictiva.",
+        "tesis_macro": "La liquidez global está estrechamente ligada a las decisiones de la FED, lo que dicta el comportamiento de los activos especulativos como Bitcoin.",
+        "matriz_activos": {
+          "renta_variable": "Neutral, a la espera de la guía de la FED.",
+          "bonos": "Neutral, alta sensibilidad a la curva de tipos.",
+          "oro": "Favorable, cobertura contra la inflación persistente.",
+          "petroleo": "Neutral, dependiente de la demanda global.",
+          "dolar": "Favorable, si la FED mantiene un tono hawkish.",
+          "bitcoin": "Neutral, alta volatilidad esperada ante el evento macro."
+        },
+        "timestamps_citas": [
+          "04:30 - La importancia de la reunión de la FED",
+          "15:10 - Correlación Bitcoin y mercados tradicionales"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119231665_9058",
+      "url": "https://www.youtube.com/watch?v=NOQg3X-BZqw",
+      "title": "MIL MILLONES al DÍA! El PETRÓLEO a 100 y esta vez NO HAY PLAN B  - @SoloFonseca",
+      "author": "Solo Fonseca",
+      "channel": "Solo Fonseca",
+      "fecha": "14/09/2026",
+      "fecha_registro": "14/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/NOQg3X-BZqw/hqdefault.jpg",
+      "consulta": "¿Cuáles son las implicaciones geopolíticas y económicas de un petróleo a 100 dólares?",
+      "tags": [
+        "Petróleo",
+        "Geopolítica",
+        "Inflación",
+        "Energía"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "Un petróleo a 100 dólares actúa como un impuesto regresivo que acelera la inflación y limita el margen de maniobra de los bancos centrales.",
+        "tesis_macro": "La escasez de oferta estructural y la falta de planes de contingencia energéticos crean un escenario de estanflación potencial.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable, aumento de costes operativos para las empresas.",
+          "bonos": "Desfavorable, presión inflacionaria al alza.",
+          "oro": "Favorable, cobertura contra la inflación energética.",
+          "petroleo": "Favorable, tendencia alcista por desequilibrio oferta-demanda.",
+          "dolar": "Favorable, moneda de liquidación energética.",
+          "bitcoin": "Neutral, sin impacto directo en la tesis energética."
+        },
+        "timestamps_citas": [
+          "02:45 - El riesgo de los 100 dólares por barril",
+          "07:20 - Falta de plan B en la política energética"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119256651_22894",
+      "url": "https://www.youtube.com/watch?v=5VrtCBOBW8s",
+      "title": "Los creadores de la IA piden frenar: ¿qué ha pasado?",
+      "author": "Juan Ramón Rallo",
+      "channel": "Juan Ramón Rallo",
+      "fecha": "13/09/2026",
+      "fecha_registro": "13/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/5VrtCBOBW8s/hqdefault.jpg",
+      "consulta": "¿Qué incentivos de mercado y riesgos institucionales subyacen a las solicitudes de regulación y moratoria en el desarrollo de la Inteligencia Artificial?",
+      "tags": [
+        "Inteligencia Artificial",
+        "Captura Regulatoria",
+        "Productividad Macro",
+        "Riesgo Regulatorio"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "Las peticiones de moratoria regulatoria por parte de líderes tecnológicos responden principalmente a dinámicas de captura regulatoria y protección de cuota de mercado frente a nuevos competidores, disfrazadas de prevención de riesgos existenciales. La imposición de barreras de entrada ralentizaría la adopción del shock de productividad secular que la IA promete a la economía global.",
+        "tesis_macro": "El shock de oferta positivo derivado de la IA enfrenta fricciones regulatorias inmediatas. Un marco regulatorio restrictivo limitará las ganancias de productividad total de los factores (PTF) en el medio plazo, incrementando la divergencia de crecimiento entre jurisdicciones permisivas y restrictivas.",
+        "matriz_activos": {
+          "renta_variable": "Neutral con sesgo favorable a incumbentes tecnológicos con balances sólidos para sortear costes de cumplimiento; desfavorable para startups de pequeña capitalización.",
+          "bonos": "Neutral; el impacto inflacionario desinflacionario por mayor productividad se aplaza debido a trabas burocráticas.",
+          "oro": "Favorable como cobertura ante incertidumbre regulatoria y fricciones geopolíticas de soberanía tecnológica.",
+          "petroleo": "Neutral; la demanda energética por centros de datos (datacenter infrastructure) continúa en expansión pese a restricciones de software.",
+          "dolar": "Favorable por concentración de capital e infraestructura de IA de primer nivel en Estados Unidos.",
+          "bitcoin": "Favorable debido a la búsqueda de protocolos y redes descentralizadas resistentes a la censura o regulación excesiva."
+        },
+        "timestamps_citas": [
+          "01:45 - Análisis del dilema de coordinación y presiones competitivas en el sector tecnológico",
+          "06:20 - Examen de los incentivos económicos tras la solicitud de licencias gubernamentales y barreras de entrada"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119256651_26071",
+      "url": "https://www.youtube.com/watch?v=eAy5VovZy_E",
+      "title": "Buffett, Burry y Dalio contra el mercado: ¿Quién tiene razón sobre la burbuja de la IA?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "13/09/2026",
+      "fecha_registro": "13/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/eAy5VovZy_E/hqdefault.jpg",
+      "consulta": "¿Se encuentra el mercado de renta variable en una burbuja de valoración impulsada por la IA y cómo justifican los grandes gestores su posición de cautela?",
+      "tags": [
+        "Burbuja IA",
+        "Valoraciones",
+        "Concentración de Mercado",
+        "Liquidez Institucional"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "Grandes inversores de valor (Buffett, Dalio, Burry) mantienen elevados niveles de liquidez ante múltiplos de valoración extremos (EV/Sales y PER adelantado) y una concentración récord en los 'Siete Magníficos', advirtiendo que el retorno sobre el Capex de IA tardará en materializarse en flujos de caja operativos reales.",
+        "tesis_macro": "Desconexión entre valoraciones bursátiles e indicadores de ciclo tardío. El ciclo de inversión de capital masivo en chips y centros de datos afronta un riesgo inminente de compresión de márgenes si la tasa de monetización empresarial de la IA defrauda las expectativas agregadas.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable en megacaps tecnológicas por sobrecompra y múltiplos exigentes; sesgo hacia sectores defensivos y valor.",
+          "bonos": "Favorable en tramos cortos y medios soberanos como activo refugio y por atractivos rendimientos reales.",
+          "oro": "Favorable como reserva de valor frente al riesgo de desinflación de activos financieros y endeudamiento sistémico.",
+          "petroleo": "Neutral a desfavorable por desaceleración cíclica industrial y debilitamiento del consumo global.",
+          "dolar": "Neutral a favorable por demanda de liquidez en episodios de 'de-risking' de renta variable global.",
+          "bitcoin": "Desfavorable a corto plazo por alta correlación con activos de riesgo de alta beta tecnológica."
+        },
+        "timestamps_citas": [
+          "04:10 - Comparativa histórica de concentración de mercado y ratios CAPE respecto a burbujas previas",
+          "11:35 - Desglose de la acumulación de liquidez en letras del Tesoro por parte de Berkshire Hathaway"
+        ]
+      }
+    },
+    {
+      "id": "vid_1790119256651_92377",
+      "url": "https://www.youtube.com/watch?v=7ONPmXG9QNg",
+      "title": "El DÓLAR, el YEN y el GRAN RIESGO para los mercados",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "13/09/2026",
+      "fecha_registro": "13/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/7ONPmXG9QNg/hqdefault.jpg",
+      "consulta": "¿Qué riesgo sistémico plantea la divergencia monetaria entre la Reserva Federal y el Banco de Japón a través del desmantelamiento del Yen Carry Trade?",
+      "tags": [
+        "Yen Carry Trade",
+        "USDJPY",
+        "Riesgo de Liquidez",
+        "Bancos Centrales"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "La subida de tipos de interés por parte del Banco de Japón (BoJ) junto al ciclo de recortes de la Reserva Federal reduce el diferencial de tipos, forzando la liquidación desordenada de posiciones apalancadas en Carry Trade sobre el Yen y provocando contracciones abruptas de liquidez en activos de riesgo globales.",
+        "tesis_macro": "Régimen de volatilidad al alza por repatriación de capitales institucionales japoneses. La apreciación rápida del JPY actúa como catalizador de llamadas de margen ('margin calls') globales, restringiendo las condiciones financieras internacionales con independencia del tono 'dovish' de la Fed.",
+        "matriz_activos": {
+          "renta_variable": "Desfavorable a corto plazo por desapalancamiento forzado institucional y picos en el índice VIX.",
+          "bonos": "Favorable en bonos del Tesoro de EE.UU. por huida hacia la calidad ('flight to quality'), pese a la menor demanda marginal nipona.",
+          "oro": "Favorable por demanda de cobertura frente a inestabilidad en mercados de divisas y desapalancamiento financiero.",
+          "petroleo": "Desfavorable por endurecimiento súbito de condiciones financieras y ajuste de carteras macro.",
+          "dolar": "Desfavorable frente al Yen (USD/JPY a la baja), pero neutral/favorable en cruces emergentes por aversión al riesgo.",
+          "bitcoin": "Desfavorable a corto plazo debido a su condición de activo ultrasensible a la liquidez global y apalancamiento sintético."
+        },
+        "timestamps_citas": [
+          "03:50 - Mecánica del Carry Trade: cómo el diferencial de tipos financió la compra de activos de riesgo globales",
+          "09:15 - Consecuencias de la repatriación del ahorro japonés sobre la deuda soberana y la volatilidad cruzada"
+        ]
+      }
+    },
     {
       "id": "vid_20260905001626014895",
       "url": "https://www.youtube.com/watch?v=3N7gWsTxIFU",
@@ -57,7 +1456,13 @@
       "fecha_registro": "05/09/2026 00:47",
       "thumbnail": "https://i.ytimg.com/vi/3N7gWsTxIFU/hqdefault.jpg",
       "consulta": "Revisar su visión sobre la estacionalidad de septiembre, niveles clave en el S&P 500 y si ve una caída profunda o solo un retroceso táctico para entrar.",
-      "tags": ["S&P 500", "Estacionalidad", "VIX", "Opciones", "Compra en Retrocesos"],
+      "tags": [
+        "S&P 500",
+        "Estacionalidad",
+        "VIX",
+        "Opciones",
+        "Compra en Retrocesos"
+      ],
       "incluidoEnSintesis": true,
       "resumen_estructurado": {
         "respuesta_consulta": "Cava señala que septiembre es estacionalmente muy bajista y anticipa caídas del 8-10%, pero NO una caída profunda ni cambio de ciclo bajista. El nivel de 7637 en el S&P 500 es el soporte crítico que vigila. Considera este retroceso como una oportunidad de compra histórica en activos estratégicos.",
@@ -85,7 +1490,14 @@
       "fecha_registro": "06/09/2026 10:09",
       "thumbnail": "https://i.ytimg.com/vi/872KpfLvTyU/hqdefault.jpg",
       "consulta": "Explicación del concepto Debasement Trade, cómo afecta a Bitcoin y Oro vs la renta fija, y qué conflicto hay entre el Tesoro y la Fed.",
-      "tags": ["Bitcoin", "Oro", "Debasement Trade", "Tesoro EE.UU.", "Reserva Federal", "Inflación"],
+      "tags": [
+        "Bitcoin",
+        "Oro",
+        "Debasement Trade",
+        "Tesoro EE.UU.",
+        "Reserva Federal",
+        "Inflación"
+      ],
       "incluidoEnSintesis": true,
       "resumen_estructurado": {
         "respuesta_consulta": "El Debasement Trade es la estrategia inversora de huir del dinero fiduciario hacia activos duros sin riesgo de contraparte e inelásticos (Oro y Bitcoin) ante el intento del Tesoro de licuar la deuda inflando la economía. Conflicto directo: el Tesoro quiere tipos bajos y dilución, mientras la Fed de Warsh amenaza con subir tipos a corto.",
@@ -113,7 +1525,14 @@
       "fecha_registro": "05/09/2026 00:45",
       "thumbnail": "https://i.ytimg.com/vi/is2MXznc1P0/hqdefault.jpg",
       "consulta": "Identificar qué opina de la relación entre Bessent, Druckenmiller y Warsh, y qué jugada técnica ve en el bono a 30 años.",
-      "tags": ["Bono 30A", "Kevin Warsh", "Bessent", "Druckenmiller", "Short Squeeze", "Manipulación"],
+      "tags": [
+        "Bono 30A",
+        "Kevin Warsh",
+        "Bessent",
+        "Druckenmiller",
+        "Short Squeeze",
+        "Manipulación"
+      ],
       "incluidoEnSintesis": true,
       "resumen_estructurado": {
         "respuesta_consulta": "Cava defiende que el supuesto enfrentamiento público entre Bessent y Druckenmiller es una pantomima coordinada para permitir que Kevin Warsh aparente independencia en la Fed. La jugada técnica es provocar un 'short squeeze' masivo en el bono a 30 años contra los fondos CTA forzando la rentabilidad por debajo de 5.148%.",
@@ -140,7 +1559,14 @@
       "fecha_registro": "05/09/2026 00:52",
       "thumbnail": "https://i.ytimg.com/vi/-5z7M81_Xio/hqdefault.jpg",
       "consulta": "Atención al impacto del conflicto en Irán sobre el petróleo, la inflación energética en Europa y el riesgo de caídas en el S&P 500.",
-      "tags": ["Petróleo", "Geopolítica", "Irán", "Inflación", "Crisis Energética", "Crash Bursátil"],
+      "tags": [
+        "Petróleo",
+        "Geopolítica",
+        "Irán",
+        "Inflación",
+        "Crisis Energética",
+        "Crash Bursátil"
+      ],
       "incluidoEnSintesis": true,
       "resumen_estructurado": {
         "respuesta_consulta": "Pablo Gil alerta de que el conflicto en Irán está al borde de destruir oferta real de crudo. Con el estrecho de Ormuz amenazado, el Brent podría superar los $150. Considera que una corrección del 10% en bolsas es un chiste y que el riesgo real es un desplome superior al 50% si se pierden soportes plurianuales.",
