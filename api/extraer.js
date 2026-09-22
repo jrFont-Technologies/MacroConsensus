@@ -1,4 +1,4 @@
-// Vercel Serverless Function: Extractor de YouTube
+// Vercel Serverless Function: Extractor de YouTube con Bypass de Consentimiento y oEmbed
 module.exports = async (req, res) => {
   // CORS Headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -27,34 +27,58 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'URL de YouTube inválida' });
     }
 
+    // 1. Obtener metadatos oficiales y fiables vía oEmbed
+    let title = '';
+    let author = '';
+    let thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
+    try {
+      const oembedRes = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
+      if (oembedRes.ok) {
+        const oembedData = await oembedRes.json();
+        title = oembedData.title || '';
+        author = oembedData.author_name || '';
+        if (oembedData.thumbnail_url) thumbnail = oembedData.thumbnail_url;
+      }
+    } catch (oeErr) {
+      console.warn('Error en oembed:', oeErr.message);
+    }
+
+    // 2. Obtener transcripción con cookies de consentimiento para evitar bloqueos
     const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
     const ytRes = await fetch(watchUrl, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
-        'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8'
+        'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8',
+        'Cookie': 'SOCS=CAISNQgDEitib3FfaWRlbnRpdHlmcm9udGVuZHVpc2VydmVyXzIwMjMwNjI3LjA3X3AwGgJzcxgBIAEaBgiA_LyaBg; CONSENT=YES+cb.20230531-04-p0.es+FX+999'
       }
     });
 
     const html = await ytRes.text();
 
-    let title = '';
-    const titleMatch = html.match(/<title>(.*?)<\/title>/);
-    if (titleMatch) title = titleMatch[1].replace(' - YouTube', '').trim();
+    if (!title) {
+      const titleMatch = html.match(/<title>(.*?)<\/title>/);
+      if (titleMatch) title = titleMatch[1].replace(' - YouTube', '').trim();
+    }
 
-    let author = '';
-    const authorMatch = html.match(/"ownerChannelName":"(.*?)"/) || html.match(/"author":"(.*?)"/);
-    if (authorMatch) author = authorMatch[1];
+    if (!author) {
+      const authorMatch = html.match(/"ownerChannelName":"(.*?)"/) || html.match(/"author":"(.*?)"/);
+      if (authorMatch) author = authorMatch[1];
+    }
 
     const playerMatch = html.match(/ytInitialPlayerResponse\s*=\s*({.+?});(?:var|<\/script>)/);
     if (!playerMatch) {
-      return res.status(200).json({ ok: false, error: 'No se pudo leer ytInitialPlayerResponse', title, author, videoId });
+      return res.status(200).json({ ok: false, error: 'No se detectaron subtítulos en la respuesta', title, author, thumbnail, videoId });
     }
 
-    const playerResponse = JSON.parse(playerMatch[1]);
-    const captionTracks = playerResponse?.captions?.playerCaptionsTracklistRenderer?.captionTracks;
+    let captionTracks;
+    try {
+      const playerResponse = JSON.parse(playerMatch[1]);
+      captionTracks = playerResponse?.captions?.playerCaptionsTracklistRenderer?.captionTracks;
+    } catch (e) {}
 
     if (!captionTracks || captionTracks.length === 0) {
-      return res.status(200).json({ ok: false, error: 'Sin subtítulos automáticos en YouTube', title, author, videoId });
+      return res.status(200).json({ ok: false, error: 'Sin subtítulos automáticos en YouTube', title, author, thumbnail, videoId });
     }
 
     let track = captionTracks.find(t => t.languageCode === 'es' || t.languageCode.startsWith('es'));
@@ -89,9 +113,9 @@ module.exports = async (req, res) => {
     return res.status(200).json({
       ok: true,
       videoId,
-      title: title || playerResponse?.videoDetails?.title || '',
-      author: author || playerResponse?.videoDetails?.author || '',
-      thumbnail: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+      title,
+      author,
+      thumbnail,
       language: track.languageCode,
       lineCount: lines.length,
       fullTranscript

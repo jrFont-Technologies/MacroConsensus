@@ -29,11 +29,28 @@ function extractVideoId(url) {
 // Helper: Extraer transcripción limpia de YouTube directamente (sin dependencias externas)
 async function fetchYouTubeTranscript(videoId) {
   try {
+    let title = '';
+    let author = '';
+    let thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
+    // 1. oEmbed para título y autor fiables
+    try {
+      const oembedRes = await fetch(`https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`);
+      if (oembedRes.ok) {
+        const oembedData = await oembedRes.json();
+        title = oembedData.title || '';
+        author = oembedData.author_name || '';
+        if (oembedData.thumbnail_url) thumbnail = oembedData.thumbnail_url;
+      }
+    } catch (e) {}
+
+    // 2. Watch page con cookies de consentimiento
     const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
     const res = await fetch(watchUrl, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
-        'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8'
+        'Accept-Language': 'es-ES,es;q=0.9,en;q=0.8',
+        'Cookie': 'SOCS=CAISNQgDEitib3FfaWRlbnRpdHlmcm9udGVuZHVpc2VydmVyXzIwMjMwNjI3LjA3X3AwGgJzcxgBIAEaBgiA_LyaBg; CONSENT=YES+cb.20230531-04-p0.es+FX+999'
       }
     });
     const html = await res.text();
