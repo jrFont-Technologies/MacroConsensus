@@ -152,6 +152,28 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // 1b. Endpoint: Obtener credenciales locales si existen (seguro, no versionado en git)
+  if (req.method === 'GET' && reqUrl === '/api/config-local') {
+    const localCfgPath = path.join(__dirname, 'config.local.json');
+    if (fs.existsSync(localCfgPath)) {
+      try {
+        const cfg = JSON.parse(fs.readFileSync(localCfgPath, 'utf8'));
+        res.writeHead(200, {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Access-Control-Allow-Origin': '*'
+        });
+        res.end(JSON.stringify(cfg));
+        return;
+      } catch (e) {}
+    }
+    res.writeHead(200, {
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Access-Control-Allow-Origin': '*'
+    });
+    res.end(JSON.stringify({}));
+    return;
+  }
+
   // 2. Endpoint: Extraer transcripción y metadatos de YouTube
   if (req.method === 'POST' && reqUrl === '/api/extraer-video') {
     let body = '';

@@ -29,7 +29,7 @@ const state = {
 document.addEventListener('DOMContentLoaded', async () => {
   initTabs();
   initEventListeners();
-  loadConfigFromStorage();
+  await loadConfigFromStorage();
   await loadInitialData();
   renderAll();
 
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // ==========================================
 // GESTIÓN DE CONFIGURACIÓN & STORAGE
 // ==========================================
-function loadConfigFromStorage() {
+async function loadConfigFromStorage() {
   const savedKey = localStorage.getItem('macro_gemini_api_key');
   if (savedKey) state.config.geminiApiKey = savedKey;
 
@@ -57,6 +57,24 @@ function loadConfigFromStorage() {
 
   const savedToken = localStorage.getItem('macro_github_token');
   if (savedToken) state.config.githubToken = savedToken;
+
+  // Si no hay token en localStorage, intentar cargarlo desde el endpoint local seguro
+  if (!state.config.githubToken) {
+    try {
+      const locRes = await fetch('/api/config-local');
+      if (locRes.ok) {
+        const locCfg = await locRes.json();
+        if (locCfg.githubToken) {
+          state.config.githubToken = locCfg.githubToken;
+          localStorage.setItem('macro_github_token', locCfg.githubToken);
+        }
+        if (locCfg.githubRepo) {
+          state.config.githubRepo = locCfg.githubRepo;
+          localStorage.setItem('macro_github_repo', locCfg.githubRepo);
+        }
+      }
+    } catch (e) {}
+  }
 
   // Actualizar campos de la pestaña de configuración
   const elKey = document.getElementById('settingApiKey');
