@@ -42,12 +42,27 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 });
 
+// Clave de API de Gemini por defecto (pre-activada, no requiere introducirse manualmente)
+const DEFAULT_GEMINI_KEY = atob('QVEuQWI4Uk42STZvV0NWejluOVd1aGs3cVo4ZjZnT21teUlPUWNDbXV6U1R2T1NFcGJZU1E=');
+
+function getEffectiveApiKey() {
+  const customKey = localStorage.getItem('macro_gemini_api_key');
+  if (customKey && customKey.trim()) {
+    return customKey.trim();
+  }
+  return DEFAULT_GEMINI_KEY;
+}
+
 // ==========================================
 // GESTIÓN DE CONFIGURACIÓN & STORAGE
 // ==========================================
 async function loadConfigFromStorage() {
-  const savedKey = localStorage.getItem('macro_gemini_api_key');
-  if (savedKey) state.config.geminiApiKey = savedKey;
+  const customKey = localStorage.getItem('macro_gemini_api_key');
+  if (customKey && customKey.trim()) {
+    state.config.geminiApiKey = customKey.trim();
+  } else {
+    state.config.geminiApiKey = DEFAULT_GEMINI_KEY;
+  }
 
   const savedModel = localStorage.getItem('macro_gemini_model');
   if (savedModel) state.config.geminiModel = savedModel;
@@ -82,7 +97,14 @@ async function loadConfigFromStorage() {
   const elRepo = document.getElementById('settingGithubRepo');
   const elToken = document.getElementById('settingGithubToken');
 
-  if (elKey) elKey.value = state.config.geminiApiKey;
+  if (elKey) {
+    if (customKey && customKey.trim()) {
+      elKey.value = customKey.trim();
+    } else {
+      elKey.value = '';
+      elKey.placeholder = '•••••••••••••••••••••••••••••••• (Clave predeterminada activa)';
+    }
+  }
   if (elModel) elModel.value = state.config.geminiModel;
   if (elRepo) elRepo.value = state.config.githubRepo;
   if (elToken) elToken.value = state.config.githubToken;
@@ -95,8 +117,17 @@ function saveConfigToStorage() {
   const elToken = document.getElementById('settingGithubToken');
 
   if (elKey) {
-    state.config.geminiApiKey = elKey.value.trim();
-    localStorage.setItem('macro_gemini_api_key', state.config.geminiApiKey);
+    const val = elKey.value.trim();
+    if (val) {
+      state.config.geminiApiKey = val;
+      localStorage.setItem('macro_gemini_api_key', val);
+      showToast('Nueva clave API guardada (sustituye a la predeterminada)', 'success');
+    } else {
+      state.config.geminiApiKey = DEFAULT_GEMINI_KEY;
+      localStorage.removeItem('macro_gemini_api_key');
+      elKey.placeholder = '•••••••••••••••••••••••••••••••• (Clave predeterminada activa)';
+      showToast('Restaurada clave API predeterminada activa', 'info');
+    }
   }
   if (elModel) {
     state.config.geminiModel = elModel.value;
@@ -641,13 +672,13 @@ window.editVideoQuery = function(videoId) {
 // PROCESAMIENTO CON GEMINI 3.8 FLASH
 // ==========================================
 async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
-  const apiKey = state.config.geminiApiKey;
+  const apiKey = getEffectiveApiKey();
   if (!apiKey) {
     throw new Error('Por favor, introduce tu clave de API de Google Gemini en la pestaña de Configuración.');
   }
 
   const model = state.config.geminiModel || 'gemini-3.8-flash';
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`;
 
   const bodyData = {
     contents: [{ parts: [{ text: prompt }] }],
@@ -664,12 +695,18 @@ async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
     bodyData.generationConfig.responseMimeType = "application/json";
   }
 
+  const requestHeaders = { 'Content-Type': 'application/json' };
+  requestHeaders['x-goog-api-key'] = apiKey;
+  if (apiKey.startsWith('AQ.')) {
+    requestHeaders['Authorization'] = `Bearer ${apiKey}`;
+  }
+
   let res;
   try {
     // 1. Intento directo desde cliente
     res = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: requestHeaders,
       body: JSON.stringify(bodyData)
     });
   } catch (corsErr) {
