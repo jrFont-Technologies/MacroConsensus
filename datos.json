@@ -1,0 +1,162 @@
+{
+  "config": {
+    "geminiModel": "gemini-3.8-flash",
+    "githubRepo": "jrFont-Technologies/MacroConsensus",
+    "githubToken": "",
+    "autoSync": true,
+    "lastSync": "2026-09-22T23:55:00.000Z"
+  },
+  "meta_analisis": {
+    "fecha": "05/09/2026 01:06",
+    "titulo": "Consenso Macro: Complacencia de Mercado ante Shock Inflacionario y Geopolítico",
+    "resumen_ejecutivo": "El mercado global se encuentra en una encrucijada crítica entre la complacencia récord en renta variable (VIX y COR3M en mínimos) y una triple presión: crisis geopolítica en Oriente Medio con riesgo de oferta energética, monetización de deuda en EE. UU. (Debasement Trade) y divergencia abierta entre la política fiscal del Tesoro y la postura restrictiva de la Reserva Federal.",
+    "consenso_macro": "Todos los analistas coinciden en que la inflación repuntará y que la sostenibilidad de la deuda pública de EE. UU. (superando los $40 billones) obligará a maniobras extraordinarias. Hay acuerdo total en la fortaleza del Oro y las materias primas como cobertura indispensable ante la degradación de las monedas fiduciarias.",
+    "duelo_tesis": [
+      {
+        "titulo": "S&P 500: ¿Corrección puntual como oportunidad histórica vs Caída estructural > 50%?",
+        "analistaA": "José Luis Cava",
+        "posturaA": "Oportunidad de Compra Histórica",
+        "argumentosA": "Anticipa una corrección del 8-10% en septiembre por estacionalidad y falta de puts, pero defiende que el soporte de 7637 aguantará y que la intervención gubernamental / QE de la Fed creará una oportunidad de compra épica.",
+        "analistaB": "Pablo Gil",
+        "posturaB": "Bolsa al Borde del Abismo (> 50% caída)",
+        "argumentosB": "Sostiene que la corrección del 10-12% es ridícula ante un shock petrolero en Irán y que la ruptura de canales alcistas de largo plazo provocará desplomes superiores al 50% con spreads de crédito en alerta máxima."
+      },
+      {
+        "titulo": "Gobernanza Monetaria: ¿Coordinación en la sombra vs Enfrentamiento real Tesoro-Fed?",
+        "analistaA": "José Luis Cava",
+        "posturaA": "Montaje Coordinado",
+        "argumentosA": "Afirma que el Secretario del Tesoro (Bessent), Kevin Warsh y Druckenmiller actúan de forma coordinada para forzar un 'short squeeze' en bonos a 30 años y abaratar costes de financiación simulando independencia.",
+        "analistaB": "Juan Ramón Rallo",
+        "posturaB": "Tensión y Choque Institucional Real",
+        "argumentosB": "Argumenta que existe una contradicción macroeconómica genuina: el Tesoro necesita inflación para licuar la deuda, mientras que la Fed de Warsh está obligada por mandato a subir tipos para no perder el ancla de credibilidad."
+      }
+    ],
+    "matriz_activos": [
+      { "activo": "Oro / Metales Preciosos", "sesgo": "Bullish", "consenso_pct": 100, "detalle": "Refugio unánime frente a la dilución fiduciaria, tensiones geopolíticas y debasement trade." },
+      { "activo": "Energía / Petróleo (Brent/WTI)", "sesgo": "Bullish", "consenso_pct": 85, "detalle": "Fuerte presión alcista por riesgo de estrangulamiento en Ormuz y compras estratégicas." },
+      { "activo": "Bitcoin / Cripto", "sesgo": "Bullish (Medio Plazo)", "consenso_pct": 75, "detalle": "Máximo beneficiario del debasement trade por oferta inelástica, con cautela a corto por riesgo sistémico." },
+      { "activo": "Renta Variable (S&P 500 / Nasdaq)", "sesgo": "Bearish / Cautela", "consenso_pct": 30, "detalle": "Divergencia extrema: rotación hacia defensivos (Salud, Consumo Básico, Utilities) y materias primas." },
+      { "activo": "Renta Fija / Bonos Soberanos", "sesgo": "Bearish", "consenso_pct": 20, "detalle": "Aumento del coste de financiación y primas de riesgo, salvo rebotes tácticos por cancelaciones de cortos." },
+      { "activo": "Dólar DXY", "sesgo": "Neutral / Bearish LP", "consenso_pct": 40, "detalle": "Refugio táctico inmediato por guerra, pero con tendencia a la depreciación estructural por dilución de deuda." }
+    ],
+    "videos_incluidos": [
+      "vid_20260905001626014895",
+      "vid_0_20260830172736781749",
+      "vid_20260830173849106301",
+      "vid_20260901231121862914"
+    ]
+  },
+  "videos": [
+    {
+      "id": "vid_20260905001626014895",
+      "url": "https://www.youtube.com/watch?v=3N7gWsTxIFU",
+      "title": "La oportunidad de COMPRA de nuestras VIDAS",
+      "author": "José Luis Cava",
+      "channel": "Jose Luis Cava",
+      "fecha": "04/09/2026",
+      "fecha_registro": "05/09/2026 00:47",
+      "thumbnail": "https://i.ytimg.com/vi/3N7gWsTxIFU/hqdefault.jpg",
+      "consulta": "Revisar su visión sobre la estacionalidad de septiembre, niveles clave en el S&P 500 y si ve una caída profunda o solo un retroceso táctico para entrar.",
+      "tags": ["S&P 500", "Estacionalidad", "VIX", "Opciones", "Compra en Retrocesos"],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "Cava señala que septiembre es estacionalmente muy bajista y anticipa caídas del 8-10%, pero NO una caída profunda ni cambio de ciclo bajista. El nivel de 7637 en el S&P 500 es el soporte crítico que vigila. Considera este retroceso como una oportunidad de compra histórica en activos estratégicos.",
+        "tesis_macro": "El entorno macroeconómico está dominado por la rivalidad EE. UU.-China, lo que impulsa inflación y diversificación industrial. Se prevé que la Reserva Federal monetice deuda pública mediante programas de QE para apoyar participaciones del gobierno en compañías estratégicas.",
+        "matriz_activos": {
+          "oro": "Favorable",
+          "bonos": "Volátil / Desfavorable por inflación",
+          "renta_variable": "Corrección táctica inmediata (-8% a -10%), muy alcista a medio plazo",
+          "petroleo": "Favorable por inflación y materias primas"
+        },
+        "timestamps_citas": [
+          "03:15 - 'Septiembre es un mes estacionalmente bajista, pero no están comprando puts.'",
+          "07:42 - 'El soporte de 7637 en el S&P 500 es la línea en la arena.'",
+          "12:10 - 'La monetización de deuda por la Fed abrirá una oportunidad histórica.'"
+        ]
+      }
+    },
+    {
+      "id": "vid_0_20260830172736781749",
+      "url": "https://www.youtube.com/watch?v=872KpfLvTyU",
+      "title": "¿Qué es el 'debasement trade' que está disparando el precio de Bitcoin?",
+      "author": "Juan Ramón Rallo",
+      "channel": "Juan Ramón Rallo",
+      "fecha": "29/08/2026",
+      "fecha_registro": "06/09/2026 10:09",
+      "thumbnail": "https://i.ytimg.com/vi/872KpfLvTyU/hqdefault.jpg",
+      "consulta": "Explicación del concepto Debasement Trade, cómo afecta a Bitcoin y Oro vs la renta fija, y qué conflicto hay entre el Tesoro y la Fed.",
+      "tags": ["Bitcoin", "Oro", "Debasement Trade", "Tesoro EE.UU.", "Reserva Federal", "Inflación"],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "El Debasement Trade es la estrategia inversora de huir del dinero fiduciario hacia activos duros sin riesgo de contraparte e inelásticos (Oro y Bitcoin) ante el intento del Tesoro de licuar la deuda inflando la economía. Conflicto directo: el Tesoro quiere tipos bajos y dilución, mientras la Fed de Warsh amenaza con subir tipos a corto.",
+        "tesis_macro": "La descomunal deuda soberana de EE. UU. deja al gobierno sin margen fiscal: la tentación insalvable es recurrir a la inflación para licuar pasivos reales, reduciendo el coste de oportunidad de poseer activos no productivos de flujos como el oro y Bitcoin.",
+        "matriz_activos": {
+          "bitcoin": "Muy Favorable (oferta inelástica de 21M de unidades)",
+          "oro": "Muy Favorable (cobertura tradicional contra dilución)",
+          "dolar": "Desfavorable a largo plazo por envilecimiento",
+          "bonos": "Desfavorable por pérdida de poder adquisitivo"
+        },
+        "timestamps_citas": [
+          "02:40 - 'Bitcoin sube $20,000 en 48 horas rompiendo correlación con el Nasdaq.'",
+          "08:15 - 'Scott Bessent busca mantener tipos bajos a largo plazo mediante dilución.'",
+          "14:50 - 'El pulso entre el Tesoro y la Fed marcará el ritmo del mercado.'"
+        ]
+      }
+    },
+    {
+      "id": "vid_20260830173849106301",
+      "url": "https://www.youtube.com/watch?v=is2MXznc1P0",
+      "title": "Es un MONTAJE para ayudar a Kevin. Uso político del sistema financiero",
+      "author": "José Luis Cava",
+      "channel": "Jose Luis Cava",
+      "fecha": "28/08/2026",
+      "fecha_registro": "05/09/2026 00:45",
+      "thumbnail": "https://i.ytimg.com/vi/is2MXznc1P0/hqdefault.jpg",
+      "consulta": "Identificar qué opina de la relación entre Bessent, Druckenmiller y Warsh, y qué jugada técnica ve en el bono a 30 años.",
+      "tags": ["Bono 30A", "Kevin Warsh", "Bessent", "Druckenmiller", "Short Squeeze", "Manipulación"],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "Cava defiende que el supuesto enfrentamiento público entre Bessent y Druckenmiller es una pantomima coordinada para permitir que Kevin Warsh aparente independencia en la Fed. La jugada técnica es provocar un 'short squeeze' masivo en el bono a 30 años contra los fondos CTA forzando la rentabilidad por debajo de 5.148%.",
+        "tesis_macro": "Intervencionismo político explícito sobre la curva de tipos. A corto plazo la manipulación forzará calma y rebotes en renta variable, pero hacia 2027-2028 el retardo del impacto de tipos provocará contracción económica y nueva ola inflacionaria.",
+        "matriz_activos": {
+          "bonos": "Rebote táctico alcista por squeeze a 30 años; negativo a largo plazo",
+          "renta_variable": "Volatilidad inminente, seguida de empuje por caída de rendimientos",
+          "sectores_defensivos": "Favorable (Consumo Básico, Salud, Utilities)"
+        },
+        "timestamps_citas": [
+          "04:10 - 'Llevan colaborando desde 1992 en el ataque contra la libra.'",
+          "09:30 - 'Los fondos CTA están muy cortos en bonos: van a cazarlos.'",
+          "15:20 - 'Si el rendimiento cae de 5.148, las bolsas volarán.'"
+        ]
+      }
+    },
+    {
+      "id": "vid_20260901231121862914",
+      "url": "https://www.youtube.com/watch?v=-5z7M81_Xio",
+      "title": "ATENCIÓN INVERSORES: La BOLSA al borde del ABISMO",
+      "author": "Pablo Gil",
+      "channel": "Pablo Gil Trader",
+      "fecha": "29/03/2026",
+      "fecha_registro": "05/09/2026 00:52",
+      "thumbnail": "https://i.ytimg.com/vi/-5z7M81_Xio/hqdefault.jpg",
+      "consulta": "Atención al impacto del conflicto en Irán sobre el petróleo, la inflación energética en Europa y el riesgo de caídas en el S&P 500.",
+      "tags": ["Petróleo", "Geopolítica", "Irán", "Inflación", "Crisis Energética", "Crash Bursátil"],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "respuesta_consulta": "Pablo Gil alerta de que el conflicto en Irán está al borde de destruir oferta real de crudo. Con el estrecho de Ormuz amenazado, el Brent podría superar los $150. Considera que una corrección del 10% en bolsas es un chiste y que el riesgo real es un desplome superior al 50% si se pierden soportes plurianuales.",
+        "tesis_macro": "Régimen de estanflación severa impulsado por shock de oferta energética incontrolable por bancos centrales. Los spreads de crédito en High Yield están dando señales claras de impago futuro.",
+        "matriz_activos": {
+          "petroleo": "Extremadamente Favorable (> $150 Brent)",
+          "oro": "Favorable como refugio puro contra shock bélico",
+          "renta_variable": "Muy Desfavorable (desplome potencial > 50%)",
+          "dolar": "Favorable a corto por fuga a la calidad (flight to safety)"
+        },
+        "timestamps_citas": [
+          "02:15 - 'Si se destruye oferta real de petróleo, no hay narrativa que valga.'",
+          "08:45 - 'Los spreads de los bonos basura están gritando crisis.'",
+          "16:30 - 'El inversor está adormecido tras 15 años de rescates de la Fed.'"
+        ]
+      }
+    }
+  ]
+}

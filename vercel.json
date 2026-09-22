@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/api/extraer-video", "destination": "/api/extraer.js" }
+  ]
+}

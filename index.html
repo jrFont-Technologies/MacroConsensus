@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MacroConsensus - Inteligencia Macro y Meta-Análisis de Expertos</title>
+  <meta name="description" content="Plataforma de inteligencia de mercado, síntesis de vídeos de expertos con consultas personalizadas y matriz de consenso macro.">
+  <meta name="theme-color" content="#0b0f19">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-wrapper">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <span class="brand-title">MacroConsensus</span>
+          <span class="brand-tagline">Inteligencia de Expertos & Duelo de Tesis</span>
+        </div>
+      </div>
+      <div class="header-status">
+        <span class="status-badge" id="githubStatusBadge" title="Estado de sincronización con GitHub">
+          <span class="status-dot" id="syncDot"></span>
+          <span id="syncText">Sincronizado</span>
+        </span>
+        <button class="btn btn-secondary btn-sm" id="btnSyncNow" title="Sincronizar ahora con GitHub">
+          🔄 Sincronizar
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav class="tabs-bar">
+    <div class="tabs-container">
+      <button class="tab-btn active" data-tab="tab-meta">
+        📊 Meta-Análisis Macro
+        <span class="tab-badge" id="metaCountBadge">4</span>
+      </button>
+      <button class="tab-btn" data-tab="tab-videos">
+        🎥 Gestor de Vídeos
+        <span class="tab-badge" id="videosCountBadge">4</span>
+      </button>
+      <button class="tab-btn" data-tab="tab-settings">
+        ⚙️ Configuración
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="app-main">
+
+    <!-- TAB 1: META-ANÁLISIS MACRO (PRINCIPAL) -->
+    <section id="tab-meta" class="tab-panel active">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">📊 Meta-Análisis & Consenso Institucional</h2>
+          <p class="panel-subtitle">Visión agregada sintetizada a partir de los vídeos seleccionados de tu biblioteca</p>
+        </div>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <button class="btn btn-secondary btn-sm" id="btnManageIncludedVideos">
+            ☑️ Seleccionar Vídeos (<span id="includedVideosCount">4</span>/<span id="totalVideosCountMeta">4</span>)
+          </button>
+          <button class="btn btn-primary" id="btnRegenerateMeta">
+            ✨ Actualizar Meta-Análisis
+          </button>
+        </div>
+      </div>
+
+      <!-- Resumen Ejecutivo Hero -->
+      <div class="meta-hero">
+        <div class="meta-hero-header">
+          <div>
+            <h3 class="meta-hero-title" id="metaTitle">Consenso Macro: Complacencia de Mercado ante Shock Inflacionario y Geopolítico</h3>
+            <span class="meta-hero-date" id="metaDate">Última síntesis: 05/09/2026 01:06</span>
+          </div>
+        </div>
+        <p class="meta-lead" id="metaLead">
+          Cargando análisis institucional...
+        </p>
+        <div class="meta-consensus-box" id="metaConsensusBox">
+          <strong>🌐 Consenso Central Invariable:</strong>
+          <span id="metaConsensusText">Cargando puntos de acuerdo unánime...</span>
+        </div>
+      </div>
+
+      <!-- Duelo de Tesis (Puntos de Fricción) -->
+      <div class="section-block">
+        <div class="section-heading">
+          <h3>⚔️ Duelo de Tesis y Puntos de Fricción</h3>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">Discrepancias directas identificadas entre analistas</span>
+        </div>
+        <div class="duel-grid" id="duelContainer">
+          <!-- Renderizado dinámico desde app.js -->
+        </div>
+      </div>
+
+      <!-- Matriz Agregada de Activos -->
+      <div class="section-block">
+        <div class="section-heading">
+          <h3>💼 Matriz Agregada de Asignación de Activos</h3>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">Ponderación de convicción según los expertos analizados</span>
+        </div>
+        <div class="asset-matrix-grid" id="assetMatrixContainer">
+          <!-- Renderizado dinámico desde app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: GESTOR DE VÍDEOS & BIBLIOTECA -->
+    <section id="tab-videos" class="tab-panel">
+      <!-- Formulario de Ingesta -->
+      <div class="form-card">
+        <div class="panel-header" style="margin-bottom: 1rem;">
+          <div>
+            <h3 style="font-size: 1.15rem; font-weight: 700;">➕ Añadir Nuevo Vídeo con Consulta Personalizada</h3>
+            <p style="font-size: 0.825rem; color: var(--text-secondary);">Pega el enlace de YouTube e indica los aspectos clave o preguntas que la IA debe priorizar.</p>
+          </div>
+        </div>
+        
+        <form id="formAddVideo">
+          <div class="form-group">
+            <label class="form-label" for="videoUrl">
+              Enlace de YouTube (URL)
+              <span class="form-hint">Formatos soportados: youtube.com/watch?v=... o youtu.be/...</span>
+            </label>
+            <input type="url" id="videoUrl" class="form-input" placeholder="https://www.youtube.com/watch?v=..." required>
+          </div>
+
+          <div class="form-group consulta-highlight">
+            <label class="form-label" for="videoConsulta">
+              🎯 Consulta del Vídeo (Tus notas y condiciones prioritarias)
+              <span class="form-hint">Lo que observaste al verlo y quieres que la IA analice en profundidad</span>
+            </label>
+            <textarea id="videoConsulta" class="form-textarea" placeholder="Ej: Presta especial atención a lo que dice sobre la bajada de tipos en septiembre, la deuda del Tesoro y si ve caídas en el S&P 500 o compra en retrocesos. Ignorar los primeros 5 minutos de patrocinadores." required></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+            <button type="submit" class="btn btn-primary" id="btnSubmitVideo">
+              🚀 Analizar con Gemini 3.8 Flash
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Barra de Filtros y Búsqueda -->
+      <div class="filter-bar">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" class="form-input search-input" placeholder="Buscar por analista, título, etiqueta o consulta...">
+        </div>
+        <select id="tagFilter" class="form-select" style="max-width: 220px;">
+          <option value="">Todas las etiquetas</option>
+        </select>
+        <select id="authorFilter" class="form-select" style="max-width: 200px;">
+          <option value="">Todos los analistas</option>
+        </select>
+      </div>
+
+      <!-- Listado de Vídeos -->
+      <div class="videos-grid" id="videosGrid">
+        <!-- Renderizado dinámico desde app.js -->
+      </div>
+    </section>
+
+    <!-- TAB 3: CONFIGURACIÓN -->
+    <section id="tab-settings" class="tab-panel">
+      <div class="panel-header">
+        <div>
+          <h2 class="panel-title">⚙️ Configuración del Sistema</h2>
+          <p class="panel-subtitle">Ajustes del motor de Inteligencia Artificial y sincronización en la nube</p>
+        </div>
+      </div>
+
+      <div class="settings-grid">
+        <!-- Tarjeta IA -->
+        <div class="settings-card">
+          <div class="settings-card-header">
+            <h3>🧠 Motor de Inteligencia Artificial (Gemini)</h3>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="settingApiKey">
+              Clave de API de Google Gemini (Google AI Studio)
+              <span class="form-hint">Se guarda en tu navegador y no se comparte</span>
+            </label>
+            <div style="position: relative;">
+              <input type="password" id="settingApiKey" class="form-input" placeholder="AIzaSy...">
+            </div>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.35rem;">
+              Puedes conseguir tu clave gratis en <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: var(--accent-blue);">Google AI Studio</a>.
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="settingModel">Modelo de Lenguaje</label>
+            <select id="settingModel" class="form-select">
+              <option value="gemini-3.8-flash" selected>Gemini 3.8 Flash (Predeterminado - Máxima velocidad y agudeza)</option>
+              <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+              <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
+              <option value="gemini-1.5-flash">Gemini 1.5 Flash</option>
+            </select>
+          </div>
+
+          <button class="btn btn-secondary btn-sm" id="btnTestGemini">
+            ⚡ Probar Conexión con Gemini
+          </button>
+        </div>
+
+        <!-- Tarjeta GitHub Sync -->
+        <div class="settings-card">
+          <div class="settings-card-header">
+            <h3>☁️ Sincronización en la Nube (GitHub API)</h3>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="settingGithubRepo">Repositorio de GitHub</label>
+            <input type="text" id="settingGithubRepo" class="form-input" value="jrFont-Technologies/MacroConsensus">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="settingGithubToken">
+              Token de Acceso Personal de GitHub (PAT)
+              <span class="form-hint">Permiso: repo (contents read/write)</span>
+            </label>
+            <input type="password" id="settingGithubToken" class="form-input" placeholder="ghp_...">
+          </div>
+
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button class="btn btn-primary btn-sm" id="btnSaveSettings">
+              💾 Guardar Configuración
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btnForcePull">
+              ⬇️ Forzar Descarga (Pull)
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btnForcePush">
+              ⬆️ Forzar Subida (Push)
+            </button>
+          </div>
+        </div>
+
+        <!-- Tarjeta Copia de Seguridad -->
+        <div class="settings-card">
+          <div class="settings-card-header">
+            <h3>💾 Copia de Seguridad y Datos</h3>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">
+            Exporta o restaura toda tu biblioteca de vídeos, consultas y meta-análisis en un archivo JSON local.
+          </p>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button class="btn btn-secondary" id="btnExportJson">
+              📥 Descargar Backup (datos.json)
+            </button>
+            <label class="btn btn-secondary" style="cursor: pointer;">
+              📤 Importar Backup
+              <input type="file" id="inputImportJson" accept=".json" style="display: none;">
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal para gestionar vídeos incluidos en Meta-Análisis -->
+  <div id="modalIncludedVideos" class="loading-overlay" style="background-color: rgba(0,0,0,0.75);">
+    <div style="background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); max-width: 600px; width: 90%; max-height: 80vh; display: flex; flex-direction: column; overflow: hidden;">
+      <div style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="font-size: 1.1rem; font-weight: 700;">Seleccionar Vídeos para el Meta-Análisis</h3>
+        <button id="btnCloseModalIncluded" style="background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer;">✕</button>
+      </div>
+      <div style="padding: 1rem 1.25rem; overflow-y: auto; flex: 1;" id="modalVideosList">
+        <!-- Lista de checkboxes renderizada dinámicamente -->
+      </div>
+      <div style="padding: 0.75rem 1.25rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; background-color: rgba(0,0,0,0.2);">
+        <button class="btn btn-secondary btn-sm" id="btnToggleAllVideos">Seleccionar Todos</button>
+        <button class="btn btn-primary btn-sm" id="btnSaveIncludedVideos">Guardar Selección</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <div class="loading-text" id="loadingText">Procesando vídeo con Gemini 3.8 Flash...</div>
+    <div class="loading-subtext" id="loadingSubtext">Extrayendo transcripción y sintetizando puntos clave</div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
