@@ -677,8 +677,8 @@ async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
     throw new Error('Por favor, introduce tu clave de API de Google Gemini en la pestaña de Configuración.');
   }
 
-  const model = state.config.geminiModel || 'gemini-3.8-flash';
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`;
+  let model = state.config.geminiModel || 'gemini-3.8-flash';
+  let url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`;
 
   const bodyData = {
     contents: [{ parts: [{ text: prompt }] }],
@@ -695,10 +695,10 @@ async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
     bodyData.generationConfig.responseMimeType = "application/json";
   }
 
+  // Cabeceras limpias: NO enviar x-goog-api-key ni Bearer para tokens AQ. (genera conflicto en Google Gateway)
   const requestHeaders = { 'Content-Type': 'application/json' };
-  requestHeaders['x-goog-api-key'] = apiKey;
-  if (apiKey.startsWith('AQ.')) {
-    requestHeaders['Authorization'] = `Bearer ${apiKey}`;
+  if (!apiKey.startsWith('AQ.')) {
+    requestHeaders['x-goog-api-key'] = apiKey;
   }
 
   let res;
@@ -709,6 +709,17 @@ async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
       headers: requestHeaders,
       body: JSON.stringify(bodyData)
     });
+
+    // Si gemini-3.8-flash da 503 por alta demanda puntual, reintentar automáticamente con gemini-3.6-flash
+    if (res.status === 503 && model === 'gemini-3.8-flash') {
+      console.warn('Gemini 3.8 con alta demanda (503). Reintentando con gemini-3.6-flash...');
+      url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
+      res = await fetch(url, {
+        method: 'POST',
+        headers: requestHeaders,
+        body: JSON.stringify(bodyData)
+      });
+    }
   } catch (corsErr) {
     // 2. Fallback a servidor local /api/gemini si CORS falla
     res = await fetch('/api/gemini', {
