@@ -111,61 +111,100 @@
       </div>
     </section>
 
-    <!-- TAB 2: GESTOR DE VÍDEOS & BIBLIOTECA -->
+    <!-- TAB 2: GESTOR DE VÍDEOS & BIBLIOTECA (DUAL) -->
     <section id="tab-videos" class="tab-panel">
-      <!-- Formulario de Ingesta -->
-      <div class="form-card">
-        <div class="panel-header" style="margin-bottom: 1rem;">
-          <div>
-            <h3 style="font-size: 1.15rem; font-weight: 700;">➕ Añadir Nuevo Vídeo con Consulta Personalizada</h3>
-            <p style="font-size: 0.825rem; color: var(--text-secondary);">Pega el enlace de YouTube e indica los aspectos clave o preguntas que la IA debe priorizar.</p>
-          </div>
-        </div>
-        
-        <form id="formAddVideo">
-          <div class="form-group">
-            <label class="form-label" for="videoUrl">
-              Enlace de YouTube (URL)
-              <span class="form-hint">Formatos soportados: youtube.com/watch?v=... o youtu.be/...</span>
-            </label>
-            <input type="url" id="videoUrl" class="form-input" placeholder="https://www.youtube.com/watch?v=..." required>
-          </div>
-
-          <div class="form-group consulta-highlight">
-            <label class="form-label" for="videoConsulta">
-              🎯 Consulta del Vídeo (Tus notas y condiciones prioritarias)
-              <span class="form-hint">Lo que observaste al verlo y quieres que la IA analice en profundidad</span>
-            </label>
-            <textarea id="videoConsulta" class="form-textarea" placeholder="Ej: Presta especial atención a lo que dice sobre la bajada de tipos en septiembre, la deuda del Tesoro y si ve caídas en el S&P 500 o compra en retrocesos. Ignorar los primeros 5 minutos de patrocinadores." required></textarea>
-          </div>
-
-          <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
-            <button type="submit" class="btn btn-primary" id="btnSubmitVideo">
-              🚀 Analizar con Gemini 3.8 Flash
-            </button>
-          </div>
-        </form>
+      <!-- Sub-navegación Gestor: Canales vs Vídeos Sueltos -->
+      <div class="gestor-subtabs">
+        <button class="gestor-subtab-btn active" id="btnSubtabCanales" onclick="switchGestorSubtab('canales')">
+          📡 Canales Monitorizados (Últimos 3 meses)
+          <span class="badge-subtab" id="badgeTotalCanalesCount">0</span>
+        </button>
+        <button class="gestor-subtab-btn" id="btnSubtabSueltos" onclick="switchGestorSubtab('sueltos')">
+          🎯 Vídeos Sueltos & Consultas
+          <span class="badge-subtab" id="badgeTotalSueltosCount">0</span>
+        </button>
       </div>
 
-      <!-- Barra de Filtros y Búsqueda -->
-      <div class="filter-bar">
-        <div class="search-input-wrapper">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="searchInput" class="form-input search-input" placeholder="Buscar por analista, título, etiqueta o consulta...">
+      <!-- SUBTAB 1: CANALES MONITORIZADOS (ÚLTIMOS 3 MESES) -->
+      <div id="panelCanales" class="gestor-panel">
+        <!-- Barra de Canales: Píldoras + Añadir Canal -->
+        <div class="channels-bar-container">
+          <div class="channels-pills" id="channelsPillsList">
+            <!-- Renderizado dinámicamente en app.js -->
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="openAddChannelModal()" title="Añadir un nuevo canal a la monitorización">
+            ➕ Añadir Canal
+          </button>
         </div>
-        <select id="tagFilter" class="form-select" style="max-width: 220px;">
-          <option value="">Todas las etiquetas</option>
-        </select>
-        <select id="authorFilter" class="form-select" style="max-width: 200px;">
-          <option value="">Todos los analistas</option>
-        </select>
+
+        <!-- Tarjeta de Estadísticas del Canal Activo -->
+        <div class="channel-hero-card" id="channelHeroCard">
+          <!-- Renderizado dinámicamente en app.js -->
+        </div>
+
+        <!-- Listado de Vídeos del Canal -->
+        <div class="channel-videos-container" id="channelVideosList">
+          <!-- Renderizado dinámicamente en app.js -->
+        </div>
       </div>
 
-      <!-- Listado de Vídeos -->
-      <div class="videos-grid" id="videosGrid">
-        <!-- Renderizado dinámico desde app.js -->
+      <!-- SUBTAB 2: VÍDEOS SUELTOS (OCASIONALES) -->
+      <div id="panelSueltos" class="gestor-panel" style="display: none;">
+        <!-- Formulario de Ingesta para Vídeos Sueltos -->
+        <div class="form-card">
+          <div class="panel-header" style="margin-bottom: 1rem;">
+            <div>
+              <h3 style="font-size: 1.15rem; font-weight: 700;">➕ Añadir Vídeo Suelto con Consulta Personalizada</h3>
+              <p style="font-size: 0.825rem; color: var(--text-secondary);">Para aquellos vídeos aislados que veas ocasionalmente y quieras incluir en tu biblioteca de análisis.</p>
+            </div>
+          </div>
+          
+          <form id="formAddVideo">
+            <div class="form-group">
+              <label class="form-label" for="videoUrl">
+                Enlace de YouTube (URL)
+                <span class="form-hint">Formatos soportados: youtube.com/watch?v=... o youtu.be/...</span>
+              </label>
+              <input type="url" id="videoUrl" class="form-input" placeholder="https://www.youtube.com/watch?v=..." required>
+            </div>
+
+            <div class="form-group consulta-highlight">
+              <label class="form-label" for="videoConsulta">
+                🎯 Consulta del Vídeo (Tus notas y condiciones prioritarias)
+                <span class="form-hint">Lo que observaste al verlo y quieres que la IA analice en profundidad</span>
+              </label>
+              <textarea id="videoConsulta" class="form-textarea" placeholder="Ej: Presta especial atención a lo que dice sobre la bajada de tipos en septiembre, la deuda del Tesoro y si ve caídas en el S&P 500 o compra en retrocesos. Ignorar los primeros 5 minutos de patrocinadores." required></textarea>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+              <button type="submit" class="btn btn-primary" id="btnSubmitVideo">
+                🚀 Analizar con Gemini Flash
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Barra de Filtros y Búsqueda para Vídeos Sueltos -->
+        <div class="filter-bar">
+          <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" class="form-input search-input" placeholder="Buscar por analista, título, etiqueta o consulta...">
+          </div>
+          <select id="tagFilter" class="form-select" style="max-width: 220px;">
+            <option value="">Todas las etiquetas</option>
+          </select>
+          <select id="authorFilter" class="form-select" style="max-width: 200px;">
+            <option value="">Todos los analistas</option>
+          </select>
+        </div>
+
+        <!-- Listado de Vídeos Sueltos -->
+        <div class="videos-grid" id="videosGrid">
+          <!-- Renderizado dinámico desde app.js -->
+        </div>
       </div>
     </section>
+
 
     <!-- TAB 3: CONFIGURACIÓN -->
     <section id="tab-settings" class="tab-panel">
@@ -277,6 +316,34 @@
         <button class="btn btn-secondary btn-sm" id="btnToggleAllVideos">Seleccionar Todos</button>
         <button class="btn btn-primary btn-sm" id="btnSaveIncludedVideos">Guardar Selección</button>
       </div>
+    </div>
+  </div>
+
+  <!-- Modal para Añadir Canal Monitorizado -->
+  <div id="modalAddChannel" class="loading-overlay" style="background-color: rgba(0,0,0,0.75);">
+    <div style="background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); max-width: 520px; width: 90%; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);">
+      <div style="padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="font-size: 1.15rem; font-weight: 700;">➕ Añadir Canal para Monitorización (3 Meses)</h3>
+        <button onclick="closeAddChannelModal()" style="background: none; border: none; color: var(--text-muted); font-size: 1.3rem; cursor: pointer;">✕</button>
+      </div>
+      <form id="formAddChannel" onsubmit="handleAddChannelSubmit(event)" style="padding: 1.25rem 1.5rem;">
+        <div class="form-group">
+          <label class="form-label" for="newChannelName">Nombre del Analista o Canal</label>
+          <input type="text" id="newChannelName" class="form-input" placeholder="Ej: Pablo Gil Trader" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="newChannelHandle">Handle de YouTube o URL</label>
+          <input type="text" id="newChannelHandle" class="form-input" placeholder="Ej: @PabloGilTrader o https://www.youtube.com/@PabloGilTrader" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="newChannelDesc">Enfoque Analítico / Descripción</label>
+          <input type="text" id="newChannelDesc" class="form-input" placeholder="Ej: Análisis técnico, ciclo macroeconómico y materias primas">
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-secondary" onclick="closeAddChannelModal()">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar Canal</button>
+        </div>
+      </form>
     </div>
   </div>
 

@@ -10,8 +10,13 @@ const state = {
     geminiModel: 'gemini-3.8-flash',
     githubRepo: 'jrFont-Technologies/MacroConsensus',
     githubToken: '',
-    autoSync: true
+    autoSync: true,
+    ventanaMeses: 3
   },
+  canales: [],
+  activeCanalId: 'cava',
+  gestorSubtab: 'canales', // 'canales' | 'sueltos'
+  channelSubfilter: 'all', // 'all' | 'macro' | 'tier1' | 'tier2' | 'tier3' | 'excluded'
   meta_analisis: null,
   videos: [],
   filters: {
@@ -151,6 +156,14 @@ async function loadInitialData() {
     const res = await fetch('datos.json?t=' + Date.now());
     if (res.ok) {
       const data = await res.json();
+      state.canales = data.canales || [
+        { id: 'cava', nombre: 'José Luis Cava', handle: '@JoseLuisCavaOficial', color: '#3b82f6', descripcion: 'Análisis técnico institucional, S&P 500, bono a 30 años, liquidez global y Bitcoin.' },
+        { id: 'rallo', nombre: 'Juan Ramón Rallo', handle: '@JuanRamonRallo', color: '#10b981', descripcion: 'Macroeconomía, política monetaria (Fed / BCE), inflación, deuda y debasement trade.' },
+        { id: 'jon', nombre: 'Jon Economist', handle: '@joneconomist', color: '#f59e0b', descripcion: 'Ciclos de liquidez global, Reserva Federal, Bitcoin y macro-trading.' }
+      ];
+      if (state.canales.length > 0 && !state.canales.some(c => c.id === state.activeCanalId)) {
+        state.activeCanalId = state.canales[0].id;
+      }
       state.meta_analisis = data.meta_analisis || null;
       state.videos = data.videos || [];
       if (data.config) {
@@ -177,8 +190,10 @@ async function persistData(saveToGitHub = true) {
     config: {
       geminiModel: state.config.geminiModel,
       githubRepo: state.config.githubRepo,
-      lastSync: new Date().toISOString()
+      lastSync: new Date().toISOString(),
+      ventanaMeses: 3
     },
+    canales: state.canales,
     meta_analisis: state.meta_analisis,
     videos: state.videos
   };
@@ -207,7 +222,6 @@ async function syncWithGitHub(action = 'pull', payload = null) {
   if (state.isSyncing && action === 'push') return;
   if (!state.config.githubRepo || !state.config.githubToken) return;
 
-  const statusBadge = document.getElementById('githubStatusBadge');
   const syncDot = document.getElementById('syncDot');
   const syncText = document.getElementById('syncText');
 
@@ -230,6 +244,9 @@ async function syncWithGitHub(action = 'pull', payload = null) {
         const decodedContent = decodeURIComponent(escape(atob(fileInfo.content.replace(/\n/g, ''))));
         const remoteData = JSON.parse(decodedContent);
 
+        if (remoteData.canales && remoteData.canales.length > 0) {
+          state.canales = remoteData.canales;
+        }
         if (remoteData.videos && remoteData.videos.length > 0) {
           state.videos = remoteData.videos;
           state.meta_analisis = remoteData.meta_analisis || state.meta_analisis;
@@ -238,7 +255,6 @@ async function syncWithGitHub(action = 'pull', payload = null) {
         if (syncDot) syncDot.className = 'status-dot';
         if (syncText) syncText.textContent = 'En línea';
       } else if (res.status === 404) {
-        // Archivo no existe aún en el repo, haremos push al primer cambio
         if (syncDot) syncDot.className = 'status-dot';
         if (syncText) syncText.textContent = 'Repo Listo (vacío)';
       } else {
@@ -249,13 +265,14 @@ async function syncWithGitHub(action = 'pull', payload = null) {
         config: {
           geminiModel: state.config.geminiModel,
           githubRepo: state.config.githubRepo,
-          lastSync: new Date().toISOString()
+          lastSync: new Date().toISOString(),
+          ventanaMeses: 3
         },
+        canales: state.canales,
         meta_analisis: state.meta_analisis,
         videos: state.videos
       };
 
-      // Obtener SHA actual si no lo tenemos
       if (!state.githubFileSha) {
         const checkRes = await fetch(url, { headers, cache: 'no-store' });
         if (checkRes.ok) {
@@ -331,16 +348,22 @@ function renderAll() {
 function updateBadges() {
   const totalVideos = state.videos.length;
   const includedVideos = state.videos.filter(v => v.incluidoEnSintesis !== false).length;
+  const totalCanalesVideos = state.videos.filter(v => v.tipo === 'canal').length;
+  const totalSueltosVideos = state.videos.filter(v => v.tipo !== 'canal').length;
 
   const metaCountBadge = document.getElementById('metaCountBadge');
   const videosCountBadge = document.getElementById('videosCountBadge');
   const includedVideosCount = document.getElementById('includedVideosCount');
   const totalVideosCountMeta = document.getElementById('totalVideosCountMeta');
+  const badgeTotalCanalesCount = document.getElementById('badgeTotalCanalesCount');
+  const badgeTotalSueltosCount = document.getElementById('badgeTotalSueltosCount');
 
   if (metaCountBadge) metaCountBadge.textContent = includedVideos;
   if (videosCountBadge) videosCountBadge.textContent = totalVideos;
   if (includedVideosCount) includedVideosCount.textContent = includedVideos;
   if (totalVideosCountMeta) totalVideosCountMeta.textContent = totalVideos;
+  if (badgeTotalCanalesCount) badgeTotalCanalesCount.textContent = totalCanalesVideos;
+  if (badgeTotalSueltosCount) badgeTotalSueltosCount.textContent = totalSueltosVideos;
 }
 
 // ==========================================
@@ -436,20 +459,339 @@ function renderMetaTab() {
 }
 
 // ==========================================
-// RENDER PESTAÑA 2: VÍDEOS & BIBLIOTECA
+// RENDER PESTAÑA 2: GESTOR DUAL DE VÍDEOS
 // ==========================================
 function renderVideosTab() {
+  if (state.gestorSubtab === 'canales') {
+    renderChannelsView();
+  } else {
+    renderSueltosView();
+  }
+}
+
+// Alternar entre subpestañas 'canales' y 'sueltos'
+window.switchGestorSubtab = function(subtab) {
+  state.gestorSubtab = subtab;
+  const btnCanales = document.getElementById('btnSubtabCanales');
+  const btnSueltos = document.getElementById('btnSubtabSueltos');
+  const panelCanales = document.getElementById('panelCanales');
+  const panelSueltos = document.getElementById('panelSueltos');
+
+  if (subtab === 'canales') {
+    if (btnCanales) btnCanales.classList.add('active');
+    if (btnSueltos) btnSueltos.classList.remove('active');
+    if (panelCanales) panelCanales.style.display = 'block';
+    if (panelSueltos) panelSueltos.style.display = 'none';
+    renderChannelsView();
+  } else {
+    if (btnCanales) btnCanales.classList.remove('active');
+    if (btnSueltos) btnSueltos.classList.add('active');
+    if (panelCanales) panelCanales.style.display = 'none';
+    if (panelSueltos) panelSueltos.style.display = 'block';
+    renderSueltosView();
+  }
+};
+
+window.switchActiveChannel = function(canalId) {
+  state.activeCanalId = canalId;
+  state.channelSubfilter = 'all';
+  renderChannelsView();
+};
+
+window.filterChannelSub = function(subfilter) {
+  state.channelSubfilter = subfilter;
+  renderChannelsView();
+};
+
+window.toggleChannelVideoMacro = function(videoId) {
+  const v = state.videos.find(x => x.id === videoId);
+  if (v) {
+    v.incluidoEnSintesis = !v.incluidoEnSintesis;
+    updateBadges();
+    renderChannelsView();
+    persistData(true);
+    showToast(v.incluidoEnSintesis ? 'Vídeo incluido en síntesis macro' : 'Vídeo descartado de síntesis macro', 'info');
+  }
+};
+
+window.setChannelMacroAll = function(canalId, isIncluded) {
+  let count = 0;
+  state.videos.forEach(v => {
+    if (v.tipo === 'canal' && v.canalId === canalId) {
+      v.incluidoEnSintesis = isIncluded;
+      count++;
+    }
+  });
+  updateBadges();
+  renderChannelsView();
+  persistData(true);
+  showToast(`${count} vídeos ${isIncluded ? 'incluidos' : 'excluidos'} para este canal`, 'success');
+};
+
+window.setChannelAutoDiscard = function(canalId) {
+  let discarded = 0;
+  state.videos.forEach(v => {
+    if (v.tipo === 'canal' && v.canalId === canalId) {
+      if (v.categoriaSugerida === 'politica_sociedad') {
+        v.incluidoEnSintesis = false;
+        discarded++;
+      } else {
+        v.incluidoEnSintesis = true;
+      }
+    }
+  });
+  updateBadges();
+  renderChannelsView();
+  persistData(true);
+  showToast(`Auto-descartados ${discarded} vídeos off-topic / política`, 'success');
+};
+
+// Modal Añadir Canal
+window.openAddChannelModal = function() {
+  const modal = document.getElementById('modalAddChannel');
+  if (modal) modal.classList.add('active');
+};
+
+window.closeAddChannelModal = function() {
+  const modal = document.getElementById('modalAddChannel');
+  if (modal) modal.classList.remove('active');
+};
+
+window.handleAddChannelSubmit = function(e) {
+  e.preventDefault();
+  const nameInput = document.getElementById('newChannelName');
+  const handleInput = document.getElementById('newChannelHandle');
+  const descInput = document.getElementById('newChannelDesc');
+
+  const nombre = nameInput ? nameInput.value.trim() : '';
+  const handle = handleInput ? handleInput.value.trim() : '';
+  const descripcion = (descInput && descInput.value.trim()) ? descInput.value.trim() : 'Canal monitorizado de análisis macroeconómico y de mercados.';
+
+  if (!nombre) return;
+
+  const id = nombre.toLowerCase().replace(/[^a-z0-9]/g, '_').slice(0, 15) + '_' + Date.now().toString().slice(-4);
+  const colors = ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4'];
+  const randomColor = colors[state.canales.length % colors.length];
+
+  const newCanal = {
+    id,
+    nombre,
+    handle,
+    color: randomColor,
+    descripcion
+  };
+
+  state.canales.push(newCanal);
+  state.activeCanalId = id;
+  closeAddChannelModal();
+  if (nameInput) nameInput.value = '';
+  if (handleInput) handleInput.value = '';
+  if (descInput) descInput.value = '';
+
+  renderVideosTab();
+  persistData(true);
+  showToast(`¡Canal "${nombre}" añadido con éxito! Ya puedes monitorizar sus vídeos de los últimos 3 meses.`, 'success');
+};
+
+// Subpestaña 1: Renderizado de Canales Monitorizados
+function renderChannelsView() {
+  const pillsContainer = document.getElementById('channelsPillsList');
+  const heroContainer = document.getElementById('channelHeroCard');
+  const listContainer = document.getElementById('channelVideosList');
+  if (!pillsContainer || !heroContainer || !listContainer) return;
+
+  const canales = state.canales || [];
+  if (canales.length === 0) {
+    pillsContainer.innerHTML = `<span style="color: var(--text-muted); font-size: 0.85rem;">No hay canales configurados. Añade uno con el botón lateral.</span>`;
+    heroContainer.innerHTML = '';
+    listContainer.innerHTML = '';
+    return;
+  }
+
+  if (!canales.some(c => c.id === state.activeCanalId)) {
+    state.activeCanalId = canales[0].id;
+  }
+  const currentCanal = canales.find(c => c.id === state.activeCanalId) || canales[0];
+
+  // 1. Píldoras de Canales
+  pillsContainer.innerHTML = canales.map(c => {
+    const isActive = c.id === currentCanal.id;
+    const vCount = state.videos.filter(v => v.tipo === 'canal' && v.canalId === c.id).length;
+    return `
+      <button class="channel-pill ${isActive ? 'active' : ''}" onclick="switchActiveChannel('${c.id}')">
+        <span>${escapeHtml(c.nombre)}</span>
+        <span class="badge-subtab">${vCount}</span>
+      </button>
+    `;
+  }).join('');
+
+  // 2. Estadísticas del Canal Activo
+  const channelVideos = state.videos.filter(v => v.tipo === 'canal' && v.canalId === currentCanal.id);
+  const totalChannelVideos = channelVideos.length;
+  const includedCount = channelVideos.filter(v => v.incluidoEnSintesis !== false).length;
+  const excludedCount = channelVideos.filter(v => v.incluidoEnSintesis === false).length;
+  const macroCount = channelVideos.filter(v => v.categoriaSugerida === 'macro').length;
+  const tier1Count = channelVideos.filter(v => v.recencyTier === 'tier1' || (v.diasAntiguedad != null && v.diasAntiguedad <= 15)).length;
+  const tier2Count = channelVideos.filter(v => v.recencyTier === 'tier2' || (v.diasAntiguedad != null && v.diasAntiguedad > 15 && v.diasAntiguedad <= 45)).length;
+  const tier3Count = channelVideos.filter(v => v.recencyTier === 'tier3' || (v.diasAntiguedad != null && v.diasAntiguedad > 45 && v.diasAntiguedad <= 90)).length;
+
+  heroContainer.innerHTML = `
+    <div class="channel-hero-top">
+      <div class="channel-hero-info">
+        <div class="channel-avatar" style="border-color: ${currentCanal.color || 'var(--border-focus)'}">
+          ${escapeHtml(currentCanal.nombre.charAt(0))}
+        </div>
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.5rem;">
+            ${escapeHtml(currentCanal.nombre)}
+            <span style="font-size: 0.8rem; font-weight: normal; color: var(--text-muted);">${escapeHtml(currentCanal.handle || '')}</span>
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); max-width: 680px; margin: 0;">
+            ${escapeHtml(currentCanal.descripcion || 'Canal monitorizado de análisis macroeconómico y de mercados.')}
+          </p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+        <button class="btn btn-secondary btn-sm" onclick="setChannelMacroAll('${currentCanal.id}', true)" title="Incluir todos los vídeos de este canal en la síntesis macro">
+          ✅ Incluir Todos
+        </button>
+        <button class="btn btn-secondary btn-sm" onclick="setChannelAutoDiscard('${currentCanal.id}')" title="Auto-descartar vídeos clasificados como Política / Sociedad">
+          🧹 Auto-Descartar Off-Topic
+        </button>
+        <button class="btn btn-secondary btn-sm" onclick="setChannelMacroAll('${currentCanal.id}', false)" title="Excluir todos temporalmente">
+          ⏹️ Excluir Todos
+        </button>
+      </div>
+    </div>
+
+    <div class="channel-hero-stats">
+      <div class="stat-box">
+        <div class="stat-box-num" style="color: var(--accent-blue);">${totalChannelVideos}</div>
+        <div class="stat-box-label">Vídeos (Últimos 3 meses)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-num" style="color: var(--accent-green);">${includedCount}</div>
+        <div class="stat-box-label">Incluidos en Síntesis Macro</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-num" style="color: #f87171;">${tier1Count}</div>
+        <div class="stat-box-label">🔥 Tier 1: &lt;15 días (Máx. Peso)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-num" style="color: #60a5fa;">${tier2Count}</div>
+        <div class="stat-box-label">⚡ Tier 2: 16-45 días</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-num" style="color: #94a3b8;">${tier3Count}</div>
+        <div class="stat-box-label">🕰️ Tier 3: 46-90 días</div>
+      </div>
+    </div>
+
+    <div class="channel-actions-toolbar">
+      <div class="channel-subfilters">
+        <button class="subfilter-btn ${state.channelSubfilter === 'all' ? 'active' : ''}" onclick="filterChannelSub('all')">Todos (${totalChannelVideos})</button>
+        <button class="subfilter-btn ${state.channelSubfilter === 'macro' ? 'active' : ''}" onclick="filterChannelSub('macro')">Solo Macro (${macroCount})</button>
+        <button class="subfilter-btn ${state.channelSubfilter === 'tier1' ? 'active' : ''}" onclick="filterChannelSub('tier1')">🔥 Últimos 15 días (${tier1Count})</button>
+        <button class="subfilter-btn ${state.channelSubfilter === 'tier2' ? 'active' : ''}" onclick="filterChannelSub('tier2')">Tier 2 (16-45d) (${tier2Count})</button>
+        <button class="subfilter-btn ${state.channelSubfilter === 'tier3' ? 'active' : ''}" onclick="filterChannelSub('tier3')">Tier 3 (46-90d) (${tier3Count})</button>
+        <button class="subfilter-btn ${state.channelSubfilter === 'excluded' ? 'active' : ''}" onclick="filterChannelSub('excluded')">Descartados (${excludedCount})</button>
+      </div>
+      <div style="font-size: 0.8rem; color: var(--text-muted);">
+        💡 Ventana fija: <strong>Últimos 3 meses</strong>. Ponderación automática por recencia temporal en la síntesis.
+      </div>
+    </div>
+  `;
+
+  // 3. Filtrar vídeos del canal según subfiltro
+  let displayedVideos = channelVideos;
+  if (state.channelSubfilter === 'macro') {
+    displayedVideos = channelVideos.filter(v => v.categoriaSugerida === 'macro');
+  } else if (state.channelSubfilter === 'tier1') {
+    displayedVideos = channelVideos.filter(v => v.recencyTier === 'tier1' || (v.diasAntiguedad != null && v.diasAntiguedad <= 15));
+  } else if (state.channelSubfilter === 'tier2') {
+    displayedVideos = channelVideos.filter(v => v.recencyTier === 'tier2' || (v.diasAntiguedad != null && v.diasAntiguedad > 15 && v.diasAntiguedad <= 45));
+  } else if (state.channelSubfilter === 'tier3') {
+    displayedVideos = channelVideos.filter(v => v.recencyTier === 'tier3' || (v.diasAntiguedad != null && v.diasAntiguedad > 45 && v.diasAntiguedad <= 90));
+  } else if (state.channelSubfilter === 'excluded') {
+    displayedVideos = channelVideos.filter(v => v.incluidoEnSintesis === false);
+  }
+
+  // Ordenar por fecha más reciente primero
+  displayedVideos.sort((a, b) => (b.dateTimestamp || 0) - (a.dateTimestamp || 0));
+
+  if (displayedVideos.length === 0) {
+    listContainer.innerHTML = `
+      <div style="text-align: center; padding: 2.5rem 1rem; color: var(--text-muted); background: var(--bg-card); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+        <p style="font-size: 1rem; margin-bottom: 0.35rem;">No hay vídeos que coincidan con el filtro seleccionado.</p>
+        <p style="font-size: 0.8rem;">Prueba a seleccionar "Todos" en la barra de filtros superior.</p>
+      </div>
+    `;
+    return;
+  }
+
+  // 4. Renderizar Filas de Vídeos
+  listContainer.innerHTML = displayedVideos.map(video => {
+    const isIncluded = video.incluidoEnSintesis !== false;
+
+    let tierClass = 'recency-tier3';
+    let tierLabel = '🕰️ 46-90 días (Estructural)';
+    if (video.recencyTier === 'tier1' || (video.diasAntiguedad != null && video.diasAntiguedad <= 15)) {
+      tierClass = 'recency-tier1';
+      tierLabel = '🔥 <15 días (Máx. Peso)';
+    } else if (video.recencyTier === 'tier2' || (video.diasAntiguedad != null && video.diasAntiguedad <= 45)) {
+      tierClass = 'recency-tier2';
+      tierLabel = '⚡ 16-45 días (Tendencia)';
+    }
+
+    const isOffTopic = video.categoriaSugerida === 'politica_sociedad';
+    const catClass = isOffTopic ? 'category-offtopic' : 'category-macro';
+    const catLabel = isOffTopic ? '🏛️ Política / Sociedad' : '📊 Macro / Mercados';
+
+    return `
+      <div class="channel-video-row ${isIncluded ? '' : 'excluded'}">
+        <div class="channel-video-left">
+          <img src="${video.thumbnail || 'https://i.ytimg.com/vi/' + extractVideoId(video.url) + '/hqdefault.jpg'}" 
+               class="channel-video-thumb" alt="${escapeHtml(video.title)}" loading="lazy">
+          <div class="channel-video-details">
+            <div class="channel-video-title" title="${escapeHtml(video.title)}">
+              ${escapeHtml(video.title)}
+            </div>
+            <div class="channel-video-meta">
+              <span class="recency-badge ${tierClass}">${tierLabel}</span>
+              <span class="category-pill ${catClass}">${catLabel}</span>
+              <span style="color: var(--text-muted);">📅 ${escapeHtml(video.fecha)}</span>
+              <span style="color: var(--text-muted);">⏱️ hace ${video.diasAntiguedad || 0}d</span>
+              <a href="${video.url}" target="_blank" style="color: var(--accent-blue); text-decoration: none; font-size: 0.75rem;" title="Abrir en YouTube">▶ Ver en YT</a>
+            </div>
+          </div>
+        </div>
+        <div class="channel-video-right">
+          <button class="macro-switch-btn ${isIncluded ? 'active' : 'inactive'}" 
+                  onclick="toggleChannelVideoMacro('${video.id}')"
+                  title="${isIncluded ? 'Activo en la síntesis macro. Clic para descartar.' : 'Descartado de la síntesis. Clic para incluir.'}">
+            <span>${isIncluded ? '🟢' : '⚪'}</span>
+            <span>${isIncluded ? 'En Síntesis Macro' : 'Descartado / Off-Topic'}</span>
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Subpestaña 2: Renderizado de Vídeos Sueltos & Ocasionales
+function renderSueltosView() {
   populateFilters();
 
   const grid = document.getElementById('videosGrid');
   if (!grid) return;
 
-  // Filtrado
   const query = state.filters.search.toLowerCase();
   const selectedTag = state.filters.tag;
   const selectedAuthor = state.filters.author;
 
-  const filteredVideos = state.videos.filter(v => {
+  const sueltosVideos = state.videos.filter(v => v.tipo !== 'canal');
+
+  const filteredVideos = sueltosVideos.filter(v => {
     const matchesSearch = !query || 
       v.title.toLowerCase().includes(query) ||
       (v.author && v.author.toLowerCase().includes(query)) ||
@@ -465,7 +807,7 @@ function renderVideosTab() {
   if (filteredVideos.length === 0) {
     grid.innerHTML = `
       <div style="grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
-        <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">No se encontraron vídeos con los filtros seleccionados.</p>
+        <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">No se encontraron vídeos sueltos con los filtros seleccionados.</p>
         <p style="font-size: 0.85rem;">Añade uno nuevo usando el formulario superior o limpia los filtros de búsqueda.</p>
       </div>
     `;
@@ -478,7 +820,6 @@ function renderVideosTab() {
 
     return `
       <div class="video-card" data-id="${video.id}">
-        <!-- Thumbnail y autor -->
         <div class="video-thumb-container">
           <img src="${video.thumbnail || 'https://i.ytimg.com/vi/' + extractVideoId(video.url) + '/hqdefault.jpg'}" 
                alt="${escapeHtml(video.title)}" 
@@ -491,18 +832,15 @@ function renderVideosTab() {
         <div class="video-card-body">
           <h4 class="video-card-title" title="${escapeHtml(video.title)}">${escapeHtml(video.title)}</h4>
 
-          <!-- Consulta del vídeo (Tus condiciones destacadas) -->
           <div class="user-query-box">
             <strong>🎯 Tu Consulta del Vídeo:</strong>
             ${escapeHtml(video.consulta || 'Sin consulta previa')}
           </div>
 
-          <!-- Tags -->
           <div class="tags-list">
             ${(video.tags || []).map(t => `<span class="tag-badge" onclick="filterByTag('${escapeHtml(t)}')">#${escapeHtml(t)}</span>`).join('')}
           </div>
 
-          <!-- Acordeón con Resumen de 4 Bloques -->
           <div class="summary-accordion">
             <button class="accordion-toggle" onclick="toggleAccordion(this)">
               <span>📋 Ver Desglose Analítico IA</span>
@@ -514,7 +852,6 @@ function renderVideosTab() {
           </div>
         </div>
 
-        <!-- Acciones del pie -->
         <div class="video-card-actions">
           <label class="checkbox-label" title="Incluir este vídeo en la Síntesis / Meta-Análisis">
             <input type="checkbox" ${isIncluded ? 'checked' : ''} onchange="toggleIncludeVideo('${video.id}', this.checked)">
@@ -595,10 +932,12 @@ function populateFilters() {
   const tagSelect = document.getElementById('tagFilter');
   const authorSelect = document.getElementById('authorFilter');
 
+  const sueltosVideos = state.videos.filter(v => v.tipo !== 'canal');
+
   if (tagSelect) {
     const currentVal = tagSelect.value;
     const allTags = new Set();
-    state.videos.forEach(v => (v.tags || []).forEach(t => allTags.add(t)));
+    sueltosVideos.forEach(v => (v.tags || []).forEach(t => allTags.add(t)));
     tagSelect.innerHTML = `<option value="">Todas las etiquetas (${allTags.size})</option>` +
       Array.from(allTags).sort().map(t => `<option value="${escapeHtml(t)}" ${t === currentVal ? 'selected' : ''}>#${escapeHtml(t)}</option>`).join('');
   }
@@ -606,7 +945,7 @@ function populateFilters() {
   if (authorSelect) {
     const currentVal = authorSelect.value;
     const allAuthors = new Set();
-    state.videos.forEach(v => {
+    sueltosVideos.forEach(v => {
       if (v.author) allAuthors.add(v.author);
       else if (v.channel) allAuthors.add(v.channel);
     });
@@ -669,7 +1008,7 @@ window.editVideoQuery = function(videoId) {
 };
 
 // ==========================================
-// PROCESAMIENTO CON GEMINI 3.8 FLASH
+// PROCESAMIENTO CON GEMINI FLASH
 // ==========================================
 async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
   const apiKey = getEffectiveApiKey();
@@ -691,11 +1030,6 @@ async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
     bodyData.systemInstruction = { parts: [{ text: systemPrompt }] };
   }
 
-  if (returnJson) {
-    bodyData.generationConfig.responseMimeType = "application/json";
-  }
-
-  // Cabeceras limpias: NO enviar x-goog-api-key ni Bearer para tokens AQ. (genera conflicto en Google Gateway)
   const requestHeaders = { 'Content-Type': 'application/json' };
   if (!apiKey.startsWith('AQ.')) {
     requestHeaders['x-goog-api-key'] = apiKey;
@@ -703,16 +1037,14 @@ async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
 
   let res;
   try {
-    // 1. Intento directo desde cliente
     res = await fetch(url, {
       method: 'POST',
       headers: requestHeaders,
       body: JSON.stringify(bodyData)
     });
 
-    // Si gemini-3.8-flash da 503 por alta demanda puntual, reintentar automáticamente con gemini-3.6-flash
     if (res.status === 503 && model === 'gemini-3.8-flash') {
-      console.warn('Gemini 3.8 con alta demanda (503). Reintentando con gemini-3.6-flash...');
+      console.warn('Gemini 3.8 ocupado (503). Reintentando con gemini-3.6-flash...');
       url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
       res = await fetch(url, {
         method: 'POST',
@@ -721,7 +1053,6 @@ async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
       });
     }
   } catch (corsErr) {
-    // 2. Fallback a servidor local /api/gemini si CORS falla
     res = await fetch('/api/gemini', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -744,8 +1075,7 @@ async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
     try {
       return JSON.parse(textOutput);
     } catch (e) {
-      // Intentar limpiar bloques markdown tipo ```json
-      const cleaned = textOutput.replace(/```json/g, '').replace(/```/g, '').trim();
+      const cleaned = textOutput.replace(/```json/gi, '').replace(/```/g, '').trim();
       return JSON.parse(cleaned);
     }
   }
@@ -753,7 +1083,7 @@ async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
   return textOutput;
 }
 
-// Ingesta de nuevo vídeo
+// Ingesta de nuevo vídeo suelto
 async function handleAddVideo(e) {
   e.preventDefault();
   const urlInput = document.getElementById('videoUrl');
@@ -771,7 +1101,6 @@ async function handleAddVideo(e) {
   setLoading(true, 'Extrayendo transcripción y metadatos de YouTube...', 'Consultando pistas de audio y subtítulos');
 
   try {
-    // 1. Extraer transcripción y datos del vídeo mediante el endpoint
     let extractData;
     try {
       const extRes = await fetch('/api/extraer-video', {
@@ -788,21 +1117,19 @@ async function handleAddVideo(e) {
     let title = extractData?.title || 'Vídeo de Análisis Económico';
     let author = extractData?.author || 'Analista';
 
-    // Si no pudimos obtener transcripción automática, pedimos al usuario
     if (!transcript) {
       setLoading(false);
-      const manual = prompt('No se detectaron subtítulos automáticos en este vídeo. Pega aquí el resumen o transcripción manual para que Gemini 3.8 Flash lo analice:', '');
+      const manual = prompt('No se detectaron subtítulos automáticos en este vídeo. Pega aquí el resumen o transcripción manual para que la IA lo analice:', '');
       if (!manual) return;
       transcript = manual;
-      setLoading(true, 'Analizando contenido con Gemini 3.8 Flash...', 'Enfocando en tu consulta personalizada');
+      setLoading(true, 'Analizando contenido con IA...', 'Enfocando en tu consulta personalizada');
     } else {
-      setLoading(true, 'Procesando con Gemini 3.8 Flash...', `Analizando transcripción (${extractData.lineCount || 'múltiples'} líneas)`);
+      setLoading(true, 'Procesando con IA...', `Analizando transcripción (${extractData.lineCount || 'múltiples'} líneas)`);
     }
 
-    // 2. Prompt a Gemini 3.8 Flash
     const systemPrompt = `Eres un estratega macroeconómico institucional de élite. Analizas transcripciones de analistas financieros y respondes en perfecto español.
 Tu máxima prioridad es responder a la "Consulta y condiciones del usuario". Sé incisivo, técnico, objetivo y destaca los matices reales.
-Devuelve SIEMPRE tu respuesta en formato JSON válido según la estructura requerida.`;
+Devuelve SIEMPRE tu respuesta en formato JSON dentro de un bloque markdown \`\`\`json.`;
 
     const userPrompt = `
 ANALIZA EL SIGUIENTE VÍDEO:
@@ -818,7 +1145,8 @@ TRANSCRIPCIÓN COMPLETA DEL VÍDEO:
 ${transcript.slice(0, 150000)}
 ---
 
-Devuelve un objeto JSON con este formato exacto:
+Devuelve un bloque JSON válido con este formato:
+\`\`\`json
 {
   "title": "${title}",
   "author": "${author}",
@@ -838,12 +1166,14 @@ Devuelve un objeto JSON con este formato exacto:
   ],
   "tags_sugeridos": ["Tag1", "Tag2", "Tag3", "Tag4"]
 }
+\`\`\`
 `;
 
     const aiRes = await callGeminiApi(userPrompt, systemPrompt, true);
 
     const newVideo = {
       id: 'vid_' + Date.now(),
+      tipo: 'suelto',
       url: rawUrl,
       title: aiRes.title || title,
       author: aiRes.author || author,
@@ -862,19 +1192,18 @@ Devuelve un objeto JSON con este formato exacto:
       }
     };
 
-    // Agregar a la lista al principio
     state.videos.unshift(newVideo);
     renderAll();
     await persistData(true);
 
-    // Limpiar formulario y dar feedback
     urlInput.value = '';
     consultaInput.value = '';
-    showToast('¡Vídeo analizado y añadido a la biblioteca con éxito!', 'success');
+    showToast('¡Vídeo suelto analizado y añadido a la biblioteca con éxito!', 'success');
 
-    // Cambiar a la vista de vídeos
+    // Cambiar a la pestaña de vídeos y subpestaña sueltos
     const tabVideosBtn = document.querySelector('[data-tab="tab-videos"]');
     if (tabVideosBtn) tabVideosBtn.click();
+    switchGestorSubtab('sueltos');
 
   } catch (err) {
     alert('Error al analizar el vídeo: ' + err.message);
@@ -883,7 +1212,7 @@ Devuelve un objeto JSON con este formato exacto:
   }
 }
 
-// Regenerar Meta-Análisis (Síntesis y Duelo de Tesis)
+// Regenerar Meta-Análisis (Síntesis y Duelo de Tesis con Recency Decay)
 async function handleRegenerateMetaAnalysis() {
   const selectedVideos = state.videos.filter(v => v.incluidoEnSintesis !== false);
   if (selectedVideos.length === 0) {
@@ -891,33 +1220,79 @@ async function handleRegenerateMetaAnalysis() {
     return;
   }
 
-  setLoading(true, 'Generando Meta-Análisis y Duelo de Tesis con Gemini 3.8 Flash...', `Sintetizando visiones cruzadas de ${selectedVideos.length} vídeos`);
+  setLoading(true, 'Generando Meta-Análisis y Duelo de Tesis con IA...', `Sintetizando visiones cruzadas de ${selectedVideos.length} vídeos con ponderación temporal`);
 
   try {
-    const videosContext = selectedVideos.map((v, i) => `
-VÍDEO #${i + 1}:
-- Analista: ${v.author || v.channel}
-- Título: ${v.title}
-- Fecha: ${v.fecha}
-- Consulta del usuario: ${v.consulta}
-- Tesis macro: ${v.resumen_estructurado?.tesis_macro || ''}
-- Respuesta a consulta: ${v.resumen_estructurado?.respuesta_consulta || ''}
-- Activos: ${JSON.stringify(v.resumen_estructurado?.matriz_activos || {})}
-`).join('\n---\n');
+    // Segmentar vídeos por Tiers de antigüedad para ponderación temporal estricta
+    const tier1Videos = selectedVideos.filter(v => v.recencyTier === 'tier1' || (v.diasAntiguedad != null && v.diasAntiguedad <= 15));
+    const tier2Videos = selectedVideos.filter(v => v.recencyTier === 'tier2' || (v.diasAntiguedad != null && v.diasAntiguedad > 15 && v.diasAntiguedad <= 45));
+    const tier3Videos = selectedVideos.filter(v => (v.recencyTier === 'tier3' || (v.diasAntiguedad != null && v.diasAntiguedad > 45 && v.diasAntiguedad <= 90)) && v.tipo === 'canal');
+    const sueltosActivos = selectedVideos.filter(v => v.tipo !== 'canal' && !tier1Videos.includes(v) && !tier2Videos.includes(v));
 
-    const systemPrompt = `Eres un Chief Investment Officer (CIO) y estratega macroeconómico institucional. 
-Tu labor es contrastar las tesis de varios analistas financieros independientes, identificar el consenso real del mercado y aislar los "Duelos de Tesis / Puntos de Fricción" donde chocan frontalmente sus predicciones.
-Devuelve SIEMPRE un JSON válido en perfecto español.`;
+    let contextParts = [];
+
+    if (tier1Videos.length > 0) {
+      contextParts.push(`=== 🔥 TIER 1: VÍDEOS DE LOS ÚLTIMOS 15 DÍAS (MÁXIMA PRIORIDAD Y SESGO ACTUAL) ===`);
+      tier1Videos.forEach((v, i) => {
+        contextParts.push(`[TIER 1 - #${i + 1}] Analista: ${v.author || v.channel} | Fecha: ${v.fecha} (hace ${v.diasAntiguedad || 0}d)
+Título: ${v.title}
+Tesis / Análisis: ${v.resumen_estructurado?.tesis_macro || v.resumen || v.consulta || ''}
+Activos: ${JSON.stringify(v.resumen_estructurado?.matriz_activos || {})}`);
+      });
+    }
+
+    if (tier2Videos.length > 0) {
+      contextParts.push(`\n=== ⚡ TIER 2: VÍDEOS DE 16 A 45 DÍAS (TENDENCIA INTERMEDIA Y DESARROLLO) ===`);
+      tier2Videos.forEach((v, i) => {
+        contextParts.push(`[TIER 2 - #${i + 1}] Analista: ${v.author || v.channel} | Fecha: ${v.fecha} (hace ${v.diasAntiguedad || 0}d)
+Título: ${v.title}
+Tesis / Análisis: ${v.resumen_estructurado?.tesis_macro || v.resumen || v.consulta || ''}`);
+      });
+    }
+
+    if (tier3Videos.length > 0) {
+      contextParts.push(`\n=== 🕰️ TIER 3: VÍDEOS DE 46 A 90 DÍAS (FONDO ESTRUCTURAL HISTÓRICO - MÍNIMO PESO) ===`);
+      tier3Videos.forEach((v, i) => {
+        contextParts.push(`[TIER 3 - #${i + 1}] Analista: ${v.author || v.channel} | Fecha: ${v.fecha} (hace ${v.diasAntiguedad || 0}d)
+Título: ${v.title}
+Tesis / Análisis: ${v.resumen_estructurado?.tesis_macro || v.resumen || v.consulta || ''}`);
+      });
+    }
+
+    if (sueltosActivos.length > 0) {
+      contextParts.push(`\n=== 🎯 VÍDEOS SUELTOS Y CONSULTAS PARTICULARES ACTIVAS ===`);
+      sueltosActivos.forEach((v, i) => {
+        contextParts.push(`[VÍDEO SUELTO - #${i + 1}] Analista: ${v.author || v.channel} | Fecha: ${v.fecha}
+Título: ${v.title}
+Consulta usuario: ${v.consulta || ''}
+Tesis / Análisis: ${v.resumen_estructurado?.tesis_macro || v.resumen || ''}`);
+      });
+    }
+
+    const videosContext = contextParts.join('\n---\n');
+
+    const systemPrompt = `Eres un Chief Investment Officer (CIO) y estratega macroeconómico institucional de alto nivel.
+Analizas los vídeos seleccionados de analistas financieros clave (José Luis Cava, Juan Ramón Rallo, Jon Economist, etc.) correspondientes a una ventana estricta de los ÚLTIMOS 3 MESES.
+
+CRITERIOS RIGUROSOS DE PONDERACIÓN TEMPORAL (DECAY):
+1. TIER 1 (Últimos 15 días) TIENE PRIORIDAD ABSOLUTA: Las opiniones más recientes son las que determinan el sesgo actual de mercado. Si un analista cambió de visión recientemente respecto a hace 1 o 2 meses, su postura de los últimos 15 días PREVALECE e INVALIDA la anterior.
+2. TIER 2 (16 a 45 días) sirve para validar la confirmación o maduración de tendencias.
+3. TIER 3 (46 a 90 días) sirve únicamente como contexto estructural de fondo. En ningún caso debe contradecir el pulso de los últimos 15 días.
+4. Ignora cualquier contenido puramente de política partidista, sociedad o entretenimiento para no enturbiar el análisis económico y de mercado.
+
+Tu labor es sintetizar el consenso real de mercado, contrastar posturas y aislar los "Duelos de Tesis" donde chocan frontalmente sus predicciones más actuales.
+Devuelve SIEMPRE tu respuesta en formato JSON dentro de un bloque markdown \`\`\`json con texto en perfecto español.`;
 
     const userPrompt = `
-SINTETIZA Y CONTRASTA LAS TESIS DE LOS SIGUIENTES ${selectedVideos.length} VÍDEOS:
+SINTETIZA Y CONTRASTA LAS TESIS DE LOS SIGUIENTES VÍDEOS ACTIVOS (${selectedVideos.length} vídeos en total):
 ${videosContext}
 
 Devuelve un JSON con este formato exacto:
+\`\`\`json
 {
-  "titulo": "Titular institucional que resuma el pulso general del mercado",
-  "resumen_ejecutivo": "Párrafo de 3-4 líneas resumiendo el estado del ciclo, inflación, política monetaria y riesgo geopolítico",
-  "consenso_macro": "Puntos clave donde TODOS o la gran mayoría de analistas coinciden de manera inequívoca",
+  "titulo": "Titular institucional que resuma el pulso macro actual ponderado por la máxima actualidad",
+  "resumen_ejecutivo": "Párrafo de 3-4 líneas resumiendo el estado del ciclo, inflación, política monetaria y riesgo geopolítico actual",
+  "consenso_macro": "Puntos clave donde TODOS o la gran mayoría de analistas coinciden en sus análisis más recientes",
   "duelo_tesis": [
     {
       "titulo": "Tema de la discrepancia (ej: 'S&P 500: ¿Corrección puntual vs Caída > 50%?')",
@@ -968,6 +1343,7 @@ Devuelve un JSON con este formato exacto:
     }
   ]
 }
+\`\`\`
 `;
 
     const metaResult = await callGeminiApi(userPrompt, systemPrompt, true);
@@ -981,7 +1357,7 @@ Devuelve un JSON con este formato exacto:
     renderMetaTab();
     updateBadges();
     await persistData(true);
-    showToast('¡Meta-Análisis y Duelos de Tesis actualizados con éxito!', 'success');
+    showToast('¡Meta-Análisis y Duelos de Tesis actualizados con éxito con ponderación temporal!', 'success');
 
   } catch (err) {
     alert('Error al generar Meta-Análisis: ' + err.message);
@@ -1034,15 +1410,12 @@ function saveIncludedVideosFromModal() {
 // EVENT LISTENERS & UTILIDADES
 // ==========================================
 function initEventListeners() {
-  // Formulario de añadir vídeo
   const formAdd = document.getElementById('formAddVideo');
   if (formAdd) formAdd.addEventListener('submit', handleAddVideo);
 
-  // Botón regenerar Meta-Análisis
   const btnRegen = document.getElementById('btnRegenerateMeta');
   if (btnRegen) btnRegen.addEventListener('click', handleRegenerateMetaAnalysis);
 
-  // Botón modal vídeos incluidos
   const btnManage = document.getElementById('btnManageIncludedVideos');
   if (btnManage) btnManage.addEventListener('click', openIncludedVideosModal);
 
@@ -1062,7 +1435,6 @@ function initEventListeners() {
     });
   }
 
-  // Búsqueda y filtros
   const searchInput = document.getElementById('searchInput');
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
@@ -1087,7 +1459,6 @@ function initEventListeners() {
     });
   }
 
-  // Configuración
   const btnSaveSettings = document.getElementById('btnSaveSettings');
   if (btnSaveSettings) btnSaveSettings.addEventListener('click', saveConfigToStorage);
 
@@ -1095,9 +1466,9 @@ function initEventListeners() {
   if (btnTestGemini) {
     btnTestGemini.addEventListener('click', async () => {
       saveConfigToStorage();
-      setLoading(true, 'Probando conexión con Gemini 3.8 Flash...', 'Enviando saludo de prueba');
+      setLoading(true, 'Probando conexión con Gemini...', 'Enviando saludo de prueba');
       try {
-        const testRes = await callGeminiApi('Devuelve {"status": "ok", "message": "Conexión exitosa con Gemini 3.8 Flash"}');
+        const testRes = await callGeminiApi('Devuelve un bloque json: ```json\n{"status": "ok", "message": "Conexión exitosa con Gemini"}\n```');
         alert(`✅ ¡Conexión con Gemini exitosa!\nMensaje: ${testRes.message || JSON.stringify(testRes)}`);
       } catch (e) {
         alert('❌ Error al conectar con Gemini: ' + e.message);
@@ -1107,7 +1478,6 @@ function initEventListeners() {
     });
   }
 
-  // Botones de sincronización manual
   const btnSyncNow = document.getElementById('btnSyncNow');
   if (btnSyncNow) btnSyncNow.addEventListener('click', () => syncWithGitHub('pull'));
 
@@ -1117,12 +1487,12 @@ function initEventListeners() {
   const btnForcePush = document.getElementById('btnForcePush');
   if (btnForcePush) btnForcePush.addEventListener('click', () => syncWithGitHub('push'));
 
-  // Exportar / Importar
   const btnExport = document.getElementById('btnExportJson');
   if (btnExport) {
     btnExport.addEventListener('click', () => {
       const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({
         config: state.config,
+        canales: state.canales,
         meta_analisis: state.meta_analisis,
         videos: state.videos
       }, null, 2));
@@ -1144,6 +1514,7 @@ function initEventListeners() {
       reader.onload = async (event) => {
         try {
           const imported = JSON.parse(event.target.result);
+          if (imported.canales) state.canales = imported.canales;
           if (imported.videos) state.videos = imported.videos;
           if (imported.meta_analisis) state.meta_analisis = imported.meta_analisis;
           renderAll();
