@@ -1,8 +1,9 @@
 {
   "config": {
     "geminiModel": "gemini-3.8-flash",
+    "masterPrompt": "Actúa como un analista y operador de mercados que toma apuntes personales ultra-directos de vídeos financieros. Tu objetivo es resumir la transcripción exactamente con mi estilo, mi concisión y mi estructura.\n\nREGLAS DE ORO DE FILTRADO:\n1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, comentarios del tiempo, bromas, promoción de libros/cursos/servicios (ej. HOPLA) y cualquier mención a brokers patrocinadores (ej. Freedom24, Quantfury) o a los ETFs/productos comerciales que el autor mencione solo como parte del anuncio del patrocinador. Quédate únicamente con el análisis puro del índice o activo subyacente (ej. el VIX, el SP500, el bono).\n2. CAUSA -> EFECTO EN FRASES CORTAS: Explica siempre los hechos conectando la causa con la consecuencia en 1 o 2 frases directas por idea, sin adornos literarios.\n3. CONSERVA DATOS TÉCNICOS, MECÁNICA Y NIVELES EXACTOS: Incluye siempre fechas concretas del gráfico (ej. días 17, 20 y 24), niveles numéricos exactos (ej. 7740 en SP500, 16-20 en VIX), plazos temporales (ej. 3ª semana de octubre, 3 de noviembre) y la mecánica interna si se explica (opciones Call/Put, cobertura de futuros por delta de los creadores de mercado, déficit/PIB, rebajas de rating).\n\nESTRUCTURA OBLIGATORIA DEL RESUMEN:\n- Como se ve el mercado / los hechos:\nExpón los hechos objetivos que muestra el vídeo (qué ha hecho el precio en el gráfico en fechas concretas, qué están haciendo los especuladores/creadores de mercado con opciones y futuros, o qué está pasando con los bonos, deuda/PIB, déficits y calificaciones crediticias).\n\n- Como reaccionar:\nIndica de forma directa qué comprar o vender y en qué nivel exacto (ej. \"Comprar futuros si el SP500 supera la zona de los 7740\"). Si el vídeo no da una orden de entrada concreta no patrocinada, déjalo vacío (\"\") o indica la directriz práctica.\n\n- ¿por que? / conclusión:\nExplica la deducción lógica y el escenario de cada activo mencionado de forma telegráfica (1 línea por activo indicando qué ha hecho, hacia dónde irá, hasta qué fecha exacta y por qué motivo). Destaca cualquier \"Fecha importante\" del calendario (ej. elecciones del 3 de noviembre) y qué pasará antes y después.\n\n- Otros temas / maldades / predicción:\nRecoge las \"maldades\", problemas económicos de países concretos (ej. Francia, Reino Unido), qué ocurrirá en la siguiente fase del mercado (ej. sustos tras una fecha clave), niveles de volatilidad (VIX) a vigilar como señal de caída y sectores interesantes para el futuro (ej. Salud, Energías limpias).\n\n---\nEJEMPLOS EXACTOS DE CÓMO QUIERO QUE RESUMAS (IMITA ESTE ESTILO Y LONGITUD):\n\n[EJEMPLO 1 - Vídeo de operativa y microestructura]:\n- Como se ve el mercado / los hechos:\nEn el gráfico del SP500 cayó tras la noticia, se recuperó rápido el 17, 20 y 24; se concluye que hay una mano que evita la caída.\nEn el caso concreto del 24 se pudo ver grandes apuestas bajistas sobre el SP500, esto es, especuladores de corto plazo vendiendo opciones call y comprando opciones put y los creadores de mercado estaban vendiendo futuros para cubrirse, ajustándolo por la delta. El escenario fue claramente bajista pero no bajó el SP500.\n- Como reaccionar:\nComprar futuros si el SP500 supera la zona de los 7740.\n- ¿por que? / conclusión:\nAl ver un mercado bajista y no bajar se concluye que alguien compra siempre y evita que caiga la bolsa; además en cuanto apareció la noticia positiva el precio subió, se entiende que van a seguir apareciendo noticias positivas desde ahora hasta octubre.\nFecha importante: 3 de noviembre elecciones, las bolsas subirán hasta el 3 de noviembre y después bajarán.\n- Otros temas / maldades / predicción:\nFrancia tiene problemas económicos.\n\n[EJEMPLO 2 - Vídeo macro y multi-activo]:\n- Como se ve el mercado / los hechos:\nDebido a la irresponsabilidad fiscal de los políticos se produce degradación monetaria garantizada, lo que a su vez significa que el oro tendrá tendencia alcista.\nRentabilidad del bono francés a 10 años sube a consecuencia del déficit público creciente, ratio deuda pública - PIB incrementándose y le han rebajado la calificación crediticia.\nRentabilidad del bono del Reino Unido a 10 años en clara tendencia alcista por las mismas razones que Francia.\n- ¿por que? / conclusión:\nEl Oro ha hecho suelo y subirá hasta la tercera semana de octubre.\nBitcoin ha hecho un suelo cíclico y va a subir desde ahora hasta el 3 de noviembre más que el oro.\nSP500 subirá por motivaciones políticas de Trump.\nPetróleo bajará también por motivaciones políticas de Trump.\n- Otros temas / maldades / predicción:\nBessent y Kevin Warsh fueron gestores de fondos, y a partir del 3 de noviembre habrá un susto / bajada de la bolsa. La volatilidad del SP500 (VIX) ha estado muy comprimida, hay una zona de resistencia sobre 16 - 20. Si el índice superara los 20, las bolsas caerían.\nA partir del 3 de Noviembre se espera una caída en bolsa y los próximos sectores interesantes son Salud y Energías limpias.",
     "githubRepo": "jrFont-Technologies/MacroConsensus",
-    "lastSync": "2026-09-27T13:24:48.294Z",
+    "lastSync": "2026-09-27T13:48:02.724Z",
     "lastYoutubeScan": "2026-09-27T13:24:48.287Z",
     "ytScanIntervalMinutes": 30,
     "ventanaMeses": 3
@@ -239,33 +240,36 @@
       "consulta": "Resumen ejecutivo en 4 bloques (- Como se ve el mercado / los hechos, - Como reaccionar, - ¿por que? / conclusión, - Otros temas / maldades / predicción)",
       "tags": [
         "SP500",
-        "Opciones",
-        "Futuros",
-        "Elecciones 3 Nov",
-        "José Luis Cava"
+        "Plunge Protection Team",
+        "Delta Hedging",
+        "Petróleo 107.16",
+        "Deuda Francia"
       ],
       "resumen_estructurado": {
-        "hechos_mercado": "En el gráfico del S&P 500 cayó tras la noticia y se recuperó rápido los días 17, 20 y 24, por lo que se concluye que hay una mano que evita la caída.\nEn el caso concreto del día 24 se pudieron ver grandes apuestas bajistas sobre el S&P 500: especuladores de corto plazo vendiendo opciones call y comprando opciones put, mientras los creadores de mercado (dealers) estaban vendiendo futuros para cubrirse ajustándolo por la delta. El escenario fue claramente bajista, pero el S&P 500 no bajó.",
-        "como_reaccionar": "Comprar futuros si el S&P 500 supera la zona de los 6740 / 7740.",
-        "por_que_conclusion": "Al ver un mercado con flujos bajistas que no cae, se concluye que alguien compra siempre y evita que caiga la bolsa; además, en cuanto apareció la noticia positiva el precio subió, por lo que se entiende que van a seguir apareciendo noticias positivas desde ahora hasta octubre.",
-        "fecha_importante": "3 de noviembre (elecciones midterm EE. UU.): las bolsas subirán hasta el 3 de noviembre y después bajarán.",
-        "otros_temas_maldades": "- Posible caída fuerte tras las elecciones del 3 de noviembre cuando Bessent y Warsh dejen de sostener artificialmente el mercado.\n- Vigilar la resistencia del VIX en la zona de 16 - 20: si supera el nivel de 20 habría caídas en el S&P 500.",
-        "respuesta_consulta": "Al ver un mercado bajista (especuladores vendiendo calls y comprando puts, y dealers vendiendo futuros para cubrir la delta el día 24) que no cae y recupera rápido los días 17, 20 y 24, se concluye que hay una mano compradora sosteniendo la bolsa hasta las elecciones del 3 de noviembre. Gatillo operativo: comprar futuros si el S&P 500 supera los 6740 / 7740.",
-        "tesis_macro": "El S&P 500 absorbe ventas masivas de opciones y futuros (días 17, 20 y 24) sin caer porque existe intervención compradora y filtración de noticias positivas para sostener las bolsas hasta las elecciones del 3 de noviembre.",
+        "hechos_mercado": "En el gráfico del SP500 el precio cayó el 16, 18 y 24 de septiembre y recuperó de inmediato; una mano misteriosa evita la caída. El 24 de septiembre hubo apuestas bajistas masivas: especuladores de corto plazo vendiendo opciones call y comprando puts, obligando a los creadores de mercado a vender futuros de forma excepcional para cubrirse por delta (volumen que históricamente causaba caídas del 2%), pero el SP500 no cayó. En plazos de 1, 2 y 3 meses nadie compra opciones put de protección.",
+        "como_reaccionar": "Comprar futuros si el SP500 supera la zona de los 7740.",
+        "por_que_conclusion": "SP500 subirá hasta octubre y las elecciones del 3 de noviembre porque el grupo de trabajo del presidente (Bessent, Kevin Warsh, SEC y CFTC) interviene lanzando noticias positivas en caídas.\nPetróleo bajó tras tocar la resistencia de 107,16 para favorecer el control de la inflación y la subida de bolsas antes de elecciones.\nEuro se verá perjudicado por el colapso del diferencial de deuda pública en Francia.\nFecha importante: 3 de noviembre elecciones; las bolsas subirán hasta el 3 de noviembre y después vendrá una caída muy fuerte.",
+        "fecha_importante": "3 de noviembre elecciones, las bolsas subirán hasta el 3 de noviembre y después habrá una fuerte caída.",
+        "otros_temas_maldades": "Francia tiene una situación financiera crítica: el diferencial del bono francés frente al alemán superó la resistencia histórica de 86 puntos básicos (vigente desde 2012) y se sitúa en 108,4 pb, lo que anticipa problemas graves para el país y debilidad para el euro. Tras la fuerte caída esperada a partir del 3 de noviembre, se preparan nuevas rotaciones.",
+        "respuesta_consulta": "SP500 subirá hasta octubre y las elecciones del 3 de noviembre porque el grupo de trabajo del presidente (Bessent, Kevin Warsh, SEC y CFTC) interviene lanzando noticias positivas en caídas.\nPetróleo bajó tras tocar la resistencia de 107,16 para favorecer el control de la inflación y la subida de bolsas antes de elecciones.\nEuro se verá perjudicado por el colapso del diferencial de deuda pública en Francia.\nFecha importante: 3 de noviembre elecciones; las bolsas subirán hasta el 3 de noviembre y después vendrá una caída muy fuerte.",
+        "tesis_macro": "En el gráfico del SP500 el precio cayó el 16, 18 y 24 de septiembre y recuperó de inmediato; una mano misteriosa evita la caída. El 24 de septiembre hubo apuestas bajistas masivas: especuladores de corto plazo vendiendo opciones call y comprando puts, obligando a los creadores de mercado a vender futuros de forma excepcional para cubrirse por delta (volumen que históricamente causaba caídas del 2%), pero el SP500 no cayó. En plazos de 1, 2 y 3 meses nadie compra opciones put de protección. SP500 subirá hasta octubre y las elecciones del 3 de noviembre porque el grupo de trabajo del presidente (Bessent, Kevin Warsh, SEC y CFTC) interviene lanzando noticias positivas en caídas.\nPetróleo bajó tras tocar la resistencia de 107,16 para favorecer el control de la inflación y la subida de bolsas antes de elecciones.\nEuro se verá perjudicado por el colapso del diferencial de deuda pública en Francia.\nFecha importante: 3 de noviembre elecciones; las bolsas subirán hasta el 3 de noviembre y después vendrá una caída muy fuerte. Francia tiene una situación financiera crítica: el diferencial del bono francés frente al alemán superó la resistencia histórica de 86 puntos básicos (vigente desde 2012) y se sitúa en 108,4 pb, lo que anticipa problemas graves para el país y debilidad para el euro. Tras la fuerte caída esperada a partir del 3 de noviembre, se preparan nuevas rotaciones.",
         "matriz_activos": {
-          "renta_variable": "Alcista",
-          "bonos": "Neutral",
-          "oro": "Neutral",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Neutral"
+          "renta_variable": "Alcista hasta el 3 de noviembre sobre nivel 7740; fuerte caída posterior",
+          "bonos": "Bajista en deuda francesa por diferencial con el bono alemán disparado a 108,4 pb",
+          "oro": "Neutro / sin mención directa en este corte",
+          "petroleo": "Bajista tras tocar resistencia clave en 107,16",
+          "dolar": "Alcista frente al euro por la crisis de deuda en Francia",
+          "bitcoin": "Neutro / sin mención directa en este corte"
         },
         "timestamps_citas": [
-          "00:10 - Caídas del S&P 500 absorbidas rápidamente los días 17, 20 y 24",
-          "01:30 - Día 24: venta de calls, compra de puts y venta de futuros por dealers (cobertura delta)",
-          "05:40 - Gatillo operativo: comprar futuros si el S&P 500 supera la resistencia clave y vigilancia del VIX (16-20)"
+          "02:40 - Especuladores vendiendo calls y comprando puts con creadores de mercado cubriendo por delta",
+          "03:35 - Nivel de activación de compra en futuros de SP500 al superar 7740",
+          "05:47 - Composición del Plunge Protection Team con Bessent y Kevin Warsh",
+          "08:13 - Giro a la baja del petróleo en resistencia de 107,16",
+          "09:03 - Diferencial de deuda Francia-Alemania supera los 86 pb hasta 108,4 pb"
         ]
-      }
+      },
+      "lastAnalyzedAt": 1790516882717
     },
     {
       "id": "vid_jon_rpHm3vAnYAQ",
@@ -2298,126 +2302,6 @@
       }
     },
     {
-      "id": "vid_cava_Gb3b6C7lD-c",
-      "tipo": "canal",
-      "canalId": "cava",
-      "url": "https://www.youtube.com/watch?v=Gb3b6C7lD-c",
-      "title": "No cuestiones a tu Dios. José Luis Cava",
-      "author": "José Luis Cava",
-      "channel": "José Luis Cava",
-      "fecha": "13/09/2026",
-      "fecha_registro": "09/09/2026 12:00",
-      "dateTimestamp": 1789305887163,
-      "diasAntiguedad": 14,
-      "recencyTier": "tier1",
-      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/Gb3b6C7lD-c/hqdefault.jpg",
-      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
-      "tags": [
-        "Macro",
-        "Mercados",
-        "José Luis Cava"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
-        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Favorable",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Favorable"
-        },
-        "timestamps_citas": [
-          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
-          "08:40 - Niveles clave o catalizadores a vigilar"
-        ]
-      }
-    },
-    {
-      "id": "vid_cava_Rs69BEgeWqw",
-      "tipo": "canal",
-      "canalId": "cava",
-      "url": "https://www.youtube.com/watch?v=Rs69BEgeWqw",
-      "title": "China va a provocar una caída de los tipos de interés a largo plazo. José Luis Cava",
-      "author": "José Luis Cava",
-      "channel": "José Luis Cava",
-      "fecha": "13/09/2026",
-      "fecha_registro": "08/09/2026 12:00",
-      "dateTimestamp": 1789305887163,
-      "diasAntiguedad": 14,
-      "recencyTier": "tier1",
-      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/Rs69BEgeWqw/hqdefault.jpg",
-      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
-      "tags": [
-        "Macro",
-        "Mercados",
-        "José Luis Cava"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
-        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Favorable",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Favorable"
-        },
-        "timestamps_citas": [
-          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
-          "08:40 - Niveles clave o catalizadores a vigilar"
-        ]
-      }
-    },
-    {
-      "id": "vid_cava_sBoOCsuNmWs",
-      "tipo": "canal",
-      "canalId": "cava",
-      "url": "https://www.youtube.com/watch?v=sBoOCsuNmWs",
-      "title": "El mercado es un DEMONIO. Aquí tienen un truco para especular. José Luis Cava",
-      "author": "José Luis Cava",
-      "channel": "José Luis Cava",
-      "fecha": "13/09/2026",
-      "fecha_registro": "07/09/2026 12:00",
-      "dateTimestamp": 1789305887163,
-      "diasAntiguedad": 14,
-      "recencyTier": "tier1",
-      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/sBoOCsuNmWs/hqdefault.jpg",
-      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
-      "tags": [
-        "Macro",
-        "Mercados",
-        "José Luis Cava"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
-        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Favorable",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Favorable"
-        },
-        "timestamps_citas": [
-          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
-          "08:40 - Niveles clave o catalizadores a vigilar"
-        ]
-      }
-    },
-    {
       "id": "vid_rallo_ufcPZyfVCi4",
       "tipo": "canal",
       "canalId": "rallo",
@@ -2693,6 +2577,126 @@
       }
     },
     {
+      "id": "vid_cava_Gb3b6C7lD-c",
+      "tipo": "canal",
+      "canalId": "cava",
+      "url": "https://www.youtube.com/watch?v=Gb3b6C7lD-c",
+      "title": "No cuestiones a tu Dios. José Luis Cava",
+      "author": "José Luis Cava",
+      "channel": "José Luis Cava",
+      "fecha": "13/09/2026",
+      "fecha_registro": "09/09/2026 12:00",
+      "dateTimestamp": 1789305887163,
+      "diasAntiguedad": 14,
+      "recencyTier": "tier1",
+      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/Gb3b6C7lD-c/hqdefault.jpg",
+      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
+      "tags": [
+        "Macro",
+        "Mercados",
+        "José Luis Cava"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
+        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Favorable",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Favorable"
+        },
+        "timestamps_citas": [
+          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
+          "08:40 - Niveles clave o catalizadores a vigilar"
+        ]
+      }
+    },
+    {
+      "id": "vid_cava_Rs69BEgeWqw",
+      "tipo": "canal",
+      "canalId": "cava",
+      "url": "https://www.youtube.com/watch?v=Rs69BEgeWqw",
+      "title": "China va a provocar una caída de los tipos de interés a largo plazo. José Luis Cava",
+      "author": "José Luis Cava",
+      "channel": "José Luis Cava",
+      "fecha": "13/09/2026",
+      "fecha_registro": "08/09/2026 12:00",
+      "dateTimestamp": 1789305887163,
+      "diasAntiguedad": 14,
+      "recencyTier": "tier1",
+      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/Rs69BEgeWqw/hqdefault.jpg",
+      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
+      "tags": [
+        "Macro",
+        "Mercados",
+        "José Luis Cava"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
+        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Favorable",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Favorable"
+        },
+        "timestamps_citas": [
+          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
+          "08:40 - Niveles clave o catalizadores a vigilar"
+        ]
+      }
+    },
+    {
+      "id": "vid_cava_sBoOCsuNmWs",
+      "tipo": "canal",
+      "canalId": "cava",
+      "url": "https://www.youtube.com/watch?v=sBoOCsuNmWs",
+      "title": "El mercado es un DEMONIO. Aquí tienen un truco para especular. José Luis Cava",
+      "author": "José Luis Cava",
+      "channel": "José Luis Cava",
+      "fecha": "13/09/2026",
+      "fecha_registro": "07/09/2026 12:00",
+      "dateTimestamp": 1789305887163,
+      "diasAntiguedad": 14,
+      "recencyTier": "tier1",
+      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/sBoOCsuNmWs/hqdefault.jpg",
+      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
+      "tags": [
+        "Macro",
+        "Mercados",
+        "José Luis Cava"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
+        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Favorable",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Favorable"
+        },
+        "timestamps_citas": [
+          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
+          "08:40 - Niveles clave o catalizadores a vigilar"
+        ]
+      }
+    },
+    {
       "id": "vid_1790119256651_26071",
       "url": "https://www.youtube.com/watch?v=eAy5VovZy_E",
       "title": "Buffett, Burry y Dalio contra el mercado: ¿Quién tiene razón sobre la burbuja de la IA?",
@@ -2916,207 +2920,6 @@
         "Macro",
         "Mercados",
         "Jon Economist"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
-        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Favorable",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Favorable"
-        },
-        "timestamps_citas": [
-          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
-          "08:40 - Niveles clave o catalizadores a vigilar"
-        ]
-      }
-    },
-    {
-      "id": "vid_20260905001626014895",
-      "tipo": "canal",
-      "canalId": "cava",
-      "url": "https://www.youtube.com/watch?v=3N7gWsTxIFU",
-      "title": "La oportunidad de COMPRA de nuestras VIDAS. José Luis Cava",
-      "author": "José Luis Cava",
-      "channel": "José Luis Cava",
-      "fecha": "06/09/2026",
-      "fecha_registro": "08/09/2026 12:00",
-      "dateTimestamp": 1788701087163,
-      "diasAntiguedad": 21,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/3N7gWsTxIFU/hqdefault.jpg",
-      "consulta": "Revisar su visión sobre la estacionalidad de septiembre, niveles clave en el S&P 500 y si ve una caída profunda o solo un retroceso táctico para entrar.",
-      "tags": [
-        "S&P 500",
-        "Estacionalidad",
-        "VIX",
-        "Opciones",
-        "Compra en Retrocesos"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Cava señala que septiembre es estacionalmente muy bajista y anticipa caídas del 8-10%, pero NO una caída profunda ni cambio de ciclo bajista. El nivel de 7637 en el S&P 500 es el soporte crítico que vigila. Considera este retroceso como una oportunidad de compra histórica en activos estratégicos.",
-        "tesis_macro": "El entorno macroeconómico está dominado por la rivalidad EE. UU.-China, lo que impulsa inflación y diversificación industrial. Se prevé que la Reserva Federal monetice deuda pública mediante programas de QE para apoyar participaciones del gobierno en compañías estratégicas.",
-        "matriz_activos": {
-          "oro": "Favorable",
-          "bonos": "Volátil / Desfavorable por inflación",
-          "renta_variable": "Corrección táctica inmediata (-8% a -10%), muy alcista a medio plazo",
-          "petroleo": "Favorable por inflación y materias primas"
-        },
-        "timestamps_citas": [
-          "03:15 - 'Septiembre es un mes estacionalmente bajista, pero no están comprando puts.'",
-          "07:42 - 'El soporte de 7637 en el S&P 500 es la línea en la arena.'",
-          "12:10 - 'La monetización de deuda por la Fed abrirá una oportunidad histórica.'"
-        ]
-      }
-    },
-    {
-      "id": "vid_cava_27njCgsjpO8",
-      "tipo": "canal",
-      "canalId": "cava",
-      "url": "https://www.youtube.com/watch?v=27njCgsjpO8",
-      "title": "COBRE: A las puertas del Ciclo Alcista | José Luis Cava",
-      "author": "José Luis Cava",
-      "channel": "José Luis Cava",
-      "fecha": "06/09/2026",
-      "fecha_registro": "03/09/2026 12:00",
-      "dateTimestamp": 1788701087163,
-      "diasAntiguedad": 21,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/27njCgsjpO8/hqdefault.jpg",
-      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
-      "tags": [
-        "Macro",
-        "Mercados",
-        "José Luis Cava"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
-        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Favorable",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Favorable"
-        },
-        "timestamps_citas": [
-          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
-          "08:40 - Niveles clave o catalizadores a vigilar"
-        ]
-      }
-    },
-    {
-      "id": "vid_cava_K8JEHgT89gg",
-      "tipo": "canal",
-      "canalId": "cava",
-      "url": "https://www.youtube.com/watch?v=K8JEHgT89gg",
-      "title": "CORRALITO en la UE: ¿Cómo defenderse? José Luis Cava",
-      "author": "José Luis Cava",
-      "channel": "José Luis Cava",
-      "fecha": "06/09/2026",
-      "fecha_registro": "02/09/2026 12:00",
-      "dateTimestamp": 1788701087163,
-      "diasAntiguedad": 21,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/K8JEHgT89gg/hqdefault.jpg",
-      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
-      "tags": [
-        "Macro",
-        "Mercados",
-        "José Luis Cava"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
-        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Favorable",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Favorable"
-        },
-        "timestamps_citas": [
-          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
-          "08:40 - Niveles clave o catalizadores a vigilar"
-        ]
-      }
-    },
-    {
-      "id": "vid_cava_kIaZiIfsoGI",
-      "tipo": "canal",
-      "canalId": "cava",
-      "url": "https://www.youtube.com/watch?v=kIaZiIfsoGI",
-      "title": "¿Excusa para justificar las CAíDAS tras el 3 de noviembre? José Luis Cava",
-      "author": "José Luis Cava",
-      "channel": "José Luis Cava",
-      "fecha": "06/09/2026",
-      "fecha_registro": "01/09/2026 12:00",
-      "dateTimestamp": 1788701087163,
-      "diasAntiguedad": 21,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/kIaZiIfsoGI/hqdefault.jpg",
-      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
-      "tags": [
-        "Macro",
-        "Mercados",
-        "José Luis Cava"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
-        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Favorable",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Favorable"
-        },
-        "timestamps_citas": [
-          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
-          "08:40 - Niveles clave o catalizadores a vigilar"
-        ]
-      }
-    },
-    {
-      "id": "vid_cava_2FX98Uv174w",
-      "tipo": "canal",
-      "canalId": "cava",
-      "url": "https://www.youtube.com/watch?v=2FX98Uv174w",
-      "title": "Kevin va a hacer un QE en colaboración con Bessent. Y llevarás a las bolsas al alza. José Luis Cava",
-      "author": "José Luis Cava",
-      "channel": "José Luis Cava",
-      "fecha": "06/09/2026",
-      "fecha_registro": "31/08/2026 12:00",
-      "dateTimestamp": 1788701087163,
-      "diasAntiguedad": 21,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/2FX98Uv174w/hqdefault.jpg",
-      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
-      "tags": [
-        "Macro",
-        "Mercados",
-        "José Luis Cava"
       ],
       "resumen_estructurado": {
         "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
@@ -3411,6 +3214,207 @@
       }
     },
     {
+      "id": "vid_20260905001626014895",
+      "tipo": "canal",
+      "canalId": "cava",
+      "url": "https://www.youtube.com/watch?v=3N7gWsTxIFU",
+      "title": "La oportunidad de COMPRA de nuestras VIDAS. José Luis Cava",
+      "author": "José Luis Cava",
+      "channel": "José Luis Cava",
+      "fecha": "06/09/2026",
+      "fecha_registro": "08/09/2026 12:00",
+      "dateTimestamp": 1788701087163,
+      "diasAntiguedad": 21,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/3N7gWsTxIFU/hqdefault.jpg",
+      "consulta": "Revisar su visión sobre la estacionalidad de septiembre, niveles clave en el S&P 500 y si ve una caída profunda o solo un retroceso táctico para entrar.",
+      "tags": [
+        "S&P 500",
+        "Estacionalidad",
+        "VIX",
+        "Opciones",
+        "Compra en Retrocesos"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Cava señala que septiembre es estacionalmente muy bajista y anticipa caídas del 8-10%, pero NO una caída profunda ni cambio de ciclo bajista. El nivel de 7637 en el S&P 500 es el soporte crítico que vigila. Considera este retroceso como una oportunidad de compra histórica en activos estratégicos.",
+        "tesis_macro": "El entorno macroeconómico está dominado por la rivalidad EE. UU.-China, lo que impulsa inflación y diversificación industrial. Se prevé que la Reserva Federal monetice deuda pública mediante programas de QE para apoyar participaciones del gobierno en compañías estratégicas.",
+        "matriz_activos": {
+          "oro": "Favorable",
+          "bonos": "Volátil / Desfavorable por inflación",
+          "renta_variable": "Corrección táctica inmediata (-8% a -10%), muy alcista a medio plazo",
+          "petroleo": "Favorable por inflación y materias primas"
+        },
+        "timestamps_citas": [
+          "03:15 - 'Septiembre es un mes estacionalmente bajista, pero no están comprando puts.'",
+          "07:42 - 'El soporte de 7637 en el S&P 500 es la línea en la arena.'",
+          "12:10 - 'La monetización de deuda por la Fed abrirá una oportunidad histórica.'"
+        ]
+      }
+    },
+    {
+      "id": "vid_cava_27njCgsjpO8",
+      "tipo": "canal",
+      "canalId": "cava",
+      "url": "https://www.youtube.com/watch?v=27njCgsjpO8",
+      "title": "COBRE: A las puertas del Ciclo Alcista | José Luis Cava",
+      "author": "José Luis Cava",
+      "channel": "José Luis Cava",
+      "fecha": "06/09/2026",
+      "fecha_registro": "03/09/2026 12:00",
+      "dateTimestamp": 1788701087163,
+      "diasAntiguedad": 21,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/27njCgsjpO8/hqdefault.jpg",
+      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
+      "tags": [
+        "Macro",
+        "Mercados",
+        "José Luis Cava"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
+        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Favorable",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Favorable"
+        },
+        "timestamps_citas": [
+          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
+          "08:40 - Niveles clave o catalizadores a vigilar"
+        ]
+      }
+    },
+    {
+      "id": "vid_cava_K8JEHgT89gg",
+      "tipo": "canal",
+      "canalId": "cava",
+      "url": "https://www.youtube.com/watch?v=K8JEHgT89gg",
+      "title": "CORRALITO en la UE: ¿Cómo defenderse? José Luis Cava",
+      "author": "José Luis Cava",
+      "channel": "José Luis Cava",
+      "fecha": "06/09/2026",
+      "fecha_registro": "02/09/2026 12:00",
+      "dateTimestamp": 1788701087163,
+      "diasAntiguedad": 21,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/K8JEHgT89gg/hqdefault.jpg",
+      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
+      "tags": [
+        "Macro",
+        "Mercados",
+        "José Luis Cava"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
+        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Favorable",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Favorable"
+        },
+        "timestamps_citas": [
+          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
+          "08:40 - Niveles clave o catalizadores a vigilar"
+        ]
+      }
+    },
+    {
+      "id": "vid_cava_kIaZiIfsoGI",
+      "tipo": "canal",
+      "canalId": "cava",
+      "url": "https://www.youtube.com/watch?v=kIaZiIfsoGI",
+      "title": "¿Excusa para justificar las CAíDAS tras el 3 de noviembre? José Luis Cava",
+      "author": "José Luis Cava",
+      "channel": "José Luis Cava",
+      "fecha": "06/09/2026",
+      "fecha_registro": "01/09/2026 12:00",
+      "dateTimestamp": 1788701087163,
+      "diasAntiguedad": 21,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/kIaZiIfsoGI/hqdefault.jpg",
+      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
+      "tags": [
+        "Macro",
+        "Mercados",
+        "José Luis Cava"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
+        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Favorable",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Favorable"
+        },
+        "timestamps_citas": [
+          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
+          "08:40 - Niveles clave o catalizadores a vigilar"
+        ]
+      }
+    },
+    {
+      "id": "vid_cava_2FX98Uv174w",
+      "tipo": "canal",
+      "canalId": "cava",
+      "url": "https://www.youtube.com/watch?v=2FX98Uv174w",
+      "title": "Kevin va a hacer un QE en colaboración con Bessent. Y llevarás a las bolsas al alza. José Luis Cava",
+      "author": "José Luis Cava",
+      "channel": "José Luis Cava",
+      "fecha": "06/09/2026",
+      "fecha_registro": "31/08/2026 12:00",
+      "dateTimestamp": 1788701087163,
+      "diasAntiguedad": 21,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/2FX98Uv174w/hqdefault.jpg",
+      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
+      "tags": [
+        "Macro",
+        "Mercados",
+        "José Luis Cava"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
+        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Favorable",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Favorable"
+        },
+        "timestamps_citas": [
+          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
+          "08:40 - Niveles clave o catalizadores a vigilar"
+        ]
+      }
+    },
+    {
       "id": "vid_rallo_Um03OGxn798",
       "tipo": "canal",
       "canalId": "rallo",
@@ -3490,47 +3494,6 @@
       }
     },
     {
-      "id": "vid_20260830173849106301",
-      "tipo": "canal",
-      "canalId": "cava",
-      "url": "https://www.youtube.com/watch?v=is2MXznc1P0",
-      "title": "Es un MONTAJE para ayudar a Kevin. Uso político del sistema financiero. José Luis Cava",
-      "author": "José Luis Cava",
-      "channel": "José Luis Cava",
-      "fecha": "30/08/2026",
-      "fecha_registro": "30/08/2026 12:00",
-      "dateTimestamp": 1788096287163,
-      "diasAntiguedad": 28,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/is2MXznc1P0/hqdefault.jpg",
-      "consulta": "Identificar qué opina de la relación entre Bessent, Druckenmiller y Warsh, y qué jugada técnica ve en el bono a 30 años.",
-      "tags": [
-        "Bono 30A",
-        "Kevin Warsh",
-        "Bessent",
-        "Druckenmiller",
-        "Short Squeeze",
-        "Manipulación"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Cava defiende que el supuesto enfrentamiento público entre Bessent y Druckenmiller es una pantomima coordinada para permitir que Kevin Warsh aparente independencia en la Fed. La jugada técnica es provocar un 'short squeeze' masivo en el bono a 30 años contra los fondos CTA forzando la rentabilidad por debajo de 5.148%.",
-        "tesis_macro": "Intervencionismo político explícito sobre la curva de tipos. A corto plazo la manipulación forzará calma y rebotes en renta variable, pero hacia 2027-2028 el retardo del impacto de tipos provocará contracción económica y nueva ola inflacionaria.",
-        "matriz_activos": {
-          "bonos": "Rebote táctico alcista por squeeze a 30 años; negativo a largo plazo",
-          "renta_variable": "Volatilidad inminente, seguida de empuje por caída de rendimientos",
-          "sectores_defensivos": "Favorable (Consumo Básico, Salud, Utilities)"
-        },
-        "timestamps_citas": [
-          "04:10 - 'Llevan colaborando desde 1992 en el ataque contra la libra.'",
-          "09:30 - 'Los fondos CTA están muy cortos en bonos: van a cazarlos.'",
-          "15:20 - 'Si el rendimiento cae de 5.148, las bolsas volarán.'"
-        ]
-      }
-    },
-    {
       "id": "vid_0_20260830172736781749",
       "tipo": "canal",
       "canalId": "rallo",
@@ -3594,6 +3557,327 @@
         "Macro",
         "Mercados",
         "Juan Ramón Rallo"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
+        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Favorable",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Favorable"
+        },
+        "timestamps_citas": [
+          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
+          "08:40 - Niveles clave o catalizadores a vigilar"
+        ]
+      }
+    },
+    {
+      "id": "vid_20260830173849106301",
+      "tipo": "canal",
+      "canalId": "cava",
+      "url": "https://www.youtube.com/watch?v=is2MXznc1P0",
+      "title": "Es un MONTAJE para ayudar a Kevin. Uso político del sistema financiero. José Luis Cava",
+      "author": "José Luis Cava",
+      "channel": "José Luis Cava",
+      "fecha": "30/08/2026",
+      "fecha_registro": "30/08/2026 12:00",
+      "dateTimestamp": 1788096287163,
+      "diasAntiguedad": 28,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/is2MXznc1P0/hqdefault.jpg",
+      "consulta": "Identificar qué opina de la relación entre Bessent, Druckenmiller y Warsh, y qué jugada técnica ve en el bono a 30 años.",
+      "tags": [
+        "Bono 30A",
+        "Kevin Warsh",
+        "Bessent",
+        "Druckenmiller",
+        "Short Squeeze",
+        "Manipulación"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Cava defiende que el supuesto enfrentamiento público entre Bessent y Druckenmiller es una pantomima coordinada para permitir que Kevin Warsh aparente independencia en la Fed. La jugada técnica es provocar un 'short squeeze' masivo en el bono a 30 años contra los fondos CTA forzando la rentabilidad por debajo de 5.148%.",
+        "tesis_macro": "Intervencionismo político explícito sobre la curva de tipos. A corto plazo la manipulación forzará calma y rebotes en renta variable, pero hacia 2027-2028 el retardo del impacto de tipos provocará contracción económica y nueva ola inflacionaria.",
+        "matriz_activos": {
+          "bonos": "Rebote táctico alcista por squeeze a 30 años; negativo a largo plazo",
+          "renta_variable": "Volatilidad inminente, seguida de empuje por caída de rendimientos",
+          "sectores_defensivos": "Favorable (Consumo Básico, Salud, Utilities)"
+        },
+        "timestamps_citas": [
+          "04:10 - 'Llevan colaborando desde 1992 en el ataque contra la libra.'",
+          "09:30 - 'Los fondos CTA están muy cortos en bonos: van a cazarlos.'",
+          "15:20 - 'Si el rendimiento cae de 5.148, las bolsas volarán.'"
+        ]
+      }
+    },
+    {
+      "id": "vid_jon_TfveTveI2ys",
+      "tipo": "canal",
+      "canalId": "jon",
+      "url": "https://www.youtube.com/watch?v=TfveTveI2ys",
+      "title": "El mercado se FRENA antes del dato que puede cambiarlo todo.",
+      "author": "Jon Economist",
+      "channel": "Jon Economist",
+      "fecha": "28/08/2026",
+      "fecha_registro": "12/08/2026 12:00",
+      "dateTimestamp": 1787923488010,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/TfveTveI2ys/hqdefault.jpg",
+      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
+      "tags": [
+        "Macro",
+        "Mercados",
+        "Jon Economist"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
+        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Favorable",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Favorable"
+        },
+        "timestamps_citas": [
+          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
+          "08:40 - Niveles clave o catalizadores a vigilar"
+        ]
+      }
+    },
+    {
+      "id": "vid_jon_mhuup3GS-tw",
+      "tipo": "canal",
+      "canalId": "jon",
+      "url": "https://www.youtube.com/watch?v=mhuup3GS-tw",
+      "title": "Wall Street vuelve a MÁXIMOS mientras el empleo se debilita: ahora manda el IPC",
+      "author": "Jon Economist",
+      "channel": "Jon Economist",
+      "fecha": "28/08/2026",
+      "fecha_registro": "10/08/2026 12:00",
+      "dateTimestamp": 1787923488010,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/mhuup3GS-tw/hqdefault.jpg",
+      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
+      "tags": [
+        "Macro",
+        "Mercados",
+        "Jon Economist"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
+        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Favorable",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Favorable"
+        },
+        "timestamps_citas": [
+          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
+          "08:40 - Niveles clave o catalizadores a vigilar"
+        ]
+      }
+    },
+    {
+      "id": "vid_jon_p6rB2lSNNmA",
+      "tipo": "canal",
+      "canalId": "jon",
+      "url": "https://www.youtube.com/watch?v=p6rB2lSNNmA",
+      "title": "Wall Street FRENA antes del dato que puede CAMBIAR los tipos",
+      "author": "Jon Economist",
+      "channel": "Jon Economist",
+      "fecha": "28/08/2026",
+      "fecha_registro": "07/08/2026 12:00",
+      "dateTimestamp": 1787923488010,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/p6rB2lSNNmA/hqdefault.jpg",
+      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
+      "tags": [
+        "Macro",
+        "Mercados",
+        "Jon Economist"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
+        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Favorable",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Favorable"
+        },
+        "timestamps_citas": [
+          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
+          "08:40 - Niveles clave o catalizadores a vigilar"
+        ]
+      }
+    },
+    {
+      "id": "vid_jon__51D3HnmP6s",
+      "tipo": "canal",
+      "canalId": "jon",
+      "url": "https://www.youtube.com/watch?v=_51D3HnmP6s",
+      "title": "Wall Street vuelve a máximos tras la gran limpieza del mercado",
+      "author": "Jon Economist",
+      "channel": "Jon Economist",
+      "fecha": "28/08/2026",
+      "fecha_registro": "05/08/2026 12:00",
+      "dateTimestamp": 1787923488010,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/_51D3HnmP6s/hqdefault.jpg",
+      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
+      "tags": [
+        "Macro",
+        "Mercados",
+        "Jon Economist"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
+        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Favorable",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Favorable"
+        },
+        "timestamps_citas": [
+          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
+          "08:40 - Niveles clave o catalizadores a vigilar"
+        ]
+      }
+    },
+    {
+      "id": "vid_jon_vxkTGJd0KqY",
+      "tipo": "canal",
+      "canalId": "jon",
+      "url": "https://www.youtube.com/watch?v=vxkTGJd0KqY",
+      "title": "¿Subida de tipos en septiembre? El mercado empieza a prepararse",
+      "author": "Jon Economist",
+      "channel": "Jon Economist",
+      "fecha": "28/08/2026",
+      "fecha_registro": "03/08/2026 12:00",
+      "dateTimestamp": 1787923488010,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/vxkTGJd0KqY/hqdefault.jpg",
+      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
+      "tags": [
+        "Macro",
+        "Mercados",
+        "Jon Economist"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
+        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Favorable",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Favorable"
+        },
+        "timestamps_citas": [
+          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
+          "08:40 - Niveles clave o catalizadores a vigilar"
+        ]
+      }
+    },
+    {
+      "id": "vid_jon_u-0VVDbSdIQ",
+      "tipo": "canal",
+      "canalId": "jon",
+      "url": "https://www.youtube.com/watch?v=u-0VVDbSdIQ",
+      "title": "Semiconductores al RESCATE pero Meta COLAPSA | Análisis de Mercados",
+      "author": "Jon Economist",
+      "channel": "Jon Economist",
+      "fecha": "28/08/2026",
+      "fecha_registro": "31/07/2026 12:00",
+      "dateTimestamp": 1787923488010,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/u-0VVDbSdIQ/hqdefault.jpg",
+      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
+      "tags": [
+        "Macro",
+        "Mercados",
+        "Jon Economist"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
+        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Favorable",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Favorable"
+        },
+        "timestamps_citas": [
+          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
+          "08:40 - Niveles clave o catalizadores a vigilar"
+        ]
+      }
+    },
+    {
+      "id": "vid_jon_XMfcT8PXtn4",
+      "tipo": "canal",
+      "canalId": "jon",
+      "url": "https://www.youtube.com/watch?v=XMfcT8PXtn4",
+      "title": "La señal de Bitcoin que puede anticipar el próximo movimiento de Wall Street",
+      "author": "Jon Economist",
+      "channel": "Jon Economist",
+      "fecha": "28/08/2026",
+      "fecha_registro": "29/07/2026 12:00",
+      "dateTimestamp": 1787923488010,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/XMfcT8PXtn4/hqdefault.jpg",
+      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
+      "tags": [
+        "Macro",
+        "Mercados",
+        "Jon Economist"
       ],
       "resumen_estructurado": {
         "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
@@ -3954,286 +4238,6 @@
         "Macro",
         "Mercados",
         "José Luis Cava"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
-        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Favorable",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Favorable"
-        },
-        "timestamps_citas": [
-          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
-          "08:40 - Niveles clave o catalizadores a vigilar"
-        ]
-      }
-    },
-    {
-      "id": "vid_jon_TfveTveI2ys",
-      "tipo": "canal",
-      "canalId": "jon",
-      "url": "https://www.youtube.com/watch?v=TfveTveI2ys",
-      "title": "El mercado se FRENA antes del dato que puede cambiarlo todo.",
-      "author": "Jon Economist",
-      "channel": "Jon Economist",
-      "fecha": "28/08/2026",
-      "fecha_registro": "12/08/2026 12:00",
-      "dateTimestamp": 1787923488010,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/TfveTveI2ys/hqdefault.jpg",
-      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
-      "tags": [
-        "Macro",
-        "Mercados",
-        "Jon Economist"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
-        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Favorable",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Favorable"
-        },
-        "timestamps_citas": [
-          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
-          "08:40 - Niveles clave o catalizadores a vigilar"
-        ]
-      }
-    },
-    {
-      "id": "vid_jon_mhuup3GS-tw",
-      "tipo": "canal",
-      "canalId": "jon",
-      "url": "https://www.youtube.com/watch?v=mhuup3GS-tw",
-      "title": "Wall Street vuelve a MÁXIMOS mientras el empleo se debilita: ahora manda el IPC",
-      "author": "Jon Economist",
-      "channel": "Jon Economist",
-      "fecha": "28/08/2026",
-      "fecha_registro": "10/08/2026 12:00",
-      "dateTimestamp": 1787923488010,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/mhuup3GS-tw/hqdefault.jpg",
-      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
-      "tags": [
-        "Macro",
-        "Mercados",
-        "Jon Economist"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
-        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Favorable",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Favorable"
-        },
-        "timestamps_citas": [
-          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
-          "08:40 - Niveles clave o catalizadores a vigilar"
-        ]
-      }
-    },
-    {
-      "id": "vid_jon_p6rB2lSNNmA",
-      "tipo": "canal",
-      "canalId": "jon",
-      "url": "https://www.youtube.com/watch?v=p6rB2lSNNmA",
-      "title": "Wall Street FRENA antes del dato que puede CAMBIAR los tipos",
-      "author": "Jon Economist",
-      "channel": "Jon Economist",
-      "fecha": "28/08/2026",
-      "fecha_registro": "07/08/2026 12:00",
-      "dateTimestamp": 1787923488010,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/p6rB2lSNNmA/hqdefault.jpg",
-      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
-      "tags": [
-        "Macro",
-        "Mercados",
-        "Jon Economist"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
-        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Favorable",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Favorable"
-        },
-        "timestamps_citas": [
-          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
-          "08:40 - Niveles clave o catalizadores a vigilar"
-        ]
-      }
-    },
-    {
-      "id": "vid_jon__51D3HnmP6s",
-      "tipo": "canal",
-      "canalId": "jon",
-      "url": "https://www.youtube.com/watch?v=_51D3HnmP6s",
-      "title": "Wall Street vuelve a máximos tras la gran limpieza del mercado",
-      "author": "Jon Economist",
-      "channel": "Jon Economist",
-      "fecha": "28/08/2026",
-      "fecha_registro": "05/08/2026 12:00",
-      "dateTimestamp": 1787923488010,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/_51D3HnmP6s/hqdefault.jpg",
-      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
-      "tags": [
-        "Macro",
-        "Mercados",
-        "Jon Economist"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
-        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Favorable",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Favorable"
-        },
-        "timestamps_citas": [
-          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
-          "08:40 - Niveles clave o catalizadores a vigilar"
-        ]
-      }
-    },
-    {
-      "id": "vid_jon_vxkTGJd0KqY",
-      "tipo": "canal",
-      "canalId": "jon",
-      "url": "https://www.youtube.com/watch?v=vxkTGJd0KqY",
-      "title": "¿Subida de tipos en septiembre? El mercado empieza a prepararse",
-      "author": "Jon Economist",
-      "channel": "Jon Economist",
-      "fecha": "28/08/2026",
-      "fecha_registro": "03/08/2026 12:00",
-      "dateTimestamp": 1787923488010,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/vxkTGJd0KqY/hqdefault.jpg",
-      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
-      "tags": [
-        "Macro",
-        "Mercados",
-        "Jon Economist"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
-        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Favorable",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Favorable"
-        },
-        "timestamps_citas": [
-          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
-          "08:40 - Niveles clave o catalizadores a vigilar"
-        ]
-      }
-    },
-    {
-      "id": "vid_jon_u-0VVDbSdIQ",
-      "tipo": "canal",
-      "canalId": "jon",
-      "url": "https://www.youtube.com/watch?v=u-0VVDbSdIQ",
-      "title": "Semiconductores al RESCATE pero Meta COLAPSA | Análisis de Mercados",
-      "author": "Jon Economist",
-      "channel": "Jon Economist",
-      "fecha": "28/08/2026",
-      "fecha_registro": "31/07/2026 12:00",
-      "dateTimestamp": 1787923488010,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/u-0VVDbSdIQ/hqdefault.jpg",
-      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
-      "tags": [
-        "Macro",
-        "Mercados",
-        "Jon Economist"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
-        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Favorable",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Favorable"
-        },
-        "timestamps_citas": [
-          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
-          "08:40 - Niveles clave o catalizadores a vigilar"
-        ]
-      }
-    },
-    {
-      "id": "vid_jon_XMfcT8PXtn4",
-      "tipo": "canal",
-      "canalId": "jon",
-      "url": "https://www.youtube.com/watch?v=XMfcT8PXtn4",
-      "title": "La señal de Bitcoin que puede anticipar el próximo movimiento de Wall Street",
-      "author": "Jon Economist",
-      "channel": "Jon Economist",
-      "fecha": "28/08/2026",
-      "fecha_registro": "29/07/2026 12:00",
-      "dateTimestamp": 1787923488010,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/XMfcT8PXtn4/hqdefault.jpg",
-      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
-      "tags": [
-        "Macro",
-        "Mercados",
-        "Jon Economist"
       ],
       "resumen_estructurado": {
         "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
