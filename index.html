@@ -132,28 +132,31 @@
             <span class="badge-subtab" id="badgeTotalSueltosCount">0</span>
           </button>
         </div>
-        <button class="btn btn-secondary btn-sm" onclick="togglePromptPanel()" style="border-color: var(--accent-indigo); color: #c7d2fe;">
-          🧠 Ver / Editar Prompt Maestro IA
+        <button class="btn btn-secondary btn-sm" onclick="togglePromptPanel()" id="btnToggleChannelPromptTop" style="border-color: var(--accent-indigo); color: #c7d2fe;">
+          🧠 Prompt por Defecto del Canal Activo
         </button>
       </div>
 
-      <!-- Panel Desplegable Rápido del Prompt Maestro IA en el Gestor de Vídeos -->
+      <!-- Panel Desplegable Rápido del Prompt por Defecto del Canal Activo -->
       <div id="quickPromptPanel" class="form-card" style="display: none; margin-bottom: 1.5rem; border-color: var(--accent-indigo);">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
           <div>
-            <h3 style="font-size: 1.05rem; font-weight: 700; color: #fff;">🧠 Prompt Maestro de Resumen IA (Estructura de 4 bloques + Few-Shot)</h3>
-            <p style="font-size: 0.8rem; color: var(--text-secondary);">Este prompt define cómo Gemini resume cualquier vídeo al pulsar <strong>"🔄 Actualizar Resumen IA"</strong>.</p>
+            <h3 id="quickPromptPanelTitle" style="font-size: 1.05rem; font-weight: 700; color: #fff;">🧠 Prompt por Defecto del Canal</h3>
+            <p style="font-size: 0.8rem; color: var(--text-secondary);">Se copia automáticamente en cada vídeo nuevo de este canal. También puedes aplicarlo a todos sus vídeos actuales o editar el prompt de un vídeo concreto.</p>
           </div>
-          <div style="display: flex; gap: 0.5rem;">
-            <button type="button" class="btn btn-secondary btn-sm" onclick="restoreDefaultMasterPrompt()">
-              ↩️ Restaurar Prompt Maestro Original
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="restoreDefaultChannelPromptFromQuickPanel()">
+              ↩️ Restaurar Original del Canal
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="saveAndPropagateChannelPromptFromQuickPanel()" title="Guarda como prompt por defecto del canal y sobrescribe también el prompt copiado en todos los vídeos actuales de este canal">
+              📋 Guardar y Copiar a Todos los Vídeos del Canal
             </button>
             <button type="button" class="btn btn-primary btn-sm" onclick="saveMasterPromptFromQuickPanel()">
-              💾 Guardar Prompt Maestro
+              💾 Guardar como Defecto del Canal
             </button>
           </div>
         </div>
-        <textarea id="quickMasterPromptTextarea" class="form-textarea" rows="10" style="font-family: monospace; font-size: 0.82rem; line-height: 1.45;"></textarea>
+        <textarea id="quickMasterPromptTextarea" class="form-textarea" rows="12" style="font-family: monospace; font-size: 0.82rem; line-height: 1.45;"></textarea>
       </div>
 
       <!-- SUBTAB 1: CANALES MONITORIZADOS (ÚLTIMOS 3 MESES) -->
@@ -191,7 +194,7 @@
           <div class="panel-header" style="margin-bottom: 1rem;">
             <div>
               <h3 style="font-size: 1.15rem; font-weight: 700;">➕ Añadir Vídeo Suelto con Resumen IA</h3>
-              <p style="font-size: 0.825rem; color: var(--text-secondary);">Introduce el enlace de YouTube y (opcionalmente) tus notas prioritarias. Se resumirá automáticamente con tu Prompt Maestro.</p>
+              <p style="font-size: 0.825rem; color: var(--text-secondary);">Introduce el enlace de YouTube y (opcionalmente) tus notas prioritarias. Se copiará el Prompt por defecto en el vídeo y podrás editarlo cuando quieras.</p>
             </div>
           </div>
           
@@ -207,7 +210,7 @@
             <div class="form-group consulta-highlight">
               <label class="form-label" for="videoConsulta">
                 🎯 Notas o enfoque particular para este vídeo (Opcional)
-                <span class="form-hint">Si lo dejas vacío, aplicará directamente tu Prompt Maestro de 4 puntos</span>
+                <span class="form-hint">Si lo dejas vacío, aplicará directamente el Prompt por defecto</span>
               </label>
               <textarea id="videoConsulta" class="form-textarea" placeholder="Opcional: Ej. Presta especial atención a lo que dice del SP500 en 7740, opciones Call/Put y la fecha del 3 de noviembre."></textarea>
             </div>
@@ -246,26 +249,37 @@
     <section id="tab-settings" class="tab-panel">
       <div class="panel-header">
         <div>
-          <h2 class="panel-title">⚙️ Configuración del Sistema & Prompt Maestro IA</h2>
-          <p class="panel-subtitle">Ajustes del motor de Inteligencia Artificial, Prompt Maestro de Resumen y sincronización en la nube</p>
+          <h2 class="panel-title">⚙️ Configuración del Sistema & Prompts por Canal</h2>
+          <p class="panel-subtitle">Configura el Prompt por defecto de cada canal (se copia automáticamente a cada vídeo nuevo y puede editarse vídeo a vídeo)</p>
         </div>
       </div>
 
-      <!-- Tarjeta Prompt Maestro IA (Ancho completo) -->
+      <!-- Tarjeta Prompts por Defecto por Canal (Ancho completo) -->
       <div class="settings-card" style="margin-bottom: 1.5rem; border-color: var(--accent-indigo);">
-        <div class="settings-card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
-          <h3>📝 Prompt Maestro para Resumir Vídeos (Tu Plantilla Operativa)</h3>
-          <div style="display: flex; gap: 0.5rem;">
+        <div class="settings-card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <h3 style="margin: 0;">📝 Prompt por Defecto del Canal:</h3>
+            <select id="settingPromptChannelSelect" class="form-select" style="width: auto; min-width: 240px; font-weight: 700;" onchange="onChangeSettingsPromptChannel(this.value)">
+              <option value="cava">👤 José Luis Cava</option>
+              <option value="rallo">👤 Juan Ramón Rallo</option>
+              <option value="jon">👤 Jon Economist</option>
+              <option value="global">🌐 Vídeos Sueltos (General)</option>
+            </select>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
             <button type="button" class="btn btn-secondary btn-sm" onclick="restoreDefaultMasterPrompt()">
-              ↩️ Restaurar por Defecto
+              ↩️ Restaurar Plantilla Original del Canal
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="saveAndPropagateSettingsChannelPrompt()">
+              📋 Guardar y Copiar a Todos los Vídeos de este Canal
             </button>
             <button type="button" class="btn btn-primary btn-sm" onclick="saveConfigToStorage()">
-              💾 Guardar Prompt y Configuración
+              💾 Guardar Prompt por Defecto del Canal
             </button>
           </div>
         </div>
         <p style="font-size: 0.83rem; color: var(--text-secondary); margin: 0;">
-          Aquí puedes modificar en cualquier momento las instrucciones y los ejemplos con los que la IA resume los vídeos. Después de cambiarlo, ve a cualquier vídeo y pulsa <strong>"🔄 Actualizar Resumen IA"</strong> para regenerar su resumen con este prompt.
+          Cada canal tiene su propio Prompt por defecto adaptado al tipo de información útil que aporta. Al entrar un vídeo nuevo de ese canal, se le copia automáticamente este prompt, y luego puedes modificar el prompt de cualquier vídeo individualmente pulsando <strong>"✏️ Prompt"</strong> en su fila.
         </p>
         <textarea id="settingMasterPrompt" class="form-textarea" rows="14" style="font-family: monospace; font-size: 0.82rem; line-height: 1.45;"></textarea>
       </div>
@@ -382,6 +396,13 @@
           <label class="form-label" for="newChannelDesc">Enfoque Analítico / Descripción</label>
           <input type="text" id="newChannelDesc" class="form-input" placeholder="Ej: Análisis técnico, ciclo macroeconómico y materias primas">
         </div>
+        <div class="form-group">
+          <label class="form-label" for="newChannelDefaultPrompt">
+            🧠 Prompt por Defecto de este Canal
+            <span class="form-hint">Se copiará automáticamente en todos los vídeos nuevos de este canal</span>
+          </label>
+          <textarea id="newChannelDefaultPrompt" class="form-textarea" rows="5" placeholder="Si lo dejas vacío se asignará la plantilla estructurada de 4 bloques por defecto..."></textarea>
+        </div>
         <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
           <button type="button" class="btn btn-secondary" onclick="closeAddChannelModal()">Cancelar</button>
           <button type="submit" class="btn btn-primary">Guardar Canal</button>
@@ -390,11 +411,11 @@
     </div>
   </div>
 
-  <!-- Modal para Editar Prompt / Consulta y Actualizar Resumen del Vídeo con IA -->
+  <!-- Modal para Editar el Prompt Propio de un Vídeo (o guardarlo como defecto del canal) -->
   <div id="modalEditQuery" class="loading-overlay" style="background-color: rgba(0,0,0,0.78);">
-    <div style="background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); max-width: 780px; width: 94%; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);">
+    <div style="background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); max-width: 820px; width: 95%; max-height: 92vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);">
       <div style="padding: 1rem 1.4rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
-        <h3 style="font-size: 1.1rem; font-weight: 700;">✏️ Configurar Prompt y Actualizar Resumen IA del Vídeo</h3>
+        <h3 style="font-size: 1.1rem; font-weight: 700;">✏️ Prompt Propio de este Vídeo & Actualizar Resumen IA</h3>
         <button onclick="closeEditQueryModal()" style="background: none; border: none; color: var(--text-muted); font-size: 1.3rem; cursor: pointer;">✕</button>
       </div>
       <div style="padding: 1.2rem 1.4rem; overflow-y: auto; flex: 1;">
@@ -404,31 +425,36 @@
           <div id="editQueryVideoMeta" style="font-size: 0.8rem; color: var(--text-secondary);"></div>
         </div>
 
-        <div class="form-group consulta-highlight" style="margin-bottom: 1rem;">
-          <label class="form-label" for="editQueryTextarea">
-            🎯 Notas o Condiciones Específicas para este Vídeo (Opcional)
-            <span class="form-hint">Instrucciones particulares para este vídeo concreto</span>
-          </label>
-          <textarea id="editQueryTextarea" class="form-textarea" rows="2" placeholder="Ej: Presta especial atención al SP500 en 7740, opciones Call/Put y la fecha del 3 de noviembre..."></textarea>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem; flex-wrap: wrap; gap: 0.4rem;">
+            <label class="form-label" for="editModalMasterPrompt" style="margin-bottom: 0;">
+              🧠 Prompt de este Vídeo <span id="editModalChannelOriginBadge" style="font-size: 0.75rem; color: #a5b4fc; font-weight: normal;">(Copiado del Prompt por defecto del canal)</span>
+            </label>
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+              <button type="button" class="btn btn-secondary btn-sm" onclick="restoreDefaultMasterPromptInModal()" style="font-size: 0.72rem; padding: 0.2rem 0.55rem;" title="Vuelve a copiar en este vídeo el Prompt por defecto actual de su canal">
+                ↩️ Recopiar Prompt por Defecto del Canal
+              </button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="saveModalPromptAsChannelDefault()" style="font-size: 0.72rem; padding: 0.2rem 0.55rem; border-color: var(--accent-indigo); color: #c7d2fe;" title="Guarda este texto también como el nuevo Prompt por defecto del canal para futuros vídeos">
+                📌 Guardar también como Defecto del Canal
+              </button>
+            </div>
+          </div>
+          <textarea id="editModalMasterPrompt" class="form-textarea" rows="12" style="font-family: monospace; font-size: 0.8rem; line-height: 1.4;"></textarea>
         </div>
 
-        <div class="form-group" style="margin-bottom: 0.5rem;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
-            <label class="form-label" for="editModalMasterPrompt" style="margin-bottom: 0;">
-              🧠 Prompt Maestro de Resumen IA (Plantilla Global)
-            </label>
-            <button type="button" class="btn btn-secondary btn-sm" onclick="restoreDefaultMasterPromptInModal()" style="font-size: 0.72rem; padding: 0.2rem 0.5rem;">
-              ↩️ Restaurar Prompt Original
-            </button>
-          </div>
-          <textarea id="editModalMasterPrompt" class="form-textarea" rows="10" style="font-family: monospace; font-size: 0.8rem; line-height: 1.4;"></textarea>
+        <div class="form-group consulta-highlight" style="margin-bottom: 0.3rem;">
+          <label class="form-label" for="editQueryTextarea">
+            🎯 Notas o Pregunta Adicional solo para este Vídeo (Opcional)
+            <span class="form-hint">Se añade como foco extra al prompt superior de este vídeo</span>
+          </label>
+          <textarea id="editQueryTextarea" class="form-textarea" rows="2" placeholder="Opcional: Ej. Presta especial atención al SP500 en 7740, opciones Call/Put y la fecha del 3 de noviembre..."></textarea>
         </div>
       </div>
       <div style="padding: 0.9rem 1.4rem; border-top: 1px solid var(--border-color); background-color: rgba(0,0,0,0.25); display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
         <button type="button" class="btn btn-secondary btn-sm" onclick="closeEditQueryModal()">Cancelar</button>
         <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
           <button type="button" class="btn btn-secondary btn-sm" onclick="saveQueryOnly()">
-            💾 Solo Guardar Prompt / Notas
+            💾 Guardar Prompt en este Vídeo
           </button>
           <button type="button" class="btn btn-primary" onclick="saveAndAnalyzeQueryWithAI()">
             🔄 Actualizar y Generar Resumen con IA Ahora
@@ -449,6 +475,6 @@
   <div class="toast-container" id="toastContainer"></div>
 
   <!-- Scripts -->
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>

@@ -3,18 +3,23 @@
  * Frontend interactivo y sincronización en la nube
  */
 
-// Prompt Maestro por defecto (Estructura operativa de 4 puntos + Few-Shot con tus 3 ejemplos reales)
-const DEFAULT_MASTER_PROMPT = `Actúa como un analista y operador de mercados que toma apuntes personales ultra-directos de vídeos financieros. Tu objetivo es resumir la transcripción exactamente con mi estilo, mi concisión y mi estructura.
+// ==========================================
+// PROMPTS POR DEFECTO POR CANAL
+// ==========================================
+
+// 1. Prompt por defecto para JOSÉ LUIS CAVA (Operativa, SP500, VIX, opciones/dealers, liquidez Bessent y 4 ejemplos reales)
+const DEFAULT_PROMPT_CAVA = `Actúa como un analista y operador de mercados que toma apuntes personales ultra-directos de los vídeos de José Luis Cava. Tu objetivo es resumir la transcripción exactamente con mi estilo, mi concisión y mi estructura.
 
 REGLAS DE ORO DE FILTRADO:
-1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, comentarios del tiempo, bromas, promoción de libros/cursos/servicios (ej. HOPLA) y cualquier mención a brokers patrocinadores (ej. Freedom24, Quantfury) o a los ETFs/productos comerciales que el autor mencione solo como parte del anuncio del patrocinador. Quédate únicamente con el análisis puro del índice o activo subyacente (ej. el VIX, el SP500, el bono, el petróleo).
-2. CAUSA -> EFECTO EN FRASES CORTAS: Explica siempre los hechos conectando la causa con la consecuencia en 1 o 2 frases directas por idea, sin adornos literarios.
-3. CONSERVA DATOS TÉCNICOS, MECÁNICA Y NIVELES EXACTOS: Incluye siempre fechas concretas del gráfico (ej. días 17, 20 y 24), niveles y rangos numéricos exactos (ej. 7740 o zona 7850-8000 en SP500, 16-20 en VIX), plazos temporales (ej. 3ª semana de octubre, 3 de noviembre, agosto-septiembre) y la mecánica interna si se explica (opciones Call/Put, cobertura de futuros por delta de los creadores de mercado, recompra de deuda a largo plazo del Tesoro/Bessent, déficit/PIB, rebajas de rating).
+1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, comentarios del tiempo, bromas, promoción de libros/cursos/servicios (ej. HOPLA) y cualquier mención a brokers patrocinadores (ej. Freedom24) o a los ETFs/productos comerciales que mencione solo como parte del anuncio del patrocinador. Quédate únicamente con el análisis puro del índice o activo subyacente (ej. el VIX, el SP500, el bono, el petróleo, el oro, Bitcoin).
+2. CAUSA -> EFECTO EN FRASES CORTAS (1 FRASE POR LÍNEA): Explica siempre los hechos conectando la causa con la consecuencia en 1 frase corta y llana por línea, sin adornos literarios ni parrafadas densas.
+3. CONSERVA DATOS TÉCNICOS, MECÁNICA Y NIVELES EXACTOS: Incluye siempre fechas concretas del gráfico (ej. días 17, 20 y 24), niveles y rangos numéricos exactos (ej. 7740 o zona 7850-8000 en SP500, 16-20 en VIX, 4500 en oro), plazos temporales (ej. 3ª semana de octubre, 3 de noviembre, agosto-septiembre) y la mecánica interna si se explica (triple hora bruja, expiración de opciones sobre VIX, gamma positiva, dealers sin coberturas, opciones Call/Put, cobertura de futuros por delta, recompra de deuda a largo plazo del Tesoro/Bessent, déficit/PIB, rebajas de rating).
 
 ESTRUCTURA OBLIGATORIA DEL RESUMEN:
 - Como se ve el mercado / los hechos:
-Expón los hechos objetivos que muestra el vídeo:
+Expón los hechos objetivos que muestra el vídeo (1 frase por línea):
   * Qué ha hecho el precio en el gráfico en fechas concretas o hacia qué rango se dirige (ej. SP500 hacia 7850-8000).
+  * Expiraciones de opciones (ej. triple hora bruja, opciones de futuro sobre el VIX), entorno de gamma positiva y si los dealers tienen o no coberturas.
   * Qué medidas o catalizadores concretos están en juego (ej. penalizar exportaciones de diésel de EE.UU. a Europa -> bajan precios del petróleo en EE.UU.).
   * Qué han descontado ya los mercados y qué muestran los flujos de opciones/futuros y el sentimiento (ej. compra masiva de CALLs de tecnología = institucionales sin miedo frente a miedo solo en particulares; venta de calls/compra de puts y cobertura delta de dealers).
   * Qué ocurre con la rentabilidad de los bonos, deuda/PIB, déficits y calificaciones crediticias.
@@ -26,14 +31,14 @@ Indica de forma directa qué comprar o vender y en qué nivel exacto (ej. "Compr
 Explica la deducción lógica, el motor político/liquidez detrás del movimiento (ej. el tiempo que le queda a Trump antes de las mid-term, recompras de deuda pública a largo plazo de Bessent que estabilizan el mercado y fijan resistencias) y el escenario de cada activo mencionado de forma telegráfica (qué ha hecho, hacia dónde irá, hasta qué fecha exacta y por qué). Destaca cualquier "Fecha importante" del calendario (ej. elecciones del 3 de noviembre).
 
 - Otros temas / maldades / predicción:
-Recoge en puntos claros las "maldades", predicciones políticas/macro y temas estructurales tratados en el vídeo:
+Recoge en líneas cortas e independientes las "maldades", predicciones políticas/macro y temas estructurales tratados en el vídeo:
   * Mercados de predicción y política: resultado esperado en elecciones (ej. barrido demócrata en las mid-term -> bloqueo legislativo).
   * Tema presupuestario / monetario: mayor gasto y deuda pública -> mayor degradación monetaria; problemas fiscales de países (Francia, Reino Unido).
-  * Tema sectorial / geopolítico (ej. Tema Inteligencia Artificial): control político y regulatorio sobre CEOs de IA, participaciones estatales en empresas, parálisis de inversión en centros de datos por precio de la energía, o emisión de deuda estatal para comprar acciones de IA si la bolsa cae +-10%.
-  * Previsiones por activo, niveles de volatilidad (VIX 16-20), sectores interesantes (Salud, Energías limpias) y hoja de ruta estacional completa de la bolsa (ej. bajada agosto-septiembre -> subida hasta el 3 de noviembre -> caída después de noviembre).
+  * Tema sectorial / geopolítico (ej. Tema Inteligencia Artificial): control político y regulatorio sobre CEOs de IA, auditorías (ej. Anthropic con Accenture), participaciones estatales / compra gubernamental de acciones de IA, cheques al pueblo (ej. 5000 dólares), parálisis de inversión en centros de datos por precio de la energía, o emisión de deuda estatal para comprar acciones de IA si la bolsa cae +-10%.
+  * Previsiones por activo (ej. petróleo cayendo hasta el 3 de noviembre y por inercia hasta diciembre pero alcista a medio/largo plazo junto al bono a 10 y 30 años; oro rumbo a 4500 pero subirá más Bitcoin que el oro), niveles de volatilidad (VIX 16-20), sectores interesantes (Salud, Energías limpias) y hoja de ruta estacional de la bolsa.
 
 ---
-EJEMPLOS EXACTOS DE CÓMO QUIERO QUE RESUMAS (IMITA ESTE ESTILO Y LONGITUD):
+EJEMPLOS EXACTOS DE CÓMO QUIERO QUE RESUMAS A JOSÉ LUIS CAVA (IMITA ESTE ESTILO Y LONGITUD):
 
 [EJEMPLO 1 - Vídeo de operativa y microestructura (zoUHJ6eB6IY)]:
 - Como se ve el mercado / los hechos:
@@ -91,6 +96,57 @@ El petróleo va a caer hasta el 3 de noviembre y luego por inercia hasta diciemb
 El oro se dirige a la zona de los 4500, subirá más el Bitcoin que el oro.
 Anthropic ha encargado a Accenture una auditoría para demostrar control sobre la IA, el gobierno comprará acciones y le dará al pueblo 5000 dólares.`;
 
+// 2. Prompt por defecto para JUAN RAMÓN RALLO (Análisis económico, fiscal, monetario, deuda, bancos centrales y regulación)
+const DEFAULT_PROMPT_RALLO = `Actúa como un analista económico y patrimonial que toma apuntes personales ultra-directos de los vídeos de Juan Ramón Rallo. Tu objetivo es extraer únicamente la información económica, fiscal, monetaria, patrimonial o geopolítica útil en frases cortas y directas (1 frase por línea).
+
+REGLAS DE FILTRADO:
+1. CERO RELLENO: Ignora saludos, peticiones de "debatidlo en comentarios", promociones de cursos/universidad (OMMA), libros o patrocinadores.
+2. DATOS Y CAUSA -> EFECTO: Conserva siempre las cifras concretas que cita Rallo (porcentajes de deuda/PIB, déficit, inflación, compras de toneladas de oro por bancos centrales, tipos de interés, aranceles o impuestos) y conecta cada hecho con su consecuencia económica real.
+3. SI EL VÍDEO ES 100% POLÍTICA/SOCIEDAD LOCAL SIN IMPACTO ECONÓMICO: Clasifícalo como "politica_sociedad" y resume brevemente el conflicto legal/económico de fondo (ej. derechos de propiedad, inseguridad jurídica en vivienda, impuestos).
+
+ESTRUCTURA OBLIGATORIA DEL RESUMEN:
+- Como se ve el mercado / los hechos:
+Expón en frases cortas (1 por línea) los hechos y datos objetivos que analiza Rallo en el vídeo (ej. compras masivas de oro de China, evolución del déficit y deuda pública, decisiones de la Fed/BCE, datos de inflación/empleo o medidas regulatorias/arancelarias).
+
+- Como reaccionar:
+Si del análisis de Rallo se desprende una implicación clara para proteger el patrimonio o invertir (ej. cobertura en oro/activos reales frente a degradación fiduciaria, evitar deuda soberana de largo plazo, riesgo regulatorio en un sector), indícala en 1 frase. Si no hay pauta operativa, déjalo vacío ("").
+
+- ¿por que? / conclusión:
+Explica de forma directa la tesis central de Rallo en el vídeo: por qué está ocurriendo ese fenómeno económico y cuál es la consecuencia inevitable sobre las divisas fiat, la inflación, los bonos soberanos, el oro o el crecimiento económico.
+
+- Otros temas / maldades / predicción:
+Recoge las advertencias estructurales a medio/largo plazo, los incentivos perversos de los gobiernos/bancos centrales (represión financiera, licuación de deuda vía inflación, inseguridad jurídica) y qué prevé Rallo que ocurra si se mantiene esa política.`;
+
+// 3. Prompt por defecto para JON ECONOMIST (Liquidez global, bonos 10Y/30Y, Reserva Federal, Wall Street y Bitcoin)
+const DEFAULT_PROMPT_JON = `Actúa como un analista macro y de liquidez que toma apuntes personales ultra-directos de los vídeos de Jon Economist. Tu objetivo es resumir el vídeo en frases cortas y directas (1 idea por línea).
+
+REGLAS DE FILTRADO:
+1. CERO PUBLICIDAD: Ignora al 100% cualquier mención a Quantfury, enlaces de referido, sorteos o saludos iniciales.
+2. CONSERVA NIVELES Y DATOS MACRO: Incluye siempre los niveles exactos que menciona en bonos (rentabilidad del bono a 10 y 30 años), niveles de Bitcoin, S&P 500, Nasdaq, dólar (DXY), liquidez global (M2, balance de la Fed, TGA) y vencimientos de opciones.
+
+ESTRUCTURA OBLIGATORIA DEL RESUMEN:
+- Como se ve el mercado / los hechos:
+Expón en frases cortas (1 por línea) qué está haciendo la rentabilidad de los bonos americanos (10Y y 30Y), cómo están reaccionando Wall Street (S&P 500 / Nasdaq) y Bitcoin, y qué datos de liquidez, inflación o vencimientos de opciones están marcando la sesión.
+
+- Como reaccionar:
+Indica los niveles técnicos clave de soporte/resistencia o condición de entrada/cautela que señala Jon en Bitcoin, S&P 500 o Nasdaq (o déjalo vacío "" si no da nivel operativo).
+
+- ¿por que? / conclusión:
+Explica la causa -> efecto entre las rentabilidades de los bonos / liquidez de la Fed y el movimiento esperado en bolsas y Bitcoin, detallando el escenario más probable a corto y medio plazo.
+
+- Otros temas / maldades / predicción:
+Recoge alertas sobre tensiones en el mercado de deuda, próximas fechas clave del calendario macro (IPC, Fed/FOMC, empleo, vencimientos) y previsión de ciclo para Bitcoin y renta variable.`;
+
+// Prompt maestro general por defecto
+const DEFAULT_MASTER_PROMPT = DEFAULT_PROMPT_CAVA;
+
+function getBuiltInChannelDefaultPrompt(canalId) {
+  if (canalId === 'cava') return DEFAULT_PROMPT_CAVA;
+  if (canalId === 'rallo') return DEFAULT_PROMPT_RALLO;
+  if (canalId === 'jon') return DEFAULT_PROMPT_JON;
+  return DEFAULT_MASTER_PROMPT;
+}
+
 // Estado Global
 const state = {
   config: {
@@ -106,6 +162,7 @@ const state = {
   },
   canales: [],
   activeCanalId: 'cava',
+  settingsSelectedChannelId: 'cava',
   gestorSubtab: 'canales', // 'canales' | 'sueltos'
   channelSubfilter: 'all', // 'all' | 'macro' | 'tier1' | 'tier2' | 'tier3' | 'excluded'
   meta_analisis: null,
@@ -130,6 +187,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initEventListeners();
   await loadConfigFromStorage();
   await loadInitialData();
+  ensureChannelAndVideoPrompts();
   syncPromptInputsUI();
   recalculateVideosRecency();
   renderAll();
@@ -167,16 +225,106 @@ function getEffectiveMasterPrompt() {
     : DEFAULT_MASTER_PROMPT;
 }
 
-function syncPromptInputsUI() {
-  const promptText = getEffectiveMasterPrompt();
-  const elSettingPrompt = document.getElementById('settingMasterPrompt');
-  const elQuickPrompt = document.getElementById('quickMasterPromptTextarea');
-  const elModalPrompt = document.getElementById('editModalMasterPrompt');
-
-  if (elSettingPrompt) elSettingPrompt.value = promptText;
-  if (elQuickPrompt) elQuickPrompt.value = promptText;
-  if (elModalPrompt) elModalPrompt.value = promptText;
+// Obtener el Prompt por Defecto de un canal concreto
+function getEffectiveChannelPrompt(canalId) {
+  if (!canalId || canalId === 'global') {
+    return getEffectiveMasterPrompt();
+  }
+  const canal = (state.canales || []).find(c => c.id === canalId);
+  if (canal && canal.defaultPrompt && canal.defaultPrompt.trim()) {
+    return canal.defaultPrompt.trim();
+  }
+  const stored = localStorage.getItem('macro_channel_prompt_' + canalId);
+  if (stored && stored.trim()) {
+    return stored.trim();
+  }
+  return getBuiltInChannelDefaultPrompt(canalId);
 }
+
+// Obtener el Prompt efectivo de un vídeo concreto (su copia propia o el defecto de su canal)
+function getEffectiveVideoPrompt(video) {
+  if (!video) return getEffectiveMasterPrompt();
+  if (video.prompt && video.prompt.trim()) {
+    return video.prompt.trim();
+  }
+  if (video.canalId) {
+    return getEffectiveChannelPrompt(video.canalId);
+  }
+  return getEffectiveMasterPrompt();
+}
+
+// Garantizar que cada canal tenga su defaultPrompt y cada vídeo tenga su copia en video.prompt
+function ensureChannelAndVideoPrompts() {
+  (state.canales || []).forEach(c => {
+    const stored = localStorage.getItem('macro_channel_prompt_' + c.id);
+    if (stored && stored.trim()) {
+      // Si es Cava y tenía una versión antigua sin el Ejemplo 4, actualizar a la plantilla con los 4 ejemplos
+      if (c.id === 'cava' && !stored.includes('[EJEMPLO 4')) {
+        c.defaultPrompt = DEFAULT_PROMPT_CAVA;
+        localStorage.setItem('macro_channel_prompt_cava', DEFAULT_PROMPT_CAVA);
+      } else {
+        c.defaultPrompt = stored.trim();
+      }
+    } else if (!c.defaultPrompt || !c.defaultPrompt.trim() || (c.id === 'cava' && !c.defaultPrompt.includes('[EJEMPLO 4'))) {
+      c.defaultPrompt = getBuiltInChannelDefaultPrompt(c.id);
+      localStorage.setItem('macro_channel_prompt_' + c.id, c.defaultPrompt);
+    }
+  });
+
+  // Copiar automáticamente el prompt por defecto del canal en cada vídeo que aún no tenga prompt propio personalizado
+  (state.videos || []).forEach(v => {
+    if (!v) return;
+    const chPrompt = v.canalId ? getEffectiveChannelPrompt(v.canalId) : getEffectiveMasterPrompt();
+    if (!v.prompt || !v.prompt.trim() || (!v.promptPersonalizado && v.canalId === 'cava' && !v.prompt.includes('[EJEMPLO 4'))) {
+      v.prompt = chPrompt;
+    }
+  });
+}
+
+function syncPromptInputsUI() {
+  // 1. Actualizar selector de canales en Configuración si hay canales nuevos
+  const selChannel = document.getElementById('settingPromptChannelSelect');
+  if (selChannel && state.canales && state.canales.length > 0) {
+    const currentVal = selChannel.value || state.settingsSelectedChannelId || state.activeCanalId || 'cava';
+    selChannel.innerHTML = state.canales.map(c =>
+      `<option value="${escapeHtml(c.id)}" ${c.id === currentVal ? 'selected' : ''}>👤 ${escapeHtml(c.nombre)} (${escapeHtml(c.handle || c.id)})</option>`
+    ).join('') + `<option value="global" ${currentVal === 'global' ? 'selected' : ''}>🌐 Vídeos Sueltos (General)</option>`;
+    state.settingsSelectedChannelId = selChannel.value;
+  }
+
+  // 2. Editor en la pestaña Configuración (muestra el canal seleccionado en el desplegable)
+  const elSettingPrompt = document.getElementById('settingMasterPrompt');
+  if (elSettingPrompt) {
+    const targetId = state.settingsSelectedChannelId || state.activeCanalId || 'cava';
+    elSettingPrompt.value = getEffectiveChannelPrompt(targetId);
+  }
+
+  // 3. Editor rápido en Gestor de Vídeos (muestra el Prompt por Defecto del Canal Activo)
+  const activeId = state.gestorSubtab === 'sueltos' ? 'global' : (state.activeCanalId || 'cava');
+  const activeCanalObj = (state.canales || []).find(c => c.id === activeId);
+  const activeName = activeCanalObj ? activeCanalObj.nombre : 'Vídeos Sueltos';
+
+  const elQuickTitle = document.getElementById('quickPromptPanelTitle');
+  if (elQuickTitle) {
+    elQuickTitle.textContent = `🧠 Prompt por Defecto del Canal: ${activeName}`;
+  }
+  const elTopBtn = document.getElementById('btnToggleChannelPromptTop');
+  if (elTopBtn) {
+    elTopBtn.innerHTML = `🧠 Prompt por Defecto: ${escapeHtml(activeName)}`;
+  }
+  const elQuickPrompt = document.getElementById('quickMasterPromptTextarea');
+  if (elQuickPrompt) {
+    elQuickPrompt.value = getEffectiveChannelPrompt(activeId);
+  }
+}
+
+window.onChangeSettingsPromptChannel = function(canalId) {
+  state.settingsSelectedChannelId = canalId;
+  const elSettingPrompt = document.getElementById('settingMasterPrompt');
+  if (elSettingPrompt) {
+    elSettingPrompt.value = getEffectiveChannelPrompt(canalId);
+  }
+};
 
 window.togglePromptPanel = function() {
   const panel = document.getElementById('quickPromptPanel');
@@ -185,30 +333,151 @@ window.togglePromptPanel = function() {
   panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
 };
 
+function saveChannelDefaultPromptInternal(canalId, newPromptText, propagateToExistingVideos = false) {
+  const cleanPrompt = (newPromptText || '').trim();
+  if (!cleanPrompt) return 0;
+
+  if (!canalId || canalId === 'global') {
+    state.config.masterPrompt = cleanPrompt;
+    localStorage.setItem('macro_master_prompt', cleanPrompt);
+    let updatedCount = 0;
+    state.videos.forEach(v => {
+      if (v.tipo !== 'canal' && (propagateToExistingVideos || !v.promptPersonalizado)) {
+        v.prompt = cleanPrompt;
+        if (propagateToExistingVideos) v.promptPersonalizado = false;
+        updatedCount++;
+      }
+    });
+    return updatedCount;
+  }
+
+  const canal = (state.canales || []).find(c => c.id === canalId);
+  if (canal) {
+    canal.defaultPrompt = cleanPrompt;
+  }
+  localStorage.setItem('macro_channel_prompt_' + canalId, cleanPrompt);
+
+  // Si es Cava, mantener también sincronizado masterPrompt general por compatibilidad
+  if (canalId === 'cava') {
+    state.config.masterPrompt = cleanPrompt;
+    localStorage.setItem('macro_master_prompt', cleanPrompt);
+  }
+
+  let updatedCount = 0;
+  state.videos.forEach(v => {
+    if (v.canalId === canalId && (propagateToExistingVideos || !v.promptPersonalizado)) {
+      v.prompt = cleanPrompt;
+      if (propagateToExistingVideos) v.promptPersonalizado = false;
+      updatedCount++;
+    }
+  });
+  return updatedCount;
+}
+
 window.saveMasterPromptFromQuickPanel = async function() {
   const elQuickPrompt = document.getElementById('quickMasterPromptTextarea');
-  if (elQuickPrompt && elQuickPrompt.value.trim()) {
-    state.config.masterPrompt = elQuickPrompt.value.trim();
-    localStorage.setItem('macro_master_prompt', state.config.masterPrompt);
-    syncPromptInputsUI();
-    await persistData(true);
-    showToast('✅ Prompt Maestro guardado. Pulsa "🔄 Actualizar Resumen IA" en cualquier vídeo para aplicarlo.', 'success');
-  }
+  if (!elQuickPrompt || !elQuickPrompt.value.trim()) return;
+  const targetId = state.gestorSubtab === 'sueltos' ? 'global' : (state.activeCanalId || 'cava');
+  const canalObj = (state.canales || []).find(c => c.id === targetId);
+  const canalName = canalObj ? canalObj.nombre : 'Vídeos Sueltos';
+
+  const count = saveChannelDefaultPromptInternal(targetId, elQuickPrompt.value, false);
+  syncPromptInputsUI();
+  await persistData(true);
+  showToast(`✅ Guardado el Prompt por Defecto de ${canalName} (y actualizado en ${count} vídeos no personalizados).`, 'success');
+};
+
+window.saveAndPropagateChannelPromptFromQuickPanel = async function() {
+  const elQuickPrompt = document.getElementById('quickMasterPromptTextarea');
+  if (!elQuickPrompt || !elQuickPrompt.value.trim()) return;
+  const targetId = state.gestorSubtab === 'sueltos' ? 'global' : (state.activeCanalId || 'cava');
+  const canalObj = (state.canales || []).find(c => c.id === targetId);
+  const canalName = canalObj ? canalObj.nombre : 'Vídeos Sueltos';
+
+  const count = saveChannelDefaultPromptInternal(targetId, elQuickPrompt.value, true);
+  syncPromptInputsUI();
+  await persistData(true);
+  showToast(`📋 Prompt por defecto de ${canalName} guardado y copiado a sus ${count} vídeos.`, 'success');
+};
+
+window.restoreDefaultChannelPromptFromQuickPanel = async function() {
+  const targetId = state.gestorSubtab === 'sueltos' ? 'global' : (state.activeCanalId || 'cava');
+  const canalObj = (state.canales || []).find(c => c.id === targetId);
+  const canalName = canalObj ? canalObj.nombre : 'Vídeos Sueltos';
+  const builtIn = getBuiltInChannelDefaultPrompt(targetId);
+
+  saveChannelDefaultPromptInternal(targetId, builtIn, false);
+  syncPromptInputsUI();
+  await persistData(true);
+  showToast(`↩️ Restaurado el Prompt original por defecto de ${canalName}`, 'info');
 };
 
 window.restoreDefaultMasterPrompt = async function() {
-  state.config.masterPrompt = DEFAULT_MASTER_PROMPT;
-  localStorage.setItem('macro_master_prompt', DEFAULT_MASTER_PROMPT);
+  const targetId = state.settingsSelectedChannelId || state.activeCanalId || 'cava';
+  const canalObj = (state.canales || []).find(c => c.id === targetId);
+  const canalName = canalObj ? canalObj.nombre : 'Vídeos Sueltos';
+  const builtIn = getBuiltInChannelDefaultPrompt(targetId);
+
+  saveChannelDefaultPromptInternal(targetId, builtIn, false);
   syncPromptInputsUI();
   await persistData(true);
-  showToast('↩️ Restaurado el Prompt Maestro original', 'info');
+  showToast(`↩️ Restaurada la plantilla original del canal ${canalName}`, 'info');
 };
 
-window.restoreDefaultMasterPromptInModal = function() {
-  state.config.masterPrompt = DEFAULT_MASTER_PROMPT;
-  localStorage.setItem('macro_master_prompt', DEFAULT_MASTER_PROMPT);
+window.saveAndPropagateSettingsChannelPrompt = async function() {
+  const elPrompt = document.getElementById('settingMasterPrompt');
+  if (!elPrompt || !elPrompt.value.trim()) return;
+  const targetId = state.settingsSelectedChannelId || state.activeCanalId || 'cava';
+  const canalObj = (state.canales || []).find(c => c.id === targetId);
+  const canalName = canalObj ? canalObj.nombre : 'Vídeos Sueltos';
+
+  const count = saveChannelDefaultPromptInternal(targetId, elPrompt.value, true);
   syncPromptInputsUI();
-  showToast('↩️ Prompt original cargado en el editor. Pulsa "Actualizar y Generar Resumen" para aplicarlo.', 'info');
+  await persistData(true);
+  showToast(`📋 Prompt guardado y copiado en todos los vídeos (${count}) de ${canalName}`, 'success');
+};
+
+// En el modal de un vídeo individual: volver a copiar el Prompt por defecto de su canal en ese vídeo
+window.restoreDefaultMasterPromptInModal = function() {
+  const idInput = document.getElementById('editQueryVideoId');
+  const elModalPrompt = document.getElementById('editModalMasterPrompt');
+  const badge = document.getElementById('editModalChannelOriginBadge');
+  if (!idInput || !elModalPrompt) return;
+
+  const v = state.videos.find(x => x.id === idInput.value);
+  const canalId = v?.canalId || 'global';
+  const canalObj = (state.canales || []).find(c => c.id === canalId);
+  const canalName = canalObj ? canalObj.nombre : 'Vídeos Sueltos';
+
+  elModalPrompt.value = getEffectiveChannelPrompt(canalId);
+  if (v) v.promptPersonalizado = false;
+  if (badge) {
+    badge.textContent = `(Copiado del Prompt por defecto de ${canalName})`;
+    badge.style.color = '#a5b4fc';
+  }
+  showToast(`↩️ Recopiado el Prompt por defecto de ${canalName} en este vídeo.`, 'info');
+};
+
+// En el modal de un vídeo individual: guardar el prompt editado también como el nuevo Prompt por defecto de todo el canal
+window.saveModalPromptAsChannelDefault = async function() {
+  const idInput = document.getElementById('editQueryVideoId');
+  const elModalPrompt = document.getElementById('editModalMasterPrompt');
+  if (!idInput || !elModalPrompt || !elModalPrompt.value.trim()) return;
+
+  const v = state.videos.find(x => x.id === idInput.value);
+  const canalId = v?.canalId || 'global';
+  const canalObj = (state.canales || []).find(c => c.id === canalId);
+  const canalName = canalObj ? canalObj.nombre : 'Vídeos Sueltos';
+
+  const newText = elModalPrompt.value.trim();
+  if (v) {
+    v.prompt = newText;
+    v.promptPersonalizado = false;
+  }
+  const count = saveChannelDefaultPromptInternal(canalId, newText, false);
+  syncPromptInputsUI();
+  await persistData(true);
+  showToast(`📌 Guardado como nuevo Prompt por Defecto del canal ${canalName} (aplicado a nuevos vídeos y ${count} vídeos actuales).`, 'success');
 };
 
 // ==========================================
@@ -314,8 +583,8 @@ function saveConfigToStorage() {
     localStorage.setItem('macro_gemini_model', state.config.geminiModel);
   }
   if (elPrompt && elPrompt.value.trim()) {
-    state.config.masterPrompt = elPrompt.value.trim();
-    localStorage.setItem('macro_master_prompt', state.config.masterPrompt);
+    const targetId = state.settingsSelectedChannelId || state.activeCanalId || 'cava';
+    saveChannelDefaultPromptInternal(targetId, elPrompt.value.trim(), false);
     syncPromptInputsUI();
   }
   if (elRepo) {
@@ -334,7 +603,7 @@ function saveConfigToStorage() {
   }
 
   persistData(true);
-  showToast('Configuración y Prompt Maestro guardados correctamente', 'success');
+  showToast('Configuración y Prompt por Defecto del canal guardados correctamente', 'success');
 }
 
 // Recalcular dinámicamente los días de antigüedad y el Tier de todos los vídeos
@@ -506,15 +775,25 @@ async function syncWithGitHub(action = 'pull', payload = null) {
               const currHas4Block = Boolean(v?.resumen_estructurado?.hechos_mercado);
               const prevTime = prev?.lastAnalyzedAt ? new Date(prev.lastAnalyzedAt).getTime() : 0;
               const currTime = v?.lastAnalyzedAt ? new Date(v.lastAnalyzedAt).getTime() : 0;
+              let mergedVideo = prev;
               if (prevHas4Block && !currHas4Block) {
-                mergedMap.set(key, { ...v, ...prev, resumen_estructurado: prev.resumen_estructurado, tags: prev.tags });
+                mergedVideo = { ...v, ...prev, resumen_estructurado: prev.resumen_estructurado, tags: prev.tags };
               } else if (currTime >= prevTime) {
-                mergedMap.set(key, { ...prev, ...v });
+                mergedVideo = { ...prev, ...v };
               }
+              if (v?.promptPersonalizado && v?.prompt) {
+                mergedVideo.prompt = v.prompt;
+                mergedVideo.promptPersonalizado = true;
+              } else if (prev?.promptPersonalizado && prev?.prompt) {
+                mergedVideo.prompt = prev.prompt;
+                mergedVideo.promptPersonalizado = true;
+              }
+              mergedMap.set(key, mergedVideo);
             }
           });
           state.videos = Array.from(mergedMap.values()).sort((a, b) => (b.dateTimestamp || 0) - (a.dateTimestamp || 0));
           state.meta_analisis = remoteData.meta_analisis || state.meta_analisis;
+          ensureChannelAndVideoPrompts();
           recalculateVideosRecency();
           renderAll();
         }
@@ -756,11 +1035,14 @@ window.switchGestorSubtab = function(subtab) {
     if (panelSueltos) panelSueltos.style.display = 'block';
     renderSueltosView();
   }
+  syncPromptInputsUI();
 };
 
 window.switchActiveChannel = function(canalId) {
   state.activeCanalId = canalId;
+  state.settingsSelectedChannelId = canalId;
   state.channelSubfilter = 'all';
+  syncPromptInputsUI();
   renderChannelsView();
 };
 
@@ -950,9 +1232,11 @@ function classifyAndBuildChannelVideo(item, canal) {
     categoriaSugerida,
     incluidoEnSintesis: !isOffTopic,
     thumbnail: item.thumbnail || `https://i.ytimg.com/vi/${item.videoId}/hqdefault.jpg`,
+    prompt: getEffectiveChannelPrompt(canal.id),
+    promptPersonalizado: false,
     consulta: isOffTopic
       ? 'Contenido de actualidad política o social descartado automáticamente de la síntesis macro.'
-      : `Análisis de la tesis macroeconómica, liquidez e impacto en activos en "${item.title}".`,
+      : '',
     tags: tags.slice(0, 4),
     resumen_estructurado: {
       respuesta_consulta: item.description
@@ -1113,6 +1397,9 @@ window.scanSingleChannel = async function(canalId, showFeedback = true) {
         existing.diasAntiguedad = item.diasAntiguedad;
         existing.recencyTier = item.recencyTier;
         existing.recencyLabel = item.recencyLabel;
+        if (!existing.prompt) {
+          existing.prompt = getEffectiveChannelPrompt(canal.id);
+        }
       } else {
         const built = classifyAndBuildChannelVideo(item, canal);
         newVideoObjs.push(built);
@@ -1131,7 +1418,7 @@ window.scanSingleChannel = async function(canalId, showFeedback = true) {
       renderAll();
       await persistData(true);
       if (newVideoObjs.length > 0) {
-        showToast(`✅ ¡Añadidos ${newVideoObjs.length} vídeos nuevos de ${canal.nombre}!`, 'success');
+        showToast(`✅ ¡Añadidos ${newVideoObjs.length} vídeos nuevos de ${canal.nombre} (con su Prompt por defecto copiado)!`, 'success');
       } else {
         showToast(`✅ ${canal.nombre} está al día (${data.videos.length} vídeos en ventana de 3 meses).`, 'info');
       }
@@ -1195,6 +1482,10 @@ window.scanAllChannelsForNewVideos = async function(isManual = false) {
 // Modal Añadir Canal
 window.openAddChannelModal = function() {
   const modal = document.getElementById('modalAddChannel');
+  const promptInput = document.getElementById('newChannelDefaultPrompt');
+  if (promptInput && !promptInput.value.trim()) {
+    promptInput.value = DEFAULT_PROMPT_JON;
+  }
   if (modal) modal.classList.add('active');
 };
 
@@ -1208,10 +1499,12 @@ window.handleAddChannelSubmit = async function(e) {
   const nameInput = document.getElementById('newChannelName');
   const handleInput = document.getElementById('newChannelHandle');
   const descInput = document.getElementById('newChannelDesc');
+  const promptInput = document.getElementById('newChannelDefaultPrompt');
 
   const nombre = nameInput ? nameInput.value.trim() : '';
   const handle = handleInput ? handleInput.value.trim() : '';
   const descripcion = (descInput && descInput.value.trim()) ? descInput.value.trim() : 'Canal monitorizado de análisis macroeconómico y de mercados.';
+  const defaultPrompt = (promptInput && promptInput.value.trim()) ? promptInput.value.trim() : DEFAULT_PROMPT_JON;
 
   if (!nombre) return;
 
@@ -1224,8 +1517,10 @@ window.handleAddChannelSubmit = async function(e) {
     nombre,
     handle,
     color: randomColor,
-    descripcion
+    descripcion,
+    defaultPrompt
   };
+  localStorage.setItem('macro_channel_prompt_' + id, defaultPrompt);
 
   state.canales.push(newCanal);
   state.activeCanalId = id;
@@ -1233,9 +1528,11 @@ window.handleAddChannelSubmit = async function(e) {
   if (nameInput) nameInput.value = '';
   if (handleInput) handleInput.value = '';
   if (descInput) descInput.value = '';
+  if (promptInput) promptInput.value = '';
 
+  syncPromptInputsUI();
   renderVideosTab();
-  showToast(`📡 Canal "${nombre}" añadido. Importando sus vídeos de los últimos 3 meses desde YouTube...`, 'info');
+  showToast(`📡 Canal "${nombre}" añadido con su propio Prompt por defecto. Importando sus vídeos...`, 'info');
   await window.scanSingleChannel(id, true);
 };
 
@@ -1302,6 +1599,9 @@ function renderChannelsView() {
         </div>
       </div>
       <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+        <button class="btn btn-secondary btn-sm" onclick="togglePromptPanel()" style="border-color: var(--accent-indigo); color: #c7d2fe;" title="Ver o editar el Prompt por defecto que se copia automáticamente en los vídeos de ${escapeHtml(currentCanal.nombre)}">
+          🧠 Prompt por Defecto de ${escapeHtml(currentCanal.nombre)}
+        </button>
         <button class="btn btn-primary btn-sm" onclick="scanSingleChannel('${currentCanal.id}', true)" title="Comprobar ahora en YouTube si este canal ha subido nuevos vídeos">
           🔄 Actualizar Canal YT
         </button>
@@ -1423,11 +1723,11 @@ function renderChannelsView() {
             </div>
           </div>
           <div class="channel-video-right">
-            <button class="btn btn-primary btn-sm" onclick="reanalyzeVideoById('${video.id}')" title="Extraer transcripción de YouTube y generar/actualizar el resumen usando el Prompt Maestro actual">
+            <button class="btn btn-primary btn-sm" onclick="reanalyzeVideoById('${video.id}')" title="Extraer transcripción de YouTube y generar/actualizar el resumen usando el Prompt guardado en este vídeo">
               🔄 Actualizar Resumen IA
             </button>
-            <button class="btn btn-secondary btn-sm" onclick="editVideoQuery('${video.id}')" title="Ver o cambiar el Prompt Maestro / notas y actualizar el resumen">
-              ✏️ Prompt / Notas
+            <button class="btn btn-secondary btn-sm" onclick="editVideoQuery('${video.id}')" style="${video.promptPersonalizado ? 'border-color: var(--accent-indigo); color: #c7d2fe;' : ''}" title="Ver o editar el Prompt copiado en este vídeo y actualizar su resumen">
+              ${video.promptPersonalizado ? '✏️ Prompt (Editado)' : '✏️ Prompt del Vídeo'}
             </button>
             <button class="macro-switch-btn ${isIncluded ? 'active' : 'inactive'}" 
                     onclick="toggleChannelVideoMacro('${video.id}')"
@@ -1738,14 +2038,27 @@ window.editVideoQuery = function(videoId) {
   const metaEl = document.getElementById('editQueryVideoMeta');
   const textarea = document.getElementById('editQueryTextarea');
   const modalMasterPrompt = document.getElementById('editModalMasterPrompt');
+  const badge = document.getElementById('editModalChannelOriginBadge');
+
+  const canalObj = (state.canales || []).find(c => c.id === v.canalId);
+  const canalName = canalObj ? canalObj.nombre : (v.author || v.channel || 'Vídeos Sueltos');
 
   if (modal && idInput && textarea) {
     idInput.value = v.id;
     if (titleEl) titleEl.textContent = v.title || 'Vídeo';
-    if (metaEl) metaEl.textContent = `👤 ${v.author || v.channel || 'Analista'} · 📅 ${v.fecha || ''}`;
+    if (metaEl) metaEl.textContent = `👤 ${canalName} · 📅 ${v.fecha || ''}`;
     textarea.value = v.consulta || '';
     if (modalMasterPrompt) {
-      modalMasterPrompt.value = getEffectiveMasterPrompt();
+      modalMasterPrompt.value = getEffectiveVideoPrompt(v);
+    }
+    if (badge) {
+      if (v.promptPersonalizado) {
+        badge.textContent = `(✨ Prompt personalizado para este vídeo)`;
+        badge.style.color = '#fbbf24';
+      } else {
+        badge.textContent = `(Copiado del Prompt por defecto de ${canalName})`;
+        badge.style.color = '#a5b4fc';
+      }
     }
     modal.classList.add('active');
   }
@@ -1768,23 +2081,25 @@ window.saveQueryOnly = async function() {
   v.consulta = textarea.value.trim();
 
   if (modalMasterPrompt && modalMasterPrompt.value.trim()) {
-    state.config.masterPrompt = modalMasterPrompt.value.trim();
-    localStorage.setItem('macro_master_prompt', state.config.masterPrompt);
-    syncPromptInputsUI();
+    const newText = modalMasterPrompt.value.trim();
+    const chDefault = getEffectiveChannelPrompt(v.canalId || 'global');
+    v.prompt = newText;
+    v.promptPersonalizado = (newText !== chDefault);
   }
 
   closeEditQueryModal();
   renderVideosTab();
   await persistData(true);
-  showToast('Prompt Maestro y notas guardados correctamente', 'success');
+  showToast('💾 Prompt guardado en este vídeo correctamente', 'success');
 };
 
-// Función directa para re-analizar cualquier vídeo con 1 clic usando el Prompt Maestro actual
+// Función directa para re-analizar cualquier vídeo con 1 clic usando el Prompt guardado en ese vídeo (copiado de su canal o editado)
 window.reanalyzeVideoById = async function(videoId) {
   const v = state.videos.find(x => x.id === videoId);
   if (!v) return;
 
-  const masterPrompt = getEffectiveMasterPrompt();
+  const videoPrompt = getEffectiveVideoPrompt(v);
+  v.prompt = videoPrompt;
   const consulta = v.consulta || '';
 
   setLoading(true, 'Extrayendo transcripción real de YouTube...', `Descargando subtítulos de "${v.title}"`);
@@ -1807,13 +2122,13 @@ window.reanalyzeVideoById = async function(videoId) {
 
     setLoading(
       true,
-      'Generando resumen con tu Prompt Maestro (Gemini 3.8 Flash)...',
+      `Generando resumen con el Prompt de "${v.author || v.channel || 'este vídeo'}" (Gemini 3.8 Flash)...`,
       transcript
         ? `Analizando transcripción completa (${transcript.split('\n').length} líneas)`
-        : 'Analizando vídeo con tu estructura de 4 bloques'
+        : 'Analizando vídeo con su Prompt de 4 bloques'
     );
 
-    const systemPrompt = `${masterPrompt}
+    const systemPrompt = `${videoPrompt}
 
 IMPORTANTE: Devuelve SIEMPRE tu respuesta en formato JSON válido dentro de un bloque \`\`\`json.`;
 
@@ -1822,7 +2137,7 @@ IMPORTANTE: Devuelve SIEMPRE tu respuesta en formato JSON válido dentro de un b
       : `CONTEXTO PREVIO DEL VÍDEO:\nTítulo: ${v.title}\nResumen previo: ${v.resumen_estructurado?.hechos_mercado || v.resumen_estructurado?.tesis_macro || v.resumen_estructurado?.respuesta_consulta || ''}`;
 
     const userPrompt = `
-ANALIZA EL SIGUIENTE VÍDEO SIGUIENDO EL PROMPT MAESTRO:
+ANALIZA EL SIGUIENTE VÍDEO SIGUIENDO EL PROMPT DEL VÍDEO:
 - Título: ${v.title}
 - Analista / Canal: ${v.author || v.channel}
 - Fecha: ${v.fecha || ''}
@@ -1834,11 +2149,11 @@ Devuelve un bloque JSON válido con este formato exacto:
 \`\`\`json
 {
   "categoriaSugerida": "macro" o "politica_sociedad",
-  "hechos_mercado": "Texto directo para '- Como se ve el mercado / los hechos:' (ESCRIBE 1 FRASE CORTA POR LÍNEA separada con salto de línea \\n, lenguaje llano y directo como en los 4 ejemplos: expiraciones de opciones/triple hora bruja, gamma positiva, dealers sin coberturas, fechas del gráfico, flujos Call/Put, o situación de bonos/déficit/deuda).",
+  "hechos_mercado": "Texto directo para '- Como se ve el mercado / los hechos:' (ESCRIBE 1 FRASE CORTA POR LÍNEA separada con salto de línea \\n, lenguaje llano y directo como en los ejemplos).",
   "como_reaccionar": "Texto directo para '- Como reaccionar:' indicando qué comprar/vender y en qué nivel exacto (ej. 'Comprar futuros si el SP500 supera la zona de los 7740'). Si no da orden concreta, pon cadena vacía ''.",
   "por_que_conclusion": "Texto directo para '- ¿por que? / conclusión:' (frases cortas separadas por salto de línea \\n con la deducción o previsión por activo y fecha, o '' si ya queda recogido en los otros bloques).",
   "fecha_importante": "Fecha clave mencionada y qué ocurrirá antes y después (ej. '3 de noviembre elecciones, las bolsas subirán hasta el 3 de noviembre y después bajarán'). Si no hay fecha clave, pon ''.",
-  "otros_temas_maldades": "Texto directo para '- Otros temas / maldades / predicción:' (ESCRIBE 1 IDEA CORTA POR LÍNEA separada por \\n, sin parrafadas: predicción de petróleo/oro/bonos, niveles de VIX, prima de riesgo de Francia, sectores a seguir, o maldades políticas/IA como auditorías, compra estatal de acciones o cheques al pueblo).",
+  "otros_temas_maldades": "Texto directo para '- Otros temas / maldades / predicción:' (ESCRIBE 1 IDEA CORTA POR LÍNEA separada por \\n, sin parrafadas).",
   "matriz_activos": {
     "renta_variable": "sesgo y nivel clave",
     "bonos": "sesgo y motivo",
@@ -1889,7 +2204,7 @@ Devuelve un bloque JSON válido con este formato exacto:
     }
 
     await persistData(true);
-    showToast('✨ ¡Resumen actualizado con éxito usando tu Prompt Maestro!', 'success');
+    showToast('✨ ¡Resumen actualizado con éxito usando el Prompt de este vídeo!', 'success');
   } catch (err) {
     alert('Error al analizar el vídeo con IA: ' + err.message);
   } finally {
@@ -1910,9 +2225,10 @@ window.saveAndAnalyzeQueryWithAI = async function() {
     v.consulta = textarea.value.trim();
   }
   if (modalMasterPrompt && modalMasterPrompt.value.trim()) {
-    state.config.masterPrompt = modalMasterPrompt.value.trim();
-    localStorage.setItem('macro_master_prompt', state.config.masterPrompt);
-    syncPromptInputsUI();
+    const newText = modalMasterPrompt.value.trim();
+    const chDefault = getEffectiveChannelPrompt(v.canalId || 'global');
+    v.prompt = newText;
+    v.promptPersonalizado = (newText !== chDefault);
   }
 
   closeEditQueryModal();
@@ -2034,16 +2350,23 @@ async function handleAddVideo(e) {
       const manual = prompt('No se detectaron subtítulos automáticos en este vídeo. Pega aquí el resumen o transcripción manual para que la IA lo analice:', '');
       if (!manual) return;
       transcript = manual;
-      setLoading(true, 'Analizando contenido con tu Prompt Maestro...', 'Generando estructura de 4 bloques');
+      setLoading(true, 'Analizando contenido con tu Prompt por defecto...', 'Generando estructura de 4 bloques');
     } else {
-      setLoading(true, 'Procesando con tu Prompt Maestro...', `Analizando transcripción (${extractData.lineCount || 'múltiples'} líneas)`);
+      setLoading(true, 'Procesando con tu Prompt por defecto...', `Analizando transcripción (${extractData.lineCount || 'múltiples'} líneas)`);
     }
 
-    const masterPrompt = getEffectiveMasterPrompt();
-    const systemPrompt = `${masterPrompt}\n\nIMPORTANTE: Devuelve SIEMPRE tu respuesta en formato JSON dentro de un bloque markdown \`\`\`json.`;
+    // Si el autor coincide con alguno de nuestros canales (ej. Cava, Rallo, Jon), usar el prompt por defecto de su canal
+    const authorLower = (author || '').toLowerCase();
+    let matchedCanalId = 'global';
+    if (authorLower.includes('cava')) matchedCanalId = 'cava';
+    else if (authorLower.includes('rallo')) matchedCanalId = 'rallo';
+    else if (authorLower.includes('jon')) matchedCanalId = 'jon';
+
+    const copiedPrompt = getEffectiveChannelPrompt(matchedCanalId);
+    const systemPrompt = `${copiedPrompt}\n\nIMPORTANTE: Devuelve SIEMPRE tu respuesta en formato JSON dentro de un bloque markdown \`\`\`json.`;
 
     const userPrompt = `
-ANALIZA EL SIGUIENTE VÍDEO SIGUIENDO EL PROMPT MAESTRO:
+ANALIZA EL SIGUIENTE VÍDEO SIGUIENDO EL PROMPT DEL VÍDEO:
 - Título: ${title}
 - Analista / Canal: ${author}
 - URL: ${rawUrl}
@@ -2085,6 +2408,7 @@ Devuelve un bloque JSON válido con este formato:
     const newVideo = {
       id: 'vid_' + Date.now(),
       tipo: 'suelto',
+      canalId: matchedCanalId !== 'global' ? matchedCanalId : undefined,
       url: rawUrl,
       title: aiRes.title || title,
       author: aiRes.author || author,
@@ -2092,6 +2416,8 @@ Devuelve un bloque JSON válido con este formato:
       fecha: new Date().toLocaleDateString('es-ES'),
       fecha_registro: new Date().toLocaleString('es-ES'),
       thumbnail: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+      prompt: copiedPrompt,
+      promptPersonalizado: false,
       consulta: consulta,
       tags: aiRes.tags_sugeridos || ['Macro', 'Mercados'],
       incluidoEnSintesis: true,
