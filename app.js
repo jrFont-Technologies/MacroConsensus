@@ -3,11 +3,62 @@
  * Frontend interactivo y sincronización en la nube
  */
 
+// Prompt Maestro por defecto (Estructura operativa de 4 puntos + Few-Shot con tus 2 ejemplos reales)
+const DEFAULT_MASTER_PROMPT = `Actúa como un analista y operador de mercados que toma apuntes personales ultra-directos de vídeos financieros. Tu objetivo es resumir la transcripción exactamente con mi estilo, mi concisión y mi estructura.
+
+REGLAS DE ORO DE FILTRADO:
+1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, comentarios del tiempo, bromas, promoción de libros/cursos/servicios (ej. HOPLA) y cualquier mención a brokers patrocinadores (ej. Freedom24, Quantfury) o a los ETFs/productos comerciales que el autor mencione solo como parte del anuncio del patrocinador. Quédate únicamente con el análisis puro del índice o activo subyacente (ej. el VIX, el SP500, el bono).
+2. CAUSA -> EFECTO EN FRASES CORTAS: Explica siempre los hechos conectando la causa con la consecuencia en 1 o 2 frases directas por idea, sin adornos literarios.
+3. CONSERVA DATOS TÉCNICOS, MECÁNICA Y NIVELES EXACTOS: Incluye siempre fechas concretas del gráfico (ej. días 17, 20 y 24), niveles numéricos exactos (ej. 7740 en SP500, 16-20 en VIX), plazos temporales (ej. 3ª semana de octubre, 3 de noviembre) y la mecánica interna si se explica (opciones Call/Put, cobertura de futuros por delta de los creadores de mercado, déficit/PIB, rebajas de rating).
+
+ESTRUCTURA OBLIGATORIA DEL RESUMEN:
+- Como se ve el mercado / los hechos:
+Expón los hechos objetivos que muestra el vídeo (qué ha hecho el precio en el gráfico en fechas concretas, qué están haciendo los especuladores/creadores de mercado con opciones y futuros, o qué está pasando con los bonos, deuda/PIB, déficits y calificaciones crediticias).
+
+- Como reaccionar:
+Indica de forma directa qué comprar o vender y en qué nivel exacto (ej. "Comprar futuros si el SP500 supera la zona de los 7740"). Si el vídeo no da una orden de entrada concreta no patrocinada, déjalo vacío ("") o indica la directriz práctica.
+
+- ¿por que? / conclusión:
+Explica la deducción lógica y el escenario de cada activo mencionado de forma telegráfica (1 línea por activo indicando qué ha hecho, hacia dónde irá, hasta qué fecha exacta y por qué motivo). Destaca cualquier "Fecha importante" del calendario (ej. elecciones del 3 de noviembre) y qué pasará antes y después.
+
+- Otros temas / maldades / predicción:
+Recoge las "maldades", problemas económicos de países concretos (ej. Francia, Reino Unido), qué ocurrirá en la siguiente fase del mercado (ej. sustos tras una fecha clave), niveles de volatilidad (VIX) a vigilar como señal de caída y sectores interesantes para el futuro (ej. Salud, Energías limpias).
+
+---
+EJEMPLOS EXACTOS DE CÓMO QUIERO QUE RESUMAS (IMITA ESTE ESTILO Y LONGITUD):
+
+[EJEMPLO 1 - Vídeo de operativa y microestructura]:
+- Como se ve el mercado / los hechos:
+En el gráfico del SP500 cayó tras la noticia, se recuperó rápido el 17, 20 y 24; se concluye que hay una mano que evita la caída.
+En el caso concreto del 24 se pudo ver grandes apuestas bajistas sobre el SP500, esto es, especuladores de corto plazo vendiendo opciones call y comprando opciones put y los creadores de mercado estaban vendiendo futuros para cubrirse, ajustándolo por la delta. El escenario fue claramente bajista pero no bajó el SP500.
+- Como reaccionar:
+Comprar futuros si el SP500 supera la zona de los 7740.
+- ¿por que? / conclusión:
+Al ver un mercado bajista y no bajar se concluye que alguien compra siempre y evita que caiga la bolsa; además en cuanto apareció la noticia positiva el precio subió, se entiende que van a seguir apareciendo noticias positivas desde ahora hasta octubre.
+Fecha importante: 3 de noviembre elecciones, las bolsas subirán hasta el 3 de noviembre y después bajarán.
+- Otros temas / maldades / predicción:
+Francia tiene problemas económicos.
+
+[EJEMPLO 2 - Vídeo macro y multi-activo]:
+- Como se ve el mercado / los hechos:
+Debido a la irresponsabilidad fiscal de los políticos se produce degradación monetaria garantizada, lo que a su vez significa que el oro tendrá tendencia alcista.
+Rentabilidad del bono francés a 10 años sube a consecuencia del déficit público creciente, ratio deuda pública - PIB incrementándose y le han rebajado la calificación crediticia.
+Rentabilidad del bono del Reino Unido a 10 años en clara tendencia alcista por las mismas razones que Francia.
+- ¿por que? / conclusión:
+El Oro ha hecho suelo y subirá hasta la tercera semana de octubre.
+Bitcoin ha hecho un suelo cíclico y va a subir desde ahora hasta el 3 de noviembre más que el oro.
+SP500 subirá por motivaciones políticas de Trump.
+Petróleo bajará también por motivaciones políticas de Trump.
+- Otros temas / maldades / predicción:
+Bessent y Kevin Warsh fueron gestores de fondos, y a partir del 3 de noviembre habrá un susto / bajada de la bolsa. La volatilidad del SP500 (VIX) ha estado muy comprimida, hay una zona de resistencia sobre 16 - 20. Si el índice superara los 20, las bolsas caerían.
+A partir del 3 de Noviembre se espera una caída en bolsa y los próximos sectores interesantes son Salud y Energías limpias.`;
+
 // Estado Global
 const state = {
   config: {
     geminiApiKey: '',
     geminiModel: 'gemini-3.8-flash',
+    masterPrompt: DEFAULT_MASTER_PROMPT,
     githubRepo: 'jrFont-Technologies/MacroConsensus',
     githubToken: '',
     autoSync: true,
@@ -41,6 +92,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   initEventListeners();
   await loadConfigFromStorage();
   await loadInitialData();
+  syncPromptInputsUI();
   recalculateVideosRecency();
   renderAll();
   updateYtSyncBadge();
@@ -71,6 +123,56 @@ function getEffectiveApiKey() {
   return DEFAULT_GEMINI_KEY;
 }
 
+function getEffectiveMasterPrompt() {
+  return (state.config.masterPrompt && state.config.masterPrompt.trim())
+    ? state.config.masterPrompt.trim()
+    : DEFAULT_MASTER_PROMPT;
+}
+
+function syncPromptInputsUI() {
+  const promptText = getEffectiveMasterPrompt();
+  const elSettingPrompt = document.getElementById('settingMasterPrompt');
+  const elQuickPrompt = document.getElementById('quickMasterPromptTextarea');
+  const elModalPrompt = document.getElementById('editModalMasterPrompt');
+
+  if (elSettingPrompt) elSettingPrompt.value = promptText;
+  if (elQuickPrompt) elQuickPrompt.value = promptText;
+  if (elModalPrompt) elModalPrompt.value = promptText;
+}
+
+window.togglePromptPanel = function() {
+  const panel = document.getElementById('quickPromptPanel');
+  if (!panel) return;
+  syncPromptInputsUI();
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+};
+
+window.saveMasterPromptFromQuickPanel = async function() {
+  const elQuickPrompt = document.getElementById('quickMasterPromptTextarea');
+  if (elQuickPrompt && elQuickPrompt.value.trim()) {
+    state.config.masterPrompt = elQuickPrompt.value.trim();
+    localStorage.setItem('macro_master_prompt', state.config.masterPrompt);
+    syncPromptInputsUI();
+    await persistData(true);
+    showToast('✅ Prompt Maestro guardado. Pulsa "🔄 Actualizar Resumen IA" en cualquier vídeo para aplicarlo.', 'success');
+  }
+};
+
+window.restoreDefaultMasterPrompt = async function() {
+  state.config.masterPrompt = DEFAULT_MASTER_PROMPT;
+  localStorage.setItem('macro_master_prompt', DEFAULT_MASTER_PROMPT);
+  syncPromptInputsUI();
+  await persistData(true);
+  showToast('↩️ Restaurado el Prompt Maestro original', 'info');
+};
+
+window.restoreDefaultMasterPromptInModal = function() {
+  state.config.masterPrompt = DEFAULT_MASTER_PROMPT;
+  localStorage.setItem('macro_master_prompt', DEFAULT_MASTER_PROMPT);
+  syncPromptInputsUI();
+  showToast('↩️ Prompt original cargado en el editor. Pulsa "Actualizar y Generar Resumen" para aplicarlo.', 'info');
+};
+
 // ==========================================
 // GESTIÓN DE CONFIGURACIÓN & STORAGE
 // ==========================================
@@ -84,6 +186,13 @@ async function loadConfigFromStorage() {
 
   const savedModel = localStorage.getItem('macro_gemini_model');
   if (savedModel) state.config.geminiModel = savedModel;
+
+  const savedPrompt = localStorage.getItem('macro_master_prompt');
+  if (savedPrompt && savedPrompt.trim()) {
+    state.config.masterPrompt = savedPrompt.trim();
+  } else {
+    state.config.masterPrompt = DEFAULT_MASTER_PROMPT;
+  }
 
   const savedRepo = localStorage.getItem('macro_github_repo');
   if (savedRepo) state.config.githubRepo = savedRepo;
@@ -138,11 +247,13 @@ async function loadConfigFromStorage() {
   if (elRepo) elRepo.value = state.config.githubRepo;
   if (elToken) elToken.value = state.config.githubToken;
   if (elYtInterval) elYtInterval.value = String(state.config.ytScanIntervalMinutes ?? 30);
+  syncPromptInputsUI();
 }
 
 function saveConfigToStorage() {
   const elKey = document.getElementById('settingApiKey');
   const elModel = document.getElementById('settingModel');
+  const elPrompt = document.getElementById('settingMasterPrompt');
   const elRepo = document.getElementById('settingGithubRepo');
   const elToken = document.getElementById('settingGithubToken');
   const elYtInterval = document.getElementById('settingYtInterval');
@@ -157,12 +268,16 @@ function saveConfigToStorage() {
       state.config.geminiApiKey = DEFAULT_GEMINI_KEY;
       localStorage.removeItem('macro_gemini_api_key');
       elKey.placeholder = '•••••••••••••••••••••••••••••••• (Clave predeterminada activa)';
-      showToast('Restaurada clave API predeterminada activa', 'info');
     }
   }
   if (elModel) {
     state.config.geminiModel = elModel.value;
     localStorage.setItem('macro_gemini_model', state.config.geminiModel);
+  }
+  if (elPrompt && elPrompt.value.trim()) {
+    state.config.masterPrompt = elPrompt.value.trim();
+    localStorage.setItem('macro_master_prompt', state.config.masterPrompt);
+    syncPromptInputsUI();
   }
   if (elRepo) {
     state.config.githubRepo = elRepo.value.trim();
@@ -179,7 +294,8 @@ function saveConfigToStorage() {
     updateYtSyncBadge();
   }
 
-  showToast('Configuración guardada correctamente', 'success');
+  persistData(true);
+  showToast('Configuración y Prompt Maestro guardados correctamente', 'success');
 }
 
 // Recalcular dinámicamente los días de antigüedad y el Tier de todos los vídeos
@@ -222,9 +338,9 @@ async function loadInitialData() {
     if (res.ok) {
       const data = await res.json();
       state.canales = data.canales || [
-        { id: 'cava', nombre: 'José Luis Cava', handle: '@JoseLuisCavaOficial', color: '#3b82f6', descripcion: 'Análisis técnico institucional, S&P 500, bono a 30 años, liquidez global y Bitcoin.' },
-        { id: 'rallo', nombre: 'Juan Ramón Rallo', handle: '@JuanRamonRallo', color: '#10b981', descripcion: 'Macroeconomía, política monetaria (Fed / BCE), inflación, deuda y debasement trade.' },
-        { id: 'jon', nombre: 'Jon Economist', handle: '@joneconomist', color: '#f59e0b', descripcion: 'Ciclos de liquidez global, Reserva Federal, Bitcoin y macro-trading.' }
+        { id: 'cava', nombre: 'José Luis Cava', handle: '@JoseLuisCavatv', color: '#3b82f6', descripcion: 'Análisis técnico institucional, S&P 500, bono a 30 años, liquidez global y Bitcoin.' },
+        { id: 'rallo', nombre: 'Juan Ramón Rallo', handle: '@juanrallo', color: '#10b981', descripcion: 'Macroeconomía, política monetaria (Fed / BCE), inflación, deuda y debasement trade.' },
+        { id: 'jon', nombre: 'Jon Economist', handle: '@JonEconomist', color: '#f59e0b', descripcion: 'Ciclos de liquidez global, Reserva Federal, Bitcoin y macro-trading.' }
       ];
       if (state.canales.length > 0 && !state.canales.some(c => c.id === state.activeCanalId)) {
         state.activeCanalId = state.canales[0].id;
@@ -234,6 +350,9 @@ async function loadInitialData() {
       if (data.config) {
         if (!state.config.geminiApiKey && data.config.geminiApiKey) {
           state.config.geminiApiKey = data.config.geminiApiKey;
+        }
+        if (!localStorage.getItem('macro_master_prompt') && data.config.masterPrompt) {
+          state.config.masterPrompt = data.config.masterPrompt;
         }
         if (data.config.githubRepo) state.config.githubRepo = data.config.githubRepo;
         if (data.config.githubToken) state.config.githubToken = data.config.githubToken;
@@ -257,6 +376,7 @@ async function persistData(saveToGitHub = true) {
   const payload = {
     config: {
       geminiModel: state.config.geminiModel,
+      masterPrompt: state.config.masterPrompt,
       githubRepo: state.config.githubRepo,
       lastSync: new Date().toISOString(),
       lastYoutubeScan: state.config.lastYoutubeScan,
@@ -341,9 +461,17 @@ async function syncWithGitHub(action = 'pull', payload = null) {
             if (!mergedMap.has(key)) {
               mergedMap.set(key, v);
             } else {
-              // Mantener el que tenga resumen enriquecido o el local actualizado
+              // Mantener el que tenga resumen estructurado enriquecido (hechos_mercado) o fecha de análisis más reciente
               const prev = mergedMap.get(key);
-              mergedMap.set(key, { ...prev, ...v });
+              const prevHas4Block = Boolean(prev?.resumen_estructurado?.hechos_mercado);
+              const currHas4Block = Boolean(v?.resumen_estructurado?.hechos_mercado);
+              const prevTime = prev?.lastAnalyzedAt ? new Date(prev.lastAnalyzedAt).getTime() : 0;
+              const currTime = v?.lastAnalyzedAt ? new Date(v.lastAnalyzedAt).getTime() : 0;
+              if (prevHas4Block && !currHas4Block) {
+                mergedMap.set(key, { ...v, ...prev, resumen_estructurado: prev.resumen_estructurado, tags: prev.tags });
+              } else if (currTime >= prevTime) {
+                mergedMap.set(key, { ...prev, ...v });
+              }
             }
           });
           state.videos = Array.from(mergedMap.values()).sort((a, b) => (b.dateTimestamp || 0) - (a.dateTimestamp || 0));
@@ -1215,10 +1343,11 @@ function renderChannelsView() {
     return;
   }
 
-  // 4. Renderizar Filas de Vídeos con Consulta Personalizada y Desglose Analítico IA
+  // 4. Renderizar Filas de Vídeos con Botón Directo de Actualizar Resumen IA y Desglose de 4 Bloques
   listContainer.innerHTML = displayedVideos.map(video => {
     const isIncluded = video.incluidoEnSintesis !== false;
     const estructurado = video.resumen_estructurado || null;
+    const has4Blocks = Boolean(estructurado && estructurado.hechos_mercado);
 
     let tierClass = 'recency-tier3';
     let tierLabel = '🕰️ 46-90 días (Estructural)';
@@ -1255,36 +1384,29 @@ function renderChannelsView() {
             </div>
           </div>
           <div class="channel-video-right">
-            <button class="btn btn-secondary btn-sm" onclick="editVideoQuery('${video.id}')" title="Personalizar tu consulta sobre este vídeo y re-analizar con Gemini Flash">
-              🎯 Consulta / IA
+            <button class="btn btn-primary btn-sm" onclick="reanalyzeVideoById('${video.id}')" title="Extraer transcripción de YouTube y generar/actualizar el resumen usando el Prompt Maestro actual">
+              🔄 Actualizar Resumen IA
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="editVideoQuery('${video.id}')" title="Ver o cambiar el Prompt Maestro / notas y actualizar el resumen">
+              ✏️ Prompt / Notas
             </button>
             <button class="macro-switch-btn ${isIncluded ? 'active' : 'inactive'}" 
                     onclick="toggleChannelVideoMacro('${video.id}')"
                     title="${isIncluded ? 'Activo en la síntesis macro. Clic para descartar.' : 'Descartado de la síntesis. Clic para incluir.'}">
               <span>${isIncluded ? '🟢' : '⚪'}</span>
-              <span>${isIncluded ? 'En Síntesis Macro' : 'Descartado / Off-Topic'}</span>
+              <span>${isIncluded ? 'En Síntesis' : 'Descartado'}</span>
             </button>
           </div>
         </div>
 
         <div class="channel-video-body">
-          <div class="user-query-box" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem;">
-            <div style="flex: 1;">
-              <strong>🎯 Tu Consulta del Vídeo:</strong>
-              ${escapeHtml(video.consulta || 'Sin consulta previa')}
-            </div>
-            <button class="btn btn-secondary btn-sm" onclick="editVideoQuery('${video.id}')" style="flex-shrink: 0; font-size: 0.72rem; padding: 0.2rem 0.55rem;" title="Editar consulta o analizar transcripción con IA">
-              ✏️ Editar / Analizar IA
-            </button>
-          </div>
-
           <div class="summary-accordion" style="border-top: none; padding-top: 0.1rem; margin-top: 0;">
             <button class="accordion-toggle" onclick="toggleAccordion(this)">
-              <span>📋 Ver Desglose Analítico IA</span>
-              <span class="accordion-arrow">▼</span>
+              <span>📋 ${has4Blocks ? 'Ver Resumen Operativo (4 Bloques)' : 'Ver Desglose Analítico IA'}</span>
+              <span class="accordion-arrow">${has4Blocks ? '▲' : '▼'}</span>
             </button>
-            <div class="accordion-content" id="acc_${video.id}">
-              ${renderStructuredSummary(estructurado, video.resumen)}
+            <div class="accordion-content ${has4Blocks ? 'open' : ''}" id="acc_${video.id}">
+              ${renderStructuredSummary(estructurado, video.resumen, video.id)}
             </div>
           </div>
         </div>
@@ -1332,6 +1454,7 @@ function renderSueltosView() {
   grid.innerHTML = filteredVideos.map(video => {
     const isIncluded = video.incluidoEnSintesis !== false;
     const estructurado = video.resumen_estructurado || null;
+    const has4Blocks = Boolean(estructurado && estructurado.hechos_mercado);
 
     return `
       <div class="video-card" data-id="${video.id}">
@@ -1347,10 +1470,11 @@ function renderSueltosView() {
         <div class="video-card-body">
           <h4 class="video-card-title" title="${escapeHtml(video.title)}">${escapeHtml(video.title)}</h4>
 
+          ${video.consulta ? `
           <div class="user-query-box">
-            <strong>🎯 Tu Consulta del Vídeo:</strong>
-            ${escapeHtml(video.consulta || 'Sin consulta previa')}
-          </div>
+            <strong>🎯 Notas del Vídeo:</strong>
+            ${escapeHtml(video.consulta)}
+          </div>` : ''}
 
           <div class="tags-list">
             ${(video.tags || []).map(t => `<span class="tag-badge" onclick="filterByTag('${escapeHtml(t)}')">#${escapeHtml(t)}</span>`).join('')}
@@ -1358,11 +1482,11 @@ function renderSueltosView() {
 
           <div class="summary-accordion">
             <button class="accordion-toggle" onclick="toggleAccordion(this)">
-              <span>📋 Ver Desglose Analítico IA</span>
-              <span class="accordion-arrow">▼</span>
+              <span>📋 ${has4Blocks ? 'Ver Resumen Operativo (4 Bloques)' : 'Ver Desglose Analítico IA'}</span>
+              <span class="accordion-arrow">${has4Blocks ? '▲' : '▼'}</span>
             </button>
-            <div class="accordion-content">
-              ${renderStructuredSummary(estructurado, video.resumen)}
+            <div class="accordion-content ${has4Blocks ? 'open' : ''}" id="acc_${video.id}">
+              ${renderStructuredSummary(estructurado, video.resumen, video.id)}
             </div>
           </div>
         </div>
@@ -1372,13 +1496,16 @@ function renderSueltosView() {
             <input type="checkbox" ${isIncluded ? 'checked' : ''} onchange="toggleIncludeVideo('${video.id}', this.checked)">
             <span>En Meta-Análisis</span>
           </label>
-          <div style="display: flex; gap: 0.35rem;">
-            <a href="${video.url}" target="_blank" class="btn btn-secondary btn-sm" title="Abrir vídeo en YouTube">
-              ▶ Ver
-            </a>
-            <button class="btn btn-secondary btn-sm" onclick="editVideoQuery('${video.id}')" title="Modificar tu consulta y notas">
-              ✏️ Consulta
+          <div style="display: flex; gap: 0.35rem; flex-wrap: wrap;">
+            <button class="btn btn-primary btn-sm" onclick="reanalyzeVideoById('${video.id}')" title="Actualizar resumen con el Prompt Maestro actual">
+              🔄 Actualizar Resumen
             </button>
+            <button class="btn btn-secondary btn-sm" onclick="editVideoQuery('${video.id}')" title="Editar Prompt / Notas y actualizar">
+              ✏️ Prompt
+            </button>
+            <a href="${video.url}" target="_blank" class="btn btn-secondary btn-sm" title="Abrir vídeo en YouTube">
+              ▶ YT
+            </a>
             <button class="btn btn-danger btn-sm" onclick="deleteVideo('${video.id}')" title="Eliminar vídeo de la biblioteca">
               🗑️
             </button>
@@ -1389,29 +1516,81 @@ function renderSueltosView() {
   }).join('');
 }
 
-function renderStructuredSummary(est, fallbackText) {
+function renderStructuredSummary(est, fallbackText, videoId = '') {
+  const actionToolbar = videoId ? `
+    <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px dashed rgba(255,255,255,0.1);">
+      <button type="button" class="btn btn-secondary btn-sm" onclick="editVideoQuery('${videoId}')" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;">
+        ✏️ Cambiar Prompt / Notas
+      </button>
+      <button type="button" class="btn btn-primary btn-sm" onclick="reanalyzeVideoById('${videoId}')" style="font-size: 0.75rem; padding: 0.25rem 0.65rem;">
+        🔄 Actualizar Resumen con IA Ahora
+      </button>
+    </div>
+  ` : '';
+
   if (!est) {
-    return `<div style="white-space: pre-wrap;">${escapeHtml(fallbackText || 'Sin resumen disponible')}</div>`;
+    return `${actionToolbar}<div style="white-space: pre-wrap;">${escapeHtml(fallbackText || 'Sin resumen disponible')}</div>`;
   }
 
-  let html = '';
+  let html = actionToolbar;
 
-  if (est.respuesta_consulta) {
-    html += `
-      <div class="structured-block">
-        <div class="block-title">🎯 Respuesta a tu Consulta:</div>
-        <div>${escapeHtml(est.respuesta_consulta)}</div>
-      </div>
-    `;
-  }
+  // Nuevo formato de 4 bloques del usuario
+  if (est.hechos_mercado || est.por_que_conclusion || est.otros_temas_maldades) {
+    if (est.hechos_mercado) {
+      html += `
+        <div class="structured-block">
+          <div class="block-title" style="color: #60a5fa;">📊 - Como se ve el mercado / los hechos:</div>
+          <div style="white-space: pre-line; color: #e2e8f0;">${escapeHtml(est.hechos_mercado)}</div>
+        </div>
+      `;
+    }
 
-  if (est.tesis_macro) {
-    html += `
-      <div class="structured-block">
-        <div class="block-title">📈 Tesis Central y Catalizadores:</div>
-        <div>${escapeHtml(est.tesis_macro)}</div>
-      </div>
-    `;
+    if (est.como_reaccionar && est.como_reaccionar.trim()) {
+      html += `
+        <div class="structured-block">
+          <div class="block-title" style="color: #34d399;">🎯 - Como reaccionar:</div>
+          <div style="white-space: pre-line; color: #d1fae5; font-weight: 600;">${escapeHtml(est.como_reaccionar)}</div>
+        </div>
+      `;
+    }
+
+    if (est.por_que_conclusion || est.fecha_importante) {
+      html += `
+        <div class="structured-block">
+          <div class="block-title" style="color: #fbbf24;">💡 - ¿por que? / conclusión:</div>
+          ${est.por_que_conclusion ? `<div style="white-space: pre-line; color: #e2e8f0;">${escapeHtml(est.por_que_conclusion)}</div>` : ''}
+          ${est.fecha_importante ? `<div style="margin-top: 0.4rem; padding: 0.4rem 0.65rem; background: rgba(245, 158, 11, 0.12); border-left: 3px solid var(--accent-amber); border-radius: 4px; color: #fde68a; font-weight: 600;">📅 Fecha importante: ${escapeHtml(est.fecha_importante)}</div>` : ''}
+        </div>
+      `;
+    }
+
+    if (est.otros_temas_maldades) {
+      html += `
+        <div class="structured-block">
+          <div class="block-title" style="color: #c084fc;">🌶️ - Otros temas / maldades / predicción:</div>
+          <div style="white-space: pre-line; color: #e2e8f0;">${escapeHtml(est.otros_temas_maldades)}</div>
+        </div>
+      `;
+    }
+  } else {
+    // Formato clásico de respaldo para vídeos aún no actualizados
+    if (est.respuesta_consulta) {
+      html += `
+        <div class="structured-block">
+          <div class="block-title">🎯 Respuesta / Resumen previo:</div>
+          <div style="white-space: pre-line;">${escapeHtml(est.respuesta_consulta)}</div>
+        </div>
+      `;
+    }
+
+    if (est.tesis_macro) {
+      html += `
+        <div class="structured-block">
+          <div class="block-title">📈 Tesis Central y Catalizadores:</div>
+          <div style="white-space: pre-line;">${escapeHtml(est.tesis_macro)}</div>
+        </div>
+      `;
+    }
   }
 
   if (est.matriz_activos && Object.keys(est.matriz_activos).length > 0) {
@@ -1436,7 +1615,7 @@ function renderStructuredSummary(est, fallbackText) {
     `;
   }
 
-  return html || `<div style="white-space: pre-wrap;">${escapeHtml(fallbackText || '')}</div>`;
+  return html;
 }
 
 function formatKey(key) {
@@ -1519,14 +1698,17 @@ window.editVideoQuery = function(videoId) {
   const titleEl = document.getElementById('editQueryVideoTitle');
   const metaEl = document.getElementById('editQueryVideoMeta');
   const textarea = document.getElementById('editQueryTextarea');
+  const modalMasterPrompt = document.getElementById('editModalMasterPrompt');
 
   if (modal && idInput && textarea) {
     idInput.value = v.id;
     if (titleEl) titleEl.textContent = v.title || 'Vídeo';
     if (metaEl) metaEl.textContent = `👤 ${v.author || v.channel || 'Analista'} · 📅 ${v.fecha || ''}`;
     textarea.value = v.consulta || '';
+    if (modalMasterPrompt) {
+      modalMasterPrompt.value = getEffectiveMasterPrompt();
+    }
     modal.classList.add('active');
-    setTimeout(() => textarea.focus(), 80);
   }
 };
 
@@ -1538,34 +1720,35 @@ window.closeEditQueryModal = function() {
 window.saveQueryOnly = async function() {
   const idInput = document.getElementById('editQueryVideoId');
   const textarea = document.getElementById('editQueryTextarea');
+  const modalMasterPrompt = document.getElementById('editModalMasterPrompt');
   if (!idInput || !textarea) return;
 
   const v = state.videos.find(x => x.id === idInput.value);
   if (!v) return;
 
-  const nuevaConsulta = textarea.value.trim();
-  if (nuevaConsulta) {
-    v.consulta = nuevaConsulta;
-    closeEditQueryModal();
-    renderVideosTab();
-    await persistData(true);
-    showToast('Consulta personalizada guardada correctamente', 'success');
+  v.consulta = textarea.value.trim();
+
+  if (modalMasterPrompt && modalMasterPrompt.value.trim()) {
+    state.config.masterPrompt = modalMasterPrompt.value.trim();
+    localStorage.setItem('macro_master_prompt', state.config.masterPrompt);
+    syncPromptInputsUI();
   }
+
+  closeEditQueryModal();
+  renderVideosTab();
+  await persistData(true);
+  showToast('Prompt Maestro y notas guardados correctamente', 'success');
 };
 
-window.saveAndAnalyzeQueryWithAI = async function() {
-  const idInput = document.getElementById('editQueryVideoId');
-  const textarea = document.getElementById('editQueryTextarea');
-  if (!idInput || !textarea) return;
-
-  const v = state.videos.find(x => x.id === idInput.value);
+// Función directa para re-analizar cualquier vídeo con 1 clic usando el Prompt Maestro actual
+window.reanalyzeVideoById = async function(videoId) {
+  const v = state.videos.find(x => x.id === videoId);
   if (!v) return;
 
-  const consulta = textarea.value.trim() || `Analiza la tesis macroeconómica, liquidez e impacto en activos de "${v.title}"`;
-  v.consulta = consulta;
-  closeEditQueryModal();
+  const masterPrompt = getEffectiveMasterPrompt();
+  const consulta = v.consulta || '';
 
-  setLoading(true, 'Extrayendo transcripción de YouTube...', `Obteniendo subtítulos de "${v.title}"`);
+  setLoading(true, 'Extrayendo transcripción real de YouTube...', `Descargando subtítulos de "${v.title}"`);
 
   try {
     let transcript = '';
@@ -1585,49 +1768,49 @@ window.saveAndAnalyzeQueryWithAI = async function() {
 
     setLoading(
       true,
-      'Analizando con Gemini 3.8 Flash...',
+      'Generando resumen con tu Prompt Maestro (Gemini 3.8 Flash)...',
       transcript
-        ? 'Sintetizando transcripción completa enfocada en tu consulta personalizada'
-        : 'Generando desglose analítico enfocado en tu consulta personalizada'
+        ? `Analizando transcripción completa (${transcript.split('\n').length} líneas)`
+        : 'Analizando vídeo con tu estructura de 4 bloques'
     );
 
-    const systemPrompt = `Eres un estratega macroeconómico institucional de élite. Analizas vídeos de analistas financieros y respondes en perfecto español.
-Tu máxima prioridad es responder de forma directa, incisiva y técnica a la "Consulta y condiciones del usuario".
-Devuelve SIEMPRE tu respuesta en formato JSON dentro de un bloque markdown \`\`\`json.`;
+    const systemPrompt = `${masterPrompt}
+
+IMPORTANTE: Devuelve SIEMPRE tu respuesta en formato JSON válido dentro de un bloque \`\`\`json.`;
 
     const contextBlock = transcript
       ? `TRANSCRIPCIÓN COMPLETA DEL VÍDEO:\n---\n${transcript.slice(0, 150000)}\n---`
-      : `CONTEXTO PREVIO DEL VÍDEO:\nTítulo: ${v.title}\nTesis previa: ${v.resumen_estructurado?.tesis_macro || ''}\nRespuesta previa: ${v.resumen_estructurado?.respuesta_consulta || ''}`;
+      : `CONTEXTO PREVIO DEL VÍDEO:\nTítulo: ${v.title}\nResumen previo: ${v.resumen_estructurado?.hechos_mercado || v.resumen_estructurado?.tesis_macro || v.resumen_estructurado?.respuesta_consulta || ''}`;
 
     const userPrompt = `
-ANALIZA EL SIGUIENTE VÍDEO:
+ANALIZA EL SIGUIENTE VÍDEO SIGUIENDO EL PROMPT MAESTRO:
 - Título: ${v.title}
 - Analista / Canal: ${v.author || v.channel}
 - Fecha: ${v.fecha || ''}
 - URL: ${v.url}
-
-🎯 CONSULTA Y CONDICIONES DEL USUARIO (MÁXIMA PRIORIDAD):
-"${consulta}"
-
+${consulta ? `\n🎯 NOTAS O CONDICIONES ADICIONALES PARA ESTE VÍDEO:\n"${consulta}"\n` : ''}
 ${contextBlock}
 
 Devuelve un bloque JSON válido con este formato exacto:
 \`\`\`json
 {
   "categoriaSugerida": "macro" o "politica_sociedad",
-  "respuesta_consulta": "Respuesta directa, exhaustiva y estructurada respondiendo exactamente a la consulta del usuario",
-  "tesis_macro": "Tesis central del analista, escenario base y catalizadores",
+  "hechos_mercado": "Texto directo para '- Como se ve el mercado / los hechos:' (causa->efecto, fechas del gráfico, flujos de opciones Call/Put y cobertura por delta de creadores de mercado, o situación de bonos/déficit/deuda).",
+  "como_reaccionar": "Texto directo para '- Como reaccionar:' indicando qué comprar/vender y en qué nivel exacto (ej. 'Comprar futuros si el SP500 supera la zona de los 7740'). Si no da orden concreta, pon cadena vacía ''.",
+  "por_que_conclusion": "Texto directo para '- ¿por que? / conclusión:' (1 línea telegráfica por activo con su dirección, fecha límite y motivo, o por qué alguien sujeta el mercado).",
+  "fecha_importante": "Fecha clave mencionada y qué ocurrirá antes y después (ej. '3 de noviembre elecciones, las bolsas subirán hasta el 3 de noviembre y después bajarán'). Si no hay fecha clave, pon ''.",
+  "otros_temas_maldades": "Texto directo para '- Otros temas / maldades / predicción:' (problemas económicos de países como Francia/UK, qué pasará tras la fecha clave, niveles de VIX como 16-20 y >20, y sectores futuros como Salud y Energías limpias).",
   "matriz_activos": {
-    "renta_variable": "sesgo (Favorable/Desfavorable/Neutral) y motivo",
+    "renta_variable": "sesgo y nivel clave",
     "bonos": "sesgo y motivo",
-    "oro": "sesgo y motivo",
+    "oro": "sesgo y horizonte",
     "petroleo": "sesgo y motivo",
-    "dolar": "sesgo y motivo",
-    "bitcoin": "sesgo y motivo"
+    "dolar": "sesgo",
+    "bitcoin": "sesgo y horizonte"
   },
   "timestamps_citas": [
-    "MM:SS - Cita o punto clave relevante del vídeo",
-    "MM:SS - Cita o punto clave relevante del vídeo"
+    "MM:SS - Hecho o nivel clave del vídeo",
+    "MM:SS - Conclusión o maldad final"
   ],
   "tags_sugeridos": ["Tag1", "Tag2", "Tag3", "Tag4"]
 }
@@ -1637,11 +1820,18 @@ Devuelve un bloque JSON válido con este formato exacto:
     const aiRes = await callGeminiApi(userPrompt, systemPrompt, true);
 
     v.resumen_estructurado = {
-      respuesta_consulta: aiRes.respuesta_consulta || v.resumen_estructurado?.respuesta_consulta || '',
-      tesis_macro: aiRes.tesis_macro || v.resumen_estructurado?.tesis_macro || '',
+      hechos_mercado: aiRes.hechos_mercado || '',
+      como_reaccionar: aiRes.como_reaccionar || '',
+      por_que_conclusion: aiRes.por_que_conclusion || '',
+      fecha_importante: aiRes.fecha_importante || '',
+      otros_temas_maldades: aiRes.otros_temas_maldades || '',
+      respuesta_consulta: aiRes.por_que_conclusion || aiRes.respuesta_consulta || '',
+      tesis_macro: `${aiRes.hechos_mercado || ''} ${aiRes.por_que_conclusion || ''} ${aiRes.otros_temas_maldades || ''}`.trim(),
       matriz_activos: aiRes.matriz_activos || v.resumen_estructurado?.matriz_activos || {},
       timestamps_citas: aiRes.timestamps_citas || v.resumen_estructurado?.timestamps_citas || []
     };
+    v.lastAnalyzedAt = Date.now();
+
     if (Array.isArray(aiRes.tags_sugeridos) && aiRes.tags_sugeridos.length > 0) {
       v.tags = aiRes.tags_sugeridos;
     }
@@ -1660,12 +1850,34 @@ Devuelve un bloque JSON válido con este formato exacto:
     }
 
     await persistData(true);
-    showToast('✨ ¡Desglose Analítico IA actualizado con éxito según tu consulta!', 'success');
+    showToast('✨ ¡Resumen actualizado con éxito usando tu Prompt Maestro!', 'success');
   } catch (err) {
     alert('Error al analizar el vídeo con IA: ' + err.message);
   } finally {
     setLoading(false);
   }
+};
+
+window.saveAndAnalyzeQueryWithAI = async function() {
+  const idInput = document.getElementById('editQueryVideoId');
+  const textarea = document.getElementById('editQueryTextarea');
+  const modalMasterPrompt = document.getElementById('editModalMasterPrompt');
+  if (!idInput) return;
+
+  const v = state.videos.find(x => x.id === idInput.value);
+  if (!v) return;
+
+  if (textarea) {
+    v.consulta = textarea.value.trim();
+  }
+  if (modalMasterPrompt && modalMasterPrompt.value.trim()) {
+    state.config.masterPrompt = modalMasterPrompt.value.trim();
+    localStorage.setItem('macro_master_prompt', state.config.masterPrompt);
+    syncPromptInputsUI();
+  }
+
+  closeEditQueryModal();
+  await window.reanalyzeVideoById(v.id);
 };
 
 // ==========================================
@@ -1751,7 +1963,7 @@ async function handleAddVideo(e) {
   const consultaInput = document.getElementById('videoConsulta');
 
   const rawUrl = urlInput.value.trim();
-  const consulta = consultaInput.value.trim();
+  const consulta = consultaInput ? consultaInput.value.trim() : '';
 
   const videoId = extractVideoId(rawUrl);
   if (!videoId) {
@@ -1783,24 +1995,20 @@ async function handleAddVideo(e) {
       const manual = prompt('No se detectaron subtítulos automáticos en este vídeo. Pega aquí el resumen o transcripción manual para que la IA lo analice:', '');
       if (!manual) return;
       transcript = manual;
-      setLoading(true, 'Analizando contenido con IA...', 'Enfocando en tu consulta personalizada');
+      setLoading(true, 'Analizando contenido con tu Prompt Maestro...', 'Generando estructura de 4 bloques');
     } else {
-      setLoading(true, 'Procesando con IA...', `Analizando transcripción (${extractData.lineCount || 'múltiples'} líneas)`);
+      setLoading(true, 'Procesando con tu Prompt Maestro...', `Analizando transcripción (${extractData.lineCount || 'múltiples'} líneas)`);
     }
 
-    const systemPrompt = `Eres un estratega macroeconómico institucional de élite. Analizas transcripciones de analistas financieros y respondes en perfecto español.
-Tu máxima prioridad es responder a la "Consulta y condiciones del usuario". Sé incisivo, técnico, objetivo y destaca los matices reales.
-Devuelve SIEMPRE tu respuesta en formato JSON dentro de un bloque markdown \`\`\`json.`;
+    const masterPrompt = getEffectiveMasterPrompt();
+    const systemPrompt = `${masterPrompt}\n\nIMPORTANTE: Devuelve SIEMPRE tu respuesta en formato JSON dentro de un bloque markdown \`\`\`json.`;
 
     const userPrompt = `
-ANALIZA EL SIGUIENTE VÍDEO:
+ANALIZA EL SIGUIENTE VÍDEO SIGUIENDO EL PROMPT MAESTRO:
 - Título: ${title}
 - Analista / Canal: ${author}
 - URL: ${rawUrl}
-
-🎯 CONSULTA Y CONDICIONES DEL USUARIO (MÁXIMA PRIORIDAD):
-"${consulta}"
-
+${consulta ? `\n🎯 NOTAS O CONDICIONES DEL USUARIO:\n"${consulta}"\n` : ''}
 TRANSCRIPCIÓN COMPLETA DEL VÍDEO:
 ---
 ${transcript.slice(0, 150000)}
@@ -1811,19 +2019,22 @@ Devuelve un bloque JSON válido con este formato:
 {
   "title": "${title}",
   "author": "${author}",
-  "respuesta_consulta": "Respuesta directa, exhaustiva y estructurada respondiendo exactamente a la consulta del usuario",
-  "tesis_macro": "Tesis central del analista, escenario base y catalizadores",
+  "hechos_mercado": "Texto para '- Como se ve el mercado / los hechos:'",
+  "como_reaccionar": "Texto para '- Como reaccionar:' (o '' si no da orden concreta)",
+  "por_que_conclusion": "Texto para '- ¿por que? / conclusión:'",
+  "fecha_importante": "Fecha clave y qué pasará antes y después (o '' si no aplica)",
+  "otros_temas_maldades": "Texto para '- Otros temas / maldades / predicción:'",
   "matriz_activos": {
-    "renta_variable": "sesgo (Favorable/Desfavorable/Neutral) y motivo",
+    "renta_variable": "sesgo y nivel",
     "bonos": "sesgo y motivo",
-    "oro": "sesgo y motivo",
+    "oro": "sesgo y horizonte",
     "petroleo": "sesgo y motivo",
-    "dolar": "sesgo y motivo",
-    "bitcoin": "sesgo y motivo"
+    "dolar": "sesgo",
+    "bitcoin": "sesgo y horizonte"
   },
   "timestamps_citas": [
-    "MM:SS - Cita relevante del vídeo",
-    "MM:SS - Cita relevante del vídeo"
+    "MM:SS - Cita o nivel clave del vídeo",
+    "MM:SS - Conclusión o maldad final"
   ],
   "tags_sugeridos": ["Tag1", "Tag2", "Tag3", "Tag4"]
 }
@@ -1845,9 +2056,15 @@ Devuelve un bloque JSON válido con este formato:
       consulta: consulta,
       tags: aiRes.tags_sugeridos || ['Macro', 'Mercados'],
       incluidoEnSintesis: true,
+      lastAnalyzedAt: Date.now(),
       resumen_estructurado: {
-        respuesta_consulta: aiRes.respuesta_consulta,
-        tesis_macro: aiRes.tesis_macro,
+        hechos_mercado: aiRes.hechos_mercado || '',
+        como_reaccionar: aiRes.como_reaccionar || '',
+        por_que_conclusion: aiRes.por_que_conclusion || '',
+        fecha_importante: aiRes.fecha_importante || '',
+        otros_temas_maldades: aiRes.otros_temas_maldades || '',
+        respuesta_consulta: aiRes.por_que_conclusion || '',
+        tesis_macro: `${aiRes.hechos_mercado || ''} ${aiRes.por_que_conclusion || ''} ${aiRes.otros_temas_maldades || ''}`.trim(),
         matriz_activos: aiRes.matriz_activos,
         timestamps_citas: aiRes.timestamps_citas
       }
@@ -1858,8 +2075,8 @@ Devuelve un bloque JSON válido con este formato:
     await persistData(true);
 
     urlInput.value = '';
-    consultaInput.value = '';
-    showToast('¡Vídeo suelto analizado y añadido a la biblioteca con éxito!', 'success');
+    if (consultaInput) consultaInput.value = '';
+    showToast('¡Vídeo suelto analizado con tu Prompt Maestro y añadido con éxito!', 'success');
 
     // Cambiar a la pestaña de vídeos y subpestaña sueltos
     const tabVideosBtn = document.querySelector('[data-tab="tab-videos"]');
@@ -1871,6 +2088,21 @@ Devuelve un bloque JSON válido con este formato:
   } finally {
     setLoading(false);
   }
+}
+
+function getVideoSynthesisText(v) {
+  const est = v.resumen_estructurado;
+  if (!est) return v.resumen || v.consulta || '';
+  if (est.hechos_mercado || est.por_que_conclusion) {
+    return [
+      est.hechos_mercado ? `Hechos: ${est.hechos_mercado}` : '',
+      est.como_reaccionar ? `Operativa: ${est.como_reaccionar}` : '',
+      est.por_que_conclusion ? `Conclusión: ${est.por_que_conclusion}` : '',
+      est.fecha_importante ? `Fecha clave: ${est.fecha_importante}` : '',
+      est.otros_temas_maldades ? `Otros/Predicción: ${est.otros_temas_maldades}` : ''
+    ].filter(Boolean).join(' | ');
+  }
+  return est.tesis_macro || est.respuesta_consulta || v.resumen || v.consulta || '';
 }
 
 // Regenerar Meta-Análisis (Síntesis y Duelo de Tesis con Recency Decay)
@@ -1897,7 +2129,7 @@ async function handleRegenerateMetaAnalysis() {
       tier1Videos.forEach((v, i) => {
         contextParts.push(`[TIER 1 - #${i + 1}] Analista: ${v.author || v.channel} | Fecha: ${v.fecha} (hace ${v.diasAntiguedad || 0}d)
 Título: ${v.title}
-Tesis / Análisis: ${v.resumen_estructurado?.tesis_macro || v.resumen || v.consulta || ''}
+Tesis / Análisis: ${getVideoSynthesisText(v)}
 Activos: ${JSON.stringify(v.resumen_estructurado?.matriz_activos || {})}`);
       });
     }
@@ -1907,7 +2139,7 @@ Activos: ${JSON.stringify(v.resumen_estructurado?.matriz_activos || {})}`);
       tier2Videos.forEach((v, i) => {
         contextParts.push(`[TIER 2 - #${i + 1}] Analista: ${v.author || v.channel} | Fecha: ${v.fecha} (hace ${v.diasAntiguedad || 0}d)
 Título: ${v.title}
-Tesis / Análisis: ${v.resumen_estructurado?.tesis_macro || v.resumen || v.consulta || ''}`);
+Tesis / Análisis: ${getVideoSynthesisText(v)}`);
       });
     }
 
@@ -1916,7 +2148,7 @@ Tesis / Análisis: ${v.resumen_estructurado?.tesis_macro || v.resumen || v.consu
       tier3Videos.forEach((v, i) => {
         contextParts.push(`[TIER 3 - #${i + 1}] Analista: ${v.author || v.channel} | Fecha: ${v.fecha} (hace ${v.diasAntiguedad || 0}d)
 Título: ${v.title}
-Tesis / Análisis: ${v.resumen_estructurado?.tesis_macro || v.resumen || v.consulta || ''}`);
+Tesis / Análisis: ${getVideoSynthesisText(v)}`);
       });
     }
 
@@ -1926,7 +2158,7 @@ Tesis / Análisis: ${v.resumen_estructurado?.tesis_macro || v.resumen || v.consu
         contextParts.push(`[VÍDEO SUELTO - #${i + 1}] Analista: ${v.author || v.channel} | Fecha: ${v.fecha}
 Título: ${v.title}
 Consulta usuario: ${v.consulta || ''}
-Tesis / Análisis: ${v.resumen_estructurado?.tesis_macro || v.resumen || ''}`);
+Tesis / Análisis: ${getVideoSynthesisText(v)}`);
       });
     }
 

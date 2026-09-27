@@ -67,14 +67,54 @@ async function fetchYouTubeTranscript(videoId) {
       if (authorMatch) author = authorMatch[1];
     }
 
-    // Buscar bloque de subtítulos en ytInitialPlayerResponse
-    const playerResponseMatch = html.match(/ytInitialPlayerResponse\s*=\s*({.+?});(?:var|<\/script>)/);
-    if (!playerResponseMatch) {
-      return { ok: false, error: 'No se pudo leer ytInitialPlayerResponse', title, author };
+    // 3. Obtener pistas de subtítulos vía InnerTube ANDROID (evita respuestas vacías de timedtext web)
+    let captionTracks = null;
+    let playerResponse = null;
+
+    const apiKeyMatch = html.match(/"INNERTUBE_API_KEY":"([^"]+)"/);
+    const visitorMatch = html.match(/"VISITOR_DATA":"([^"]+)"/) || html.match(/"visitorData":"([^"]+)"/);
+
+    if (apiKeyMatch && apiKeyMatch[1]) {
+      try {
+        const pRes = await fetch(`https://www.youtube.com/youtubei/v1/player?key=${apiKeyMatch[1]}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'User-Agent': 'com.google.android.youtube/20.10.38 (Linux; U; Android 14) gzip',
+            'X-Goog-Visitor-Id': visitorMatch?.[1] || ''
+          },
+          body: JSON.stringify({
+            context: {
+              client: {
+                clientName: 'ANDROID',
+                clientVersion: '20.10.38',
+                androidSdkVersion: 34,
+                hl: 'es',
+                gl: 'ES',
+                visitorData: visitorMatch?.[1]
+              }
+            },
+            videoId
+          })
+        });
+        if (pRes.ok) {
+          const pData = await pRes.json();
+          playerResponse = pData;
+          captionTracks = pData?.captions?.playerCaptionsTracklistRenderer?.captionTracks;
+        }
+      } catch (e) {}
     }
 
-    const playerResponse = JSON.parse(playerResponseMatch[1]);
-    const captionTracks = playerResponse?.captions?.playerCaptionsTracklistRenderer?.captionTracks;
+    // Respaldo: buscar bloque de subtítulos en ytInitialPlayerResponse de la página web
+    if (!captionTracks || captionTracks.length === 0) {
+      const playerResponseMatch = html.match(/ytInitialPlayerResponse\s*=\s*({.+?});(?:var|<\/script>)/);
+      if (playerResponseMatch) {
+        try {
+          playerResponse = JSON.parse(playerResponseMatch[1]);
+          captionTracks = playerResponse?.captions?.playerCaptionsTracklistRenderer?.captionTracks;
+        } catch (e) {}
+      }
+    }
 
     if (!captionTracks || captionTracks.length === 0) {
       return { ok: false, error: 'Este vídeo no tiene subtítulos disponibles en YouTube.', title, author };
@@ -86,27 +126,32 @@ async function fetchYouTubeTranscript(videoId) {
       track = captionTracks.find(t => t.languageCode === 'en' || t.languageCode.startsWith('en')) || captionTracks[0];
     }
 
-    const transcriptRes = await fetch(track.baseUrl);
+    const transcriptRes = await fetch(track.baseUrl, {
+      headers: {
+        'User-Agent': 'com.google.android.youtube/20.10.38 (Linux; U; Android 14) gzip'
+      }
+    });
     const xml = await transcriptRes.text();
 
-    // Parsear el XML simple de transcripción
-    const regex = /<text start="([\d\.]+)" dur="([\d\.]+)".*?>(.*?)<\/text>/g;
-    let match;
     const lines = [];
-    while ((match = regex.exec(xml)) !== null) {
-      const startSec = parseFloat(match[1]);
+
+    // Formato 1: timedtext format="3" (<p t="ms" d="ms"><s>...</s></p>)
+    const pRegex = /<p\s+t="(\d+)"(?:\s+d="(\d+)")?[^>]*>([\s\S]*?)<\/p>/g;
+    let pMatch;
+    while ((pMatch = pRegex.exec(xml)) !== null) {
+      const startSec = Math.floor(parseInt(pMatch[1], 10) / 1000);
       const minutes = Math.floor(startSec / 60);
       const seconds = Math.floor(startSec % 60);
       const timeStr = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-      
-      // Decodificar entidades HTML básicas
-      let text = match[3]
+
+      const text = pMatch[3]
+        .replace(/<[^>]+>/g, '')
         .replace(/&amp;/g, '&')
         .replace(/&quot;/g, '"')
         .replace(/&#39;/g, "'")
         .replace(/&lt;/g, '<')
         .replace(/&gt;/g, '>')
-        .replace(/\n/g, ' ')
+        .replace(/\s+/g, ' ')
         .trim();
 
       if (text) {
@@ -114,9 +159,35 @@ async function fetchYouTubeTranscript(videoId) {
       }
     }
 
+    // Formato 2: clásico (<text start="sec" dur="sec">...</text>)
+    if (lines.length === 0) {
+      const regex = /<text start="([\d\.]+)" dur="([\d\.]+)".*?>(.*?)<\/text>/g;
+      let match;
+      while ((match = regex.exec(xml)) !== null) {
+        const startSec = parseFloat(match[1]);
+        const minutes = Math.floor(startSec / 60);
+        const seconds = Math.floor(startSec % 60);
+        const timeStr = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+        const text = match[3]
+          .replace(/<[^>]+>/g, '')
+          .replace(/&amp;/g, '&')
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/\s+/g, ' ')
+          .trim();
+
+        if (text) {
+          lines.push({ time: timeStr, sec: startSec, text });
+        }
+      }
+    }
+
     const fullText = lines.map(l => `[${l.time}] ${l.text}`).join('\n');
     return {
-      ok: true,
+      ok: lines.length > 0,
       title: title || playerResponse?.videoDetails?.title || '',
       author: author || playerResponse?.videoDetails?.author || '',
       thumbnail: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
