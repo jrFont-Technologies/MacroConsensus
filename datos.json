@@ -3,7 +3,7 @@
     "geminiModel": "gemini-3.8-flash",
     "masterPrompt": "Actúa como un analista y operador de mercados que toma apuntes personales ultra-directos de vídeos financieros. Tu objetivo es resumir la transcripción exactamente con mi estilo, mi concisión y mi estructura.\n\nREGLAS DE ORO DE FILTRADO:\n1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, comentarios del tiempo, bromas, promoción de libros/cursos/servicios (ej. HOPLA) y cualquier mención a brokers patrocinadores (ej. Freedom24, Quantfury) o a los ETFs/productos comerciales que el autor mencione solo como parte del anuncio del patrocinador. Quédate únicamente con el análisis puro del índice o activo subyacente (ej. el VIX, el SP500, el bono).\n2. CAUSA -> EFECTO EN FRASES CORTAS: Explica siempre los hechos conectando la causa con la consecuencia en 1 o 2 frases directas por idea, sin adornos literarios.\n3. CONSERVA DATOS TÉCNICOS, MECÁNICA Y NIVELES EXACTOS: Incluye siempre fechas concretas del gráfico (ej. días 17, 20 y 24), niveles numéricos exactos (ej. 7740 en SP500, 16-20 en VIX), plazos temporales (ej. 3ª semana de octubre, 3 de noviembre) y la mecánica interna si se explica (opciones Call/Put, cobertura de futuros por delta de los creadores de mercado, déficit/PIB, rebajas de rating).\n\nESTRUCTURA OBLIGATORIA DEL RESUMEN:\n- Como se ve el mercado / los hechos:\nExpón los hechos objetivos que muestra el vídeo (qué ha hecho el precio en el gráfico en fechas concretas, qué están haciendo los especuladores/creadores de mercado con opciones y futuros, o qué está pasando con los bonos, deuda/PIB, déficits y calificaciones crediticias).\n\n- Como reaccionar:\nIndica de forma directa qué comprar o vender y en qué nivel exacto (ej. \"Comprar futuros si el SP500 supera la zona de los 7740\"). Si el vídeo no da una orden de entrada concreta no patrocinada, déjalo vacío (\"\") o indica la directriz práctica.\n\n- ¿por que? / conclusión:\nExplica la deducción lógica y el escenario de cada activo mencionado de forma telegráfica (1 línea por activo indicando qué ha hecho, hacia dónde irá, hasta qué fecha exacta y por qué motivo). Destaca cualquier \"Fecha importante\" del calendario (ej. elecciones del 3 de noviembre) y qué pasará antes y después.\n\n- Otros temas / maldades / predicción:\nRecoge las \"maldades\", problemas económicos de países concretos (ej. Francia, Reino Unido), qué ocurrirá en la siguiente fase del mercado (ej. sustos tras una fecha clave), niveles de volatilidad (VIX) a vigilar como señal de caída y sectores interesantes para el futuro (ej. Salud, Energías limpias).\n\n---\nEJEMPLOS EXACTOS DE CÓMO QUIERO QUE RESUMAS (IMITA ESTE ESTILO Y LONGITUD):\n\n[EJEMPLO 1 - Vídeo de operativa y microestructura]:\n- Como se ve el mercado / los hechos:\nEn el gráfico del SP500 cayó tras la noticia, se recuperó rápido el 17, 20 y 24; se concluye que hay una mano que evita la caída.\nEn el caso concreto del 24 se pudo ver grandes apuestas bajistas sobre el SP500, esto es, especuladores de corto plazo vendiendo opciones call y comprando opciones put y los creadores de mercado estaban vendiendo futuros para cubrirse, ajustándolo por la delta. El escenario fue claramente bajista pero no bajó el SP500.\n- Como reaccionar:\nComprar futuros si el SP500 supera la zona de los 7740.\n- ¿por que? / conclusión:\nAl ver un mercado bajista y no bajar se concluye que alguien compra siempre y evita que caiga la bolsa; además en cuanto apareció la noticia positiva el precio subió, se entiende que van a seguir apareciendo noticias positivas desde ahora hasta octubre.\nFecha importante: 3 de noviembre elecciones, las bolsas subirán hasta el 3 de noviembre y después bajarán.\n- Otros temas / maldades / predicción:\nFrancia tiene problemas económicos.\n\n[EJEMPLO 2 - Vídeo macro y multi-activo]:\n- Como se ve el mercado / los hechos:\nDebido a la irresponsabilidad fiscal de los políticos se produce degradación monetaria garantizada, lo que a su vez significa que el oro tendrá tendencia alcista.\nRentabilidad del bono francés a 10 años sube a consecuencia del déficit público creciente, ratio deuda pública - PIB incrementándose y le han rebajado la calificación crediticia.\nRentabilidad del bono del Reino Unido a 10 años en clara tendencia alcista por las mismas razones que Francia.\n- ¿por que? / conclusión:\nEl Oro ha hecho suelo y subirá hasta la tercera semana de octubre.\nBitcoin ha hecho un suelo cíclico y va a subir desde ahora hasta el 3 de noviembre más que el oro.\nSP500 subirá por motivaciones políticas de Trump.\nPetróleo bajará también por motivaciones políticas de Trump.\n- Otros temas / maldades / predicción:\nBessent y Kevin Warsh fueron gestores de fondos, y a partir del 3 de noviembre habrá un susto / bajada de la bolsa. La volatilidad del SP500 (VIX) ha estado muy comprimida, hay una zona de resistencia sobre 16 - 20. Si el índice superara los 20, las bolsas caerían.\nA partir del 3 de Noviembre se espera una caída en bolsa y los próximos sectores interesantes son Salud y Energías limpias.",
     "githubRepo": "jrFont-Technologies/MacroConsensus",
-    "lastSync": "2026-09-27T13:48:02.724Z",
+    "lastSync": "2026-09-27T13:49:56.787Z",
     "lastYoutubeScan": "2026-09-27T13:24:48.287Z",
     "ytScanIntervalMinutes": 30,
     "ventanaMeses": 3
@@ -366,35 +366,38 @@
       "thumbnail": "https://i.ytimg.com/vi/6avY-2ixQI0/hqdefault.jpg",
       "consulta": "Resumen ejecutivo en 4 bloques (- Como se ve el mercado / los hechos, - Como reaccionar, - ¿por que? / conclusión, - Otros temas / maldades / predicción)",
       "tags": [
+        "SP500",
         "Oro",
         "Bitcoin",
-        "SP500",
-        "Petróleo",
-        "Prima Riesgo Francia",
-        "Salud y Energías Limpias"
+        "VIX",
+        "Elecciones EE.UU.",
+        "Deuda Pública"
       ],
       "resumen_estructurado": {
-        "hechos_mercado": "La rentabilidad de los bonos está cayendo en general en todo el mundo debido a que ha subido la deuda respecto al PIB, tienen déficits descontrolados y les han bajado la calificación crediticia.",
-        "como_reaccionar": "",
-        "por_que_conclusion": "El oro ha hecho suelo -> subirá hasta la tercera semana de octubre.\nBitcoin: suelo de ciclo -> subirá más que el oro hasta el 3 de noviembre.\nEl S&P 500 subirá y el petróleo caerá, por motivaciones políticas de Trump.",
-        "fecha_importante": "Tercera semana de octubre (techo estacional del oro) y 3 de noviembre (elecciones midterm EE. UU.).",
-        "otros_temas_maldades": "- La prima de riesgo de Francia ha roto el nivel de los 86 puntos básicos y se encamina a los 108,4 puntos básicos.\n- Sectores a seguir: Salud y Energías limpias.",
-        "respuesta_consulta": "El oro ha hecho suelo y subirá hasta la tercera semana de octubre; Bitcoin ha marcado suelo de ciclo y subirá más que el oro hasta el 3 de noviembre; el S&P 500 subirá y el petróleo caerá por motivaciones políticas de Trump. Además, alerta sobre la prima de riesgo de Francia y destaca los sectores Salud y Energías limpias.",
-        "tesis_macro": "Caída global en el precio de los bonos soberanos por exceso de deuda/PIB, déficits y rebajas crediticias; suelo en Oro (alcista hasta 3ª semana de octubre) y suelo de ciclo en Bitcoin (mayor subida que el oro hasta el 3 de noviembre), con S&P 500 al alza y petróleo a la baja por estímulo preelectoral.",
+        "hechos_mercado": "Rentabilidad del bono francés a 10 años en tendencia alcista debido a déficits públicos crecientes, aumento del ratio deuda/PIB y rebaja de calificación crediticia ante la negativa política a realizar consolidación fiscal. Rentabilidad del bono del Reino Unido a 10 años sube en tendencia alcista por las mismas razones de degradación fiscal. Volatilidad del mercado (VIX) se mantiene muy comprimida, mostrando una zona de resistencia clave entre 16 y 20.",
+        "como_reaccionar": "Proteger la cartera de cara a partir del 3 de noviembre comprando opciones Put y asignando una parte a la compra de ETFs sobre futuros del VIX si el índice supera la resistencia de 20 (o si el ETF de VIX supera la zona 14-15).",
+        "por_que_conclusion": "Oro: Ha hecho suelo a corto plazo y subirá hasta la tercera semana de octubre por la degradación monetaria e irresponsabilidad fiscal.\nBitcoin: Ha hecho un suelo cíclico y subirá hasta el 3 de noviembre más que el oro.\nSP500: Subirá hasta el 3 de noviembre porque Bessent y Kevin Warsh impulsarán el mercado para ayudar a los republicanos a ganar el Senado.\nPetróleo: Bajará hasta el 3 de noviembre por intervenciones y motivaciones políticas.",
+        "fecha_importante": "3 de noviembre (elecciones EE.UU.): las bolsas, Bitcoin y el oro subiran hasta el 3 de noviembre y a partir de esa fecha habrá un susto / caída en las bolsas.",
+        "otros_temas_maldades": "Francia y Reino Unido sufren grave vulnerabilidad fiscal y alza en el coste de su deuda. A partir del 3 de noviembre, Bessent y Kevin Warsh no tendrán interés en sostener las bolsas y se prevé una caída. Si el VIX supera el nivel de 20, la volatilidad explotará y las bolsas caerán de forma violenta. Sectores interesantes a vigilar tras las elecciones: Salud y Energías limpias. A futuro, EE.UU. creará un fondo soberano para comprar acciones de empresas estratégicas.",
+        "respuesta_consulta": "Oro: Ha hecho suelo a corto plazo y subirá hasta la tercera semana de octubre por la degradación monetaria e irresponsabilidad fiscal.\nBitcoin: Ha hecho un suelo cíclico y subirá hasta el 3 de noviembre más que el oro.\nSP500: Subirá hasta el 3 de noviembre porque Bessent y Kevin Warsh impulsarán el mercado para ayudar a los republicanos a ganar el Senado.\nPetróleo: Bajará hasta el 3 de noviembre por intervenciones y motivaciones políticas.",
+        "tesis_macro": "Rentabilidad del bono francés a 10 años en tendencia alcista debido a déficits públicos crecientes, aumento del ratio deuda/PIB y rebaja de calificación crediticia ante la negativa política a realizar consolidación fiscal. Rentabilidad del bono del Reino Unido a 10 años sube en tendencia alcista por las mismas razones de degradación fiscal. Volatilidad del mercado (VIX) se mantiene muy comprimida, mostrando una zona de resistencia clave entre 16 y 20. Oro: Ha hecho suelo a corto plazo y subirá hasta la tercera semana de octubre por la degradación monetaria e irresponsabilidad fiscal.\nBitcoin: Ha hecho un suelo cíclico y subirá hasta el 3 de noviembre más que el oro.\nSP500: Subirá hasta el 3 de noviembre porque Bessent y Kevin Warsh impulsarán el mercado para ayudar a los republicanos a ganar el Senado.\nPetróleo: Bajará hasta el 3 de noviembre por intervenciones y motivaciones políticas. Francia y Reino Unido sufren grave vulnerabilidad fiscal y alza en el coste de su deuda. A partir del 3 de noviembre, Bessent y Kevin Warsh no tendrán interés en sostener las bolsas y se prevé una caída. Si el VIX supera el nivel de 20, la volatilidad explotará y las bolsas caerán de forma violenta. Sectores interesantes a vigilar tras las elecciones: Salud y Energías limpias. A futuro, EE.UU. creará un fondo soberano para comprar acciones de empresas estratégicas.",
         "matriz_activos": {
-          "renta_variable": "Alcista",
-          "bonos": "Bajista",
-          "oro": "Alcista",
-          "petroleo": "Bajista",
-          "dolar": "Neutral",
-          "bitcoin": "Alcista"
+          "renta_variable": "Alcista hasta el 3 de noviembre; bajista a partir del 3 de noviembre",
+          "bonos": "Rentabilidades a 10 años en alza (Francia y Reino Unido) por déficit y deuda",
+          "oro": "Alcista hasta la 3ª semana de octubre por degradación monetaria",
+          "petroleo": "Bajista hasta el 3 de noviembre por motivos políticos",
+          "dolar": "Sostenido por estatus dominante pese a la alta vulnerabilidad fiscal de EE.UU.",
+          "bitcoin": "Alcista hasta el 3 de noviembre tras hacer suelo cíclico"
         },
         "timestamps_citas": [
-          "00:15 - El oro ya ha hecho suelo y subirá hasta la tercera semana de octubre",
-          "02:10 - Deterioro de los bonos soberanos y ruptura de la prima de riesgo de Francia (>86 pb)",
-          "06:30 - Suelo de ciclo en Bitcoin (subirá más que el oro hasta el 3 de noviembre) y rotación a Salud y Energías limpias"
+          "02:03 - Rentabilidad del bono francés a 10 años en clara tendencia alcista por déficit público y rebaja de rating",
+          "03:15 - El oro ha hecho suelo y subirá hasta la tercera semana de octubre",
+          "04:23 - Bitcoin subirá de aquí al 3 de noviembre más que el oro tras hacer suelo cíclico",
+          "06:29 - Resistencia del VIX en 16-20; si supera los 20 las bolsas caerán",
+          "10:05 - Sectores a vigilar a partir del 3 de noviembre: Salud y Energías limpias"
         ]
-      }
+      },
+      "lastAnalyzedAt": 1790516996780
     },
     {
       "id": "vid_rallo_BYYs6HwwL2U",
