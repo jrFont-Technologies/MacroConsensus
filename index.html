@@ -23,6 +23,13 @@
         </div>
       </div>
       <div class="header-status">
+        <span class="status-badge" id="ytStatusBadge" title="Estado de actualización automática de canales de YouTube">
+          <span class="status-dot" id="ytSyncDot"></span>
+          <span id="ytSyncText">YT: Auto (30m)</span>
+        </span>
+        <button class="btn btn-secondary btn-sm" id="btnScanYoutubeNow" onclick="scanAllChannelsForNewVideos(true)" title="Comprobar ahora en YouTube si los canales han subido vídeos nuevos">
+          📡 Actualizar YT
+        </button>
         <span class="status-badge" id="githubStatusBadge" title="Estado de sincronización con GitHub">
           <span class="status-dot" id="syncDot"></span>
           <span id="syncText">Sincronizado</span>
@@ -132,9 +139,14 @@
           <div class="channels-pills" id="channelsPillsList">
             <!-- Renderizado dinámicamente en app.js -->
           </div>
-          <button class="btn btn-secondary btn-sm" onclick="openAddChannelModal()" title="Añadir un nuevo canal a la monitorización">
-            ➕ Añadir Canal
-          </button>
+          <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <button class="btn btn-primary btn-sm" onclick="scanAllChannelsForNewVideos(true)" title="Rastrear en YouTube vídeos nuevos de todos los canales monitorizados">
+              📡 Buscar Nuevos Vídeos YT
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="openAddChannelModal()" title="Añadir un nuevo canal a la monitorización">
+              ➕ Añadir Canal
+            </button>
+          </div>
         </div>
 
         <!-- Tarjeta de Estadísticas del Canal Activo -->
@@ -265,6 +277,20 @@
               <span class="form-hint">Permiso: repo (contents read/write)</span>
             </label>
             <input type="password" id="settingGithubToken" class="form-input" placeholder="ghp_...">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="settingYtInterval">
+              📺 Frecuencia de Actualización de Canales de YouTube
+              <span class="form-hint">Rastreo automático de nuevos vídeos subidos</span>
+            </label>
+            <select id="settingYtInterval" class="form-select">
+              <option value="15">Cada 15 minutos + al abrir la app</option>
+              <option value="30" selected>Cada 30 minutos + al abrir la app (Recomendado)</option>
+              <option value="60">Cada 1 hora + al abrir la app</option>
+              <option value="240">Cada 4 horas + al abrir la app</option>
+              <option value="0">Solo manual (usando el botón 📡 Actualizar YT)</option>
+            </select>
           </div>
 
           <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">

@@ -1,6 +1,7 @@
 {
   "version": 2,
   "rewrites": [
-    { "source": "/api/extraer-video", "destination": "/api/extraer.js" }
+    { "source": "/api/extraer-video", "destination": "/api/extraer.js" },
+    { "source": "/api/explorar-canal", "destination": "/api/canal.js" }
   ]
 }

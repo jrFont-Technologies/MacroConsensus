@@ -11,6 +11,8 @@ const state = {
     githubRepo: 'jrFont-Technologies/MacroConsensus',
     githubToken: '',
     autoSync: true,
+    ytScanIntervalMinutes: 30,
+    lastYoutubeScan: null,
     ventanaMeses: 3
   },
   canales: [],
@@ -25,8 +27,11 @@ const state = {
     author: ''
   },
   isSyncing: false,
+  isScanningYoutube: false,
   githubFileSha: null
 };
+
+let ytAutoScanTimer = null;
 
 // ==========================================
 // INICIALIZACIÓN
@@ -36,14 +41,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   initEventListeners();
   await loadConfigFromStorage();
   await loadInitialData();
+  recalculateVideosRecency();
   renderAll();
+  updateYtSyncBadge();
 
   // Sincronización periódica con GitHub si está configurado
   if (state.config.autoSync) {
     setInterval(() => syncWithGitHub('pull'), 60000);
   }
+
+  // Configurar rastreo automático de nuevos vídeos en YouTube
+  setupYoutubeAutoScan();
+  setInterval(updateYtSyncBadge, 30000);
+
   window.addEventListener('focus', () => {
     if (state.config.autoSync) syncWithGitHub('pull');
+    checkAndTriggerAutoYoutubeScan();
   });
 });
 
@@ -78,6 +91,16 @@ async function loadConfigFromStorage() {
   const savedToken = localStorage.getItem('macro_github_token');
   if (savedToken) state.config.githubToken = savedToken;
 
+  const savedYtInterval = localStorage.getItem('macro_yt_scan_interval');
+  if (savedYtInterval !== null && savedYtInterval !== '') {
+    state.config.ytScanIntervalMinutes = parseInt(savedYtInterval, 10);
+  }
+
+  const savedLastYtScan = localStorage.getItem('macro_last_yt_scan');
+  if (savedLastYtScan) {
+    state.config.lastYoutubeScan = savedLastYtScan;
+  }
+
   // Si no hay token en localStorage, intentar cargarlo desde el endpoint local seguro
   if (!state.config.githubToken) {
     try {
@@ -101,6 +124,7 @@ async function loadConfigFromStorage() {
   const elModel = document.getElementById('settingModel');
   const elRepo = document.getElementById('settingGithubRepo');
   const elToken = document.getElementById('settingGithubToken');
+  const elYtInterval = document.getElementById('settingYtInterval');
 
   if (elKey) {
     if (customKey && customKey.trim()) {
@@ -113,6 +137,7 @@ async function loadConfigFromStorage() {
   if (elModel) elModel.value = state.config.geminiModel;
   if (elRepo) elRepo.value = state.config.githubRepo;
   if (elToken) elToken.value = state.config.githubToken;
+  if (elYtInterval) elYtInterval.value = String(state.config.ytScanIntervalMinutes ?? 30);
 }
 
 function saveConfigToStorage() {
@@ -120,6 +145,7 @@ function saveConfigToStorage() {
   const elModel = document.getElementById('settingModel');
   const elRepo = document.getElementById('settingGithubRepo');
   const elToken = document.getElementById('settingGithubToken');
+  const elYtInterval = document.getElementById('settingYtInterval');
 
   if (elKey) {
     const val = elKey.value.trim();
@@ -146,8 +172,47 @@ function saveConfigToStorage() {
     state.config.githubToken = elToken.value.trim();
     localStorage.setItem('macro_github_token', state.config.githubToken);
   }
+  if (elYtInterval) {
+    state.config.ytScanIntervalMinutes = parseInt(elYtInterval.value, 10) || 0;
+    localStorage.setItem('macro_yt_scan_interval', String(state.config.ytScanIntervalMinutes));
+    setupYoutubeAutoScan();
+    updateYtSyncBadge();
+  }
 
   showToast('Configuración guardada correctamente', 'success');
+}
+
+// Recalcular dinámicamente los días de antigüedad y el Tier de todos los vídeos
+function recalculateVideosRecency() {
+  const now = Date.now();
+  state.videos.forEach(v => {
+    let ts = v.dateTimestamp;
+    if (!ts && v.fecha) {
+      const parts = v.fecha.split('/');
+      if (parts.length === 3) {
+        const parsed = new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10), 12, 0, 0).getTime();
+        if (!isNaN(parsed)) ts = parsed;
+      }
+    }
+    if (ts) {
+      v.dateTimestamp = ts;
+      const diffDays = Math.max(0, Math.floor((now - ts) / (1000 * 60 * 60 * 24)));
+      v.diasAntiguedad = diffDays;
+      if (diffDays <= 15) {
+        v.recencyTier = 'tier1';
+        v.recencyLabel = '🔥 Últimos 15 días (Máx. Ponderación)';
+      } else if (diffDays <= 45) {
+        v.recencyTier = 'tier2';
+        v.recencyLabel = '⚡ 16-45 días (Tendencia)';
+      } else {
+        v.recencyTier = 'tier3';
+        v.recencyLabel = '🕰️ 46-90 días (Estructural)';
+      }
+    }
+  });
+
+  // Mantener únicamente vídeos de canal dentro de la ventana de 90 días (3 meses) + todos los vídeos sueltos
+  state.videos = state.videos.filter(v => v.tipo !== 'canal' || (v.diasAntiguedad ?? 0) <= 95);
 }
 
 // Cargar datos locales iniciales
@@ -172,6 +237,9 @@ async function loadInitialData() {
         }
         if (data.config.githubRepo) state.config.githubRepo = data.config.githubRepo;
         if (data.config.githubToken) state.config.githubToken = data.config.githubToken;
+        if (!state.config.lastYoutubeScan && data.config.lastYoutubeScan) {
+          state.config.lastYoutubeScan = data.config.lastYoutubeScan;
+        }
       }
     }
   } catch (err) {
@@ -191,6 +259,8 @@ async function persistData(saveToGitHub = true) {
       geminiModel: state.config.geminiModel,
       githubRepo: state.config.githubRepo,
       lastSync: new Date().toISOString(),
+      lastYoutubeScan: state.config.lastYoutubeScan,
+      ytScanIntervalMinutes: state.config.ytScanIntervalMinutes,
       ventanaMeses: 3
     },
     canales: state.canales,
@@ -220,6 +290,7 @@ async function persistData(saveToGitHub = true) {
 // ==========================================
 async function syncWithGitHub(action = 'pull', payload = null) {
   if (state.isSyncing && action === 'push') return;
+  if (state.isScanningYoutube && action === 'pull') return;
   if (!state.config.githubRepo || !state.config.githubToken) return;
 
   const syncDot = document.getElementById('syncDot');
@@ -245,11 +316,39 @@ async function syncWithGitHub(action = 'pull', payload = null) {
         const remoteData = JSON.parse(decodedContent);
 
         if (remoteData.canales && remoteData.canales.length > 0) {
-          state.canales = remoteData.canales;
+          const handleFixes = {
+            '@joseluiscavaoficial': '@JoseLuisCavatv',
+            '@juanramonrallo': '@juanrallo',
+            '@joneconomist': '@JonEconomist'
+          };
+          // Combinar canales remotos y locales
+          const canalMap = new Map();
+          [...remoteData.canales, ...(state.canales || [])].forEach(c => {
+            if (c && c.id) {
+              const lowerH = (c.handle || '').toLowerCase();
+              if (handleFixes[lowerH]) c.handle = handleFixes[lowerH];
+              canalMap.set(c.id, { ...(canalMap.get(c.id) || {}), ...c });
+            }
+          });
+          state.canales = Array.from(canalMap.values());
         }
         if (remoteData.videos && remoteData.videos.length > 0) {
-          state.videos = remoteData.videos;
+          // Fusionar vídeos locales y remotos por YouTube ID para no perder vídeos recién escaneados localmente
+          const mergedMap = new Map();
+          [...remoteData.videos, ...(state.videos || [])].forEach(v => {
+            if (!v) return;
+            const key = extractVideoId(v.url) || v.id;
+            if (!mergedMap.has(key)) {
+              mergedMap.set(key, v);
+            } else {
+              // Mantener el que tenga resumen enriquecido o el local actualizado
+              const prev = mergedMap.get(key);
+              mergedMap.set(key, { ...prev, ...v });
+            }
+          });
+          state.videos = Array.from(mergedMap.values()).sort((a, b) => (b.dateTimestamp || 0) - (a.dateTimestamp || 0));
           state.meta_analisis = remoteData.meta_analisis || state.meta_analisis;
+          recalculateVideosRecency();
           renderAll();
         }
         if (syncDot) syncDot.className = 'status-dot';
@@ -546,6 +645,386 @@ window.setChannelAutoDiscard = function(canalId) {
   showToast(`Auto-descartados ${discarded} vídeos off-topic / política`, 'success');
 };
 
+// ==========================================
+// RASTREO AUTOMÁTICO DE CANALES EN YOUTUBE
+// ==========================================
+function updateYtSyncBadge() {
+  const dot = document.getElementById('ytSyncDot');
+  const txt = document.getElementById('ytSyncText');
+  if (!txt) return;
+
+  if (state.isScanningYoutube) {
+    if (dot) dot.className = 'status-dot syncing';
+    txt.textContent = 'Escaneando YouTube...';
+    return;
+  }
+
+  if (dot) dot.className = 'status-dot';
+  const intervalMin = state.config.ytScanIntervalMinutes ?? 30;
+  const intervalLabel = intervalMin > 0 ? `Auto ${intervalMin}m` : 'Manual';
+
+  if (!state.config.lastYoutubeScan) {
+    txt.textContent = `YT: Pendiente (${intervalLabel})`;
+    return;
+  }
+
+  const lastMs = new Date(state.config.lastYoutubeScan).getTime();
+  if (isNaN(lastMs)) {
+    txt.textContent = `YT: ${intervalLabel}`;
+    return;
+  }
+
+  const diffMin = Math.max(0, Math.floor((Date.now() - lastMs) / 60000));
+  if (diffMin < 1) {
+    txt.textContent = `YT: hace <1m (${intervalLabel})`;
+  } else if (diffMin < 60) {
+    txt.textContent = `YT: hace ${diffMin}m (${intervalLabel})`;
+  } else {
+    const diffHours = Math.floor(diffMin / 60);
+    txt.textContent = `YT: hace ${diffHours}h (${intervalLabel})`;
+  }
+}
+
+function setupYoutubeAutoScan() {
+  if (ytAutoScanTimer) {
+    clearInterval(ytAutoScanTimer);
+    ytAutoScanTimer = null;
+  }
+
+  const intervalMin = state.config.ytScanIntervalMinutes ?? 30;
+  if (intervalMin > 0) {
+    // Comprobar periódicamente cada minuto si toca escanear YouTube
+    ytAutoScanTimer = setInterval(() => {
+      checkAndTriggerAutoYoutubeScan();
+    }, 60 * 1000);
+
+    // Comprobar también al iniciar la aplicación (tras 1.5s para no bloquear el render inicial)
+    setTimeout(() => {
+      checkAndTriggerAutoYoutubeScan();
+    }, 1500);
+  }
+}
+
+function checkAndTriggerAutoYoutubeScan() {
+  if (state.isScanningYoutube) return;
+  const intervalMin = state.config.ytScanIntervalMinutes ?? 30;
+  if (intervalMin <= 0) return;
+
+  const hasEmptyChannel = (state.canales || []).some(
+    c => !state.videos.some(v => v.tipo === 'canal' && v.canalId === c.id)
+  );
+
+  if (hasEmptyChannel || !state.config.lastYoutubeScan) {
+    scanAllChannelsForNewVideos(false);
+    return;
+  }
+
+  const lastMs = new Date(state.config.lastYoutubeScan).getTime();
+  if (isNaN(lastMs) || (Date.now() - lastMs) >= intervalMin * 60 * 1000) {
+    scanAllChannelsForNewVideos(false);
+  }
+}
+
+// Clasificación heurística rápida de respaldo (Macro vs Política/Sociedad)
+function classifyAndBuildChannelVideo(item, canal) {
+  const titleLower = (item.title || '').toLowerCase();
+  const descLower = (item.description || '').toLowerCase();
+  const combined = `${titleLower} ${descLower}`;
+
+  const offTopicKeywords = [
+    'elecciones', 'votar', 'partido político', 'amnistía', 'corrupción política',
+    'sánchez', 'feijóo', 'abascal', 'iglesias', 'maduro', 'milei vs', 'lula',
+    'aborto', 'inmigración', 'delincuencia', 'fútbol', 'deporte', 'entrevista personal',
+    'polémica', 'debate político', 'constitución', 'judicial', 'caso koldo', 'begoña'
+  ];
+
+  const macroKeywords = [
+    'fed', 'bce', 'tipos de interés', 'inflación', 'deflación', 'recesión', 'pib',
+    'deuda', 'bonos', 'tesoro', 'liquidez', 's&p', 'sp500', 'nasdaq', 'bolsa',
+    'mercado', 'oro', 'plata', 'petróleo', 'energía', 'bitcoin', 'btc', 'cripto',
+    'dólar', 'euro', 'divisa', 'banco central', 'bancos', 'crisis financiera',
+    'trading', 'inversión', 'acciones', 'wall street', ' China ', 'aranceles', 'impuestos'
+  ];
+
+  let isOffTopic = offTopicKeywords.some(kw => titleLower.includes(kw));
+  const hasStrongMacro = macroKeywords.some(kw => titleLower.includes(kw.trim()));
+  if (hasStrongMacro) isOffTopic = false;
+
+  const categoriaSugerida = isOffTopic ? 'politica_sociedad' : 'macro';
+
+  // Detectar etiquetas automáticas según el título
+  const tags = [];
+  if (combined.includes('bitcoin') || combined.includes('btc') || combined.includes('cripto')) tags.push('Bitcoin');
+  if (combined.includes('oro') || combined.includes('plata')) tags.push('Oro');
+  if (combined.includes('fed') || combined.includes('powell') || combined.includes('bce') || combined.includes('tipos')) tags.push('Bancos Centrales');
+  if (combined.includes('inflación') || combined.includes('ipc')) tags.push('Inflación');
+  if (combined.includes('deuda') || combined.includes('bono')) tags.push('Deuda y Bonos');
+  if (combined.includes('s&p') || combined.includes('bolsa') || combined.includes('acciones') || combined.includes('nasdaq')) tags.push('Bolsas');
+  if (combined.includes('liquidez')) tags.push('Liquidez');
+  if (combined.includes('petróleo') || combined.includes('energía')) tags.push('Energía');
+  if (tags.length === 0) {
+    tags.push(isOffTopic ? 'Política / Sociedad' : 'Macroeconomía', canal.nombre);
+  }
+
+  return {
+    id: `vid_${canal.id}_${item.videoId}`,
+    tipo: 'canal',
+    canalId: canal.id,
+    url: item.url || `https://www.youtube.com/watch?v=${item.videoId}`,
+    title: item.title,
+    author: canal.nombre,
+    channel: canal.nombre,
+    fecha: item.fecha,
+    fecha_registro: new Date().toLocaleString('es-ES'),
+    dateTimestamp: item.dateTimestamp,
+    diasAntiguedad: item.diasAntiguedad,
+    recencyTier: item.recencyTier,
+    recencyLabel: item.recencyLabel,
+    categoriaSugerida,
+    incluidoEnSintesis: !isOffTopic,
+    thumbnail: item.thumbnail || `https://i.ytimg.com/vi/${item.videoId}/hqdefault.jpg`,
+    consulta: isOffTopic
+      ? 'Contenido de actualidad política o social descartado automáticamente de la síntesis macro.'
+      : `Análisis de la tesis macroeconómica, liquidez e impacto en activos en "${item.title}".`,
+    tags: tags.slice(0, 4),
+    resumen_estructurado: {
+      respuesta_consulta: item.description
+        ? item.description.slice(0, 280)
+        : `Análisis de ${canal.nombre} centrado en: ${item.title}.`,
+      tesis_macro: isOffTopic
+        ? 'Vídeo centrado en cuestiones políticas o sociales sin impacto operativo directo en la matriz de activos.'
+        : `Postura de ${canal.nombre} (${ item.fecha }): ${item.title}.`,
+      matriz_activos: {
+        renta_variable: tags.includes('Bolsas') ? 'En foco en el vídeo' : 'Neutral',
+        bonos: tags.includes('Deuda y Bonos') ? 'En foco en el vídeo' : 'Neutral',
+        oro: tags.includes('Oro') ? 'Favorable / Cobertura' : 'Neutral',
+        petroleo: tags.includes('Energía') ? 'En foco en el vídeo' : 'Neutral',
+        dolar: 'Neutral',
+        bitcoin: tags.includes('Bitcoin') ? 'En foco en el vídeo' : 'Neutral'
+      },
+      timestamps_citas: [
+        `00:00 - Publicado el ${item.fecha}: ${item.title}`
+      ]
+    }
+  };
+}
+
+// Enriquecer los nuevos vídeos detectados usando Gemini 3.8 Flash en lote
+async function enrichNewChannelVideosWithAI(newVideoObjs, canal, rawItemsMap) {
+  if (!newVideoObjs || newVideoObjs.length === 0) return;
+  try {
+    // Enriquecer hasta los 6 vídeos más recientes del lote con IA para máxima velocidad y precisión
+    const subset = newVideoObjs.slice(0, 6);
+
+    // Intentar obtener extracto de transcripción del vídeo más reciente (Tier 1) si solo hay 1-2 vídeos nuevos
+    let latestTranscriptSnippet = '';
+    if (subset.length <= 2) {
+      try {
+        const vId = extractVideoId(subset[0].url);
+        const trRes = await fetch('/api/extraer-video', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url: subset[0].url })
+        });
+        if (trRes.ok) {
+          const trData = await trRes.json();
+          if (trData.ok && trData.fullTranscript) {
+            latestTranscriptSnippet = trData.fullTranscript.slice(0, 12000);
+          }
+        }
+      } catch (e) {}
+    }
+
+    const itemsPromptList = subset.map((v, idx) => {
+      const vId = extractVideoId(v.url);
+      const raw = rawItemsMap.get(vId);
+      const desc = raw?.description ? `\nDescripción: ${raw.description.slice(0, 350)}` : '';
+      const tr = (idx === 0 && latestTranscriptSnippet) ? `\nExtracto Transcripción:\n${latestTranscriptSnippet}` : '';
+      return `[#${idx}] id="${v.id}" | Fecha: ${v.fecha} | Título: "${v.title}"${desc}${tr}`;
+    }).join('\n---\n');
+
+    const systemPrompt = `Eres un analista macroeconómico institucional. Clasificas y sintetizas nuevos vídeos de YouTube del analista ${canal.nombre} (${canal.descripcion || ''}).
+Para cada vídeo indica si es de temática económica/mercados ("macro") o puramente política partidista/sociedad off-topic ("politica_sociedad"), y genera su síntesis estructurada en español.
+Devuelve SIEMPRE un bloque JSON válido con un array bajo la clave "analisis".`;
+
+    const userPrompt = `Analiza estos ${subset.length} vídeos recién detectados del canal ${canal.nombre}:
+
+${itemsPromptList}
+
+Devuelve un JSON con este formato exacto:
+\`\`\`json
+{
+  "analisis": [
+    {
+      "id": "id exacto del vídeo",
+      "categoriaSugerida": "macro" o "politica_sociedad",
+      "consulta": "Pregunta macro clave que responde este vídeo",
+      "tags": ["Tag1", "Tag2", "Tag3"],
+      "respuesta_consulta": "Síntesis directa de 2 líneas",
+      "tesis_macro": "Tesis central macroeconómica y de mercado del vídeo",
+      "matriz_activos": {
+        "renta_variable": "Favorable / Desfavorable / Neutral y motivo breve",
+        "bonos": "Sesgo y motivo breve",
+        "oro": "Sesgo y motivo breve",
+        "petroleo": "Sesgo y motivo breve",
+        "dolar": "Sesgo y motivo breve",
+        "bitcoin": "Sesgo y motivo breve"
+      }
+    }
+  ]
+}
+\`\`\``;
+
+    const aiData = await callGeminiApi(userPrompt, systemPrompt, true);
+    if (aiData && Array.isArray(aiData.analisis)) {
+      for (const itemAi of aiData.analisis) {
+        const target = newVideoObjs.find(v => v.id === itemAi.id);
+        if (target) {
+          if (itemAi.categoriaSugerida === 'politica_sociedad' || itemAi.categoriaSugerida === 'macro') {
+            target.categoriaSugerida = itemAi.categoriaSugerida;
+            target.incluidoEnSintesis = itemAi.categoriaSugerida === 'macro';
+          }
+          if (itemAi.consulta) target.consulta = itemAi.consulta;
+          if (Array.isArray(itemAi.tags) && itemAi.tags.length > 0) target.tags = itemAi.tags.slice(0, 4);
+          if (itemAi.respuesta_consulta) target.resumen_estructurado.respuesta_consulta = itemAi.respuesta_consulta;
+          if (itemAi.tesis_macro) target.resumen_estructurado.tesis_macro = itemAi.tesis_macro;
+          if (itemAi.matriz_activos) target.resumen_estructurado.matriz_activos = itemAi.matriz_activos;
+        }
+      }
+    }
+  } catch (err) {
+    console.warn('Enriquecimiento IA opcional omitido (usando clasificación heurística):', err.message);
+  }
+}
+
+// Escanear un único canal en YouTube
+window.scanSingleChannel = async function(canalId, showFeedback = true) {
+  const canal = state.canales.find(c => c.id === canalId);
+  if (!canal) return 0;
+
+  if (showFeedback) {
+    showToast(`📡 Buscando vídeos en YouTube para ${canal.nombre}...`, 'info');
+  }
+
+  try {
+    const res = await fetch('/api/explorar-canal', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ handle: canal.handle || canal.nombre, maxDays: 90 })
+    });
+
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    if (!data.ok || !Array.isArray(data.videos)) {
+      throw new Error(data.error || 'No se pudieron obtener vídeos del canal');
+    }
+
+    if (data.resolvedHandle && data.resolvedHandle.startsWith('@')) {
+      canal.handle = data.resolvedHandle;
+    }
+    if (data.channelAvatar && (!canal.avatar || canal.avatar.includes('Placeholder'))) {
+      canal.avatar = data.channelAvatar;
+    }
+
+    // Mapa de vídeos actuales por su ID de YouTube
+    const existingByYtId = new Map();
+    state.videos.forEach(v => {
+      const ytId = extractVideoId(v.url);
+      if (ytId) existingByYtId.set(ytId, v);
+    });
+
+    const newVideoObjs = [];
+    const rawItemsMap = new Map();
+
+    for (const item of data.videos) {
+      rawItemsMap.set(item.videoId, item);
+      const existing = existingByYtId.get(item.videoId);
+      if (existing) {
+        // Actualizar fecha y antigüedad real si ya existía
+        existing.dateTimestamp = item.dateTimestamp;
+        existing.fecha = item.fecha;
+        existing.diasAntiguedad = item.diasAntiguedad;
+        existing.recencyTier = item.recencyTier;
+        existing.recencyLabel = item.recencyLabel;
+      } else {
+        const built = classifyAndBuildChannelVideo(item, canal);
+        newVideoObjs.push(built);
+      }
+    }
+
+    if (newVideoObjs.length > 0) {
+      await enrichNewChannelVideosWithAI(newVideoObjs, canal, rawItemsMap);
+      state.videos.unshift(...newVideoObjs);
+      state.videos.sort((a, b) => (b.dateTimestamp || 0) - (a.dateTimestamp || 0));
+    }
+
+    recalculateVideosRecency();
+
+    if (showFeedback) {
+      renderAll();
+      await persistData(true);
+      if (newVideoObjs.length > 0) {
+        showToast(`✅ ¡Añadidos ${newVideoObjs.length} vídeos nuevos de ${canal.nombre}!`, 'success');
+      } else {
+        showToast(`✅ ${canal.nombre} está al día (${data.videos.length} vídeos en ventana de 3 meses).`, 'info');
+      }
+    }
+
+    return newVideoObjs.length;
+  } catch (err) {
+    console.warn(`Error escaneando canal ${canal.nombre}:`, err);
+    if (showFeedback) {
+      showToast(`⚠️ No se pudo escanear ${canal.nombre}: ${err.message}`, 'error');
+    }
+    return 0;
+  }
+};
+
+// Escanear todos los canales monitorizados en busca de nuevos vídeos en YouTube
+window.scanAllChannelsForNewVideos = async function(isManual = false) {
+  if (state.isScanningYoutube) return;
+  if (!state.canales || state.canales.length === 0) return;
+
+  state.isScanningYoutube = true;
+  updateYtSyncBadge();
+
+  if (isManual) {
+    showToast('📡 Comprobando en YouTube nuevos vídeos de todos los canales...', 'info');
+  }
+
+  let totalNew = 0;
+  try {
+    for (const canal of state.canales) {
+      const added = await window.scanSingleChannel(canal.id, false);
+      totalNew += added;
+    }
+
+    state.config.lastYoutubeScan = new Date().toISOString();
+    localStorage.setItem('macro_last_yt_scan', state.config.lastYoutubeScan);
+
+    recalculateVideosRecency();
+    renderAll();
+
+    if (totalNew > 0) {
+      await persistData(true);
+      showToast(`🎉 ¡Actualización completada! Se han incorporado ${totalNew} nuevos vídeos desde YouTube.`, 'success');
+    } else {
+      await persistData(false);
+      if (isManual) {
+        showToast('✅ Todos los canales están al día. No hay vídeos nuevos pendientes en YouTube.', 'success');
+      }
+    }
+  } catch (err) {
+    console.warn('Error en escaneo global de YouTube:', err);
+  } finally {
+    state.isScanningYoutube = false;
+    updateYtSyncBadge();
+    if (state.gestorSubtab === 'canales') {
+      renderChannelsView();
+    }
+  }
+};
+
 // Modal Añadir Canal
 window.openAddChannelModal = function() {
   const modal = document.getElementById('modalAddChannel');
@@ -557,7 +1036,7 @@ window.closeAddChannelModal = function() {
   if (modal) modal.classList.remove('active');
 };
 
-window.handleAddChannelSubmit = function(e) {
+window.handleAddChannelSubmit = async function(e) {
   e.preventDefault();
   const nameInput = document.getElementById('newChannelName');
   const handleInput = document.getElementById('newChannelHandle');
@@ -589,8 +1068,8 @@ window.handleAddChannelSubmit = function(e) {
   if (descInput) descInput.value = '';
 
   renderVideosTab();
-  persistData(true);
-  showToast(`¡Canal "${nombre}" añadido con éxito! Ya puedes monitorizar sus vídeos de los últimos 3 meses.`, 'success');
+  showToast(`📡 Canal "${nombre}" añadido. Importando sus vídeos de los últimos 3 meses desde YouTube...`, 'info');
+  await window.scanSingleChannel(id, true);
 };
 
 // Subpestaña 1: Renderizado de Canales Monitorizados
@@ -635,6 +1114,10 @@ function renderChannelsView() {
   const tier2Count = channelVideos.filter(v => v.recencyTier === 'tier2' || (v.diasAntiguedad != null && v.diasAntiguedad > 15 && v.diasAntiguedad <= 45)).length;
   const tier3Count = channelVideos.filter(v => v.recencyTier === 'tier3' || (v.diasAntiguedad != null && v.diasAntiguedad > 45 && v.diasAntiguedad <= 90)).length;
 
+  const lastScanText = state.config.lastYoutubeScan
+    ? new Date(state.config.lastYoutubeScan).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })
+    : 'Pendiente';
+
   heroContainer.innerHTML = `
     <div class="channel-hero-top">
       <div class="channel-hero-info">
@@ -652,6 +1135,9 @@ function renderChannelsView() {
         </div>
       </div>
       <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+        <button class="btn btn-primary btn-sm" onclick="scanSingleChannel('${currentCanal.id}', true)" title="Comprobar ahora en YouTube si este canal ha subido nuevos vídeos">
+          🔄 Actualizar Canal YT
+        </button>
         <button class="btn btn-secondary btn-sm" onclick="setChannelMacroAll('${currentCanal.id}', true)" title="Incluir todos los vídeos de este canal en la síntesis macro">
           ✅ Incluir Todos
         </button>
@@ -697,7 +1183,7 @@ function renderChannelsView() {
         <button class="subfilter-btn ${state.channelSubfilter === 'excluded' ? 'active' : ''}" onclick="filterChannelSub('excluded')">Descartados (${excludedCount})</button>
       </div>
       <div style="font-size: 0.8rem; color: var(--text-muted);">
-        💡 Ventana fija: <strong>Últimos 3 meses</strong>. Ponderación automática por recencia temporal en la síntesis.
+        📺 Última revisión YT: <strong>${lastScanText}</strong> · Ventana: <strong>Últimos 3 meses</strong>
       </div>
     </div>
   `;
