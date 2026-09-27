@@ -373,6 +373,41 @@
     </div>
   </div>
 
+  <!-- Modal para Editar Consulta Personalizada y Re-analizar Vídeo con IA -->
+  <div id="modalEditQuery" class="loading-overlay" style="background-color: rgba(0,0,0,0.75);">
+    <div style="background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); max-width: 620px; width: 92%; display: flex; flex-direction: column; overflow: hidden; box-shadow: var(--shadow-lg);">
+      <div style="padding: 1.15rem 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="font-size: 1.1rem; font-weight: 700;">🎯 Consulta Personalizada & Análisis IA del Vídeo</h3>
+        <button onclick="closeEditQueryModal()" style="background: none; border: none; color: var(--text-muted); font-size: 1.3rem; cursor: pointer;">✕</button>
+      </div>
+      <div style="padding: 1.25rem 1.5rem;">
+        <input type="hidden" id="editQueryVideoId">
+        <div style="margin-bottom: 1rem; padding: 0.75rem; background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+          <div id="editQueryVideoTitle" style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary); margin-bottom: 0.2rem;"></div>
+          <div id="editQueryVideoMeta" style="font-size: 0.8rem; color: var(--text-secondary);"></div>
+        </div>
+        <div class="form-group consulta-highlight" style="margin-bottom: 1rem;">
+          <label class="form-label" for="editQueryTextarea">
+            🎯 Tu Consulta y Condiciones Prioritarias
+            <span class="form-hint">Lo que quieres que Gemini 3.8 Flash responda y analice en profundidad</span>
+          </label>
+          <textarea id="editQueryTextarea" class="form-textarea" rows="4" placeholder="Ej: Analiza en detalle sus argumentos sobre los tipos de la Fed, niveles del S&P 500, liquidez o deuda pública..."></textarea>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.25rem;">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="closeEditQueryModal()">Cancelar</button>
+          <div style="display: flex; gap: 0.6rem; flex-wrap: wrap;">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="saveQueryOnly()">
+              💾 Solo Guardar Consulta
+            </button>
+            <button type="button" class="btn btn-primary btn-sm" onclick="saveAndAnalyzeQueryWithAI()">
+              🚀 Analizar Transcripción con Gemini Flash
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Loading Overlay -->
   <div class="loading-overlay" id="loadingOverlay">
     <div class="spinner"></div>

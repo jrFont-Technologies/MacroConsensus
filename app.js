@@ -1215,9 +1215,10 @@ function renderChannelsView() {
     return;
   }
 
-  // 4. Renderizar Filas de Vídeos
+  // 4. Renderizar Filas de Vídeos con Consulta Personalizada y Desglose Analítico IA
   listContainer.innerHTML = displayedVideos.map(video => {
     const isIncluded = video.incluidoEnSintesis !== false;
+    const estructurado = video.resumen_estructurado || null;
 
     let tierClass = 'recency-tier3';
     let tierLabel = '🕰️ 46-90 días (Estructural)';
@@ -1234,30 +1235,58 @@ function renderChannelsView() {
     const catLabel = isOffTopic ? '🏛️ Política / Sociedad' : '📊 Macro / Mercados';
 
     return `
-      <div class="channel-video-row ${isIncluded ? '' : 'excluded'}">
-        <div class="channel-video-left">
-          <img src="${video.thumbnail || 'https://i.ytimg.com/vi/' + extractVideoId(video.url) + '/hqdefault.jpg'}" 
-               class="channel-video-thumb" alt="${escapeHtml(video.title)}" loading="lazy">
-          <div class="channel-video-details">
-            <div class="channel-video-title" title="${escapeHtml(video.title)}">
-              ${escapeHtml(video.title)}
-            </div>
-            <div class="channel-video-meta">
-              <span class="recency-badge ${tierClass}">${tierLabel}</span>
-              <span class="category-pill ${catClass}">${catLabel}</span>
-              <span style="color: var(--text-muted);">📅 ${escapeHtml(video.fecha)}</span>
-              <span style="color: var(--text-muted);">⏱️ hace ${video.diasAntiguedad || 0}d</span>
-              <a href="${video.url}" target="_blank" style="color: var(--accent-blue); text-decoration: none; font-size: 0.75rem;" title="Abrir en YouTube">▶ Ver en YT</a>
+      <div class="channel-video-row ${isIncluded ? '' : 'excluded'}" data-id="${video.id}">
+        <div class="channel-video-top">
+          <div class="channel-video-left">
+            <img src="${video.thumbnail || 'https://i.ytimg.com/vi/' + extractVideoId(video.url) + '/hqdefault.jpg'}" 
+                 class="channel-video-thumb" alt="${escapeHtml(video.title)}" loading="lazy">
+            <div class="channel-video-details">
+              <div class="channel-video-title" title="${escapeHtml(video.title)}">
+                ${escapeHtml(video.title)}
+              </div>
+              <div class="channel-video-meta">
+                <span class="recency-badge ${tierClass}">${tierLabel}</span>
+                <span class="category-pill ${catClass}">${catLabel}</span>
+                <span style="color: var(--text-muted);">📅 ${escapeHtml(video.fecha)}</span>
+                <span style="color: var(--text-muted);">⏱️ hace ${video.diasAntiguedad || 0}d</span>
+                <a href="${video.url}" target="_blank" style="color: var(--accent-blue); text-decoration: none; font-size: 0.75rem; font-weight: 600;" title="Abrir en YouTube">▶ Ver en YT</a>
+                ${(video.tags || []).map(t => `<span class="tag-badge">#${escapeHtml(t)}</span>`).join('')}
+              </div>
             </div>
           </div>
+          <div class="channel-video-right">
+            <button class="btn btn-secondary btn-sm" onclick="editVideoQuery('${video.id}')" title="Personalizar tu consulta sobre este vídeo y re-analizar con Gemini Flash">
+              🎯 Consulta / IA
+            </button>
+            <button class="macro-switch-btn ${isIncluded ? 'active' : 'inactive'}" 
+                    onclick="toggleChannelVideoMacro('${video.id}')"
+                    title="${isIncluded ? 'Activo en la síntesis macro. Clic para descartar.' : 'Descartado de la síntesis. Clic para incluir.'}">
+              <span>${isIncluded ? '🟢' : '⚪'}</span>
+              <span>${isIncluded ? 'En Síntesis Macro' : 'Descartado / Off-Topic'}</span>
+            </button>
+          </div>
         </div>
-        <div class="channel-video-right">
-          <button class="macro-switch-btn ${isIncluded ? 'active' : 'inactive'}" 
-                  onclick="toggleChannelVideoMacro('${video.id}')"
-                  title="${isIncluded ? 'Activo en la síntesis macro. Clic para descartar.' : 'Descartado de la síntesis. Clic para incluir.'}">
-            <span>${isIncluded ? '🟢' : '⚪'}</span>
-            <span>${isIncluded ? 'En Síntesis Macro' : 'Descartado / Off-Topic'}</span>
-          </button>
+
+        <div class="channel-video-body">
+          <div class="user-query-box" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem;">
+            <div style="flex: 1;">
+              <strong>🎯 Tu Consulta del Vídeo:</strong>
+              ${escapeHtml(video.consulta || 'Sin consulta previa')}
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="editVideoQuery('${video.id}')" style="flex-shrink: 0; font-size: 0.72rem; padding: 0.2rem 0.55rem;" title="Editar consulta o analizar transcripción con IA">
+              ✏️ Editar / Analizar IA
+            </button>
+          </div>
+
+          <div class="summary-accordion" style="border-top: none; padding-top: 0.1rem; margin-top: 0;">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span>📋 Ver Desglose Analítico IA</span>
+              <span class="accordion-arrow">▼</span>
+            </button>
+            <div class="accordion-content" id="acc_${video.id}">
+              ${renderStructuredSummary(estructurado, video.resumen)}
+            </div>
+          </div>
         </div>
       </div>
     `;
@@ -1484,12 +1513,158 @@ window.deleteVideo = function(videoId) {
 window.editVideoQuery = function(videoId) {
   const v = state.videos.find(x => x.id === videoId);
   if (!v) return;
-  const nuevaConsulta = prompt('Edita tu consulta y condiciones prioritarias para este vídeo:', v.consulta || '');
-  if (nuevaConsulta !== null && nuevaConsulta.trim() !== '') {
-    v.consulta = nuevaConsulta.trim();
+
+  const modal = document.getElementById('modalEditQuery');
+  const idInput = document.getElementById('editQueryVideoId');
+  const titleEl = document.getElementById('editQueryVideoTitle');
+  const metaEl = document.getElementById('editQueryVideoMeta');
+  const textarea = document.getElementById('editQueryTextarea');
+
+  if (modal && idInput && textarea) {
+    idInput.value = v.id;
+    if (titleEl) titleEl.textContent = v.title || 'Vídeo';
+    if (metaEl) metaEl.textContent = `👤 ${v.author || v.channel || 'Analista'} · 📅 ${v.fecha || ''}`;
+    textarea.value = v.consulta || '';
+    modal.classList.add('active');
+    setTimeout(() => textarea.focus(), 80);
+  }
+};
+
+window.closeEditQueryModal = function() {
+  const modal = document.getElementById('modalEditQuery');
+  if (modal) modal.classList.remove('active');
+};
+
+window.saveQueryOnly = async function() {
+  const idInput = document.getElementById('editQueryVideoId');
+  const textarea = document.getElementById('editQueryTextarea');
+  if (!idInput || !textarea) return;
+
+  const v = state.videos.find(x => x.id === idInput.value);
+  if (!v) return;
+
+  const nuevaConsulta = textarea.value.trim();
+  if (nuevaConsulta) {
+    v.consulta = nuevaConsulta;
+    closeEditQueryModal();
     renderVideosTab();
-    persistData(true);
-    showToast('Consulta actualizada. Puedes re-analizar el vídeo si lo deseas.', 'success');
+    await persistData(true);
+    showToast('Consulta personalizada guardada correctamente', 'success');
+  }
+};
+
+window.saveAndAnalyzeQueryWithAI = async function() {
+  const idInput = document.getElementById('editQueryVideoId');
+  const textarea = document.getElementById('editQueryTextarea');
+  if (!idInput || !textarea) return;
+
+  const v = state.videos.find(x => x.id === idInput.value);
+  if (!v) return;
+
+  const consulta = textarea.value.trim() || `Analiza la tesis macroeconómica, liquidez e impacto en activos de "${v.title}"`;
+  v.consulta = consulta;
+  closeEditQueryModal();
+
+  setLoading(true, 'Extrayendo transcripción de YouTube...', `Obteniendo subtítulos de "${v.title}"`);
+
+  try {
+    let transcript = '';
+    try {
+      const extRes = await fetch('/api/extraer-video', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: v.url })
+      });
+      if (extRes.ok) {
+        const extData = await extRes.json();
+        if (extData.ok && extData.fullTranscript) {
+          transcript = extData.fullTranscript;
+        }
+      }
+    } catch (e) {}
+
+    setLoading(
+      true,
+      'Analizando con Gemini 3.8 Flash...',
+      transcript
+        ? 'Sintetizando transcripción completa enfocada en tu consulta personalizada'
+        : 'Generando desglose analítico enfocado en tu consulta personalizada'
+    );
+
+    const systemPrompt = `Eres un estratega macroeconómico institucional de élite. Analizas vídeos de analistas financieros y respondes en perfecto español.
+Tu máxima prioridad es responder de forma directa, incisiva y técnica a la "Consulta y condiciones del usuario".
+Devuelve SIEMPRE tu respuesta en formato JSON dentro de un bloque markdown \`\`\`json.`;
+
+    const contextBlock = transcript
+      ? `TRANSCRIPCIÓN COMPLETA DEL VÍDEO:\n---\n${transcript.slice(0, 150000)}\n---`
+      : `CONTEXTO PREVIO DEL VÍDEO:\nTítulo: ${v.title}\nTesis previa: ${v.resumen_estructurado?.tesis_macro || ''}\nRespuesta previa: ${v.resumen_estructurado?.respuesta_consulta || ''}`;
+
+    const userPrompt = `
+ANALIZA EL SIGUIENTE VÍDEO:
+- Título: ${v.title}
+- Analista / Canal: ${v.author || v.channel}
+- Fecha: ${v.fecha || ''}
+- URL: ${v.url}
+
+🎯 CONSULTA Y CONDICIONES DEL USUARIO (MÁXIMA PRIORIDAD):
+"${consulta}"
+
+${contextBlock}
+
+Devuelve un bloque JSON válido con este formato exacto:
+\`\`\`json
+{
+  "categoriaSugerida": "macro" o "politica_sociedad",
+  "respuesta_consulta": "Respuesta directa, exhaustiva y estructurada respondiendo exactamente a la consulta del usuario",
+  "tesis_macro": "Tesis central del analista, escenario base y catalizadores",
+  "matriz_activos": {
+    "renta_variable": "sesgo (Favorable/Desfavorable/Neutral) y motivo",
+    "bonos": "sesgo y motivo",
+    "oro": "sesgo y motivo",
+    "petroleo": "sesgo y motivo",
+    "dolar": "sesgo y motivo",
+    "bitcoin": "sesgo y motivo"
+  },
+  "timestamps_citas": [
+    "MM:SS - Cita o punto clave relevante del vídeo",
+    "MM:SS - Cita o punto clave relevante del vídeo"
+  ],
+  "tags_sugeridos": ["Tag1", "Tag2", "Tag3", "Tag4"]
+}
+\`\`\`
+`;
+
+    const aiRes = await callGeminiApi(userPrompt, systemPrompt, true);
+
+    v.resumen_estructurado = {
+      respuesta_consulta: aiRes.respuesta_consulta || v.resumen_estructurado?.respuesta_consulta || '',
+      tesis_macro: aiRes.tesis_macro || v.resumen_estructurado?.tesis_macro || '',
+      matriz_activos: aiRes.matriz_activos || v.resumen_estructurado?.matriz_activos || {},
+      timestamps_citas: aiRes.timestamps_citas || v.resumen_estructurado?.timestamps_citas || []
+    };
+    if (Array.isArray(aiRes.tags_sugeridos) && aiRes.tags_sugeridos.length > 0) {
+      v.tags = aiRes.tags_sugeridos;
+    }
+    if (aiRes.categoriaSugerida === 'macro' || aiRes.categoriaSugerida === 'politica_sociedad') {
+      v.categoriaSugerida = aiRes.categoriaSugerida;
+    }
+
+    renderAll();
+
+    // Abrir automáticamente el acordeón del vídeo recién analizado para mostrar el resultado
+    const accEl = document.getElementById(`acc_${v.id}`);
+    if (accEl) {
+      accEl.classList.add('open');
+      const arrow = accEl.previousElementSibling?.querySelector('.accordion-arrow');
+      if (arrow) arrow.textContent = '▲';
+    }
+
+    await persistData(true);
+    showToast('✨ ¡Desglose Analítico IA actualizado con éxito según tu consulta!', 'success');
+  } catch (err) {
+    alert('Error al analizar el vídeo con IA: ' + err.message);
+  } finally {
+    setLoading(false);
   }
 };
 
