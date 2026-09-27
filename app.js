@@ -3,31 +3,39 @@
  * Frontend interactivo y sincronización en la nube
  */
 
-// Prompt Maestro por defecto (Estructura operativa de 4 puntos + Few-Shot con tus 2 ejemplos reales)
+// Prompt Maestro por defecto (Estructura operativa de 4 puntos + Few-Shot con tus 3 ejemplos reales)
 const DEFAULT_MASTER_PROMPT = `Actúa como un analista y operador de mercados que toma apuntes personales ultra-directos de vídeos financieros. Tu objetivo es resumir la transcripción exactamente con mi estilo, mi concisión y mi estructura.
 
 REGLAS DE ORO DE FILTRADO:
-1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, comentarios del tiempo, bromas, promoción de libros/cursos/servicios (ej. HOPLA) y cualquier mención a brokers patrocinadores (ej. Freedom24, Quantfury) o a los ETFs/productos comerciales que el autor mencione solo como parte del anuncio del patrocinador. Quédate únicamente con el análisis puro del índice o activo subyacente (ej. el VIX, el SP500, el bono).
+1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, comentarios del tiempo, bromas, promoción de libros/cursos/servicios (ej. HOPLA) y cualquier mención a brokers patrocinadores (ej. Freedom24, Quantfury) o a los ETFs/productos comerciales que el autor mencione solo como parte del anuncio del patrocinador. Quédate únicamente con el análisis puro del índice o activo subyacente (ej. el VIX, el SP500, el bono, el petróleo).
 2. CAUSA -> EFECTO EN FRASES CORTAS: Explica siempre los hechos conectando la causa con la consecuencia en 1 o 2 frases directas por idea, sin adornos literarios.
-3. CONSERVA DATOS TÉCNICOS, MECÁNICA Y NIVELES EXACTOS: Incluye siempre fechas concretas del gráfico (ej. días 17, 20 y 24), niveles numéricos exactos (ej. 7740 en SP500, 16-20 en VIX), plazos temporales (ej. 3ª semana de octubre, 3 de noviembre) y la mecánica interna si se explica (opciones Call/Put, cobertura de futuros por delta de los creadores de mercado, déficit/PIB, rebajas de rating).
+3. CONSERVA DATOS TÉCNICOS, MECÁNICA Y NIVELES EXACTOS: Incluye siempre fechas concretas del gráfico (ej. días 17, 20 y 24), niveles y rangos numéricos exactos (ej. 7740 o zona 7850-8000 en SP500, 16-20 en VIX), plazos temporales (ej. 3ª semana de octubre, 3 de noviembre, agosto-septiembre) y la mecánica interna si se explica (opciones Call/Put, cobertura de futuros por delta de los creadores de mercado, recompra de deuda a largo plazo del Tesoro/Bessent, déficit/PIB, rebajas de rating).
 
 ESTRUCTURA OBLIGATORIA DEL RESUMEN:
 - Como se ve el mercado / los hechos:
-Expón los hechos objetivos que muestra el vídeo (qué ha hecho el precio en el gráfico en fechas concretas, qué están haciendo los especuladores/creadores de mercado con opciones y futuros, o qué está pasando con los bonos, deuda/PIB, déficits y calificaciones crediticias).
+Expón los hechos objetivos que muestra el vídeo:
+  * Qué ha hecho el precio en el gráfico en fechas concretas o hacia qué rango se dirige (ej. SP500 hacia 7850-8000).
+  * Qué medidas o catalizadores concretos están en juego (ej. penalizar exportaciones de diésel de EE.UU. a Europa -> bajan precios del petróleo en EE.UU.).
+  * Qué han descontado ya los mercados y qué muestran los flujos de opciones/futuros y el sentimiento (ej. compra masiva de CALLs de tecnología = institucionales sin miedo frente a miedo solo en particulares; venta de calls/compra de puts y cobertura delta de dealers).
+  * Qué ocurre con la rentabilidad de los bonos, deuda/PIB, déficits y calificaciones crediticias.
 
 - Como reaccionar:
-Indica de forma directa qué comprar o vender y en qué nivel exacto (ej. "Comprar futuros si el SP500 supera la zona de los 7740"). Si el vídeo no da una orden de entrada concreta no patrocinada, déjalo vacío ("") o indica la directriz práctica.
+Indica de forma directa qué comprar o vender y en qué nivel exacto (ej. "Comprar futuros si el SP500 supera la zona de los 7740"). Si el vídeo no da una orden de entrada concreta de corto plazo no patrocinada, déjalo vacío ("").
 
 - ¿por que? / conclusión:
-Explica la deducción lógica y el escenario de cada activo mencionado de forma telegráfica (1 línea por activo indicando qué ha hecho, hacia dónde irá, hasta qué fecha exacta y por qué motivo). Destaca cualquier "Fecha importante" del calendario (ej. elecciones del 3 de noviembre) y qué pasará antes y después.
+Explica la deducción lógica, el motor político/liquidez detrás del movimiento (ej. el tiempo que le queda a Trump antes de las mid-term, recompras de deuda pública a largo plazo de Bessent que estabilizan el mercado y fijan resistencias) y el escenario de cada activo mencionado de forma telegráfica (qué ha hecho, hacia dónde irá, hasta qué fecha exacta y por qué). Destaca cualquier "Fecha importante" del calendario (ej. elecciones del 3 de noviembre).
 
 - Otros temas / maldades / predicción:
-Recoge las "maldades", problemas económicos de países concretos (ej. Francia, Reino Unido), qué ocurrirá en la siguiente fase del mercado (ej. sustos tras una fecha clave), niveles de volatilidad (VIX) a vigilar como señal de caída y sectores interesantes para el futuro (ej. Salud, Energías limpias).
+Recoge en puntos claros las "maldades", predicciones políticas/macro y temas estructurales tratados en el vídeo:
+  * Mercados de predicción y política: resultado esperado en elecciones (ej. barrido demócrata en las mid-term -> bloqueo legislativo).
+  * Tema presupuestario / monetario: mayor gasto y deuda pública -> mayor degradación monetaria; problemas fiscales de países (Francia, Reino Unido).
+  * Tema sectorial / geopolítico (ej. Tema Inteligencia Artificial): control político y regulatorio sobre CEOs de IA, participaciones estatales en empresas, parálisis de inversión en centros de datos por precio de la energía, o emisión de deuda estatal para comprar acciones de IA si la bolsa cae +-10%.
+  * Previsiones por activo, niveles de volatilidad (VIX 16-20), sectores interesantes (Salud, Energías limpias) y hoja de ruta estacional completa de la bolsa (ej. bajada agosto-septiembre -> subida hasta el 3 de noviembre -> caída después de noviembre).
 
 ---
 EJEMPLOS EXACTOS DE CÓMO QUIERO QUE RESUMAS (IMITA ESTE ESTILO Y LONGITUD):
 
-[EJEMPLO 1 - Vídeo de operativa y microestructura]:
+[EJEMPLO 1 - Vídeo de operativa y microestructura (zoUHJ6eB6IY)]:
 - Como se ve el mercado / los hechos:
 En el gráfico del SP500 cayó tras la noticia, se recuperó rápido el 17, 20 y 24; se concluye que hay una mano que evita la caída.
 En el caso concreto del 24 se pudo ver grandes apuestas bajistas sobre el SP500, esto es, especuladores de corto plazo vendiendo opciones call y comprando opciones put y los creadores de mercado estaban vendiendo futuros para cubrirse, ajustándolo por la delta. El escenario fue claramente bajista pero no bajó el SP500.
@@ -39,7 +47,7 @@ Fecha importante: 3 de noviembre elecciones, las bolsas subirán hasta el 3 de n
 - Otros temas / maldades / predicción:
 Francia tiene problemas económicos.
 
-[EJEMPLO 2 - Vídeo macro y multi-activo]:
+[EJEMPLO 2 - Vídeo macro y multi-activo (6avY-2ixQI0)]:
 - Como se ve el mercado / los hechos:
 Debido a la irresponsabilidad fiscal de los políticos se produce degradación monetaria garantizada, lo que a su vez significa que el oro tendrá tendencia alcista.
 Rentabilidad del bono francés a 10 años sube a consecuencia del déficit público creciente, ratio deuda pública - PIB incrementándose y le han rebajado la calificación crediticia.
@@ -51,7 +59,24 @@ SP500 subirá por motivaciones políticas de Trump.
 Petróleo bajará también por motivaciones políticas de Trump.
 - Otros temas / maldades / predicción:
 Bessent y Kevin Warsh fueron gestores de fondos, y a partir del 3 de noviembre habrá un susto / bajada de la bolsa. La volatilidad del SP500 (VIX) ha estado muy comprimida, hay una zona de resistencia sobre 16 - 20. Si el índice superara los 20, las bolsas caerían.
-A partir del 3 de Noviembre se espera una caída en bolsa y los próximos sectores interesantes son Salud y Energías limpias.`;
+A partir del 3 de Noviembre se espera una caída en bolsa y los próximos sectores interesantes son Salud y Energías limpias.
+
+[EJEMPLO 3 - Vídeo de posicionamiento, política y temas estructurales (rOKQ00NlYfo)]:
+- Como se ve el mercado / los hechos:
+Trump podría penalizar las exportaciones de Diesel desde EE.UU. hacia Europa y como consecuencia bajarían los precios del petróleo para los EE.UU.
+Se entiende que los mercados han descontado que Trump va a perder las mid-term y que la cotización del SP500 puede dirigirse a la zona comprendida entre 7850 y 8000.
+Se ha comprado muchas opciones CALL de tecnología por lo que no tienen que tener mucho miedo, solo los inversores particulares tienen miedo. Por tanto los mercados no han descontado nada malo.
+- ¿por que? / conclusión:
+A Trump le queda 1 mes para arreglar la economía e intentar ganar las elecciones de mid-term. Bessent ya comenzó la recompra de deuda pública a largo plazo y ha conseguido la estabilización de los mercados y ha dejado claro dónde está la resistencia. Petróleo también ha bajado.
+- Otros temas / maldades / predicción:
+Según los mercados de predicción va a haber un barrido demócrata en las próximas elecciones de medio mandato.
+Las elecciones de medio término las van a ganar los demócratas y como consecuencia se va a producir un bloqueo legislativo.
+Tema presupuestario: mayor gasto público y deuda pública y como consecuencia mayor degradación monetaria.
+Tema Inteligencia Artificial: Los señores de la IA (los CEO de las principales empresas de IA) ya han aceptado que van a ser controlados por los políticos a través de las regulaciones y de participaciones en las empresas. Se van a paralizar las inversiones en centros de datos debido al precio de la energía.
+Tendencia bajista a corto plazo del petróleo podría continuar, menor demanda.
+La rentabilidad de los bonos puede caer.
+Caída de las bolsas +- 10%, el estado de los EE.UU. creará más deuda para comprar las acciones de las empresas de IA.
+La previsión era bajada de la bolsa entre agosto-septiembre y luego subidas hasta el 3 de noviembre, y después de noviembre una caída.`;
 
 // Estado Global
 const state = {
@@ -188,10 +213,11 @@ async function loadConfigFromStorage() {
   if (savedModel) state.config.geminiModel = savedModel;
 
   const savedPrompt = localStorage.getItem('macro_master_prompt');
-  if (savedPrompt && savedPrompt.trim()) {
+  if (savedPrompt && savedPrompt.trim() && savedPrompt.includes('[EJEMPLO 3')) {
     state.config.masterPrompt = savedPrompt.trim();
   } else {
     state.config.masterPrompt = DEFAULT_MASTER_PROMPT;
+    localStorage.setItem('macro_master_prompt', DEFAULT_MASTER_PROMPT);
   }
 
   const savedRepo = localStorage.getItem('macro_github_repo');
