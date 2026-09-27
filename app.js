@@ -76,7 +76,20 @@ Tema Inteligencia Artificial: Los señores de la IA (los CEO de las principales 
 Tendencia bajista a corto plazo del petróleo podría continuar, menor demanda.
 La rentabilidad de los bonos puede caer.
 Caída de las bolsas +- 10%, el estado de los EE.UU. creará más deuda para comprar las acciones de las empresas de IA.
-La previsión era bajada de la bolsa entre agosto-septiembre y luego subidas hasta el 3 de noviembre, y después de noviembre una caída.`;
+La previsión era bajada de la bolsa entre agosto-septiembre y luego subidas hasta el 3 de noviembre, y después de noviembre una caída.
+
+[EJEMPLO 4 - Vídeo de expiración de opciones (Triple Hora Bruja), gamma positiva y maldades (5ELPqd3DFXI)]:
+- Como se ve el mercado / los hechos:
+El pasado viernes se produjo la expiración de los contratos de opciones sobre índices y sobre acciones de los EE.UU. (la famosa triple hora bruja), fue la expiración más grande de la historia.
+El pasado miércoles se produjo la expiración de los contratos de opciones de futuro sobre el VIX.
+Nos encontramos en un entorno de gamma positiva, tras la expiración de los contratos de opciones, los dealers ahora no tienen coberturas y se pueden mover con libertad, Bessent va a intentar subir las bolsas.
+El petróleo ha empezado a caer.
+Ha subido el Bitcoin y el NASDAQ, los valores tecnológicos son los valores elegidos para seguir subiendo.
+El oro ha bajado, pero es puntual.
+- Otros temas / maldades / predicción:
+El petróleo va a caer hasta el 3 de noviembre y luego por inercia hasta diciembre, la tendencia del petróleo a medio y largo plazo es alcista, y la rentabilidad del bono americano a 30 y a 10 años también.
+El oro se dirige a la zona de los 4500, subirá más el Bitcoin que el oro.
+Anthropic ha encargado a Accenture una auditoría para demostrar control sobre la IA, el gobierno comprará acciones y le dará al pueblo 5000 dólares.`;
 
 // Estado Global
 const state = {
@@ -213,7 +226,7 @@ async function loadConfigFromStorage() {
   if (savedModel) state.config.geminiModel = savedModel;
 
   const savedPrompt = localStorage.getItem('macro_master_prompt');
-  if (savedPrompt && savedPrompt.trim() && savedPrompt.includes('[EJEMPLO 3')) {
+  if (savedPrompt && savedPrompt.trim() && savedPrompt.includes('[EJEMPLO 4')) {
     state.config.masterPrompt = savedPrompt.trim();
   } else {
     state.config.masterPrompt = DEFAULT_MASTER_PROMPT;
@@ -1821,11 +1834,11 @@ Devuelve un bloque JSON válido con este formato exacto:
 \`\`\`json
 {
   "categoriaSugerida": "macro" o "politica_sociedad",
-  "hechos_mercado": "Texto directo para '- Como se ve el mercado / los hechos:' (causa->efecto, fechas del gráfico, flujos de opciones Call/Put y cobertura por delta de creadores de mercado, o situación de bonos/déficit/deuda).",
+  "hechos_mercado": "Texto directo para '- Como se ve el mercado / los hechos:' (ESCRIBE 1 FRASE CORTA POR LÍNEA separada con salto de línea \\n, lenguaje llano y directo como en los 4 ejemplos: expiraciones de opciones/triple hora bruja, gamma positiva, dealers sin coberturas, fechas del gráfico, flujos Call/Put, o situación de bonos/déficit/deuda).",
   "como_reaccionar": "Texto directo para '- Como reaccionar:' indicando qué comprar/vender y en qué nivel exacto (ej. 'Comprar futuros si el SP500 supera la zona de los 7740'). Si no da orden concreta, pon cadena vacía ''.",
-  "por_que_conclusion": "Texto directo para '- ¿por que? / conclusión:' (1 línea telegráfica por activo con su dirección, fecha límite y motivo, o por qué alguien sujeta el mercado).",
+  "por_que_conclusion": "Texto directo para '- ¿por que? / conclusión:' (frases cortas separadas por salto de línea \\n con la deducción o previsión por activo y fecha, o '' si ya queda recogido en los otros bloques).",
   "fecha_importante": "Fecha clave mencionada y qué ocurrirá antes y después (ej. '3 de noviembre elecciones, las bolsas subirán hasta el 3 de noviembre y después bajarán'). Si no hay fecha clave, pon ''.",
-  "otros_temas_maldades": "Texto directo para '- Otros temas / maldades / predicción:' (problemas económicos de países como Francia/UK, qué pasará tras la fecha clave, niveles de VIX como 16-20 y >20, y sectores futuros como Salud y Energías limpias).",
+  "otros_temas_maldades": "Texto directo para '- Otros temas / maldades / predicción:' (ESCRIBE 1 IDEA CORTA POR LÍNEA separada por \\n, sin parrafadas: predicción de petróleo/oro/bonos, niveles de VIX, prima de riesgo de Francia, sectores a seguir, o maldades políticas/IA como auditorías, compra estatal de acciones o cheques al pueblo).",
   "matriz_activos": {
     "renta_variable": "sesgo y nivel clave",
     "bonos": "sesgo y motivo",

@@ -299,29 +299,6 @@
             </select>
           </div>
 
-          <button class="btn btn-secondary btn-sm" id="btnTestGemini">
-            ⚡ Probar Conexión con Gemini
-          </button>
-        </div>
-
-        <!-- Tarjeta GitHub Sync -->
-        <div class="settings-card">
-          <div class="settings-card-header">
-            <h3>☁️ Sincronización en la Nube (GitHub API)</h3>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="settingGithubRepo">Repositorio de GitHub</label>
-            <input type="text" id="settingGithubRepo" class="form-input" value="jrFont-Technologies/MacroConsensus">
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="settingGithubToken">
-              Token de Acceso Personal de GitHub (PAT)
-              <span class="form-hint">Permiso: repo (contents read/write)</span>
-            </label>
-            <input type="password" id="settingGithubToken" class="form-input" placeholder="ghp_...">
-          </div>
-
           <div class="form-group">
             <label class="form-label" for="settingYtInterval">
               📺 Frecuencia de Actualización de Canales de YouTube
@@ -340,11 +317,8 @@
             <button class="btn btn-primary btn-sm" id="btnSaveSettings">
               💾 Guardar Configuración
             </button>
-            <button class="btn btn-secondary btn-sm" id="btnForcePull">
-              ⬇️ Forzar Descarga (Pull)
-            </button>
-            <button class="btn btn-secondary btn-sm" id="btnForcePush">
-              ⬆️ Forzar Subida (Push)
+            <button class="btn btn-secondary btn-sm" id="btnTestGemini">
+              ⚡ Probar Conexión con Gemini
             </button>
           </div>
         </div>
@@ -475,6 +449,6 @@
   <div class="toast-container" id="toastContainer"></div>
 
   <!-- Scripts -->
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>
