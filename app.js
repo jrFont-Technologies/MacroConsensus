@@ -137,6 +137,48 @@ Explica la causa -> efecto entre las rentabilidades de los bonos / liquidez de l
 - Otros temas / maldades / predicción:
 Recoge alertas sobre tensiones en el mercado de deuda, próximas fechas clave del calendario macro (IPC, Fed/FOMC, empleo, vencimientos) y previsión de ciclo para Bitcoin y renta variable.`;
 
+// 4. Prompt por defecto para MARC VIDAL (Macroeconomía, bonos y deuda soberana, crisis energética, geopolítica, IA / CBDC y las 4 luces de alerta)
+const DEFAULT_PROMPT_VIDAL = `Actúa como un analista macroeconómico, energético y de mercados que toma apuntes personales ultra-directos de los vídeos de Marc Vidal. Tu objetivo es resumir la transcripción en frases cortas, directas y conectando siempre Causa -> Efecto (1 frase por línea).
+
+REGLAS DE ORO DE FILTRADO:
+1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales (ej. desde qué calle o ciudad graba), peticiones de suscripción/comentarios/miembros y cualquier bloque patrocinado (ej. Trade Republic, Urbanitae, Mintos, etc.). Quédate únicamente con los datos económicos, financieros, energéticos, tecnológicos y geopolíticos.
+2. CAUSA -> EFECTO EN FRASES CORTAS (1 FRASE POR LÍNEA): Explica siempre los hechos conectando la causa con la consecuencia en 1 frase corta y llana por línea, sin adornos literarios ni introducciones narrativas.
+3. CONSERVA DATOS TÉCNICOS, INDICADORES Y NIVELES EXACTOS: Incluye siempre las cifras exactas que cita Marc Vidal (ej. VIX en 16, rentabilidad del bono a 10 años en 5,12% y a 30 años en 5,44%, spreads de crédito basura/High Yield en 268 pb, facilidad repo de la Fed en 0$, Treasury Basis Trade en 1,2 billones $, exportaciones de diésel a Europa en 110.000 bpd, Brent >104$, deuda de EE.UU. >40 billones $, tipos de la Fed 3,75%-4,00%, compras de toneladas de oro por bancos centrales, fechas clave del calendario macro).
+
+ESTRUCTURA OBLIGATORIA DEL RESUMEN:
+- Como se ve el mercado / los hechos:
+Expón en frases cortas (1 por línea) los datos y hechos objetivos que muestra el vídeo (qué marcan el VIX, los bonos del Tesoro a 10Y y 30Y, los spreads de crédito, la ventanilla repo de la Fed, el mercado físico de energía/diésel/petróleo, la deuda pública o los datos de IA/economía real).
+
+- Como reaccionar:
+Indica de forma directa qué indicadores, umbrales o "luces de alerta" hay que vigilar o cómo protegerse según el vídeo (ej. vigilar el tablero de 4 luces: VIX >16, apertura de spreads High Yield >268 pb, uso de ventanilla repo >0 y subida simultánea de bono 10Y y diésel). Si no da pauta operativa o de vigilancia concreta, déjalo vacío ("").
+
+- ¿por que? / conclusión:
+Explica de forma directa la tesis central y la mecánica Causa -> Efecto del vídeo (ej. por qué no es un crash rápido de liquidez estilo 2008 sino una erosión lenta estilo 1973 impulsada por energía cara -> inflación -> tipos altos -> asfixia del crédito -> bolsa). Destaca cualquier "Fecha importante" del calendario económico (ej. 30 de septiembre cierre de trimestre, PCE, PIB).
+
+- Otros temas / maldades / predicción:
+Recoge en líneas cortas e independientes las advertencias estructurales, geopolíticas, tecnológicas (IA, euro digital / dinero programable CBDC, pérdida de poder adquisitivo de la clase media) y los intereses ocultos de gobiernos o emisores de deuda.
+
+---
+EJEMPLO EXACTO DE CÓMO QUIERO QUE RESUMAS A MARC VIDAL (IMITA ESTE ESTILO Y LONGITUD):
+
+[EJEMPLO 1 - Vídeo de bonos, energía, liquidez y las 4 luces de alerta (zfX6B8haIqc)]:
+- Como se ve el mercado / los hechos:
+El VIX está en 16 (lejos del nivel >80 de 2008 o 2020), los spreads de crédito basura están bajos en 268 puntos básicos y la facilidad repo de emergencia de la Fed cerró ayer en 0 dólares, confirmando que las reservas bancarias siguen amplias y no falta liquidez a corto plazo.
+El Treasury Basis Trade de los hedge funds no está estallando en pánico, sino reduciéndose con orden un 20% este año hasta 1,2 billones de dólares por menor rentabilidad.
+En "la pantalla de al lado" (el mercado de deuda), el bono de EE.UU. a 10 años ha tocado el 5,12% y el de 30 años el 5,44%, duplicando el coste de refinanciación para empresas endeudadas al 2% en 2021 y encareciendo una deuda pública de EE.UU. que supera los 40 billones de dólares.
+En el mercado físico de energía, las exportaciones de diésel de Oriente Medio a Europa caen a 110.000 barriles diarios en septiembre (mínimo desde 2020), el gasóleo físico en Europa marca récords y el Brent supera los 104 dólares sin avances entre EE.UU. e Irán.
+Un rumor no confirmado de prohibición de exportar diésel en EE.UU. durante 90 días hundió un 4% los futuros del gasóleo en horas antes de ser desmentido por la Casa Blanca, demostrando el nerviosismo extremo del mercado físico.
+La Reserva Federal ha subido tipos 25 puntos básicos hasta el rango 3,75%-4,00% porque la inflación persiste.
+- Como reaccionar:
+Vigilar el tablero de las 4 luces de alerta: 1) VIX saliendo de la zona de 16; 2) Spreads de crédito basura abriéndose rápido desde 268 pb; 3) Ventanilla repo de la Fed dejando de ser 0; 4) Bono a 10 años (>5,12%) y diésel subiendo juntos a la vez (1 luz encendida es ruido, 2 es preocupación, las 4 juntas señalan crisis).
+- ¿por que? / conclusión:
+No hay evidencia de un crash bursátil repentino por falta de liquidez o margin call en los próximos días (como en 2008 o marzo de 2020); el problema activo es el mecanismo lento estilo octubre de 1973 (cuando el SP500 cayó casi un 50% a lo largo de 21 meses).
+La arquitectura de la crisis hacia finales de 2026 e inicios de 2027 nace en las refinerías y en el precio del dinero: energía cara (petróleo >100$ y escasez de diésel) -> más inflación -> impide a la Fed bajar tipos -> bono a 10 años >5% -> encarece hipotecas y estrangula el crédito empresarial -> frena la economía real y, al final de la cadena con meses de retraso, golpea a la bolsa.
+Fecha importante: 30 de septiembre (fin de trimestre con ajuste de carteras donde coinciden revisión del PIB, inflación PCE de la Fed, índice de estrés de bonos corporativos de la Fed de NY y encuesta energética de la Fed de Dallas) para ver si la energía y los bonos al 5% ya contaminan expectativas e indicadores de crédito.
+- Otros temas / maldades / predicción:
+A quienes necesitan colocar 40 billones de dólares de deuda pública y a los gestores de fondos les interesa mantener la confusión de que "calma en el S&P 500 equivale a normalidad", logrando que se debata cuándo cae la bolsa en vez de cuánto cuesta el dinero.
+Mientras se espera un crash bursátil que no llega, el peaje del crash lento ya lo paga el ciudadano en hipotecas más caras, empresas que no contratan y el gasóleo récord encareciendo cada camión que transporta la compra.`;
+
 // Prompt maestro general por defecto
 const DEFAULT_MASTER_PROMPT = DEFAULT_PROMPT_CAVA;
 
@@ -144,6 +186,7 @@ function getBuiltInChannelDefaultPrompt(canalId) {
   if (canalId === 'cava') return DEFAULT_PROMPT_CAVA;
   if (canalId === 'rallo') return DEFAULT_PROMPT_RALLO;
   if (canalId === 'jon') return DEFAULT_PROMPT_JON;
+  if (canalId === 'vidal') return DEFAULT_PROMPT_VIDAL;
   return DEFAULT_MASTER_PROMPT;
 }
 
@@ -648,7 +691,8 @@ async function loadInitialData() {
       state.canales = data.canales || [
         { id: 'cava', nombre: 'José Luis Cava', handle: '@JoseLuisCavatv', color: '#3b82f6', descripcion: 'Análisis técnico institucional, S&P 500, bono a 30 años, liquidez global y Bitcoin.' },
         { id: 'rallo', nombre: 'Juan Ramón Rallo', handle: '@juanrallo', color: '#10b981', descripcion: 'Macroeconomía, política monetaria (Fed / BCE), inflación, deuda y debasement trade.' },
-        { id: 'jon', nombre: 'Jon Economist', handle: '@JonEconomist', color: '#f59e0b', descripcion: 'Ciclos de liquidez global, Reserva Federal, Bitcoin y macro-trading.' }
+        { id: 'jon', nombre: 'Jon Economist', handle: '@JonEconomist', color: '#f59e0b', descripcion: 'Ciclos de liquidez global, Reserva Federal, Bitcoin y macro-trading.' },
+        { id: 'vidal', nombre: 'Marc Vidal', handle: '@marc_vidal', color: '#8b5cf6', descripcion: 'Macroeconomía, mercado de bonos y deuda soberana, crisis energética (petróleo/diésel), geopolítica e impacto de la IA y CBDC.' }
       ];
       if (state.canales.length > 0 && !state.canales.some(c => c.id === state.activeCanalId)) {
         state.activeCanalId = state.canales[0].id;
@@ -747,7 +791,8 @@ async function syncWithGitHub(action = 'pull', payload = null) {
           const handleFixes = {
             '@joseluiscavaoficial': '@JoseLuisCavatv',
             '@juanramonrallo': '@juanrallo',
-            '@joneconomist': '@JonEconomist'
+            '@joneconomist': '@JonEconomist',
+            '@marcvidal': '@marc_vidal'
           };
           // Combinar canales remotos y locales
           const canalMap = new Map();
@@ -2355,12 +2400,13 @@ async function handleAddVideo(e) {
       setLoading(true, 'Procesando con tu Prompt por defecto...', `Analizando transcripción (${extractData.lineCount || 'múltiples'} líneas)`);
     }
 
-    // Si el autor coincide con alguno de nuestros canales (ej. Cava, Rallo, Jon), usar el prompt por defecto de su canal
+    // Si el autor coincide con alguno de nuestros canales (ej. Cava, Rallo, Jon, Vidal), usar el prompt por defecto de su canal
     const authorLower = (author || '').toLowerCase();
     let matchedCanalId = 'global';
     if (authorLower.includes('cava')) matchedCanalId = 'cava';
     else if (authorLower.includes('rallo')) matchedCanalId = 'rallo';
     else if (authorLower.includes('jon')) matchedCanalId = 'jon';
+    else if (authorLower.includes('vidal')) matchedCanalId = 'vidal';
 
     const copiedPrompt = getEffectiveChannelPrompt(matchedCanalId);
     const systemPrompt = `${copiedPrompt}\n\nIMPORTANTE: Devuelve SIEMPRE tu respuesta en formato JSON dentro de un bloque markdown \`\`\`json.`;

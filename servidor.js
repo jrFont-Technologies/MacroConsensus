@@ -315,7 +315,12 @@ const KNOWN_CHANNEL_HANDLES = {
   'juan ramon rallo': '@juanrallo',
   'juan ramón rallo': '@juanrallo',
   '@joneconomist': '@JonEconomist',
-  'jon economist': '@JonEconomist'
+  'jon economist': '@JonEconomist',
+  '@marc_vidal': '@marc_vidal',
+  'marc_vidal': '@marc_vidal',
+  '@marcvidal': '@marc_vidal',
+  'marcvidal': '@marc_vidal',
+  'marc vidal': '@marc_vidal'
 };
 
 // Buscar el canal en YouTube si el handle introducido da 404 o es un nombre libre

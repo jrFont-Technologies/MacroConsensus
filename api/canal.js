@@ -102,7 +102,12 @@ const KNOWN_CHANNEL_HANDLES = {
   'juan ramon rallo': '@juanrallo',
   'juan ramón rallo': '@juanrallo',
   '@joneconomist': '@JonEconomist',
-  'jon economist': '@JonEconomist'
+  'jon economist': '@JonEconomist',
+  '@marc_vidal': '@marc_vidal',
+  'marc_vidal': '@marc_vidal',
+  '@marcvidal': '@marc_vidal',
+  'marcvidal': '@marc_vidal',
+  'marc vidal': '@marc_vidal'
 };
 
 async function resolveYouTubeChannelBaseUrl(query, headers) {
