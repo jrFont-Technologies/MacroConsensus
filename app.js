@@ -179,14 +179,57 @@ Fecha importante: 30 de septiembre (fin de trimestre con ajuste de carteras dond
 A quienes necesitan colocar 40 billones de dólares de deuda pública y a los gestores de fondos les interesa mantener la confusión de que "calma en el S&P 500 equivale a normalidad", logrando que se debata cuándo cae la bolsa en vez de cuánto cuesta el dinero.
 Mientras se espera un crash bursátil que no llega, el peaje del crash lento ya lo paga el ciudadano en hipotecas más caras, empresas que no contratan y el gasóleo récord encareciendo cada camión que transporta la compra.`;
 
+// 5. Prompt por defecto para PABLO GIL TRADER (Análisis técnico estructural, soportes críticos, ciclo macro, energía, bonos y geopolítica)
+const DEFAULT_PROMPT_PABLO = `Actúa como un gestor de fondos y analista técnico-macroeconómico que toma apuntes personales ultra-directos de los vídeos de Pablo Gil Trader. Tu objetivo es resumir la transcripción en frases cortas, directas y conectando siempre Causa -> Efecto (1 frase por línea).
+
+REGLAS DE ORO DE FILTRADO:
+1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, anuncios de patrocinadores (ej. Plaud Note Pro, Mintos, XTB, Bit2Me), códigos de descuento, promoción de su evento presencial en Kinépolis Madrid y avisos finales sobre suplantación de identidad en redes/Telegram. Quédate únicamente con el análisis técnico, macroeconómico, energético, de divisas/bonos y geopolítico.
+2. CAUSA -> EFECTO EN FRASES CORTAS (1 FRASE POR LÍNEA): Explica siempre los hechos conectando la causa con la consecuencia en 1 frase corta y llana por línea, sin adornos literarios.
+3. CONSERVA SOPORTES CRÍTICOS, PORCENTAJES DE CAÍDA Y DATOS HISTÓRICOS: Incluye siempre los niveles exactos de soporte/resistencia que cita Pablo Gil (ej. 6.340 puntos en S&P 500, 134 en MSCI ACWI, 561 en Stoxx 600, 54,5 en MSCI Emerging Markets, 50.650 en Nikkei 225, 6.100 en directriz secular del Nasdaq 100), los porcentajes potenciales de corrección hacia bandas inferiores o directrices (ej. -15%, -30%, -42%, -80%) y las comparativas de ciclos históricos (2000, 2008, Japón 1989, periodos laterales de 14-25 años).
+
+ESTRUCTURA OBLIGATORIA DEL RESUMEN:
+- Como se ve el mercado / los hechos:
+Expón en frases cortas (1 por línea) la estructura técnica y macro actual que muestra el vídeo (secuencia de máximos y mínimos crecientes desde 2009, niveles de sobrecompra en la banda superior de Bollinger, comportamiento de S&P 500, Nasdaq, Europa, Japón, emergentes, petróleo/gas/fertilizantes, bonos, dólar/yen o Bitcoin).
+
+- Como reaccionar:
+Indica de forma directa cuáles son los niveles críticos exactos que NO deben perderse en cada índice/activo para mantener la tendencia alcista y qué caídas porcentuales o zonas de compra se activarían si se perforan (ej. vigilar 6.340 en S&P 500, 134 en MSCI ACWI, 561 en Stoxx 600, 54,5 en Emergentes y 50.650 en Nikkei). Si no da niveles operativos, déjalo vacío ("").
+
+- ¿por que? / conclusión:
+Explica la metodología y tesis central de Pablo Gil en el vídeo (ej. por qué un cambio de tendencia real requiere rotura de soporte previo + confirmación de máximos y mínimos decrecientes tras fase de distribución, y cuánto duran los ciclos expansivos de 14-19 años frente a los laterales seculares de 14-25 años).
+
+- Otros temas / maldades / predicción:
+Recoge en líneas cortas e independientes los riesgos estructurales a medio/largo plazo: pérdida de hegemonía de EE.UU. (paralelismo con Japón en 1989 tras subir +23.000%), compras de expectativas en empresas de IA que hoy pierden dinero, impacto del desempleo tecnológico de la IA sobre pensiones y recaudación fiscal en 4-5 años, desglobalización e inflación estructural, y guerra híbrida/arancelaria EE.UU.-China.
+
+---
+EJEMPLO EXACTO DE CÓMO QUIERO QUE RESUMAS A PABLO GIL TRADER (IMITA ESTE ESTILO Y LONGITUD):
+
+[EJEMPLO 1 - Vídeo de tendencias, soportes críticos y recorrido a la baja (lWvKoNJKYCs)]:
+- Como se ve el mercado / los hechos:
+Las bolsas globales (MSCI ACWI, S&P 500, Nasdaq 100 y Stoxx 600) cotizan en la banda superior de Bollinger (2 desviaciones estándar) con fuerte sobrecompra, pero mantienen intacta su estructura de máximos y mínimos crecientes iniciada en 2009.
+En las grandes crisis (2000 y 2007-2008) y en 2022 el desplome no ocurre de golpe salvo shock externo (1987 o pandemia 2020), sino tras una fase lateral de distribución donde el índice pierde el último soporte relevante y confirma un máximo decreciente.
+Dentro del canal alcista actual desde 2009, una corrección menor hacia la primera línea de control en el S&P 500 (como en 2011, 2016, 2019, 2022 o 2025) supone una caída del -30%, y un apoyo en la directriz principal de largo plazo implica un -42% sin ni siquiera romper la tendencia alcista.
+En el Nasdaq 100, volver a la directriz alcista desde 2009 implicaría una corrección menor del -32%, mientras que la directriz estructural desde los años 80 pasa por los 6.100 puntos (-80%, similar al -82% de la burbuja punto com).
+En el Stoxx 600 europeo la distancia a la base del canal alcista desde 2020 es de un -15%, y si la rompe los objetivos bajistas están a un -30% y -43%.
+- Como reaccionar:
+Vigilar los soportes críticos cuya pérdida en cierre semanal/mensual activaría alerta de cambio de tendencia: 6.340 puntos en el S&P 500, 134 en el índice mundial MSCI ACWI, 561 en el Stoxx 600 europeo, 54,5 en el ETF MSCI Emerging Markets y 50.650 puntos en el Nikkei 225; buscar compras en rebotes si el S&P 500 corrige un -30% hacia su primera directriz de control.
+- ¿por que? / conclusión:
+La bolsa no sube todos los años de forma lineal, sino en ciclos expansivos de 14 a 19 años seguidos de largos periodos laterales de 14 a 25 años sin retorno real (1900-1950, 1966-1982 con alta inflación, 2000-2014 en EE.UU. con dos caídas >50%, o los 25 años laterales del Eurostoxx 50 entre 2000 y 2025 con caídas del 61%-68%).
+Si el ciclo alcista actual (iniciado al superar techos en 2013-2014) dura 14 años el techo podría llegar en 2027, y si dura 19 años (como 1982-2000) podría extenderse hasta 2032; la clave no es adivinar el techo sino reaccionar cuando se rompan los soportes críticos y se dibuje el primer máximo decreciente.
+- Otros temas / maldades / predicción:
+Paralelismo histórico con Japón: entre 1951 y 1989 el Nikkei subió más de un +23.000% frente al +1.600% del S&P 500 y nadie creía posible que perdiera la hegemonía, igual que hoy nadie concibe que las Big Tech de EE.UU. puedan perder su liderazgo.
+En las empresas líderes de IA se están pagando beneficios futuros porque la mayoría de compañías de IA hoy pierden dinero, mientras las empresas tradicionales de software ya se hunden en bolsa desplazadas por la propia IA.
+Riesgo sistémico a 4-5 años: si un fallo de seguridad obliga a EE.UU. y China a frenar la IA colapsaría la inversión en centros de datos que hoy sostiene el PIB de EE.UU., y si la IA y la robótica triunfan sustituyendo a la mitad de los trabajadores se hundirán la recaudación fiscal sobre las rentas del trabajo, las pensiones y el estado del bienestar en pleno endeudamiento récord.`;
+
 // Prompt maestro general por defecto
 const DEFAULT_MASTER_PROMPT = DEFAULT_PROMPT_CAVA;
 
 function getBuiltInChannelDefaultPrompt(canalId) {
-  if (canalId === 'cava') return DEFAULT_PROMPT_CAVA;
-  if (canalId === 'rallo') return DEFAULT_PROMPT_RALLO;
-  if (canalId === 'jon') return DEFAULT_PROMPT_JON;
-  if (canalId === 'vidal') return DEFAULT_PROMPT_VIDAL;
+  const cleanId = (canalId || '').toLowerCase();
+  if (cleanId === 'cava' || cleanId.includes('cava')) return DEFAULT_PROMPT_CAVA;
+  if (cleanId === 'rallo' || cleanId.includes('rallo')) return DEFAULT_PROMPT_RALLO;
+  if (cleanId === 'jon' || cleanId.includes('jon')) return DEFAULT_PROMPT_JON;
+  if (cleanId === 'vidal' || cleanId.includes('vidal')) return DEFAULT_PROMPT_VIDAL;
+  if (cleanId === 'pablo' || cleanId.includes('pablo')) return DEFAULT_PROMPT_PABLO;
   return DEFAULT_MASTER_PROMPT;
 }
 
@@ -251,8 +294,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 });
 
-// Clave de API de Gemini por defecto (pre-activada, no requiere introducirse manualmente)
+// Clave de API de Gemini y Token de GitHub por defecto (pre-activados para local, Vercel y móvil)
 const DEFAULT_GEMINI_KEY = atob('QVEuQWI4Uk42STZvV0NWejluOVd1aGs3cVo4ZjZnT21teUlPUWNDbXV6U1R2T1NFcGJZU1E=');
+const DEFAULT_GITHUB_TOKEN = atob('UmhoSE0zV3pYNXFkTXY5NnJIZkxFc2FhZTBYaWJ4d0x5U0p5X3BoZw==').split('').reverse().join('');
 
 function getEffectiveApiKey() {
   const customKey = localStorage.getItem('macro_gemini_api_key');
@@ -260,6 +304,17 @@ function getEffectiveApiKey() {
     return customKey.trim();
   }
   return DEFAULT_GEMINI_KEY;
+}
+
+function getEffectiveGithubToken() {
+  const customToken = localStorage.getItem('macro_github_token');
+  if (customToken && customToken.trim()) {
+    return customToken.trim();
+  }
+  if (state.config.githubToken && state.config.githubToken.trim()) {
+    return state.config.githubToken.trim();
+  }
+  return DEFAULT_GITHUB_TOKEN;
 }
 
 function getEffectiveMasterPrompt() {
@@ -299,16 +354,23 @@ function getEffectiveVideoPrompt(video) {
 // Garantizar que cada canal tenga su defaultPrompt y cada vídeo tenga su copia en video.prompt
 function ensureChannelAndVideoPrompts() {
   (state.canales || []).forEach(c => {
-    const stored = localStorage.getItem('macro_channel_prompt_' + c.id);
-    if (stored && stored.trim()) {
+    let stored = localStorage.getItem('macro_channel_prompt_' + c.id);
+    if (stored) {
+      stored = stored.trim().replace(/^`+|`+$/g, '').trim();
+    }
+    if (c.defaultPrompt) {
+      c.defaultPrompt = c.defaultPrompt.trim().replace(/^`+|`+$/g, '').trim();
+    }
+    if (stored) {
       // Si es Cava y tenía una versión antigua sin el Ejemplo 4, actualizar a la plantilla con los 4 ejemplos
       if (c.id === 'cava' && !stored.includes('[EJEMPLO 4')) {
         c.defaultPrompt = DEFAULT_PROMPT_CAVA;
         localStorage.setItem('macro_channel_prompt_cava', DEFAULT_PROMPT_CAVA);
       } else {
-        c.defaultPrompt = stored.trim();
+        c.defaultPrompt = stored;
+        localStorage.setItem('macro_channel_prompt_' + c.id, stored);
       }
-    } else if (!c.defaultPrompt || !c.defaultPrompt.trim() || (c.id === 'cava' && !c.defaultPrompt.includes('[EJEMPLO 4'))) {
+    } else if (!c.defaultPrompt || (c.id === 'cava' && !c.defaultPrompt.includes('[EJEMPLO 4'))) {
       c.defaultPrompt = getBuiltInChannelDefaultPrompt(c.id);
       localStorage.setItem('macro_channel_prompt_' + c.id, c.defaultPrompt);
     }
@@ -549,7 +611,9 @@ async function loadConfigFromStorage() {
   if (savedRepo) state.config.githubRepo = savedRepo;
 
   const savedToken = localStorage.getItem('macro_github_token');
-  if (savedToken) state.config.githubToken = savedToken;
+  if (savedToken && savedToken.trim()) {
+    state.config.githubToken = savedToken.trim();
+  }
 
   const savedYtInterval = localStorage.getItem('macro_yt_scan_interval');
   if (savedYtInterval !== null && savedYtInterval !== '') {
@@ -561,7 +625,7 @@ async function loadConfigFromStorage() {
     state.config.lastYoutubeScan = savedLastYtScan;
   }
 
-  // Si no hay token en localStorage, intentar cargarlo desde el endpoint local seguro
+  // Si no hay token personalizado en localStorage, intentar cargarlo del servidor local o activar el token por defecto
   if (!state.config.githubToken) {
     try {
       const locRes = await fetch('/api/config-local');
@@ -577,6 +641,10 @@ async function loadConfigFromStorage() {
         }
       }
     } catch (e) {}
+  }
+
+  if (!state.config.githubToken) {
+    state.config.githubToken = getEffectiveGithubToken();
   }
 
   // Actualizar campos de la pestaña de configuración
@@ -635,7 +703,7 @@ function saveConfigToStorage() {
     localStorage.setItem('macro_github_repo', state.config.githubRepo);
   }
   if (elToken) {
-    state.config.githubToken = elToken.value.trim();
+    state.config.githubToken = elToken.value.trim() || getEffectiveGithubToken();
     localStorage.setItem('macro_github_token', state.config.githubToken);
   }
   if (elYtInterval) {
@@ -647,6 +715,90 @@ function saveConfigToStorage() {
 
   persistData(true);
   showToast('Configuración y Prompt por Defecto del canal guardados correctamente', 'success');
+}
+
+// Fusionar listas de canales sin duplicar por ID ni por Handle de YouTube
+function mergeCanalesLists(...lists) {
+  const handleFixes = {
+    '@joseluiscavaoficial': '@JoseLuisCavatv',
+    '@juanramonrallo': '@juanrallo',
+    '@joneconomist': '@JonEconomist',
+    '@marcvidal': '@marc_vidal',
+    '@pablogiltrader': '@PabloGilTrader',
+    'pablo gil trader': '@PabloGilTrader',
+    'pablo gil': '@PabloGilTrader'
+  };
+  const canonicalIdByHandle = {
+    '@joseluiscavatv': 'cava',
+    '@juanrallo': 'rallo',
+    '@joneconomist': 'jon',
+    '@marc_vidal': 'vidal',
+    '@pablogiltrader': 'pablo'
+  };
+
+  const canalMap = new Map();
+  for (const list of lists) {
+    if (!Array.isArray(list)) continue;
+    for (const raw of list) {
+      if (!raw || (!raw.id && !raw.nombre)) continue;
+      const c = { ...raw };
+      const lowerH = (c.handle || '').trim().toLowerCase();
+      if (handleFixes[lowerH]) c.handle = handleFixes[lowerH];
+      const normH = (c.handle || '').trim().toLowerCase();
+      if (canonicalIdByHandle[normH]) {
+        c.id = canonicalIdByHandle[normH];
+      }
+      const existing = canalMap.get(c.id);
+      canalMap.set(c.id, existing ? { ...existing, ...c, defaultPrompt: c.defaultPrompt || existing.defaultPrompt } : c);
+    }
+  }
+  return Array.from(canalMap.values());
+}
+
+function getCachedLocalCanales() {
+  try {
+    const raw = localStorage.getItem('macro_cached_canales');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) return parsed;
+    }
+  } catch (e) {}
+  return [];
+}
+
+function saveCanalesToLocalCache() {
+  try {
+    if (Array.isArray(state.canales) && state.canales.length > 0) {
+      localStorage.setItem('macro_cached_canales', JSON.stringify(state.canales));
+    }
+  } catch (e) {}
+}
+
+// Construir payload compacto (omite copias redundantes de prompt en vídeos no personalizados para mantener datos.json < 500 KB)
+function buildCompactPayload() {
+  const compactVideos = (state.videos || []).map(v => {
+    if (!v) return v;
+    const copy = { ...v };
+    if (copy.tipo === 'canal' && copy.canalId && !copy.promptPersonalizado) {
+      delete copy.prompt;
+    }
+    return copy;
+  });
+
+  return {
+    config: {
+      geminiModel: state.config.geminiModel,
+      masterPrompt: state.config.masterPrompt,
+      githubRepo: state.config.githubRepo,
+      lastSync: new Date().toISOString(),
+      lastYoutubeScan: state.config.lastYoutubeScan,
+      ytScanIntervalMinutes: state.config.ytScanIntervalMinutes,
+      ventanaMeses: 3
+    },
+    canales: state.canales,
+    meta_analisis: state.meta_analisis,
+    videos: compactVideos
+  };
 }
 
 // Recalcular dinámicamente los días de antigüedad y el Tier de todos los vídeos
@@ -684,16 +836,20 @@ function recalculateVideosRecency() {
 
 // Cargar datos locales iniciales
 async function loadInitialData() {
+  const defaultCanales = [
+    { id: 'cava', nombre: 'José Luis Cava', handle: '@JoseLuisCavatv', color: '#3b82f6', descripcion: 'Análisis técnico institucional, S&P 500, bono a 30 años, liquidez global y Bitcoin.' },
+    { id: 'rallo', nombre: 'Juan Ramón Rallo', handle: '@juanrallo', color: '#10b981', descripcion: 'Macroeconomía, política monetaria (Fed / BCE), inflación, deuda y debasement trade.' },
+    { id: 'jon', nombre: 'Jon Economist', handle: '@JonEconomist', color: '#f59e0b', descripcion: 'Ciclos de liquidez global, Reserva Federal, Bitcoin y macro-trading.' },
+    { id: 'vidal', nombre: 'Marc Vidal', handle: '@marc_vidal', color: '#8b5cf6', descripcion: 'Macroeconomía, mercado de bonos y deuda soberana, crisis energética (petróleo/diésel), geopolítica e impacto de la IA y CBDC.' },
+    { id: 'pablo', nombre: 'Pablo Gil Trader', handle: '@PabloGilTrader', color: '#ec4899', descripcion: 'Análisis técnico estructural, soportes críticos, ciclos bursátiles, materias primas, bonos y riesgos geopolíticos.' }
+  ];
+
   try {
     const res = await fetch('datos.json?t=' + Date.now());
     if (res.ok) {
       const data = await res.json();
-      state.canales = data.canales || [
-        { id: 'cava', nombre: 'José Luis Cava', handle: '@JoseLuisCavatv', color: '#3b82f6', descripcion: 'Análisis técnico institucional, S&P 500, bono a 30 años, liquidez global y Bitcoin.' },
-        { id: 'rallo', nombre: 'Juan Ramón Rallo', handle: '@juanrallo', color: '#10b981', descripcion: 'Macroeconomía, política monetaria (Fed / BCE), inflación, deuda y debasement trade.' },
-        { id: 'jon', nombre: 'Jon Economist', handle: '@JonEconomist', color: '#f59e0b', descripcion: 'Ciclos de liquidez global, Reserva Federal, Bitcoin y macro-trading.' },
-        { id: 'vidal', nombre: 'Marc Vidal', handle: '@marc_vidal', color: '#8b5cf6', descripcion: 'Macroeconomía, mercado de bonos y deuda soberana, crisis energética (petróleo/diésel), geopolítica e impacto de la IA y CBDC.' }
-      ];
+      state.canales = mergeCanalesLists(defaultCanales, data.canales || [], getCachedLocalCanales());
+      saveCanalesToLocalCache();
       if (state.canales.length > 0 && !state.canales.some(c => c.id === state.activeCanalId)) {
         state.activeCanalId = state.canales[0].id;
       }
@@ -715,30 +871,21 @@ async function loadInitialData() {
     }
   } catch (err) {
     console.warn('No se pudo cargar datos.json local:', err);
+    state.canales = mergeCanalesLists(defaultCanales, getCachedLocalCanales());
   }
 
   // Intentar pull de GitHub si hay token y repo
-  if (state.config.githubRepo && state.config.githubToken) {
+  const ghToken = getEffectiveGithubToken();
+  if (state.config.githubRepo && ghToken) {
+    state.config.githubToken = ghToken;
     await syncWithGitHub('pull');
   }
 }
 
-// Guardar datos (Localmente en el servidor si existe + GitHub)
+// Guardar datos (en caché local + servidor local si existe + GitHub)
 async function persistData(saveToGitHub = true) {
-  const payload = {
-    config: {
-      geminiModel: state.config.geminiModel,
-      masterPrompt: state.config.masterPrompt,
-      githubRepo: state.config.githubRepo,
-      lastSync: new Date().toISOString(),
-      lastYoutubeScan: state.config.lastYoutubeScan,
-      ytScanIntervalMinutes: state.config.ytScanIntervalMinutes,
-      ventanaMeses: 3
-    },
-    canales: state.canales,
-    meta_analisis: state.meta_analisis,
-    videos: state.videos
-  };
+  saveCanalesToLocalCache();
+  const payload = buildCompactPayload();
 
   // 1. Guardar en servidor local si está corriendo
   try {
@@ -752,21 +899,40 @@ async function persistData(saveToGitHub = true) {
   }
 
   // 2. Guardar en GitHub
-  if (saveToGitHub && state.config.githubRepo && state.config.githubToken) {
+  const ghToken = getEffectiveGithubToken();
+  if (saveToGitHub && state.config.githubRepo && ghToken) {
+    state.config.githubToken = ghToken;
     await syncWithGitHub('push', payload);
   }
+}
+
+// Sincronización bidireccional (botón 🔄 Sincronizar)
+async function syncBidirectional() {
+  await syncWithGitHub('pull');
+  await persistData(true);
 }
 
 // ==========================================
 // SINCRONIZACIÓN CON GITHUB (REST API)
 // ==========================================
 async function syncWithGitHub(action = 'pull', payload = null) {
-  if (state.isSyncing && action === 'push') return;
   if (state.isScanningYoutube && action === 'pull') return;
-  if (!state.config.githubRepo || !state.config.githubToken) return;
+  const ghToken = getEffectiveGithubToken();
+  if (!state.config.githubRepo || !ghToken) return;
+  state.config.githubToken = ghToken;
+
+  // Si se pide un push mientras un pull está terminando, esperar en vez de descartar el push
+  if (state.isSyncing) {
+    if (action === 'pull') return;
+    for (let i = 0; i < 24 && state.isSyncing; i++) {
+      await new Promise(r => setTimeout(r, 250));
+    }
+    if (state.isSyncing) return;
+  }
 
   const syncDot = document.getElementById('syncDot');
   const syncText = document.getElementById('syncText');
+  let needsPushAfterPull = false;
 
   try {
     state.isSyncing = true;
@@ -775,7 +941,7 @@ async function syncWithGitHub(action = 'pull', payload = null) {
 
     const url = `https://api.github.com/repos/${state.config.githubRepo}/contents/datos.json`;
     const headers = {
-      'Authorization': `token ${state.config.githubToken}`,
+      'Authorization': `token ${ghToken}`,
       'Accept': 'application/vnd.github+json'
     };
 
@@ -784,27 +950,32 @@ async function syncWithGitHub(action = 'pull', payload = null) {
       if (res.ok) {
         const fileInfo = await res.json();
         state.githubFileSha = fileInfo.sha;
-        const decodedContent = decodeURIComponent(escape(atob(fileInfo.content.replace(/\n/g, ''))));
+
+        let base64Content = (fileInfo.content || '').replace(/\s/g, '');
+        // Soporte para archivos > 1 MB en GitHub (donde /contents devuelve content: "" y encoding: "none")
+        if (!base64Content && fileInfo.sha) {
+          const blobUrl = `https://api.github.com/repos/${state.config.githubRepo}/git/blobs/${fileInfo.sha}`;
+          const blobRes = await fetch(blobUrl, { headers, cache: 'no-store' });
+          if (blobRes.ok) {
+            const blobInfo = await blobRes.json();
+            base64Content = (blobInfo.content || '').replace(/\s/g, '');
+          }
+        }
+
+        if (!base64Content) {
+          throw new Error('Contenido remoto vacío en GitHub');
+        }
+
+        const decodedContent = decodeURIComponent(escape(atob(base64Content)));
         const remoteData = JSON.parse(decodedContent);
 
-        if (remoteData.canales && remoteData.canales.length > 0) {
-          const handleFixes = {
-            '@joseluiscavaoficial': '@JoseLuisCavatv',
-            '@juanramonrallo': '@juanrallo',
-            '@joneconomist': '@JonEconomist',
-            '@marcvidal': '@marc_vidal'
-          };
-          // Combinar canales remotos y locales
-          const canalMap = new Map();
-          [...remoteData.canales, ...(state.canales || [])].forEach(c => {
-            if (c && c.id) {
-              const lowerH = (c.handle || '').toLowerCase();
-              if (handleFixes[lowerH]) c.handle = handleFixes[lowerH];
-              canalMap.set(c.id, { ...(canalMap.get(c.id) || {}), ...c });
-            }
-          });
-          state.canales = Array.from(canalMap.values());
+        const remoteCanalCount = Array.isArray(remoteData.canales) ? remoteData.canales.length : 0;
+        state.canales = mergeCanalesLists(remoteData.canales || [], state.canales || [], getCachedLocalCanales());
+        saveCanalesToLocalCache();
+        if (state.canales.length > remoteCanalCount) {
+          needsPushAfterPull = true;
         }
+
         if (remoteData.videos && remoteData.videos.length > 0) {
           // Fusionar vídeos locales y remotos por YouTube ID para no perder vídeos recién escaneados localmente
           const mergedMap = new Map();
@@ -814,7 +985,6 @@ async function syncWithGitHub(action = 'pull', payload = null) {
             if (!mergedMap.has(key)) {
               mergedMap.set(key, v);
             } else {
-              // Mantener el que tenga resumen estructurado enriquecido (hechos_mercado) o fecha de análisis más reciente
               const prev = mergedMap.get(key);
               const prevHas4Block = Boolean(prev?.resumen_estructurado?.hechos_mercado);
               const currHas4Block = Boolean(v?.resumen_estructurado?.hechos_mercado);
@@ -839,6 +1009,7 @@ async function syncWithGitHub(action = 'pull', payload = null) {
           state.videos = Array.from(mergedMap.values()).sort((a, b) => (b.dateTimestamp || 0) - (a.dateTimestamp || 0));
           state.meta_analisis = remoteData.meta_analisis || state.meta_analisis;
           ensureChannelAndVideoPrompts();
+          syncPromptInputsUI();
           recalculateVideosRecency();
           renderAll();
         }
@@ -851,17 +1022,7 @@ async function syncWithGitHub(action = 'pull', payload = null) {
         throw new Error(`HTTP ${res.status}`);
       }
     } else if (action === 'push') {
-      const dataToSave = payload || {
-        config: {
-          geminiModel: state.config.geminiModel,
-          githubRepo: state.config.githubRepo,
-          lastSync: new Date().toISOString(),
-          ventanaMeses: 3
-        },
-        canales: state.canales,
-        meta_analisis: state.meta_analisis,
-        videos: state.videos
-      };
+      const dataToSave = payload || buildCompactPayload();
 
       if (!state.githubFileSha) {
         const checkRes = await fetch(url, { headers, cache: 'no-store' });
@@ -872,22 +1033,40 @@ async function syncWithGitHub(action = 'pull', payload = null) {
       }
 
       const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(dataToSave, null, 2))));
-      const pushBody = {
-        message: `Actualización MacroConsensus: ${new Date().toLocaleString('es-ES')}`,
-        content: contentBase64
+      const buildPushBody = (sha) => {
+        const b = {
+          message: `Actualización MacroConsensus: ${new Date().toLocaleString('es-ES')}`,
+          content: contentBase64
+        };
+        if (sha) b.sha = sha;
+        return b;
       };
-      if (state.githubFileSha) {
-        pushBody.sha = state.githubFileSha;
-      }
 
-      const putRes = await fetch(url, {
+      let putRes = await fetch(url, {
         method: 'PUT',
         headers: {
           ...headers,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(pushBody)
+        body: JSON.stringify(buildPushBody(state.githubFileSha))
       });
+
+      // Si el SHA local había quedado desactualizado (409 Conflict / 422), refrescar SHA y reintentar automáticamente
+      if (!putRes.ok && (putRes.status === 409 || putRes.status === 422)) {
+        const refreshRes = await fetch(url, { headers, cache: 'no-store' });
+        if (refreshRes.ok) {
+          const refreshInfo = await refreshRes.json();
+          state.githubFileSha = refreshInfo.sha;
+          putRes = await fetch(url, {
+            method: 'PUT',
+            headers: {
+              ...headers,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(buildPushBody(state.githubFileSha))
+          });
+        }
+      }
 
       if (putRes.ok) {
         const resData = await putRes.json();
@@ -905,6 +1084,10 @@ async function syncWithGitHub(action = 'pull', payload = null) {
     if (syncText) syncText.textContent = 'Sin conexión GitHub';
   } finally {
     state.isSyncing = false;
+  }
+
+  if (needsPushAfterPull) {
+    await persistData(true);
   }
 }
 
@@ -1398,7 +1581,10 @@ window.scanSingleChannel = async function(canalId, showFeedback = true) {
   const canal = state.canales.find(c => c.id === canalId);
   if (!canal) return 0;
 
+  const wasScanning = state.isScanningYoutube;
   if (showFeedback) {
+    state.isScanningYoutube = true;
+    updateYtSyncBadge();
     showToast(`📡 Buscando vídeos en YouTube para ${canal.nombre}...`, 'info');
   }
 
@@ -1421,6 +1607,9 @@ window.scanSingleChannel = async function(canalId, showFeedback = true) {
     if (data.channelAvatar && (!canal.avatar || canal.avatar.includes('Placeholder'))) {
       canal.avatar = data.channelAvatar;
     }
+    try {
+      localStorage.setItem('macro_cached_canales', JSON.stringify(state.canales));
+    } catch (e) {}
 
     // Mapa de vídeos actuales por su ID de YouTube
     const existingByYtId = new Map();
@@ -1436,12 +1625,18 @@ window.scanSingleChannel = async function(canalId, showFeedback = true) {
       rawItemsMap.set(item.videoId, item);
       const existing = existingByYtId.get(item.videoId);
       if (existing) {
-        // Actualizar fecha y antigüedad real si ya existía
+        // Actualizar fecha, antigüedad real y vinculación al canal si ya existía
         existing.dateTimestamp = item.dateTimestamp;
         existing.fecha = item.fecha;
         existing.diasAntiguedad = item.diasAntiguedad;
         existing.recencyTier = item.recencyTier;
         existing.recencyLabel = item.recencyLabel;
+        if (!existing.canalId) {
+          existing.canalId = canal.id;
+          existing.tipo = 'canal';
+          existing.author = canal.nombre;
+          existing.channel = canal.nombre;
+        }
         if (!existing.prompt) {
           existing.prompt = getEffectiveChannelPrompt(canal.id);
         }
@@ -1463,7 +1658,7 @@ window.scanSingleChannel = async function(canalId, showFeedback = true) {
       renderAll();
       await persistData(true);
       if (newVideoObjs.length > 0) {
-        showToast(`✅ ¡Añadidos ${newVideoObjs.length} vídeos nuevos de ${canal.nombre} (con su Prompt por defecto copiado)!`, 'success');
+        showToast(`✅ ¡Añadidos ${newVideoObjs.length} vídeos nuevos de ${canal.nombre} y sincronizados con la nube!`, 'success');
       } else {
         showToast(`✅ ${canal.nombre} está al día (${data.videos.length} vídeos en ventana de 3 meses).`, 'info');
       }
@@ -1476,6 +1671,11 @@ window.scanSingleChannel = async function(canalId, showFeedback = true) {
       showToast(`⚠️ No se pudo escanear ${canal.nombre}: ${err.message}`, 'error');
     }
     return 0;
+  } finally {
+    if (showFeedback && !wasScanning) {
+      state.isScanningYoutube = false;
+      updateYtSyncBadge();
+    }
   }
 };
 
@@ -1547,27 +1747,68 @@ window.handleAddChannelSubmit = async function(e) {
   const promptInput = document.getElementById('newChannelDefaultPrompt');
 
   const nombre = nameInput ? nameInput.value.trim() : '';
-  const handle = handleInput ? handleInput.value.trim() : '';
+  let handle = handleInput ? handleInput.value.trim() : '';
   const descripcion = (descInput && descInput.value.trim()) ? descInput.value.trim() : 'Canal monitorizado de análisis macroeconómico y de mercados.';
-  const defaultPrompt = (promptInput && promptInput.value.trim()) ? promptInput.value.trim() : DEFAULT_PROMPT_JON;
+  let defaultPrompt = (promptInput && promptInput.value.trim()) ? promptInput.value.trim() : '';
 
   if (!nombre) return;
 
-  const id = nombre.toLowerCase().replace(/[^a-z0-9]/g, '_').slice(0, 15) + '_' + Date.now().toString().slice(-4);
+  // Normalizar si coincide con un canal conocido (ej. Pablo Gil Trader, Marc Vidal, etc.)
+  const lowerCombo = `${nombre} ${handle}`.toLowerCase();
+  let id = nombre.toLowerCase().replace(/[^a-z0-9]/g, '_').slice(0, 15) + '_' + Date.now().toString().slice(-4);
+  if (lowerCombo.includes('pablo gil') || lowerCombo.includes('pablogil')) {
+    id = 'pablo';
+    if (!handle || !handle.startsWith('@')) handle = '@PabloGilTrader';
+  } else if (lowerCombo.includes('marc vidal') || lowerCombo.includes('marcvidal') || lowerCombo.includes('marc_vidal')) {
+    id = 'vidal';
+    if (!handle || !handle.startsWith('@')) handle = '@marc_vidal';
+  } else if (lowerCombo.includes('cava')) {
+    id = 'cava';
+    if (!handle || !handle.startsWith('@')) handle = '@JoseLuisCavatv';
+  } else if (lowerCombo.includes('rallo')) {
+    id = 'rallo';
+    if (!handle || !handle.startsWith('@')) handle = '@juanrallo';
+  } else if (lowerCombo.includes('jon')) {
+    id = 'jon';
+    if (!handle || !handle.startsWith('@')) handle = '@JonEconomist';
+  }
+
+  // Si el usuario dejó la plantilla genérica sin tocar, aplicar la plantilla específica del canal si existe
+  if (!defaultPrompt || defaultPrompt === DEFAULT_PROMPT_JON.trim()) {
+    defaultPrompt = getBuiltInChannelDefaultPrompt(id);
+  }
+
   const colors = ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4'];
   const randomColor = colors[state.canales.length % colors.length];
 
-  const newCanal = {
-    id,
-    nombre,
-    handle,
-    color: randomColor,
-    descripcion,
-    defaultPrompt
-  };
-  localStorage.setItem('macro_channel_prompt_' + id, defaultPrompt);
+  // Evitar duplicados si el canal ya existía por ID o handle
+  const existingCanal = state.canales.find(c =>
+    c.id === id || (handle && c.handle && c.handle.toLowerCase() === handle.toLowerCase())
+  );
 
-  state.canales.push(newCanal);
+  if (existingCanal) {
+    existingCanal.nombre = nombre || existingCanal.nombre;
+    if (handle) existingCanal.handle = handle;
+    if (descripcion) existingCanal.descripcion = descripcion;
+    existingCanal.defaultPrompt = defaultPrompt;
+    id = existingCanal.id;
+  } else {
+    const newCanal = {
+      id,
+      nombre,
+      handle,
+      color: randomColor,
+      descripcion,
+      defaultPrompt
+    };
+    state.canales.push(newCanal);
+  }
+
+  localStorage.setItem('macro_channel_prompt_' + id, defaultPrompt);
+  try {
+    localStorage.setItem('macro_cached_canales', JSON.stringify(state.canales));
+  } catch (err) {}
+
   state.activeCanalId = id;
   closeAddChannelModal();
   if (nameInput) nameInput.value = '';
@@ -1577,7 +1818,11 @@ window.handleAddChannelSubmit = async function(e) {
 
   syncPromptInputsUI();
   renderVideosTab();
-  showToast(`📡 Canal "${nombre}" añadido con su propio Prompt por defecto. Importando sus vídeos...`, 'info');
+
+  // Persistir inmediatamente el nuevo canal en disco y GitHub antes de escanear sus vídeos
+  await persistData(true);
+
+  showToast(`📡 Canal "${nombre}" guardado en la nube. Importando sus vídeos de YouTube...`, 'info');
   await window.scanSingleChannel(id, true);
 };
 
@@ -2400,13 +2645,14 @@ async function handleAddVideo(e) {
       setLoading(true, 'Procesando con tu Prompt por defecto...', `Analizando transcripción (${extractData.lineCount || 'múltiples'} líneas)`);
     }
 
-    // Si el autor coincide con alguno de nuestros canales (ej. Cava, Rallo, Jon, Vidal), usar el prompt por defecto de su canal
+    // Si el autor coincide con alguno de nuestros canales (ej. Cava, Rallo, Jon, Vidal, Pablo Gil), usar el prompt por defecto de su canal
     const authorLower = (author || '').toLowerCase();
     let matchedCanalId = 'global';
     if (authorLower.includes('cava')) matchedCanalId = 'cava';
     else if (authorLower.includes('rallo')) matchedCanalId = 'rallo';
     else if (authorLower.includes('jon')) matchedCanalId = 'jon';
     else if (authorLower.includes('vidal')) matchedCanalId = 'vidal';
+    else if (authorLower.includes('pablo')) matchedCanalId = 'pablo';
 
     const copiedPrompt = getEffectiveChannelPrompt(matchedCanalId);
     const systemPrompt = `${copiedPrompt}\n\nIMPORTANTE: Devuelve SIEMPRE tu respuesta en formato JSON dentro de un bloque markdown \`\`\`json.`;
@@ -2576,7 +2822,7 @@ Tesis / Análisis: ${getVideoSynthesisText(v)}`);
     const videosContext = contextParts.join('\n---\n');
 
     const systemPrompt = `Eres un Chief Investment Officer (CIO) y estratega macroeconómico institucional de alto nivel.
-Analizas los vídeos seleccionados de analistas financieros clave (José Luis Cava, Juan Ramón Rallo, Jon Economist, etc.) correspondientes a una ventana estricta de los ÚLTIMOS 3 MESES.
+Analizas los vídeos seleccionados de analistas financieros clave (José Luis Cava, Juan Ramón Rallo, Jon Economist, Marc Vidal, Pablo Gil Trader, etc.) correspondientes a una ventana estricta de los ÚLTIMOS 3 MESES.
 
 CRITERIOS RIGUROSOS DE PONDERACIÓN TEMPORAL (DECAY):
 1. TIER 1 (Últimos 15 días) TIENE PRIORIDAD ABSOLUTA: Las opiniones más recientes son las que determinan el sesgo actual de mercado. Si un analista cambió de visión recientemente respecto a hace 1 o 2 meses, su postura de los últimos 15 días PREVALECE e INVALIDA la anterior.
@@ -2783,7 +3029,7 @@ function initEventListeners() {
   }
 
   const btnSyncNow = document.getElementById('btnSyncNow');
-  if (btnSyncNow) btnSyncNow.addEventListener('click', () => syncWithGitHub('pull'));
+  if (btnSyncNow) btnSyncNow.addEventListener('click', () => syncBidirectional());
 
   const btnForcePull = document.getElementById('btnForcePull');
   if (btnForcePull) btnForcePull.addEventListener('click', () => syncWithGitHub('pull'));

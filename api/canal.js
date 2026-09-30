@@ -107,7 +107,12 @@ const KNOWN_CHANNEL_HANDLES = {
   'marc_vidal': '@marc_vidal',
   '@marcvidal': '@marc_vidal',
   'marcvidal': '@marc_vidal',
-  'marc vidal': '@marc_vidal'
+  'marc vidal': '@marc_vidal',
+  '@pablogiltrader': '@PabloGilTrader',
+  'pablogiltrader': '@PabloGilTrader',
+  'pablo gil trader': '@PabloGilTrader',
+  'pablo gil': '@PabloGilTrader',
+  '@pablogil': '@PabloGilTrader'
 };
 
 async function resolveYouTubeChannelBaseUrl(query, headers) {

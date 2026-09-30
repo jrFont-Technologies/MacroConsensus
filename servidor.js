@@ -320,7 +320,12 @@ const KNOWN_CHANNEL_HANDLES = {
   'marc_vidal': '@marc_vidal',
   '@marcvidal': '@marc_vidal',
   'marcvidal': '@marc_vidal',
-  'marc vidal': '@marc_vidal'
+  'marc vidal': '@marc_vidal',
+  '@pablogiltrader': '@PabloGilTrader',
+  'pablogiltrader': '@PabloGilTrader',
+  'pablo gil trader': '@PabloGilTrader',
+  'pablo gil': '@PabloGilTrader',
+  '@pablogil': '@PabloGilTrader'
 };
 
 // Buscar el canal en YouTube si el handle introducido da 404 o es un nombre libre
@@ -568,6 +573,7 @@ async function fetchYouTubeChannelVideos(handleOrUrl, maxDays = 90) {
     return {
       ok: true,
       channelId,
+      resolvedHandle,
       channelTitle,
       channelAvatar,
       count: videos.length,
