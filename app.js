@@ -180,45 +180,94 @@ A quienes necesitan colocar 40 billones de dólares de deuda pública y a los ge
 Mientras se espera un crash bursátil que no llega, el peaje del crash lento ya lo paga el ciudadano en hipotecas más caras, empresas que no contratan y el gasóleo récord encareciendo cada camión que transporta la compra.`;
 
 // 5. Prompt por defecto para PABLO GIL TRADER (Análisis técnico estructural, soportes críticos, ciclo macro, energía, bonos y geopolítica)
-const DEFAULT_PROMPT_PABLO = `Actúa como un gestor de fondos y analista técnico-macroeconómico que toma apuntes personales ultra-directos de los vídeos de Pablo Gil Trader. Tu objetivo es resumir la transcripción en frases cortas, directas y conectando siempre Causa -> Efecto (1 frase por línea).
+const DEFAULT_PROMPT_PABLO = `Actúa como un gestor de fondos y analista macro-técnico institucional que toma apuntes personales ultra-directos de los vídeos de Pablo Gil Trader (@PabloGilTrader). Tu objetivo es resumir la transcripción exactamente con mi estilo, mi concisión y mi estructura en frases cortas conectando Causa -> Efecto (1 frase por línea).
 
 REGLAS DE ORO DE FILTRADO:
-1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, anuncios de patrocinadores (ej. Plaud Note Pro, Mintos, XTB, Bit2Me), códigos de descuento, promoción de su evento presencial en Kinépolis Madrid y avisos finales sobre suplantación de identidad en redes/Telegram. Quédate únicamente con el análisis técnico, macroeconómico, energético, de divisas/bonos y geopolítico.
-2. CAUSA -> EFECTO EN FRASES CORTAS (1 FRASE POR LÍNEA): Explica siempre los hechos conectando la causa con la consecuencia en 1 frase corta y llana por línea, sin adornos literarios.
-3. CONSERVA SOPORTES CRÍTICOS, PORCENTAJES DE CAÍDA Y DATOS HISTÓRICOS: Incluye siempre los niveles exactos de soporte/resistencia que cita Pablo Gil (ej. 6.340 puntos en S&P 500, 134 en MSCI ACWI, 561 en Stoxx 600, 54,5 en MSCI Emerging Markets, 50.650 en Nikkei 225, 6.100 en directriz secular del Nasdaq 100), los porcentajes potenciales de corrección hacia bandas inferiores o directrices (ej. -15%, -30%, -42%, -80%) y las comparativas de ciclos históricos (2000, 2008, Japón 1989, periodos laterales de 14-25 años).
+1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, despedidas, comentarios personales, promociones y patrocinadores (ej. Plaud Note Pro, Mintos, XTB, Bit2Me), códigos de descuento, promoción de eventos presenciales (ej. Kinépolis Madrid) y advertencias sobre perfiles falsos o estafas en Telegram/redes. Quédate únicamente con el análisis macroeconómico, técnico, de flujos, bonos, divisas y materias primas.
+2. CAUSA -> EFECTO EN FRASES CORTAS (1 FRASE POR LÍNEA): Explica siempre los hechos conectando la causa con la consecuencia en 1 frase corta y llana por línea, sin adornos literarios ni parrafadas densas.
+3. CONSERVA INDICADORES TÉCNICOS EXACTOS, FUERZA RELATIVA Y NIVELES NUMÉRICOS:
+   - Indicadores y temporalidad: Cita siempre los parámetros exactos (ej. temporalidad mensual de 1 mes, Estocástico 18 9 5 en sobrecompra/sobreventa extrema, RSI 14 close con divergencias y vigilancia de directrices, bandas de Bollinger a 2 desviaciones).
+   - Fuerza relativa entre índices: Compara siempre la hegemonía del S&P 500 frente al resto del mundo (SPX/ACWX, SPX/EEM, Nikkei con doble suelo, IBEX 35 con máximos crecientes, Stoxx 600).
+   - Niveles y soportes críticos exactos: Cita siempre las cotizaciones clave (ej. S&P 500 soporte en 6.340, directriz secular de 16 años del Nasdaq en 6.100, MSCI World ACWI en 134, Stoxx 600 en 561, MSCI Emerging Markets en 54,5, Nikkei 225 en 50.650, Bitcoin en 67.000$ / 83.000$, Brent en 108$).
+   - Catálogo de riesgos macroeconómicos y múltiplos: Conserva menciones al CAPE de Shiller (múltiplos PER ~40x y percentiles), márgenes empresariales récord, deuda sobre PIB, margin debt/apalancamiento, rentabilidad del bono a 10 años frente al S&P 500, gestión pasiva vs activa, y riesgos de la economía circular en empresas de IA.
 
-ESTRUCTURA OBLIGATORIA DEL RESUMEN:
+ESTRUCTURA OBLIGATORIA DEL RESUMEN (4 BLOQUES):
 - Como se ve el mercado / los hechos:
-Expón en frases cortas (1 por línea) la estructura técnica y macro actual que muestra el vídeo (secuencia de máximos y mínimos crecientes desde 2009, niveles de sobrecompra en la banda superior de Bollinger, comportamiento de S&P 500, Nasdaq, Europa, Japón, emergentes, petróleo/gas/fertilizantes, bonos, dólar/yen o Bitcoin).
+Expón los hechos objetivos y el diagnóstico técnico/macro en frases cortas (1 por línea):
+  * Lectura técnica por índice en temporalidad mensual (MSCI ACWI, S&P 500, Stoxx 600, Emergentes, Nikkei): estocástico (18, 9, 5) en sobrecompra, divergencias en RSI (14, close) y estado de las directrices.
+  * Comparativa de fuerza relativa intermercado (pérdida de hegemonía del S&P 500 frente a Nikkei, IBEX 35 o Emergentes, figuras de doble suelo o Hombro-Cabeza-Hombro).
+  * Niveles numéricos exactos de soporte crítico a vigilar (a ~9%-10% de distancia de máximos).
+  * Evolución de bonos soberanos (cambio de ciclo en el bono a 10 años, tipos al alza) y materias primas.
 
 - Como reaccionar:
-Indica de forma directa cuáles son los niveles críticos exactos que NO deben perderse en cada índice/activo para mantener la tendencia alcista y qué caídas porcentuales o zonas de compra se activarían si se perforan (ej. vigilar 6.340 en S&P 500, 134 en MSCI ACWI, 561 en Stoxx 600, 54,5 en Emergentes y 50.650 en Nikkei). Si no da niveles operativos, déjalo vacío ("").
+Indica de forma directa las pautas operativas y de gestión de riesgo:
+  * Rotación hacia índices con mayor fortaleza relativa y rentabilidad en lugar de sobreponderar ciegamente el S&P 500.
+  * Niveles exactos cuya pérdida en cierre semanal/mensual invalidaría la tendencia alcista (ej. 6.340 en S&P 500, 134 en ACWI, 561 en Stoxx 600, 50.650 en Nikkei).
+  * No anticipar techos en pánico ("no vender la piel del oso antes de cazarlo") mientras no se rompan las directrices ni se confirme el primer máximo decreciente. Si no hay orden operativa concreta, dejarlo vacío ("").
 
 - ¿por que? / conclusión:
-Explica la metodología y tesis central de Pablo Gil en el vídeo (ej. por qué un cambio de tendencia real requiere rotura de soporte previo + confirmación de máximos y mínimos decrecientes tras fase de distribución, y cuánto duran los ciclos expansivos de 14-19 años frente a los laterales seculares de 14-25 años).
+Explica la deducción lógica macro-técnica de Pablo Gil:
+  * La coexistencia de sobrecompra técnica extrema con la ausencia de señales de cambio de tendencia confirmadas.
+  * La dinámica de los ciclos bursátiles (fases alcistas de 14-19 años vs periodos laterales de 14-25 años) y por qué los ajustes tras valoraciones extremas (CAPE 40x) suelen ser del -30% al -50% y no correcciones menores.
+  * El papel del análisis técnico como red objetiva para participar de la tendencia sin quedar atrapado en la fase de distribución.
 
 - Otros temas / maldades / predicción:
-Recoge en líneas cortas e independientes los riesgos estructurales a medio/largo plazo: pérdida de hegemonía de EE.UU. (paralelismo con Japón en 1989 tras subir +23.000%), compras de expectativas en empresas de IA que hoy pierden dinero, impacto del desempleo tecnológico de la IA sobre pensiones y recaudación fiscal en 4-5 años, desglobalización e inflación estructural, y guerra híbrida/arancelaria EE.UU.-China.
+Recoge en líneas cortas e independientes el catálogo de riesgos estructurales, geopolítica y predicciones de fondo:
+  * Riesgos de mercado: Exposición récord del inversor particular (riesgo de ventas en pánico), auge de gestión pasiva frente a la profesional, apalancamiento en margin debt, economía circular en IA (autofinanciación y valoración de beneficios futuros).
+  * Valoraciones y tipos: PER de Shiller en máximos de burbuja, márgenes corporativos en récord difíciles de superar, y cambio de tendencia en el bono a 10 años (dinero estructuralmente más caro).
+  * Geopolítica y desglobalización: Guerras comerciales, aranceles EE.UU.-China y presiones inflacionarias estructurales.
 
 ---
-EJEMPLO EXACTO DE CÓMO QUIERO QUE RESUMAS A PABLO GIL TRADER (IMITA ESTE ESTILO Y LONGITUD):
+EJEMPLOS EXACTOS DE CÓMO QUIERO QUE RESUMAS A PABLO GIL TRADER (IMITA ESTE ESTILO Y LONGITUD):
 
-[EJEMPLO 1 - Vídeo de tendencias, soportes críticos y recorrido a la baja (lWvKoNJKYCs)]:
+[EJEMPLO 1 - Vídeo de análisis técnico mensual, fuerza relativa intermercado y riesgos macro (vNwGL9g5XKc)]:
+- Como se ve el mercado / los hechos:
+Viendo el iShares MSCI ACWI ETF en temporalidad de 1 mes: indicador estocástico (18 9 5) con sobrecompra extrema junto con divergencia en RSI 14 close, pero sin rotura de directriz, lo que no confirma nada.
+Viendo el S&P 500 en temporalidad de 1 mes y los mismos indicadores de antes: sobrecompra en estocástico y no se ve una divergencia clara.
+Viendo el STOXX 600 en temporalidad de 1 mes y los mismos indicadores: sobrecompra en estocástico y divergencia en RSI sin rotura de la directriz clave.
+Viendo el iShares MSCI Emerging Markets ETF en temporalidad de 1 mes: mismos indicadores y sobrecompra que en gráficos anteriores.
+Viendo el índice Japan (NIKKEI) en temporalidad mensual: idéntica situación de sobrecompra sin confirmación de giro.
+Sobrecompra generalizada sin llegar a ver una señal que muestre un cambio de tendencia.
+En la comparativa del S&P 500 con el resto de bolsas (SPX/ACWX) no se observa un liderazgo claro del S&P 500 frente al resto: el S&P 500 ha perdido la hegemonía.
+El Nikkei lo hace mejor que el S&P 500 gracias a la figura de doble suelo que ha marcado.
+El IBEX 35 lo hace mejor que el S&P 500 al observarse una clara estructura de máximos crecientes.
+El STOXX 600 lo hace peor que el S&P 500.
+Los Mercados Emergentes (SPX/EEM) lo hacen mejor que el S&P 500 a lo largo de los últimos meses tras formar una figura de hombro-cabeza-hombro.
+- Como reaccionar:
+No todas las bolsas se comportan igual: hay que rotar y buscar cuáles son más rentables y muestran mayor fortaleza relativa (Nikkei por doble suelo, IBEX 35 por máximos crecientes y Emergentes) frente a EE.UU.
+No anticipar ventas de pánico mientras la rotura de directrices no esté confirmada en gráfico mensual, pero vigilar los niveles ante la sobrecompra extrema en estocástico.
+- ¿por que? / conclusión:
+Las bolsas mundiales muestran sobrecompra técnica extrema pero ninguna ha roto sus directrices alcistas clave ni ha confirmado un cambio de tendencia.
+Sin embargo, el S&P 500 ha perdido su hegemonía frente a Japón, España y Emergentes, lo que exige diversificar geográficamente.
+El cambio de tendencia en el bono a 10 años confirma que el dinero va a ser más caro y que la renta fija empieza a competir con la renta variable.
+- Otros temas / maldades / predicción:
+Nivel de exposición del ciudadano estadounidense a la bolsa es altísimo: en caso de caída los particulares venderán en pánico.
+La gestión pasiva ha aumentado fuertemente: la gestión profesional/activa minimiza las caídas al no reaccionar en pánico y diversificar mejor.
+La inflación hace subir los tipos a 10 años y, al compararlo con el S&P 500, hace mucho más interesantes los bonos.
+Alto nivel de apalancamiento del mercado (margin debt).
+Economía circular de las empresas de Inteligencia Artificial (compañías financiándose entre sí sin beneficios reales consolidados).
+CAPE de Shiller con un PER y percentil histórico muy alto en EE.UU.: el mercado está mucho más cerca de un techo que de un suelo.
+Beneficios empresariales con márgenes récord en el S&P 500: se encuentran en máximos y no deben deteriorarse para sostener el precio.
+Bono a 10 años: cambio de tendencia secular confirmado, el dinero será más caro y esto tendrá consecuencias contractivas en la economía.
+
+[EJEMPLO 2 - Vídeo de tendencias seculares, soportes críticos y recorrido a la baja (lWvKoNJKYCs)]:
 - Como se ve el mercado / los hechos:
 Las bolsas globales (MSCI ACWI, S&P 500, Nasdaq 100 y Stoxx 600) cotizan en la banda superior de Bollinger (2 desviaciones estándar) con fuerte sobrecompra, pero mantienen intacta su estructura de máximos y mínimos crecientes iniciada en 2009.
 En las grandes crisis (2000 y 2007-2008) y en 2022 el desplome no ocurre de golpe salvo shock externo (1987 o pandemia 2020), sino tras una fase lateral de distribución donde el índice pierde el último soporte relevante y confirma un máximo decreciente.
-Dentro del canal alcista actual desde 2009, una corrección menor hacia la primera línea de control en el S&P 500 (como en 2011, 2016, 2019, 2022 o 2025) supone una caída del -30%, y un apoyo en la directriz principal de largo plazo implica un -42% sin ni siquiera romper la tendencia alcista.
-En el Nasdaq 100, volver a la directriz alcista desde 2009 implicaría una corrección menor del -32%, mientras que la directriz estructural desde los años 80 pasa por los 6.100 puntos (-80%, similar al -82% de la burbuja punto com).
+Dentro del canal alcista actual desde 2009, una corrección menor hacia la primera línea de control en el S&P 500 supone una caída del -30%, y un apoyo en la directriz principal de largo plazo implica un -42% sin romper la tendencia alcista secular.
+En el Nasdaq 100, volver a la directriz alcista desde 2009 implicaría una corrección menor del -32%, mientras que la directriz estructural desde los años 80 pasa por los 6.100 puntos (-80%, similar al -82% de la burbuja puntocom).
 En el Stoxx 600 europeo la distancia a la base del canal alcista desde 2020 es de un -15%, y si la rompe los objetivos bajistas están a un -30% y -43%.
 - Como reaccionar:
-Vigilar los soportes críticos cuya pérdida en cierre semanal/mensual activaría alerta de cambio de tendencia: 6.340 puntos en el S&P 500, 134 en el índice mundial MSCI ACWI, 561 en el Stoxx 600 europeo, 54,5 en el ETF MSCI Emerging Markets y 50.650 puntos en el Nikkei 225; buscar compras en rebotes si el S&P 500 corrige un -30% hacia su primera directriz de control.
+Vigilar los soportes críticos cuya pérdida en cierre semanal/mensual activaría alerta de cambio de tendencia: 6.340 puntos en el S&P 500, 134 en el índice mundial MSCI ACWI, 561 en el Stoxx 600 europeo, 54,5 en el ETF MSCI Emerging Markets y 50.650 puntos en el Nikkei 225.
+No ponerse bajista prematuramente mientras no se rompan los soportes ("no vender la piel del oso antes de cazarlo").
+Buscar compras en rebotes si el S&P 500 corrige un -30% hacia su primera directriz de control.
 - ¿por que? / conclusión:
-La bolsa no sube todos los años de forma lineal, sino en ciclos expansivos de 14 a 19 años seguidos de largos periodos laterales de 14 a 25 años sin retorno real (1900-1950, 1966-1982 con alta inflación, 2000-2014 en EE.UU. con dos caídas >50%, o los 25 años laterales del Eurostoxx 50 entre 2000 y 2025 con caídas del 61%-68%).
+La bolsa no sube todos los años de forma lineal, sino en ciclos expansivos de 14 a 19 años seguidos de largos periodos laterales de 14 a 25 años sin retorno real (1900-1950, 1966-1982 con alta inflación, 2000-2014 en EE.UU. con dos caídas >50%, o los 25 años laterales del Eurostoxx 50 entre 2000 y 2025).
 Si el ciclo alcista actual (iniciado al superar techos en 2013-2014) dura 14 años el techo podría llegar en 2027, y si dura 19 años (como 1982-2000) podría extenderse hasta 2032; la clave no es adivinar el techo sino reaccionar cuando se rompan los soportes críticos y se dibuje el primer máximo decreciente.
 - Otros temas / maldades / predicción:
 Paralelismo histórico con Japón: entre 1951 y 1989 el Nikkei subió más de un +23.000% frente al +1.600% del S&P 500 y nadie creía posible que perdiera la hegemonía, igual que hoy nadie concibe que las Big Tech de EE.UU. puedan perder su liderazgo.
 En las empresas líderes de IA se están pagando beneficios futuros porque la mayoría de compañías de IA hoy pierden dinero, mientras las empresas tradicionales de software ya se hunden en bolsa desplazadas por la propia IA.
-Riesgo sistémico a 4-5 años: si un fallo de seguridad obliga a EE.UU. y China a frenar la IA colapsaría la inversión en centros de datos que hoy sostiene el PIB de EE.UU., y si la IA y la robótica triunfan sustituyendo a la mitad de los trabajadores se hundirán la recaudación fiscal sobre las rentas del trabajo, las pensiones y el estado del bienestar en pleno endeudamiento récord.`;
+Riesgo sistémico a 4-5 años: si un fallo de seguridad obliga a frenar la IA colapsaría la inversión en centros de datos que hoy sostiene el PIB de EE.UU., y si triunfa sustituyendo masivamente trabajadores se hundirán la recaudación fiscal sobre rentas del trabajo, las pensiones y el estado del bienestar en pleno endeudamiento récord.`;
 
 // Prompt maestro general por defecto
 const DEFAULT_MASTER_PROMPT = DEFAULT_PROMPT_CAVA;
