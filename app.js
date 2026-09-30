@@ -252,22 +252,22 @@ Bono a 10 años: cambio de tendencia secular confirmado, el dinero será más ca
 
 [EJEMPLO 2 - Vídeo de tendencias seculares, soportes críticos y recorrido a la baja (lWvKoNJKYCs)]:
 - Como se ve el mercado / los hechos:
-Las bolsas globales (MSCI ACWI, S&P 500, Nasdaq 100 y Stoxx 600) cotizan en la banda superior de Bollinger (2 desviaciones estándar) con fuerte sobrecompra, pero mantienen intacta su estructura de máximos y mínimos crecientes iniciada en 2009.
-En las grandes crisis (2000 y 2007-2008) y en 2022 el desplome no ocurre de golpe salvo shock externo (1987 o pandemia 2020), sino tras una fase lateral de distribución donde el índice pierde el último soporte relevante y confirma un máximo decreciente.
-Dentro del canal alcista actual desde 2009, una corrección menor hacia la primera línea de control en el S&P 500 supone una caída del -30%, y un apoyo en la directriz principal de largo plazo implica un -42% sin romper la tendencia alcista secular.
-En el Nasdaq 100, volver a la directriz alcista desde 2009 implicaría una corrección menor del -32%, mientras que la directriz estructural desde los años 80 pasa por los 6.100 puntos (-80%, similar al -82% de la burbuja puntocom).
-En el Stoxx 600 europeo la distancia a la base del canal alcista desde 2020 es de un -15%, y si la rompe los objetivos bajistas están a un -30% y -43%.
+Para detectar el cambio de tendencia: en el S&P 500 en temporalidad de 1 semana con estocástico (18 9 5) y RSI (14 Close) se debe vigilar cuándo los máximos y los mínimos pasen a ser decrecientes.
+En gráfico mensual (1 mes) las bolsas mundiales mantienen una estructura sana de máximos y mínimos crecientes.
+Los niveles críticos que determinarán el cambio de tendencia (calculados viendo el mínimo anterior relevante; cuando los mínimos ya no sean crecientes empieza el cambio) son: nivel 134 en iShares MSCI ACWI, nivel 6.340 en S&P 500, nivel 561 en STOXX 600, nivel 54,50 en iShares MSCI Emerging Markets ETF y nivel 50.650 en el Nikkei.
+En cuanto a la duración histórica de los procesos tendenciales en EE.UU., el S&P 500 muestra alternancia de grandes fases: 47 años planos, 14 años de crecimiento, 16 años planos, 19 años de crecimiento, 14 años planos, y en el ciclo actual la incógnita es si durará 14 o 19 años de crecimiento.
 - Como reaccionar:
-Vigilar los soportes críticos cuya pérdida en cierre semanal/mensual activaría alerta de cambio de tendencia: 6.340 puntos en el S&P 500, 134 en el índice mundial MSCI ACWI, 561 en el Stoxx 600 europeo, 54,5 en el ETF MSCI Emerging Markets y 50.650 puntos en el Nikkei 225.
-No ponerse bajista prematuramente mientras no se rompan los soportes ("no vender la piel del oso antes de cazarlo").
-Buscar compras en rebotes si el S&P 500 corrige un -30% hacia su primera directriz de control.
+No anticipar techos mientras la secuencia de mínimos crecientes siga intacta en gráfico mensual; vigilar estrictamente los niveles de soporte clave (134 en ACWI, 6.340 en S&P 500, 561 en STOXX 600, 54,50 en Emergentes y 50.650 en Nikkei).
+Si cambia la tendencia y se perforan los soportes, la magnitud de la caída potencial proyectada es:
+  * S&P 500 (temporalidad 1 mes con Bandas de Bollinger 20 SMA Close 2): caída del -30% hasta la línea central del canal frente al precio actual, o del -42% buscando el apoyo en la tendencia a largo plazo.
+  * Nasdaq 100: caídas del -32% a la directriz secular y de hasta el -80% en la directriz estructural histórica.
+  * STOXX 600: caídas potenciales escalonadas del -15%, -30% y -43%.
 - ¿por que? / conclusión:
-La bolsa no sube todos los años de forma lineal, sino en ciclos expansivos de 14 a 19 años seguidos de largos periodos laterales de 14 a 25 años sin retorno real (1900-1950, 1966-1982 con alta inflación, 2000-2014 en EE.UU. con dos caídas >50%, o los 25 años laterales del Eurostoxx 50 entre 2000 y 2025).
-Si el ciclo alcista actual (iniciado al superar techos en 2013-2014) dura 14 años el techo podría llegar en 2027, y si dura 19 años (como 1982-2000) podría extenderse hasta 2032; la clave no es adivinar el techo sino reaccionar cuando se rompan los soportes críticos y se dibuje el primer máximo decreciente.
+La bolsa no se mueve en línea recta infinita, sino en ciclos de expansión seguidos de ajustes severos o largos periodos de digestión.
+El ancla objetiva del operador técnico es no predecir por sensaciones, sino esperar a que el precio rompa el mínimo anterior relevante (6.340 en S&P 500 / 134 en ACWI) y dibuje máximos decrecientes antes de declarar finalizada la tendencia alcista.
 - Otros temas / maldades / predicción:
-Paralelismo histórico con Japón: entre 1951 y 1989 el Nikkei subió más de un +23.000% frente al +1.600% del S&P 500 y nadie creía posible que perdiera la hegemonía, igual que hoy nadie concibe que las Big Tech de EE.UU. puedan perder su liderazgo.
-En las empresas líderes de IA se están pagando beneficios futuros porque la mayoría de compañías de IA hoy pierden dinero, mientras las empresas tradicionales de software ya se hunden en bolsa desplazadas por la propia IA.
-Riesgo sistémico a 4-5 años: si un fallo de seguridad obliga a frenar la IA colapsaría la inversión en centros de datos que hoy sostiene el PIB de EE.UU., y si triunfa sustituyendo masivamente trabajadores se hundirán la recaudación fiscal sobre rentas del trabajo, las pensiones y el estado del bienestar en pleno endeudamiento récord.`;
+Uno de los errores más habituales del inversor es pensar solo en mercados al alza y a la baja, ignorando los largos periodos laterales seculares: el Euro Stoxx 50 y el IBEX 35 muestran larguísimos periodos laterales, y el Nikkei japonés acumuló 30 años laterales.
+Otro de los mayores errores cognitivos es proyectar sistemáticamente el presente hacia el futuro: el Nikkei mantuvo una clara tendencia al alza desde 1956 hasta 1989 y a partir de 1990 cambió radicalmente; hoy parece imposible un colapso de la bolsa americana, pero la historia demuestra que no lo es.`;
 
 // Prompt maestro general por defecto
 const DEFAULT_MASTER_PROMPT = DEFAULT_PROMPT_CAVA;
