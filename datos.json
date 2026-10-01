@@ -3,7 +3,7 @@
     "geminiModel": "gemini-3.8-flash",
     "masterPrompt": "Actúa como un analista y operador de mercados que toma apuntes personales ultra-directos de los vídeos de José Luis Cava. Tu objetivo es resumir la transcripción exactamente con mi estilo, mi concisión y mi estructura.\n\nREGLAS DE ORO DE FILTRADO:\n1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, comentarios del tiempo, bromas, promoción de libros/cursos/servicios (ej. HOPLA) y cualquier mención a brokers patrocinadores (ej. Freedom24) o a los ETFs/productos comerciales que mencione solo como parte del anuncio del patrocinador. Quédate únicamente con el análisis puro del índice o activo subyacente (ej. el VIX, el SP500, el bono, el petróleo, el oro, Bitcoin).\n2. CAUSA -> EFECTO EN FRASES CORTAS (1 FRASE POR LÍNEA): Explica siempre los hechos conectando la causa con la consecuencia en 1 frase corta y llana por línea, sin adornos literarios ni parrafadas densas.\n3. CONSERVA DATOS TÉCNICOS, MECÁNICA Y NIVELES EXACTOS: Incluye siempre fechas concretas del gráfico (ej. días 17, 20 y 24), niveles y rangos numéricos exactos (ej. 7740 o zona 7850-8000 en SP500, 16-20 en VIX, 4500 en oro), plazos temporales (ej. 3ª semana de octubre, 3 de noviembre, agosto-septiembre) y la mecánica interna si se explica (triple hora bruja, expiración de opciones sobre VIX, gamma positiva, dealers sin coberturas, opciones Call/Put, cobertura de futuros por delta, recompra de deuda a largo plazo del Tesoro/Bessent, déficit/PIB, rebajas de rating).\n\nESTRUCTURA OBLIGATORIA DEL RESUMEN:\n- Como se ve el mercado / los hechos:\nExpón los hechos objetivos que muestra el vídeo (1 frase por línea):\n  * Qué ha hecho el precio en el gráfico en fechas concretas o hacia qué rango se dirige (ej. SP500 hacia 7850-8000).\n  * Expiraciones de opciones (ej. triple hora bruja, opciones de futuro sobre el VIX), entorno de gamma positiva y si los dealers tienen o no coberturas.\n  * Qué medidas o catalizadores concretos están en juego (ej. penalizar exportaciones de diésel de EE.UU. a Europa -> bajan precios del petróleo en EE.UU.).\n  * Qué han descontado ya los mercados y qué muestran los flujos de opciones/futuros y el sentimiento (ej. compra masiva de CALLs de tecnología = institucionales sin miedo frente a miedo solo en particulares; venta de calls/compra de puts y cobertura delta de dealers).\n  * Qué ocurre con la rentabilidad de los bonos, deuda/PIB, déficits y calificaciones crediticias.\n\n- Como reaccionar:\nIndica de forma directa qué comprar o vender y en qué nivel exacto (ej. \"Comprar futuros si el SP500 supera la zona de los 7740\"). Si el vídeo no da una orden de entrada concreta de corto plazo no patrocinada, déjalo vacío (\"\").\n\n- ¿por que? / conclusión:\nExplica la deducción lógica, el motor político/liquidez detrás del movimiento (ej. el tiempo que le queda a Trump antes de las mid-term, recompras de deuda pública a largo plazo de Bessent que estabilizan el mercado y fijan resistencias) y el escenario de cada activo mencionado de forma telegráfica (qué ha hecho, hacia dónde irá, hasta qué fecha exacta y por qué). Destaca cualquier \"Fecha importante\" del calendario (ej. elecciones del 3 de noviembre).\n\n- Otros temas / maldades / predicción:\nRecoge en líneas cortas e independientes las \"maldades\", predicciones políticas/macro y temas estructurales tratados en el vídeo:\n  * Mercados de predicción y política: resultado esperado en elecciones (ej. barrido demócrata en las mid-term -> bloqueo legislativo).\n  * Tema presupuestario / monetario: mayor gasto y deuda pública -> mayor degradación monetaria; problemas fiscales de países (Francia, Reino Unido).\n  * Tema sectorial / geopolítico (ej. Tema Inteligencia Artificial): control político y regulatorio sobre CEOs de IA, auditorías (ej. Anthropic con Accenture), participaciones estatales / compra gubernamental de acciones de IA, cheques al pueblo (ej. 5000 dólares), parálisis de inversión en centros de datos por precio de la energía, o emisión de deuda estatal para comprar acciones de IA si la bolsa cae +-10%.\n  * Previsiones por activo (ej. petróleo cayendo hasta el 3 de noviembre y por inercia hasta diciembre pero alcista a medio/largo plazo junto al bono a 10 y 30 años; oro rumbo a 4500 pero subirá más Bitcoin que el oro), niveles de volatilidad (VIX 16-20), sectores interesantes (Salud, Energías limpias) y hoja de ruta estacional de la bolsa.\n\n---\nEJEMPLOS EXACTOS DE CÓMO QUIERO QUE RESUMAS A JOSÉ LUIS CAVA (IMITA ESTE ESTILO Y LONGITUD):\n\n[EJEMPLO 1 - Vídeo de operativa y microestructura (zoUHJ6eB6IY)]:\n- Como se ve el mercado / los hechos:\nEn el gráfico del SP500 cayó tras la noticia, se recuperó rápido el 17, 20 y 24; se concluye que hay una mano que evita la caída.\nEn el caso concreto del 24 se pudo ver grandes apuestas bajistas sobre el SP500, esto es, especuladores de corto plazo vendiendo opciones call y comprando opciones put y los creadores de mercado estaban vendiendo futuros para cubrirse, ajustándolo por la delta. El escenario fue claramente bajista pero no bajó el SP500.\n- Como reaccionar:\nComprar futuros si el SP500 supera la zona de los 7740.\n- ¿por que? / conclusión:\nAl ver un mercado bajista y no bajar se concluye que alguien compra siempre y evita que caiga la bolsa; además en cuanto apareció la noticia positiva el precio subió, se entiende que van a seguir apareciendo noticias positivas desde ahora hasta octubre.\nFecha importante: 3 de noviembre elecciones, las bolsas subirán hasta el 3 de noviembre y después bajarán.\n- Otros temas / maldades / predicción:\nFrancia tiene problemas económicos.\n\n[EJEMPLO 2 - Vídeo macro y multi-activo (6avY-2ixQI0)]:\n- Como se ve el mercado / los hechos:\nDebido a la irresponsabilidad fiscal de los políticos se produce degradación monetaria garantizada, lo que a su vez significa que el oro tendrá tendencia alcista.\nRentabilidad del bono francés a 10 años sube a consecuencia del déficit público creciente, ratio deuda pública - PIB incrementándose y le han rebajado la calificación crediticia.\nRentabilidad del bono del Reino Unido a 10 años en clara tendencia alcista por las mismas razones que Francia.\n- ¿por que? / conclusión:\nEl Oro ha hecho suelo y subirá hasta la tercera semana de octubre.\nBitcoin ha hecho un suelo cíclico y va a subir desde ahora hasta el 3 de noviembre más que el oro.\nSP500 subirá por motivaciones políticas de Trump.\nPetróleo bajará también por motivaciones políticas de Trump.\n- Otros temas / maldades / predicción:\nBessent y Kevin Warsh fueron gestores de fondos, y a partir del 3 de noviembre habrá un susto / bajada de la bolsa. La volatilidad del SP500 (VIX) ha estado muy comprimida, hay una zona de resistencia sobre 16 - 20. Si el índice superara los 20, las bolsas caerían.\nA partir del 3 de Noviembre se espera una caída en bolsa y los próximos sectores interesantes son Salud y Energías limpias.\n\n[EJEMPLO 3 - Vídeo de posicionamiento, política y temas estructurales (rOKQ00NlYfo)]:\n- Como se ve el mercado / los hechos:\nTrump podría penalizar las exportaciones de Diesel desde EE.UU. hacia Europa y como consecuencia bajarían los precios del petróleo para los EE.UU.\nSe entiende que los mercados han descontado que Trump va a perder las mid-term y que la cotización del SP500 puede dirigirse a la zona comprendida entre 7850 y 8000.\nSe ha comprado muchas opciones CALL de tecnología por lo que no tienen que tener mucho miedo, solo los inversores particulares tienen miedo. Por tanto los mercados no han descontado nada malo.\n- ¿por que? / conclusión:\nA Trump le queda 1 mes para arreglar la economía e intentar ganar las elecciones de mid-term. Bessent ya comenzó la recompra de deuda pública a largo plazo y ha conseguido la estabilización de los mercados y ha dejado claro dónde está la resistencia. Petróleo también ha bajado.\n- Otros temas / maldades / predicción:\nSegún los mercados de predicción va a haber un barrido demócrata en las próximas elecciones de medio mandato.\nLas elecciones de medio término las van a ganar los demócratas y como consecuencia se va a producir un bloqueo legislativo.\nTema presupuestario: mayor gasto público y deuda pública y como consecuencia mayor degradación monetaria.\nTema Inteligencia Artificial: Los señores de la IA (los CEO de las principales empresas de IA) ya han aceptado que van a ser controlados por los políticos a través de las regulaciones y de participaciones en las empresas. Se van a paralizar las inversiones en centros de datos debido al precio de la energía.\nTendencia bajista a corto plazo del petróleo podría continuar, menor demanda.\nLa rentabilidad de los bonos puede caer.\nCaída de las bolsas +- 10%, el estado de los EE.UU. creará más deuda para comprar las acciones de las empresas de IA.\nLa previsión era bajada de la bolsa entre agosto-septiembre y luego subidas hasta el 3 de noviembre, y después de noviembre una caída.\n\n[EJEMPLO 4 - Vídeo de expiración de opciones (Triple Hora Bruja), gamma positiva y maldades (5ELPqd3DFXI)]:\n- Como se ve el mercado / los hechos:\nEl pasado viernes se produjo la expiración de los contratos de opciones sobre índices y sobre acciones de los EE.UU. (la famosa triple hora bruja), fue la expiración más grande de la historia.\nEl pasado miércoles se produjo la expiración de los contratos de opciones de futuro sobre el VIX.\nNos encontramos en un entorno de gamma positiva, tras la expiración de los contratos de opciones, los dealers ahora no tienen coberturas y se pueden mover con libertad, Bessent va a intentar subir las bolsas.\nEl petróleo ha empezado a caer.\nHa subido el Bitcoin y el NASDAQ, los valores tecnológicos son los valores elegidos para seguir subiendo.\nEl oro ha bajado, pero es puntual.\n- Otros temas / maldades / predicción:\nEl petróleo va a caer hasta el 3 de noviembre y luego por inercia hasta diciembre, la tendencia del petróleo a medio y largo plazo es alcista, y la rentabilidad del bono americano a 30 y a 10 años también.\nEl oro se dirige a la zona de los 4500, subirá más el Bitcoin que el oro.\nAnthropic ha encargado a Accenture una auditoría para demostrar control sobre la IA, el gobierno comprará acciones y le dará al pueblo 5000 dólares.",
     "githubRepo": "jrFont-Technologies/MacroConsensus",
-    "lastSync": "2026-10-01T07:35:02.077Z",
+    "lastSync": "2026-10-01T07:39:26.083Z",
     "lastYoutubeScan": "2026-10-01T07:35:02.038Z",
     "ytScanIntervalMinutes": 30,
     "ventanaMeses": 3
@@ -2681,52 +2681,6 @@
       }
     },
     {
-      "id": "vid_yt_pablo_bMdB3081NSU",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=bMdB3081NSU",
-      "title": "Por qué suben el petróleo, el cobre y los fertilizantes en 2026",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "17/09/2026",
-      "dateTimestamp": 1789630501603,
-      "diasAntiguedad": 14,
-      "recencyTier": "tier1",
-      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
-      "thumbnail": "https://i.ytimg.com/vi/bMdB3081NSU/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "consulta": "¿Por qué el encarecimiento del petróleo (~108$) y del gas europeo (83€/MWh) marca el fin de la era de las materias primas baratas?",
-      "tags": [
-        "Materias Primas",
-        "Petróleo",
-        "Gas Natural",
-        "Inflación"
-      ],
-      "resumen_estructurado": {
-        "hechos_mercado": "El bloqueo de rutas marítimas ha llevado al petróleo Brent de nuevo por encima de los 100$ (en torno a 108$/barril) y al gas natural europeo TTF a escalar hasta los 83€/MWh (+35% en un mes y más del doble que hace un año), justo cuando Europa entra en el otoño con las reservas de gas más bajas para estas fechas desde 2011.",
-        "como_reaccionar": "Sobreponderar materias primas energéticas, agrícolas y metales industriales en cartera, y cubrirse ante una segunda ola inflacionaria que afectará a transporte, fertilizantes, alimentos e industria europea.",
-        "por_que_conclusion": "Décadas de infrainversión en exploración y minería combinadas con la fragmentación geopolítica de las rutas de suministro impiden volver a la energía barata, trasladando un impuesto inflacionario directo a toda la cadena de consumo.",
-        "fecha_importante": "Temporada de otoño-invierno en Europa con inventarios de gas en mínimos desde 2011.",
-        "otros_temas_maldades": "La crisis energética actual no se limita a la gasolina o la calefacción: el encarecimiento del gas y de los fertilizantes garantiza presiones alcistas en la inflación alimentaria de los próximos trimestres.",
-        "respuesta_consulta": "Con el Brent en ~108$ y el gas europeo en 83€/MWh (con reservas en mínimos desde 2011), el shock energético se transmite ya a fertilizantes, alimentos e industria.",
-        "tesis_macro": "Fin del ciclo secular de materias primas baratas: el déficit de oferta física y los cuellos de botella logísticos mantendrán la inflación energética y de alimentos estructuralmente elevada.",
-        "matriz_activos": {
-          "renta_variable": "Alcista en productoras de energía, mineras y fertilizantes / Bajista en industria europea intensiva en gas",
-          "bonos": "Bajista por repunte de expectativas de inflación (breakevens al alza)",
-          "oro": "Alcista como cobertura inflacionaria",
-          "petroleo": "Muy alcista (Brent en torno a 108$/barril por tensión de suministro)",
-          "dolar": "Alcista frente al euro (Europa sufre el shock de gas a 83€/MWh con reservas en mínimos)",
-          "bitcoin": "Neutral"
-        },
-        "timestamps_citas": [
-          "00:31 - El Brent vuelve a superar los 100$ y se mueve alrededor de los 108$/barril",
-          "00:45 - El gas natural europeo escala a 83€/MWh (+35% en un mes) con las reservas más bajas desde 2011"
-        ]
-      }
-    },
-    {
       "id": "vid_1790119180876_28943",
       "tipo": "canal",
       "canalId": "cava",
@@ -2853,6 +2807,89 @@
       "dateTimestamp": 1789639200000,
       "prompt": "`Actúa como un analista y operador de mercados que toma apuntes personales ultra-directos de los vídeos de José Luis Cava. Tu objetivo es resumir la transcripción exactamente con mi estilo, mi concisión y mi estructura.\r\n\r\nREGLAS DE ORO DE FILTRADO:\r\n1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, comentarios del tiempo, bromas, promoción de libros/cursos/servicios (ej. HOPLA) y cualquier mención a brokers patrocinadores (ej. Freedom24) o a los ETFs/productos comerciales que mencione solo como parte del anuncio del patrocinador. Quédate únicamente con el análisis puro del índice o activo subyacente (ej. el VIX, el SP500, el bono, el petróleo, el oro, Bitcoin).\r\n2. CAUSA -> EFECTO EN FRASES CORTAS (1 FRASE POR LÍNEA): Explica siempre los hechos conectando la causa con la consecuencia en 1 frase corta y llana por línea, sin adornos literarios ni parrafadas densas.\r\n3. CONSERVA DATOS TÉCNICOS, MECÁNICA Y NIVELES EXACTOS: Incluye siempre fechas concretas del gráfico (ej. días 17, 20 y 24), niveles y rangos numéricos exactos (ej. 7740 o zona 7850-8000 en SP500, 16-20 en VIX, 4500 en oro), plazos temporales (ej. 3ª semana de octubre, 3 de noviembre, agosto-septiembre) y la mecánica interna si se explica (triple hora bruja, expiración de opciones sobre VIX, gamma positiva, dealers sin coberturas, opciones Call/Put, cobertura de futuros por delta, recompra de deuda a largo plazo del Tesoro/Bessent, déficit/PIB, rebajas de rating).\r\n\r\nESTRUCTURA OBLIGATORIA DEL RESUMEN:\r\n- Como se ve el mercado / los hechos:\r\nExpón los hechos objetivos que muestra el vídeo (1 frase por línea):\r\n  * Qué ha hecho el precio en el gráfico en fechas concretas o hacia qué rango se dirige (ej. SP500 hacia 7850-8000).\r\n  * Expiraciones de opciones (ej. triple hora bruja, opciones de futuro sobre el VIX), entorno de gamma positiva y si los dealers tienen o no coberturas.\r\n  * Qué medidas o catalizadores concretos están en juego (ej. penalizar exportaciones de diésel de EE.UU. a Europa -> bajan precios del petróleo en EE.UU.).\r\n  * Qué han descontado ya los mercados y qué muestran los flujos de opciones/futuros y el sentimiento (ej. compra masiva de CALLs de tecnología = institucionales sin miedo frente a miedo solo en particulares",
       "promptPersonalizado": false
+    },
+    {
+      "id": "vid_yt_pablo_bMdB3081NSU",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=bMdB3081NSU",
+      "title": "Por qué suben el petróleo, el cobre y los fertilizantes en 2026",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "17/09/2026",
+      "dateTimestamp": 1789630501603,
+      "diasAntiguedad": 14,
+      "recencyTier": "tier1",
+      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
+      "thumbnail": "https://i.ytimg.com/vi/bMdB3081NSU/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "consulta": "¿Por qué el encarecimiento del petróleo (~108$) y del gas europeo (83€/MWh) marca el fin de la era de las materias primas baratas?",
+      "tags": [
+        "Materias Primas",
+        "Petróleo",
+        "Gas Natural",
+        "Inflación"
+      ],
+      "resumen_estructurado": {
+        "hechos_mercado": "El bloqueo de rutas marítimas ha llevado al petróleo Brent de nuevo por encima de los 100$ (en torno a 108$/barril) y al gas natural europeo TTF a escalar hasta los 83€/MWh (+35% en un mes y más del doble que hace un año), justo cuando Europa entra en el otoño con las reservas de gas más bajas para estas fechas desde 2011.",
+        "como_reaccionar": "Sobreponderar materias primas energéticas, agrícolas y metales industriales en cartera, y cubrirse ante una segunda ola inflacionaria que afectará a transporte, fertilizantes, alimentos e industria europea.",
+        "por_que_conclusion": "Décadas de infrainversión en exploración y minería combinadas con la fragmentación geopolítica de las rutas de suministro impiden volver a la energía barata, trasladando un impuesto inflacionario directo a toda la cadena de consumo.",
+        "fecha_importante": "Temporada de otoño-invierno en Europa con inventarios de gas en mínimos desde 2011.",
+        "otros_temas_maldades": "La crisis energética actual no se limita a la gasolina o la calefacción: el encarecimiento del gas y de los fertilizantes garantiza presiones alcistas en la inflación alimentaria de los próximos trimestres.",
+        "respuesta_consulta": "Con el Brent en ~108$ y el gas europeo en 83€/MWh (con reservas en mínimos desde 2011), el shock energético se transmite ya a fertilizantes, alimentos e industria.",
+        "tesis_macro": "Fin del ciclo secular de materias primas baratas: el déficit de oferta física y los cuellos de botella logísticos mantendrán la inflación energética y de alimentos estructuralmente elevada.",
+        "matriz_activos": {
+          "renta_variable": "Alcista en productoras de energía, mineras y fertilizantes / Bajista en industria europea intensiva en gas",
+          "bonos": "Bajista por repunte de expectativas de inflación (breakevens al alza)",
+          "oro": "Alcista como cobertura inflacionaria",
+          "petroleo": "Muy alcista (Brent en torno a 108$/barril por tensión de suministro)",
+          "dolar": "Alcista frente al euro (Europa sufre el shock de gas a 83€/MWh con reservas en mínimos)",
+          "bitcoin": "Neutral"
+        },
+        "timestamps_citas": [
+          "00:31 - El Brent vuelve a superar los 100$ y se mueve alrededor de los 108$/barril",
+          "00:45 - El gas natural europeo escala a 83€/MWh (+35% en un mes) con las reservas más bajas desde 2011"
+        ]
+      }
+    },
+    {
+      "id": "vid_yt_pablo_ZniB_ZB_hhI",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=ZniB_ZB_hhI",
+      "title": "Científicos de OpenAI y Anthropic: GRAN PREOCUPACIÓN con la AGI (Inteligencia Artificial General)",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "17/09/2026",
+      "dateTimestamp": 1789630501603,
+      "diasAntiguedad": 14,
+      "recencyTier": "tier1",
+      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
+      "thumbnail": "https://i.ytimg.com/vi/ZniB_ZB_hhI/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "consulta": "¿Qué impacto económico, laboral y de mercado plantea la aceleración hacia la Inteligencia Artificial General (AGI)?",
+      "tags": [
+        "IA",
+        "AGI",
+        "Tecnología",
+        "Mercado Laboral"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Analiza las advertencias de los investigadores de OpenAI y Anthropic sobre la velocidad de desarrollo hacia la AGI y el shock de productividad y disrupción laboral que provocará en la economía global.",
+        "tesis_macro": "La carrera por la AGI exige inversiones multimillonarias en centros de datos y energía, concentrando el crecimiento bursátil en la infraestructura tecnológica mientras desafía al mercado laboral tradicional.",
+        "matriz_activos": {
+          "renta_variable": "Alcista en semiconductores, infraestructura eléctrica y líderes de IA",
+          "bonos": "Bajista por la enorme demanda de capital y emisión corporativa para financiar centros de datos",
+          "oro": "Neutral",
+          "petroleo": "Alcista por demanda energética",
+          "dolar": "Alcista",
+          "bitcoin": "Neutral"
+        }
+      }
     },
     {
       "id": "vid_vidal_f0mbRzVhUmY",
@@ -3379,90 +3416,6 @@
         ]
       },
       "promptPersonalizado": false
-    },
-    {
-      "id": "vid_1790119256651_92377",
-      "url": "https://www.youtube.com/watch?v=7ONPmXG9QNg",
-      "title": "El DÓLAR, el YEN y el GRAN RIESGO para los mercados",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "10/09/2026",
-      "fecha_registro": "13/09/2026 12:00",
-      "thumbnail": "https://i.ytimg.com/vi/7ONPmXG9QNg/hqdefault.jpg",
-      "consulta": "¿Por qué la divergencia de tipos entre EE.UU. y Japón (carry trade del yen) y la baja cobertura cambiaria suponen un gran riesgo para los mercados?",
-      "tags": [
-        "Dólar",
-        "Yen",
-        "Carry Trade",
-        "Banco de Japón"
-      ],
-      "incluidoEnSintesis": true,
-      "resumen_estructurado": {
-        "hechos_mercado": "El dólar representa el 57% de las reservas mundiales y el 90% de las transacciones cambiarias. Los grandes inversores institucionales extranjeros acumulan una exposición récord a activos de EE.UU. pero con el nivel de cobertura frente al dólar más bajo de los últimos años. Al mismo tiempo, mientras la Fed y el BCE recortan o pausan tipos, el Banco de Japón avanza en la normalización monetaria.",
-        "como_reaccionar": "Vigilar estrechamente el cruce USD/JPY y la rentabilidad del bono japonés: una apreciación brusca del yen o una caída del dólar desataría ventas forzadas de activos tecnológicos estadounidenses por desarme del carry trade y coberturas masivas.",
-        "por_que_conclusion": "Si el dólar empieza a depreciarse y los institucionales extranjeros deciden cubrir su riesgo divisa, tendrán que vender cientos de miles de millones de dólares simultáneamente, acelerando la caída del billete verde y provocando episodios de volatilidad aguda como el desarme del carry trade del yen.",
-        "fecha_importante": "Próximas reuniones de política monetaria de la Reserva Federal y del Banco de Japón (BoJ).",
-        "otros_temas_maldades": "El apalancamiento oculto financiado en yenes baratos para comprar bolsa estadounidense sigue siendo una de las mayores bombas de relojería de liquidez global.",
-        "respuesta_consulta": "La exposición récord de inversores extranjeros a activos de EE.UU. sin cobertura de divisa, unida al cierre del diferencial de tipos con Japón, crea el riesgo de una ola masiva de ventas de dólares y desarme de carry trade.",
-        "tesis_macro": "Riesgo latente de shock cambiario: la normalización del Banco de Japón y la falta de cobertura en dólares de las carteras globales pueden desencadenar una corrección abrupta de liquidez en Wall Street.",
-        "matriz_activos": {
-          "renta_variable": "Riesgo de volatilidad severa si se desarma el carry trade del yen",
-          "bonos": "Bajista en bonos japoneses (JGBs) / Volatilidad en Treasuries",
-          "oro": "Muy alcista ante un debilitamiento del dólar y flujos de cobertura",
-          "petroleo": "Neutral",
-          "dolar": "Riesgo bajista frente al yen (USD/JPY) por flujos masivos de cobertura",
-          "bitcoin": "Sensible a contracciones bruscas de liquidez por carry trade"
-        },
-        "timestamps_citas": [
-          "00:03 - El dólar concentra el 57% de las reservas oficiales y el 90% de las operaciones en el mercado de divisas",
-          "00:31 - Los inversores internacionales tienen exposición récord a EE.UU. con el nivel de cobertura frente al dólar más bajo en años"
-        ]
-      },
-      "tipo": "canal",
-      "canalId": "pablo",
-      "categoriaSugerida": "macro",
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "diasAntiguedad": 21,
-      "dateTimestamp": 1789025701603,
-      "promptPersonalizado": false
-    },
-    {
-      "id": "vid_yt_pablo_ZniB_ZB_hhI",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=ZniB_ZB_hhI",
-      "title": "Científicos de OpenAI y Anthropic: GRAN PREOCUPACIÓN con la AGI (Inteligencia Artificial General)",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "17/09/2026",
-      "dateTimestamp": 1789630501603,
-      "diasAntiguedad": 14,
-      "recencyTier": "tier1",
-      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
-      "thumbnail": "https://i.ytimg.com/vi/ZniB_ZB_hhI/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "consulta": "¿Qué impacto económico, laboral y de mercado plantea la aceleración hacia la Inteligencia Artificial General (AGI)?",
-      "tags": [
-        "IA",
-        "AGI",
-        "Tecnología",
-        "Mercado Laboral"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Analiza las advertencias de los investigadores de OpenAI y Anthropic sobre la velocidad de desarrollo hacia la AGI y el shock de productividad y disrupción laboral que provocará en la economía global.",
-        "tesis_macro": "La carrera por la AGI exige inversiones multimillonarias en centros de datos y energía, concentrando el crecimiento bursátil en la infraestructura tecnológica mientras desafía al mercado laboral tradicional.",
-        "matriz_activos": {
-          "renta_variable": "Alcista en semiconductores, infraestructura eléctrica y líderes de IA",
-          "bonos": "Bajista por la enorme demanda de capital y emisión corporativa para financiar centros de datos",
-          "oro": "Neutral",
-          "petroleo": "Alcista por demanda energética",
-          "dolar": "Alcista",
-          "bitcoin": "Neutral"
-        }
-      }
     },
     {
       "id": "vid_1790119180876_94099",
@@ -4098,6 +4051,173 @@
         ]
       },
       "promptPersonalizado": false
+    },
+    {
+      "id": "vid_1790119256651_92377",
+      "url": "https://www.youtube.com/watch?v=7ONPmXG9QNg",
+      "title": "El DÓLAR, el YEN y el GRAN RIESGO para los mercados",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "10/09/2026",
+      "fecha_registro": "13/09/2026 12:00",
+      "thumbnail": "https://i.ytimg.com/vi/7ONPmXG9QNg/hqdefault.jpg",
+      "consulta": "¿Por qué la divergencia de tipos entre EE.UU. y Japón (carry trade del yen) y la baja cobertura cambiaria suponen un gran riesgo para los mercados?",
+      "tags": [
+        "Dólar",
+        "Yen",
+        "Carry Trade",
+        "Banco de Japón"
+      ],
+      "incluidoEnSintesis": true,
+      "resumen_estructurado": {
+        "hechos_mercado": "El dólar representa el 57% de las reservas mundiales y el 90% de las transacciones cambiarias. Los grandes inversores institucionales extranjeros acumulan una exposición récord a activos de EE.UU. pero con el nivel de cobertura frente al dólar más bajo de los últimos años. Al mismo tiempo, mientras la Fed y el BCE recortan o pausan tipos, el Banco de Japón avanza en la normalización monetaria.",
+        "como_reaccionar": "Vigilar estrechamente el cruce USD/JPY y la rentabilidad del bono japonés: una apreciación brusca del yen o una caída del dólar desataría ventas forzadas de activos tecnológicos estadounidenses por desarme del carry trade y coberturas masivas.",
+        "por_que_conclusion": "Si el dólar empieza a depreciarse y los institucionales extranjeros deciden cubrir su riesgo divisa, tendrán que vender cientos de miles de millones de dólares simultáneamente, acelerando la caída del billete verde y provocando episodios de volatilidad aguda como el desarme del carry trade del yen.",
+        "fecha_importante": "Próximas reuniones de política monetaria de la Reserva Federal y del Banco de Japón (BoJ).",
+        "otros_temas_maldades": "El apalancamiento oculto financiado en yenes baratos para comprar bolsa estadounidense sigue siendo una de las mayores bombas de relojería de liquidez global.",
+        "respuesta_consulta": "La exposición récord de inversores extranjeros a activos de EE.UU. sin cobertura de divisa, unida al cierre del diferencial de tipos con Japón, crea el riesgo de una ola masiva de ventas de dólares y desarme de carry trade.",
+        "tesis_macro": "Riesgo latente de shock cambiario: la normalización del Banco de Japón y la falta de cobertura en dólares de las carteras globales pueden desencadenar una corrección abrupta de liquidez en Wall Street.",
+        "matriz_activos": {
+          "renta_variable": "Riesgo de volatilidad severa si se desarma el carry trade del yen",
+          "bonos": "Bajista en bonos japoneses (JGBs) / Volatilidad en Treasuries",
+          "oro": "Muy alcista ante un debilitamiento del dólar y flujos de cobertura",
+          "petroleo": "Neutral",
+          "dolar": "Riesgo bajista frente al yen (USD/JPY) por flujos masivos de cobertura",
+          "bitcoin": "Sensible a contracciones bruscas de liquidez por carry trade"
+        },
+        "timestamps_citas": [
+          "00:03 - El dólar concentra el 57% de las reservas oficiales y el 90% de las operaciones en el mercado de divisas",
+          "00:31 - Los inversores internacionales tienen exposición récord a EE.UU. con el nivel de cobertura frente al dólar más bajo en años"
+        ]
+      },
+      "tipo": "canal",
+      "canalId": "pablo",
+      "categoriaSugerida": "macro",
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "diasAntiguedad": 21,
+      "dateTimestamp": 1789025701603,
+      "promptPersonalizado": false
+    },
+    {
+      "id": "vid_yt_pablo_JB8HwGh7zZ4",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=JB8HwGh7zZ4",
+      "title": "¿Cómo PROTEGER tus ahorros según RAY DALIO?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "10/09/2026",
+      "dateTimestamp": 1789025701603,
+      "diasAntiguedad": 21,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "thumbnail": "https://i.ytimg.com/vi/JB8HwGh7zZ4/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "consulta": "¿Cómo estructurar una cartera todoterreno para proteger los ahorros frente a la inflación y los ciclos de deuda según los principios de Ray Dalio?",
+      "tags": [
+        "Ray Dalio",
+        "Asignación de Activos",
+        "Oro",
+        "Inflación"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Explica la filosofía de diversificación estructural (All Weather) de Ray Dalio: equilibrar activos que prosperan en crecimiento y desinflación (bolsa) con coberturas reales para estanflación y crisis de deuda (oro, materias primas y bonos ligados a la inflación).",
+        "tesis_macro": "En el tramo final del gran ciclo de deuda a largo plazo, una cartera concentrada solo en bolsa y bonos nominales es vulnerable a shocks inflacionarios; el oro y los activos reales son indispensables.",
+        "matriz_activos": {
+          "renta_variable": "Neutral / Diversificado dentro de una estructura equilibrada de riesgos",
+          "bonos": "Preferencia por bonos ligados a la inflación (TIPS) frente a deuda nominal larga",
+          "oro": "Alcista estratégico (pilar fundamental de protección patrimonial según Dalio)",
+          "petroleo": "Alcista como cobertura inflacionaria de materias primas",
+          "dolar": "Bajista a largo plazo frente al oro",
+          "bitcoin": "Complemento menor de diversificación"
+        }
+      }
+    },
+    {
+      "id": "vid_yt_pablo_VI68c0I9ulE",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=VI68c0I9ulE",
+      "title": "¿Por qué sube el petróleo y AMENAZA a EE.UU y Europa?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "10/09/2026",
+      "dateTimestamp": 1789025701603,
+      "diasAntiguedad": 21,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "thumbnail": "https://i.ytimg.com/vi/VI68c0I9ulE/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "consulta": "¿Por qué la escalada del precio del petróleo amenaza con reactivar la inflación y frenar el crecimiento en EE.UU. y Europa?",
+      "tags": [
+        "Petróleo",
+        "Inflación",
+        "BCE",
+        "Reserva Federal"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "El repunte del crudo por las tensiones en Oriente Medio y los recortes de oferta actúa como un impuesto directo sobre el consumidor y las empresas, complicando los recortes de tipos de la Fed y el BCE y elevando el riesgo de estanflación en Europa.",
+        "tesis_macro": "Un petróleo sostenidamente alto frena la desinflación, presiona al alza las rentabilidades de los bonos y deteriora los márgenes empresariales no energéticos.",
+        "matriz_activos": {
+          "renta_variable": "Alcista en petroleras / Cautela en consumo discrecional, aerolíneas e industria",
+          "bonos": "Bajista por repunte de las expectativas de inflación",
+          "oro": "Alcista ante riesgo de estanflación",
+          "petroleo": "Alcista por prima geopolítica y restricción de oferta",
+          "dolar": "Alcista frente al euro (EE.UU. es productor neto; Europa es importador neto)",
+          "bitcoin": "Neutral"
+        }
+      }
+    },
+    {
+      "id": "vid_yt_pablo_SGNZ2RgswAc",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=SGNZ2RgswAc",
+      "title": "¿Qué ADVERTENCIA está lanzando el mercado de BONOS al mundo?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "10/09/2026",
+      "dateTimestamp": 1789025701603,
+      "diasAntiguedad": 21,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "thumbnail": "https://i.ytimg.com/vi/SGNZ2RgswAc/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "consulta": "¿Qué advertencia estructural está lanzando el mercado mundial de bonos soberanos ante el récord de deuda pública y gasto en intereses?",
+      "tags": [
+        "Bonos Soberanos",
+        "Deuda Pública",
+        "FMI",
+        "Tipos de Interés"
+      ],
+      "resumen_estructurado": {
+        "hechos_mercado": "Según el FMI, la deuda pública mundial rozó el 94% del PIB en 2025 y alcanzará el 100% del PIB en 2029, mientras el gasto global en intereses ha saltado del 2% a casi el 3% del PIB en apenas cuatro años. A medida que vencen los bonos antiguos emitidos a tipos cercanos al 0%, los gobiernos deben refinanciarlos con cupones mucho más altos, compitiendo además con la emisión masiva de deuda de las tecnológicas para financiar la IA.",
+        "como_reaccionar": "Evitar la duración larga en bonos soberanos (10, 20 y 30 años) salvo con primas de plazo muy elevadas, y vigilar el empinamiento de las curvas de tipos como indicador de estrés fiscal.",
+        "por_que_conclusion": "El mercado de bonos no descuenta una quiebra inminente mañana gracias al privilegio del dólar en EE.UU. y al ahorro doméstico en Japón, pero advierte de que la era del dinero gratis ha muerto: financiar simultáneamente envejecimiento, rearme, transición energética e IA exige pagar un interés cada vez más alto.",
+        "fecha_importante": "Horizonte 2026-2029: Refinanciación progresiva de la deuda soberana emitida a tipos cero y llegada de la deuda pública mundial al 100% del PIB según el FMI.",
+        "otros_temas_maldades": "El aumento del coste de la deuda desplazará (crowding out) inversión privada y obligará a gobiernos y empresas a abandonar proyectos que solo eran viables con tipos al 0%.",
+        "respuesta_consulta": "Los gráficos de los bonos a 10, 20 y 30 años advierten de que el ahorro mundial no es infinito para financiar a la vez envejecimiento, rearme, transición energética e IA sin exigir tipos de interés cada vez más altos.",
+        "tesis_macro": "Alerta estructural en renta fija soberana: con la deuda pública mundial rumbo al 100% del PIB y el gasto en intereses en el 3% del PIB, prestar dinero a largo plazo vuelve a exigir una prima de plazo creciente.",
+        "matriz_activos": {
+          "renta_variable": "Selectivo en empresas con baja deuda y alta generación de caja libre",
+          "bonos": "Bajista en tramos largos (10-30 años) por exceso de emisión soberana y corporativa",
+          "oro": "Alcista por deterioro fiscal estructural de las grandes economías",
+          "petroleo": "Neutral",
+          "dolar": "Resiliente por su estatus de moneda de reserva, pero con deterioro fiscal de fondo",
+          "bitcoin": "Alcista como cobertura frente a fragilidad fiscal soberana"
+        },
+        "timestamps_citas": [
+          "08:31 - El FMI estima que la deuda pública mundial pasará del 94% del PIB al 100% en 2029, con intereses rozando el 3% del PIB",
+          "20:04 - El mercado de bonos dice que prestar dinero a 10, 20 o 30 años vuelve a tener un precio y ese precio es cada vez más alto"
+        ]
+      }
     },
     {
       "id": "vid_vidal_nPUA1YL4n5c",
@@ -4791,163 +4911,6 @@
       "promptPersonalizado": false
     },
     {
-      "id": "vid_yt_pablo_JB8HwGh7zZ4",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=JB8HwGh7zZ4",
-      "title": "¿Cómo PROTEGER tus ahorros según RAY DALIO?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "10/09/2026",
-      "dateTimestamp": 1789025701603,
-      "diasAntiguedad": 21,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "thumbnail": "https://i.ytimg.com/vi/JB8HwGh7zZ4/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "consulta": "¿Cómo estructurar una cartera todoterreno para proteger los ahorros frente a la inflación y los ciclos de deuda según los principios de Ray Dalio?",
-      "tags": [
-        "Ray Dalio",
-        "Asignación de Activos",
-        "Oro",
-        "Inflación"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Explica la filosofía de diversificación estructural (All Weather) de Ray Dalio: equilibrar activos que prosperan en crecimiento y desinflación (bolsa) con coberturas reales para estanflación y crisis de deuda (oro, materias primas y bonos ligados a la inflación).",
-        "tesis_macro": "En el tramo final del gran ciclo de deuda a largo plazo, una cartera concentrada solo en bolsa y bonos nominales es vulnerable a shocks inflacionarios; el oro y los activos reales son indispensables.",
-        "matriz_activos": {
-          "renta_variable": "Neutral / Diversificado dentro de una estructura equilibrada de riesgos",
-          "bonos": "Preferencia por bonos ligados a la inflación (TIPS) frente a deuda nominal larga",
-          "oro": "Alcista estratégico (pilar fundamental de protección patrimonial según Dalio)",
-          "petroleo": "Alcista como cobertura inflacionaria de materias primas",
-          "dolar": "Bajista a largo plazo frente al oro",
-          "bitcoin": "Complemento menor de diversificación"
-        }
-      }
-    },
-    {
-      "id": "vid_yt_pablo_VI68c0I9ulE",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=VI68c0I9ulE",
-      "title": "¿Por qué sube el petróleo y AMENAZA a EE.UU y Europa?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "10/09/2026",
-      "dateTimestamp": 1789025701603,
-      "diasAntiguedad": 21,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "thumbnail": "https://i.ytimg.com/vi/VI68c0I9ulE/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "consulta": "¿Por qué la escalada del precio del petróleo amenaza con reactivar la inflación y frenar el crecimiento en EE.UU. y Europa?",
-      "tags": [
-        "Petróleo",
-        "Inflación",
-        "BCE",
-        "Reserva Federal"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "El repunte del crudo por las tensiones en Oriente Medio y los recortes de oferta actúa como un impuesto directo sobre el consumidor y las empresas, complicando los recortes de tipos de la Fed y el BCE y elevando el riesgo de estanflación en Europa.",
-        "tesis_macro": "Un petróleo sostenidamente alto frena la desinflación, presiona al alza las rentabilidades de los bonos y deteriora los márgenes empresariales no energéticos.",
-        "matriz_activos": {
-          "renta_variable": "Alcista en petroleras / Cautela en consumo discrecional, aerolíneas e industria",
-          "bonos": "Bajista por repunte de las expectativas de inflación",
-          "oro": "Alcista ante riesgo de estanflación",
-          "petroleo": "Alcista por prima geopolítica y restricción de oferta",
-          "dolar": "Alcista frente al euro (EE.UU. es productor neto; Europa es importador neto)",
-          "bitcoin": "Neutral"
-        }
-      }
-    },
-    {
-      "id": "vid_yt_pablo_SGNZ2RgswAc",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=SGNZ2RgswAc",
-      "title": "¿Qué ADVERTENCIA está lanzando el mercado de BONOS al mundo?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "10/09/2026",
-      "dateTimestamp": 1789025701603,
-      "diasAntiguedad": 21,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "thumbnail": "https://i.ytimg.com/vi/SGNZ2RgswAc/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "consulta": "¿Qué advertencia estructural está lanzando el mercado mundial de bonos soberanos ante el récord de deuda pública y gasto en intereses?",
-      "tags": [
-        "Bonos Soberanos",
-        "Deuda Pública",
-        "FMI",
-        "Tipos de Interés"
-      ],
-      "resumen_estructurado": {
-        "hechos_mercado": "Según el FMI, la deuda pública mundial rozó el 94% del PIB en 2025 y alcanzará el 100% del PIB en 2029, mientras el gasto global en intereses ha saltado del 2% a casi el 3% del PIB en apenas cuatro años. A medida que vencen los bonos antiguos emitidos a tipos cercanos al 0%, los gobiernos deben refinanciarlos con cupones mucho más altos, compitiendo además con la emisión masiva de deuda de las tecnológicas para financiar la IA.",
-        "como_reaccionar": "Evitar la duración larga en bonos soberanos (10, 20 y 30 años) salvo con primas de plazo muy elevadas, y vigilar el empinamiento de las curvas de tipos como indicador de estrés fiscal.",
-        "por_que_conclusion": "El mercado de bonos no descuenta una quiebra inminente mañana gracias al privilegio del dólar en EE.UU. y al ahorro doméstico en Japón, pero advierte de que la era del dinero gratis ha muerto: financiar simultáneamente envejecimiento, rearme, transición energética e IA exige pagar un interés cada vez más alto.",
-        "fecha_importante": "Horizonte 2026-2029: Refinanciación progresiva de la deuda soberana emitida a tipos cero y llegada de la deuda pública mundial al 100% del PIB según el FMI.",
-        "otros_temas_maldades": "El aumento del coste de la deuda desplazará (crowding out) inversión privada y obligará a gobiernos y empresas a abandonar proyectos que solo eran viables con tipos al 0%.",
-        "respuesta_consulta": "Los gráficos de los bonos a 10, 20 y 30 años advierten de que el ahorro mundial no es infinito para financiar a la vez envejecimiento, rearme, transición energética e IA sin exigir tipos de interés cada vez más altos.",
-        "tesis_macro": "Alerta estructural en renta fija soberana: con la deuda pública mundial rumbo al 100% del PIB y el gasto en intereses en el 3% del PIB, prestar dinero a largo plazo vuelve a exigir una prima de plazo creciente.",
-        "matriz_activos": {
-          "renta_variable": "Selectivo en empresas con baja deuda y alta generación de caja libre",
-          "bonos": "Bajista en tramos largos (10-30 años) por exceso de emisión soberana y corporativa",
-          "oro": "Alcista por deterioro fiscal estructural de las grandes economías",
-          "petroleo": "Neutral",
-          "dolar": "Resiliente por su estatus de moneda de reserva, pero con deterioro fiscal de fondo",
-          "bitcoin": "Alcista como cobertura frente a fragilidad fiscal soberana"
-        },
-        "timestamps_citas": [
-          "08:31 - El FMI estima que la deuda pública mundial pasará del 94% del PIB al 100% en 2029, con intereses rozando el 3% del PIB",
-          "20:04 - El mercado de bonos dice que prestar dinero a 10, 20 o 30 años vuelve a tener un precio y ese precio es cada vez más alto"
-        ]
-      }
-    },
-    {
-      "id": "vid_yt_pablo_s7traMLj64U",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=s7traMLj64U",
-      "title": "Desplome en UNA SEMANA: ¿Qué ha pasado con UNITREE?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "03/09/2026",
-      "dateTimestamp": 1788420901603,
-      "diasAntiguedad": 28,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "thumbnail": "https://i.ytimg.com/vi/s7traMLj64U/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": false,
-      "consulta": "¿Qué lecciones deja el desplome bursátil de Unitree sobre la valoración y los riesgos del sector de robótica e IA física?",
-      "tags": [
-        "Robótica",
-        "Unitree",
-        "Valoraciones",
-        "Tecnología"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Analiza la corrección severa de Unitree como advertencia sobre lo que ocurre cuando las expectativas hiperbólicas en robótica e IA chocan con problemas de ejecución, competencia o márgenes reales.",
-        "tesis_macro": "En sectores disruptivos de moda (robótica humanoides e IA), pagar múltiplos extremos sin ventaja competitiva defendible expone al inversor a desplomes abruptos.",
-        "matriz_activos": {
-          "renta_variable": "Prudencia en valores tecnológicos hipervalorados sin flujos de caja consolidados",
-          "bonos": "Neutral",
-          "oro": "Neutral",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Neutral"
-        }
-      }
-    },
-    {
       "id": "vid_jon_oKDr4jmtjpg",
       "tipo": "canal",
       "canalId": "jon",
@@ -4987,6 +4950,43 @@
         ]
       },
       "promptPersonalizado": false
+    },
+    {
+      "id": "vid_yt_pablo_s7traMLj64U",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=s7traMLj64U",
+      "title": "Desplome en UNA SEMANA: ¿Qué ha pasado con UNITREE?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "03/09/2026",
+      "dateTimestamp": 1788420901603,
+      "diasAntiguedad": 28,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "thumbnail": "https://i.ytimg.com/vi/s7traMLj64U/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": false,
+      "consulta": "¿Qué lecciones deja el desplome bursátil de Unitree sobre la valoración y los riesgos del sector de robótica e IA física?",
+      "tags": [
+        "Robótica",
+        "Unitree",
+        "Valoraciones",
+        "Tecnología"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Analiza la corrección severa de Unitree como advertencia sobre lo que ocurre cuando las expectativas hiperbólicas en robótica e IA chocan con problemas de ejecución, competencia o márgenes reales.",
+        "tesis_macro": "En sectores disruptivos de moda (robótica humanoides e IA), pagar múltiplos extremos sin ventaja competitiva defendible expone al inversor a desplomes abruptos.",
+        "matriz_activos": {
+          "renta_variable": "Prudencia en valores tecnológicos hipervalorados sin flujos de caja consolidados",
+          "bonos": "Neutral",
+          "oro": "Neutral",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Neutral"
+        }
+      }
     },
     {
       "id": "vid_vidal_AJo2oPGlDBM",
@@ -5230,85 +5230,6 @@
       "promptPersonalizado": false
     },
     {
-      "id": "vid_yt_pablo_mA627Yxt6ns",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=mA627Yxt6ns",
-      "title": "Dólar arriba, oro y Bitcoin ABAJO: Warsh ROMPE EL GUIÓN del mercado",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "01/09/2026",
-      "dateTimestamp": 1788248101603,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "thumbnail": "https://i.ytimg.com/vi/mA627Yxt6ns/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "consulta": "¿Cómo impacta el giro de expectativas sobre la Reserva Federal (factor Kevin Warsh) en la fortaleza del dólar y la corrección de oro y Bitcoin?",
-      "tags": [
-        "Reserva Federal",
-        "Dólar",
-        "Oro",
-        "Bitcoin"
-      ],
-      "resumen_estructurado": {
-        "hechos_mercado": "El endurecimiento de las expectativas sobre la política monetaria estadounidense (asociado a perfiles más ortodoxos como Kevin Warsh frente a la complacencia dovish del mercado) provocó un repunte inmediato del dólar y de las rentabilidades reales de los bonos, desencadenando tomas de beneficios en el oro y en Bitcoin.",
-        "como_reaccionar": "Aprovechar las correcciones tácticas en el oro provocadas por picos puntuales del dólar para construir posición a medio plazo, vigilando los soportes técnicos en metales y criptoactivos.",
-        "por_que_conclusion": "Cuando todo el mercado se posiciona de un mismo lado descontando recortes agresivos de tipos y debilidad del dólar, cualquier sorpresa hawkish en la Fed genera un violento cierre de cortos en el billete verde y purga el exceso de apalancamiento en oro y Bitcoin.",
-        "fecha_importante": "",
-        "otros_temas_maldades": "A pesar de los sacudones tácticos por declaraciones de la Fed, el problema estructural de deuda estadounidense sigue respaldando al oro a largo plazo.",
-        "respuesta_consulta": "El giro hacia expectativas monetarias menos acomodaticias en EE.UU. fortaleció al dólar a corto plazo y forzó una purga de apalancamiento en oro y Bitcoin.",
-        "tesis_macro": "Un banco central estadounidense más estricto contra la inflación eleva los tipos reales a corto plazo, impulsando al dólar y corrigiendo excesos tácticos en oro y cripto.",
-        "matriz_activos": {
-          "renta_variable": "Volatilidad ante tipos reales más altos",
-          "bonos": "Repunte de rentabilidades en los tramos cortos y medios",
-          "oro": "Corrección táctica a corto plazo dentro de una tendencia alcista primaria",
-          "petroleo": "Neutral",
-          "dolar": "Alcista a corto plazo por recalibración de tipos de la Fed",
-          "bitcoin": "Bajista a corto plazo por ajuste de liquidez y fortaleza del dólar"
-        }
-      }
-    },
-    {
-      "id": "vid_yt_pablo_IAu4wZv7qWg",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=IAu4wZv7qWg",
-      "title": "¿Cómo REPARTIR TU SUELDO para ahorrar más cada mes?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "01/09/2026",
-      "dateTimestamp": 1788248101603,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "thumbnail": "https://i.ytimg.com/vi/IAu4wZv7qWg/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": false,
-      "consulta": "¿Qué método de asignación salarial mensual permite maximizar la tasa de ahorro e inversión?",
-      "tags": [
-        "Finanzas Personales",
-        "Ahorro",
-        "Inversión",
-        "Presupuesto"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Detalla reglas prácticas de distribución del ingreso neto mensual (pre-ahorro automático al inicio de mes y control de gastos fijos) para generar excedente de inversión recurrente.",
-        "tesis_macro": "La tasa de ahorro sistemática y el interés compuesto a largo plazo son la base indispensable antes de cualquier estrategia de mercado.",
-        "matriz_activos": {
-          "renta_variable": "Alcista mediante aportaciones periódicas (DCA) en fondos indexados globales",
-          "bonos": "Fondo de emergencia en activos monetarios líquidos",
-          "oro": "Diversificación patrimonial",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Neutral"
-        }
-      }
-    },
-    {
       "id": "vid_rallo_igcxhQ_5JbU",
       "tipo": "canal",
       "canalId": "rallo",
@@ -5427,6 +5348,233 @@
           "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
           "08:40 - Niveles clave o catalizadores a vigilar"
         ]
+      }
+    },
+    {
+      "id": "vid_yt_pablo_mA627Yxt6ns",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=mA627Yxt6ns",
+      "title": "Dólar arriba, oro y Bitcoin ABAJO: Warsh ROMPE EL GUIÓN del mercado",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "01/09/2026",
+      "dateTimestamp": 1788248101603,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "thumbnail": "https://i.ytimg.com/vi/mA627Yxt6ns/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "consulta": "¿Cómo impacta el giro de expectativas sobre la Reserva Federal (factor Kevin Warsh) en la fortaleza del dólar y la corrección de oro y Bitcoin?",
+      "tags": [
+        "Reserva Federal",
+        "Dólar",
+        "Oro",
+        "Bitcoin"
+      ],
+      "resumen_estructurado": {
+        "hechos_mercado": "El endurecimiento de las expectativas sobre la política monetaria estadounidense (asociado a perfiles más ortodoxos como Kevin Warsh frente a la complacencia dovish del mercado) provocó un repunte inmediato del dólar y de las rentabilidades reales de los bonos, desencadenando tomas de beneficios en el oro y en Bitcoin.",
+        "como_reaccionar": "Aprovechar las correcciones tácticas en el oro provocadas por picos puntuales del dólar para construir posición a medio plazo, vigilando los soportes técnicos en metales y criptoactivos.",
+        "por_que_conclusion": "Cuando todo el mercado se posiciona de un mismo lado descontando recortes agresivos de tipos y debilidad del dólar, cualquier sorpresa hawkish en la Fed genera un violento cierre de cortos en el billete verde y purga el exceso de apalancamiento en oro y Bitcoin.",
+        "fecha_importante": "",
+        "otros_temas_maldades": "A pesar de los sacudones tácticos por declaraciones de la Fed, el problema estructural de deuda estadounidense sigue respaldando al oro a largo plazo.",
+        "respuesta_consulta": "El giro hacia expectativas monetarias menos acomodaticias en EE.UU. fortaleció al dólar a corto plazo y forzó una purga de apalancamiento en oro y Bitcoin.",
+        "tesis_macro": "Un banco central estadounidense más estricto contra la inflación eleva los tipos reales a corto plazo, impulsando al dólar y corrigiendo excesos tácticos en oro y cripto.",
+        "matriz_activos": {
+          "renta_variable": "Volatilidad ante tipos reales más altos",
+          "bonos": "Repunte de rentabilidades en los tramos cortos y medios",
+          "oro": "Corrección táctica a corto plazo dentro de una tendencia alcista primaria",
+          "petroleo": "Neutral",
+          "dolar": "Alcista a corto plazo por recalibración de tipos de la Fed",
+          "bitcoin": "Bajista a corto plazo por ajuste de liquidez y fortaleza del dólar"
+        }
+      }
+    },
+    {
+      "id": "vid_yt_pablo_IAu4wZv7qWg",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=IAu4wZv7qWg",
+      "title": "¿Cómo REPARTIR TU SUELDO para ahorrar más cada mes?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "01/09/2026",
+      "dateTimestamp": 1788248101603,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "thumbnail": "https://i.ytimg.com/vi/IAu4wZv7qWg/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": false,
+      "consulta": "¿Qué método de asignación salarial mensual permite maximizar la tasa de ahorro e inversión?",
+      "tags": [
+        "Finanzas Personales",
+        "Ahorro",
+        "Inversión",
+        "Presupuesto"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Detalla reglas prácticas de distribución del ingreso neto mensual (pre-ahorro automático al inicio de mes y control de gastos fijos) para generar excedente de inversión recurrente.",
+        "tesis_macro": "La tasa de ahorro sistemática y el interés compuesto a largo plazo son la base indispensable antes de cualquier estrategia de mercado.",
+        "matriz_activos": {
+          "renta_variable": "Alcista mediante aportaciones periódicas (DCA) en fondos indexados globales",
+          "bonos": "Fondo de emergencia en activos monetarios líquidos",
+          "oro": "Diversificación patrimonial",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Neutral"
+        }
+      }
+    },
+    {
+      "id": "vid_yt_pablo_Db7MJw53M8E",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=Db7MJw53M8E",
+      "title": "Los 6 HÁBITOS FINANCIEROS que construyen patrimonio",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "01/09/2026",
+      "dateTimestamp": 1788248101603,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "thumbnail": "https://i.ytimg.com/vi/Db7MJw53M8E/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": false,
+      "consulta": "¿Cuáles son los 6 hábitos financieros fundamentales para construir y proteger patrimonio a largo plazo?",
+      "tags": [
+        "Patrimonio",
+        "Educación Financiera",
+        "Interés Compuesto",
+        "Ahorro"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Expone los seis pilares de la creación de patrimonio: control del gasto improductivo, eliminación de deuda de consumo, fondo de liquidez, inversión automatizada, diversificación global y disciplina emocional en las caídas.",
+        "tesis_macro": "La disciplina conductual del inversor aporta más rentabilidad a largo plazo que intentar acertar cada movimiento de corto plazo del mercado.",
+        "matriz_activos": {
+          "renta_variable": "Alcista a largo plazo vía interés compuesto",
+          "bonos": "Neutral",
+          "oro": "Alcista",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Neutral"
+        }
+      }
+    },
+    {
+      "id": "vid_yt_pablo_J2j7ucgSJUE",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=J2j7ucgSJUE",
+      "title": "¿Dónde están las PRÓXIMAS OPORTUNIDADES DE INVERSIÓN ante la llegada de la IA?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "01/09/2026",
+      "dateTimestamp": 1788248101603,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "thumbnail": "https://i.ytimg.com/vi/J2j7ucgSJUE/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "consulta": "¿En qué sectores se encuentran las próximas oportunidades de inversión de la IA más allá de los fabricantes de chips?",
+      "tags": [
+        "Inteligencia Artificial",
+        "Energía Eléctrica",
+        "Infraestructuras",
+        "Renta Variable"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Explica la rotación desde la primera fase de la IA (semiconductores como Nvidia) hacia los cuellos de botella físicos de segunda derivada: redes eléctricas, generación energética nuclear/gas, refrigeración de centros de datos, cobre y empresas tradicionales que disparan márgenes aplicando IA.",
+        "tesis_macro": "El cuello de botella de la Inteligencia Artificial ya no son solo los chips, sino la energía eléctrica y la infraestructura de red necesaria para alimentar los centros de datos.",
+        "matriz_activos": {
+          "renta_variable": "Alcista en utilities eléctricas, redes de transmisión, cobre y adoptadores de IA con valoraciones razonables",
+          "bonos": "Neutral",
+          "oro": "Alcista",
+          "petroleo": "Alcista (junto con gas y uranio por demanda energética estructural)",
+          "dolar": "Neutral",
+          "bitcoin": "Neutral"
+        }
+      }
+    },
+    {
+      "id": "vid_yt_pablo_P42ZVbHO5p8",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=P42ZVbHO5p8",
+      "title": "La EDUCACIÓN FINANCIERA que tus hijos necesitan.",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "01/09/2026",
+      "dateTimestamp": 1788248101603,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "thumbnail": "https://i.ytimg.com/vi/P42ZVbHO5p8/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": false,
+      "consulta": "¿Cómo enseñar educación financiera e inversión a largo plazo a los hijos para aprovechar el horizonte temporal?",
+      "tags": [
+        "Educación Financiera",
+        "Ahorro",
+        "Interés Compuesto",
+        "Largo Plazo"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Guía práctica para inculcar el valor del ahorro, el coste de oportunidad, el impacto de la inflación y la inversión indexada desde edades tempranas.",
+        "tesis_macro": "El tiempo es el multiplicador más potente del interés compuesto: empezar a invertir dos décadas antes multiplica exponencialmente el patrimonio final.",
+        "matriz_activos": {
+          "renta_variable": "Alcista secular a largo plazo",
+          "bonos": "Neutral",
+          "oro": "Neutral",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Neutral"
+        }
+      }
+    },
+    {
+      "id": "vid_yt_pablo_O8e8_bD5Gog",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=O8e8_bD5Gog",
+      "title": "¿Sabes cuánto te cuesta REALMENTE tu coche? El gasto que te empobrece",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "01/09/2026",
+      "dateTimestamp": 1788248101603,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "thumbnail": "https://i.ytimg.com/vi/O8e8_bD5Gog/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": false,
+      "consulta": "¿Cuál es el coste financiero real y de oportunidad de comprar y mantener un automóvil frente a la inversión patrimonial?",
+      "tags": [
+        "Finanzas Personales",
+        "Coste de Oportunidad",
+        "Ahorro",
+        "Consumo"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Cuantifica la depreciación, financiación, seguros, impuestos y mantenimiento del automóvil como uno de los mayores destructores silenciosos de capacidad de ahorro de las familias.",
+        "tesis_macro": "Endeudarse para adquirir activos que se deprecian un 15%-20% anual destruye la capacidad de capitalización financiera del hogar.",
+        "matriz_activos": {
+          "renta_variable": "Favorable (destinar el ahorro liberado a activos productivos)",
+          "bonos": "Neutral",
+          "oro": "Neutral",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Neutral"
+        }
       }
     },
     {
@@ -6439,154 +6587,6 @@
         ]
       },
       "promptPersonalizado": false
-    },
-    {
-      "id": "vid_yt_pablo_Db7MJw53M8E",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=Db7MJw53M8E",
-      "title": "Los 6 HÁBITOS FINANCIEROS que construyen patrimonio",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "01/09/2026",
-      "dateTimestamp": 1788248101603,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "thumbnail": "https://i.ytimg.com/vi/Db7MJw53M8E/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": false,
-      "consulta": "¿Cuáles son los 6 hábitos financieros fundamentales para construir y proteger patrimonio a largo plazo?",
-      "tags": [
-        "Patrimonio",
-        "Educación Financiera",
-        "Interés Compuesto",
-        "Ahorro"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Expone los seis pilares de la creación de patrimonio: control del gasto improductivo, eliminación de deuda de consumo, fondo de liquidez, inversión automatizada, diversificación global y disciplina emocional en las caídas.",
-        "tesis_macro": "La disciplina conductual del inversor aporta más rentabilidad a largo plazo que intentar acertar cada movimiento de corto plazo del mercado.",
-        "matriz_activos": {
-          "renta_variable": "Alcista a largo plazo vía interés compuesto",
-          "bonos": "Neutral",
-          "oro": "Alcista",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Neutral"
-        }
-      }
-    },
-    {
-      "id": "vid_yt_pablo_J2j7ucgSJUE",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=J2j7ucgSJUE",
-      "title": "¿Dónde están las PRÓXIMAS OPORTUNIDADES DE INVERSIÓN ante la llegada de la IA?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "01/09/2026",
-      "dateTimestamp": 1788248101603,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "thumbnail": "https://i.ytimg.com/vi/J2j7ucgSJUE/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "consulta": "¿En qué sectores se encuentran las próximas oportunidades de inversión de la IA más allá de los fabricantes de chips?",
-      "tags": [
-        "Inteligencia Artificial",
-        "Energía Eléctrica",
-        "Infraestructuras",
-        "Renta Variable"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Explica la rotación desde la primera fase de la IA (semiconductores como Nvidia) hacia los cuellos de botella físicos de segunda derivada: redes eléctricas, generación energética nuclear/gas, refrigeración de centros de datos, cobre y empresas tradicionales que disparan márgenes aplicando IA.",
-        "tesis_macro": "El cuello de botella de la Inteligencia Artificial ya no son solo los chips, sino la energía eléctrica y la infraestructura de red necesaria para alimentar los centros de datos.",
-        "matriz_activos": {
-          "renta_variable": "Alcista en utilities eléctricas, redes de transmisión, cobre y adoptadores de IA con valoraciones razonables",
-          "bonos": "Neutral",
-          "oro": "Alcista",
-          "petroleo": "Alcista (junto con gas y uranio por demanda energética estructural)",
-          "dolar": "Neutral",
-          "bitcoin": "Neutral"
-        }
-      }
-    },
-    {
-      "id": "vid_yt_pablo_P42ZVbHO5p8",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=P42ZVbHO5p8",
-      "title": "La EDUCACIÓN FINANCIERA que tus hijos necesitan.",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "01/09/2026",
-      "dateTimestamp": 1788248101603,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "thumbnail": "https://i.ytimg.com/vi/P42ZVbHO5p8/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": false,
-      "consulta": "¿Cómo enseñar educación financiera e inversión a largo plazo a los hijos para aprovechar el horizonte temporal?",
-      "tags": [
-        "Educación Financiera",
-        "Ahorro",
-        "Interés Compuesto",
-        "Largo Plazo"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Guía práctica para inculcar el valor del ahorro, el coste de oportunidad, el impacto de la inflación y la inversión indexada desde edades tempranas.",
-        "tesis_macro": "El tiempo es el multiplicador más potente del interés compuesto: empezar a invertir dos décadas antes multiplica exponencialmente el patrimonio final.",
-        "matriz_activos": {
-          "renta_variable": "Alcista secular a largo plazo",
-          "bonos": "Neutral",
-          "oro": "Neutral",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Neutral"
-        }
-      }
-    },
-    {
-      "id": "vid_yt_pablo_O8e8_bD5Gog",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=O8e8_bD5Gog",
-      "title": "¿Sabes cuánto te cuesta REALMENTE tu coche? El gasto que te empobrece",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "01/09/2026",
-      "dateTimestamp": 1788248101603,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "thumbnail": "https://i.ytimg.com/vi/O8e8_bD5Gog/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": false,
-      "consulta": "¿Cuál es el coste financiero real y de oportunidad de comprar y mantener un automóvil frente a la inversión patrimonial?",
-      "tags": [
-        "Finanzas Personales",
-        "Coste de Oportunidad",
-        "Ahorro",
-        "Consumo"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Cuantifica la depreciación, financiación, seguros, impuestos y mantenimiento del automóvil como uno de los mayores destructores silenciosos de capacidad de ahorro de las familias.",
-        "tesis_macro": "Endeudarse para adquirir activos que se deprecian un 15%-20% anual destruye la capacidad de capitalización financiera del hogar.",
-        "matriz_activos": {
-          "renta_variable": "Favorable (destinar el ahorro liberado a activos productivos)",
-          "bonos": "Neutral",
-          "oro": "Neutral",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Neutral"
-        }
-      }
     },
     {
       "id": "vid_cava_VF130hoDphg",
@@ -8064,6 +8064,159 @@
       "promptPersonalizado": false
     },
     {
+      "id": "vid_yt_pablo_GpQ0_Jyz6fI",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=GpQ0_Jyz6fI",
+      "title": "¿Hay que comprar oro AHORA o esperar a que CAIGA MÁS?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "02/08/2026",
+      "dateTimestamp": 1785656101603,
+      "diasAntiguedad": 60,
+      "recencyTier": "tier3",
+      "recencyLabel": "🕰️ 46-90 días (Estructural)",
+      "thumbnail": "https://i.ytimg.com/vi/GpQ0_Jyz6fI/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "consulta": "¿Conviene comprar oro en máximos o esperar correcciones técnicas hacia zonas de soporte para entrar?",
+      "tags": [
+        "Oro",
+        "Metales Preciosos",
+        "Análisis Técnico",
+        "Bancos Centrales"
+      ],
+      "resumen_estructurado": {
+        "hechos_mercado": "El oro mantiene una estructura alcista secular respaldada por las compras récord de los bancos centrales emergentes, el deterioro fiscal estadounidense y los riesgos geopolíticos, pero tras tramos verticales presenta lecturas de sobrecompra técnica de corto plazo.",
+        "como_reaccionar": "Combinar una posición estructural de cartera con entradas escalonadas en correcciones técnicas hacia medias móviles y antiguos techos convertidos en soporte, evitando perseguir el precio en picos de euforia diaria.",
+        "por_que_conclusion": "Los fundamentos macroeconómicos del oro (deuda pública descontrolada y desdolarización parcial de reservas) son impecables a largo plazo, pero gestionar el timing técnico mejora sustancialmente el binomio rentabilidad-riesgo.",
+        "fecha_importante": "",
+        "otros_temas_maldades": "Los bancos centrales compran oro precisamente porque no tiene riesgo de contraparte ni puede ser congelado mediante sanciones.",
+        "respuesta_consulta": "La tesis estructural del oro es claramente alcista, siendo óptimo acumular de forma escalonada aprovechando descansos y apoyos técnicos.",
+        "tesis_macro": "Alcista estructural en el oro por compras de bancos centrales y degradación fiscal, priorizando compras en retrocesos hacia soportes técnicos.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Bajista frente al oro",
+          "oro": "Muy alcista estructural (acumular en apoyos técnicos)",
+          "petroleo": "Neutral",
+          "dolar": "Bajista a largo plazo frente al oro",
+          "bitcoin": "Neutral"
+        }
+      }
+    },
+    {
+      "id": "vid_yt_pablo_78QoQyHhnVs",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=78QoQyHhnVs",
+      "title": "Invertir en el mañana: Las oportunidades reales que nadie ve venir - Evento presencial Madrid",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "02/08/2026",
+      "dateTimestamp": 1785656101603,
+      "diasAntiguedad": 60,
+      "recencyTier": "tier3",
+      "recencyLabel": "🕰️ 46-90 días (Estructural)",
+      "thumbnail": "https://i.ytimg.com/vi/78QoQyHhnVs/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "consulta": "¿Cuáles son las grandes megatendencias macroeconómicas de inversión para los próximos años según la conferencia \"Invertir en el mañana\"?",
+      "tags": [
+        "Megatendencias",
+        "Estrategia Macro",
+        "IA",
+        "Demografía"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Sintetiza los grandes vectores que definirán la inversión en la próxima década: envejecimiento demográfico, transición energética y cuellos de botella en materias primas, multipolaridad geopolítica, endeudamiento soberano e impacto real de la IA.",
+        "tesis_macro": "El inversor debe dejar atrás el paradigma de la década de 2010 (inflación cero y tipos cero) y preparar la cartera para un entorno de mayor inflación estructural, volatilidad de tipos y escasez de recursos reales.",
+        "matriz_activos": {
+          "renta_variable": "Selectivo en megatendencias reales (energía, defensa, salud, infraestructura tecnológica)",
+          "bonos": "Infraponderar duración larga por represión financiera y exceso de deuda",
+          "oro": "Alcista estructural",
+          "petroleo": "Alcista a medio plazo",
+          "dolar": "Neutral",
+          "bitcoin": "Alcista en ciclos de liquidez"
+        }
+      }
+    },
+    {
+      "id": "vid_yt_pablo_iyCWl_nlmX0",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=iyCWl_nlmX0",
+      "title": "5 perfiles financieros REALES: ¿Qué errores les impide AHORRAR MÁS a fin de mes?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "02/08/2026",
+      "dateTimestamp": 1785656101603,
+      "diasAntiguedad": 60,
+      "recencyTier": "tier3",
+      "recencyLabel": "🕰️ 46-90 días (Estructural)",
+      "thumbnail": "https://i.ytimg.com/vi/iyCWl_nlmX0/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": false,
+      "consulta": "¿Qué errores de planificación financiera cometen distintos perfiles reales de ingresos que les impiden ahorrar e invertir?",
+      "tags": [
+        "Finanzas Personales",
+        "Ahorro",
+        "Inflación de Estilo de Vida",
+        "Patrimonio"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Analiza cinco casos reales mostrando cómo la inflación del estilo de vida y el endeudamiento en consumo impiden ahorrar incluso a perfiles con sueldos altos.",
+        "tesis_macro": "Sin control del gasto fijo y pre-ahorro sistemático, los aumentos salariales son absorbidos íntegramente por la inflación de estilo de vida.",
+        "matriz_activos": {
+          "renta_variable": "Alcista vía inversión periódica disciplinada",
+          "bonos": "Neutral",
+          "oro": "Neutral",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Neutral"
+        }
+      }
+    },
+    {
+      "id": "vid_yt_pablo_d-SY7pHPimQ",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=d-SY7pHPimQ",
+      "title": "¿Por qué BITCOIN seguirá BAJANDO? Niveles CLAVE para el próximo ciclo",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "02/08/2026",
+      "dateTimestamp": 1785656101603,
+      "diasAntiguedad": 60,
+      "recencyTier": "tier3",
+      "recencyLabel": "🕰️ 46-90 días (Estructural)",
+      "thumbnail": "https://i.ytimg.com/vi/d-SY7pHPimQ/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "consulta": "¿Qué estructura técnica de corrección presentaba Bitcoin en verano y cuáles eran los soportes clave para el siguiente ciclo?",
+      "tags": [
+        "Bitcoin",
+        "Ciclo Cripto",
+        "Soportes Técnicos",
+        "Liquidez"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Analizaba la fase correctiva de Bitcoin durante el verano mientras mantenía la secuencia de máximos decrecientes, identificando las zonas de soporte de largo plazo donde buscar estructuras de suelo antes del siguiente impulso.",
+        "tesis_macro": "Bitcoin sigue comportándose como un activo de alta beta respecto a la liquidez global y requiere confirmar suelos técnicos (posteriormente actualizados en torno a los 67.000$-83.000$) antes de dar por finalizada una corrección.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Alcista",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "En fase correctiva estival a la espera de estructura de suelo (67.000$)"
+        }
+      }
+    },
+    {
       "id": "vid_vidal_D__Ekx86gKI",
       "tipo": "canal",
       "canalId": "vidal",
@@ -8540,159 +8693,6 @@
         ]
       },
       "promptPersonalizado": false
-    },
-    {
-      "id": "vid_yt_pablo_GpQ0_Jyz6fI",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=GpQ0_Jyz6fI",
-      "title": "¿Hay que comprar oro AHORA o esperar a que CAIGA MÁS?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "02/08/2026",
-      "dateTimestamp": 1785656101603,
-      "diasAntiguedad": 60,
-      "recencyTier": "tier3",
-      "recencyLabel": "🕰️ 46-90 días (Estructural)",
-      "thumbnail": "https://i.ytimg.com/vi/GpQ0_Jyz6fI/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "consulta": "¿Conviene comprar oro en máximos o esperar correcciones técnicas hacia zonas de soporte para entrar?",
-      "tags": [
-        "Oro",
-        "Metales Preciosos",
-        "Análisis Técnico",
-        "Bancos Centrales"
-      ],
-      "resumen_estructurado": {
-        "hechos_mercado": "El oro mantiene una estructura alcista secular respaldada por las compras récord de los bancos centrales emergentes, el deterioro fiscal estadounidense y los riesgos geopolíticos, pero tras tramos verticales presenta lecturas de sobrecompra técnica de corto plazo.",
-        "como_reaccionar": "Combinar una posición estructural de cartera con entradas escalonadas en correcciones técnicas hacia medias móviles y antiguos techos convertidos en soporte, evitando perseguir el precio en picos de euforia diaria.",
-        "por_que_conclusion": "Los fundamentos macroeconómicos del oro (deuda pública descontrolada y desdolarización parcial de reservas) son impecables a largo plazo, pero gestionar el timing técnico mejora sustancialmente el binomio rentabilidad-riesgo.",
-        "fecha_importante": "",
-        "otros_temas_maldades": "Los bancos centrales compran oro precisamente porque no tiene riesgo de contraparte ni puede ser congelado mediante sanciones.",
-        "respuesta_consulta": "La tesis estructural del oro es claramente alcista, siendo óptimo acumular de forma escalonada aprovechando descansos y apoyos técnicos.",
-        "tesis_macro": "Alcista estructural en el oro por compras de bancos centrales y degradación fiscal, priorizando compras en retrocesos hacia soportes técnicos.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Bajista frente al oro",
-          "oro": "Muy alcista estructural (acumular en apoyos técnicos)",
-          "petroleo": "Neutral",
-          "dolar": "Bajista a largo plazo frente al oro",
-          "bitcoin": "Neutral"
-        }
-      }
-    },
-    {
-      "id": "vid_yt_pablo_78QoQyHhnVs",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=78QoQyHhnVs",
-      "title": "Invertir en el mañana: Las oportunidades reales que nadie ve venir - Evento presencial Madrid",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "02/08/2026",
-      "dateTimestamp": 1785656101603,
-      "diasAntiguedad": 60,
-      "recencyTier": "tier3",
-      "recencyLabel": "🕰️ 46-90 días (Estructural)",
-      "thumbnail": "https://i.ytimg.com/vi/78QoQyHhnVs/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "consulta": "¿Cuáles son las grandes megatendencias macroeconómicas de inversión para los próximos años según la conferencia \"Invertir en el mañana\"?",
-      "tags": [
-        "Megatendencias",
-        "Estrategia Macro",
-        "IA",
-        "Demografía"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Sintetiza los grandes vectores que definirán la inversión en la próxima década: envejecimiento demográfico, transición energética y cuellos de botella en materias primas, multipolaridad geopolítica, endeudamiento soberano e impacto real de la IA.",
-        "tesis_macro": "El inversor debe dejar atrás el paradigma de la década de 2010 (inflación cero y tipos cero) y preparar la cartera para un entorno de mayor inflación estructural, volatilidad de tipos y escasez de recursos reales.",
-        "matriz_activos": {
-          "renta_variable": "Selectivo en megatendencias reales (energía, defensa, salud, infraestructura tecnológica)",
-          "bonos": "Infraponderar duración larga por represión financiera y exceso de deuda",
-          "oro": "Alcista estructural",
-          "petroleo": "Alcista a medio plazo",
-          "dolar": "Neutral",
-          "bitcoin": "Alcista en ciclos de liquidez"
-        }
-      }
-    },
-    {
-      "id": "vid_yt_pablo_iyCWl_nlmX0",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=iyCWl_nlmX0",
-      "title": "5 perfiles financieros REALES: ¿Qué errores les impide AHORRAR MÁS a fin de mes?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "02/08/2026",
-      "dateTimestamp": 1785656101603,
-      "diasAntiguedad": 60,
-      "recencyTier": "tier3",
-      "recencyLabel": "🕰️ 46-90 días (Estructural)",
-      "thumbnail": "https://i.ytimg.com/vi/iyCWl_nlmX0/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": false,
-      "consulta": "¿Qué errores de planificación financiera cometen distintos perfiles reales de ingresos que les impiden ahorrar e invertir?",
-      "tags": [
-        "Finanzas Personales",
-        "Ahorro",
-        "Inflación de Estilo de Vida",
-        "Patrimonio"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Analiza cinco casos reales mostrando cómo la inflación del estilo de vida y el endeudamiento en consumo impiden ahorrar incluso a perfiles con sueldos altos.",
-        "tesis_macro": "Sin control del gasto fijo y pre-ahorro sistemático, los aumentos salariales son absorbidos íntegramente por la inflación de estilo de vida.",
-        "matriz_activos": {
-          "renta_variable": "Alcista vía inversión periódica disciplinada",
-          "bonos": "Neutral",
-          "oro": "Neutral",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Neutral"
-        }
-      }
-    },
-    {
-      "id": "vid_yt_pablo_d-SY7pHPimQ",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=d-SY7pHPimQ",
-      "title": "¿Por qué BITCOIN seguirá BAJANDO? Niveles CLAVE para el próximo ciclo",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "02/08/2026",
-      "dateTimestamp": 1785656101603,
-      "diasAntiguedad": 60,
-      "recencyTier": "tier3",
-      "recencyLabel": "🕰️ 46-90 días (Estructural)",
-      "thumbnail": "https://i.ytimg.com/vi/d-SY7pHPimQ/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "consulta": "¿Qué estructura técnica de corrección presentaba Bitcoin en verano y cuáles eran los soportes clave para el siguiente ciclo?",
-      "tags": [
-        "Bitcoin",
-        "Ciclo Cripto",
-        "Soportes Técnicos",
-        "Liquidez"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Analizaba la fase correctiva de Bitcoin durante el verano mientras mantenía la secuencia de máximos decrecientes, identificando las zonas de soporte de largo plazo donde buscar estructuras de suelo antes del siguiente impulso.",
-        "tesis_macro": "Bitcoin sigue comportándose como un activo de alta beta respecto a la liquidez global y requiere confirmar suelos técnicos (posteriormente actualizados en torno a los 67.000$-83.000$) antes de dar por finalizada una corrección.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Alcista",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "En fase correctiva estival a la espera de estructura de suelo (67.000$)"
-        }
-      }
     },
     {
       "id": "vid_vidal_1ZsW_2w15xc",
@@ -10081,47 +10081,6 @@
       "promptPersonalizado": false
     },
     {
-      "id": "vid_cava_h9xA4QpQOwI",
-      "tipo": "canal",
-      "canalId": "cava",
-      "url": "https://www.youtube.com/watch?v=h9xA4QpQOwI",
-      "title": "Se aplaza la CAÍDA: los BAJISTAS se disparan, luego esperamos subidas en julio. José Luis Cava",
-      "author": "José Luis Cava",
-      "channel": "José Luis Cava",
-      "fecha": "03/07/2026",
-      "fecha_registro": "03/07/2026 12:00",
-      "dateTimestamp": 1783029600000,
-      "diasAntiguedad": 90,
-      "recencyTier": "tier3",
-      "recencyLabel": "🕰️ 46-90 días (Estructural)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/h9xA4QpQOwI/hqdefault.jpg",
-      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
-      "tags": [
-        "Macro",
-        "Mercados",
-        "José Luis Cava"
-      ],
-      "resumen_estructurado": {
-        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
-        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
-        "matriz_activos": {
-          "renta_variable": "Neutral",
-          "bonos": "Neutral",
-          "oro": "Favorable",
-          "petroleo": "Neutral",
-          "dolar": "Neutral",
-          "bitcoin": "Favorable"
-        },
-        "timestamps_citas": [
-          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
-          "08:40 - Niveles clave o catalizadores a vigilar"
-        ]
-      },
-      "promptPersonalizado": false
-    },
-    {
       "id": "vid_1790119256651_26071",
       "url": "https://www.youtube.com/watch?v=eAy5VovZy_E",
       "title": "Buffett, Burry y Dalio contra el mercado: ¿Quién tiene razón sobre la burbuja de la IA?",
@@ -10274,6 +10233,47 @@
           "bitcoin": "Neutral"
         }
       }
+    },
+    {
+      "id": "vid_cava_h9xA4QpQOwI",
+      "tipo": "canal",
+      "canalId": "cava",
+      "url": "https://www.youtube.com/watch?v=h9xA4QpQOwI",
+      "title": "Se aplaza la CAÍDA: los BAJISTAS se disparan, luego esperamos subidas en julio. José Luis Cava",
+      "author": "José Luis Cava",
+      "channel": "José Luis Cava",
+      "fecha": "03/07/2026",
+      "fecha_registro": "03/07/2026 12:00",
+      "dateTimestamp": 1783029600000,
+      "diasAntiguedad": 90,
+      "recencyTier": "tier3",
+      "recencyLabel": "🕰️ 46-90 días (Estructural)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/h9xA4QpQOwI/hqdefault.jpg",
+      "consulta": "Análisis de la perspectiva macroeconómica, liquidez e impacto en activos financieros.",
+      "tags": [
+        "Macro",
+        "Mercados",
+        "José Luis Cava"
+      ],
+      "resumen_estructurado": {
+        "respuesta_consulta": "Análisis centrado en la coyuntura de mercado y previsiones para el ciclo de inversión.",
+        "tesis_macro": "Evaluación de la política monetaria y las condiciones financieras actuales.",
+        "matriz_activos": {
+          "renta_variable": "Neutral",
+          "bonos": "Neutral",
+          "oro": "Favorable",
+          "petroleo": "Neutral",
+          "dolar": "Neutral",
+          "bitcoin": "Favorable"
+        },
+        "timestamps_citas": [
+          "03:15 - Tesis principal del vídeo sobre liquidez y mercado",
+          "08:40 - Niveles clave o catalizadores a vigilar"
+        ]
+      },
+      "promptPersonalizado": false
     },
     {
       "id": "vid_yt_pablo_LbQc2i2guJ8",
