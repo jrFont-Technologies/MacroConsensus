@@ -46,11 +46,11 @@
     <div class="tabs-container">
       <button class="tab-btn active" data-tab="tab-meta">
         📊 Meta-Análisis Macro
-        <span class="tab-badge" id="metaCountBadge">4</span>
+        <span class="tab-badge" id="metaCountBadge">0</span>
       </button>
       <button class="tab-btn" data-tab="tab-videos">
         🎥 Gestor de Vídeos
-        <span class="tab-badge" id="videosCountBadge">4</span>
+        <span class="tab-badge" id="videosCountBadge">0</span>
       </button>
       <button class="tab-btn" data-tab="tab-settings">
         ⚙️ Configuración & Prompt IA
@@ -66,11 +66,11 @@
       <div class="panel-header">
         <div>
           <h2 class="panel-title">📊 Meta-Análisis & Consenso Institucional</h2>
-          <p class="panel-subtitle">Visión agregada sintetizada a partir de los vídeos seleccionados de tu biblioteca</p>
+          <p class="panel-subtitle">Visión agregada sintetizada a partir de los vídeos analizados de tu biblioteca</p>
         </div>
         <div style="display: flex; gap: 0.5rem; align-items: center;">
           <button class="btn btn-secondary btn-sm" id="btnManageIncludedVideos">
-            ☑️ Seleccionar Vídeos (<span id="includedVideosCount">4</span>/<span id="totalVideosCountMeta">4</span>)
+            ☑️ Seleccionar Vídeos (<span id="includedVideosCount">0</span>/<span id="totalVideosCountMeta">0</span>)
           </button>
           <button class="btn btn-primary" id="btnRegenerateMeta">
             ✨ Actualizar Meta-Análisis
@@ -82,16 +82,16 @@
       <div class="meta-hero">
         <div class="meta-hero-header">
           <div>
-            <h3 class="meta-hero-title" id="metaTitle">Consenso Macro: Complacencia de Mercado ante Shock Inflacionario y Geopolítico</h3>
-            <span class="meta-hero-date" id="metaDate">Última síntesis: 05/09/2026 01:06</span>
+            <h3 class="meta-hero-title" id="metaTitle">Sin Meta-Análisis generado</h3>
+            <span class="meta-hero-date" id="metaDate">Aún no se ha realizado ninguna síntesis</span>
           </div>
         </div>
         <p class="meta-lead" id="metaLead">
-          Cargando análisis institucional...
+          Bienvenido a MacroConsensus. Busca nuevos vídeos en YouTube desde el Gestor de Vídeos, analiza con IA los que te interesen y pulsa «✨ Actualizar Meta-Análisis» para generar el consenso y duelo de tesis.
         </p>
         <div class="meta-consensus-box" id="metaConsensusBox">
-          <strong>🌐 Consenso Central Invariable:</strong>
-          <span id="metaConsensusText">Cargando puntos de acuerdo unánime...</span>
+          <strong>🌐 Consenso Central:</strong>
+          <span id="metaConsensusText">Pendiente de generar el primer análisis conjunto.</span>
         </div>
       </div>
 
@@ -355,6 +355,9 @@
               📤 Importar Backup
               <input type="file" id="inputImportJson" accept=".json" style="display: none;">
             </label>
+            <button type="button" class="btn btn-danger" onclick="resetAllToFreshState()" title="Borrar todos los vídeos y resúmenes para empezar desde cero">
+              🗑️ Reiniciar Todo a Cero
+            </button>
           </div>
         </div>
       </div>

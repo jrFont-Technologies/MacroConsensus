@@ -1200,12 +1200,22 @@ function updateBadges() {
 // ==========================================
 function renderMetaTab() {
   const meta = state.meta_analisis;
-  if (!meta) return;
-
   const elTitle = document.getElementById('metaTitle');
   const elDate = document.getElementById('metaDate');
   const elLead = document.getElementById('metaLead');
   const elConsensusText = document.getElementById('metaConsensusText');
+  const duelContainer = document.getElementById('duelContainer');
+  const assetContainer = document.getElementById('assetMatrixContainer');
+
+  if (!meta) {
+    if (elTitle) elTitle.textContent = 'Sin Meta-Análisis generado';
+    if (elDate) elDate.textContent = 'Aún no se ha realizado ninguna síntesis';
+    if (elLead) elLead.textContent = 'Bienvenido a MacroConsensus. Busca nuevos vídeos en YouTube desde el Gestor de Vídeos, analiza con IA los que te interesen y pulsa «✨ Actualizar Meta-Análisis» para generar el consenso y duelo de tesis.';
+    if (elConsensusText) elConsensusText.textContent = 'Pendiente de generar el primer análisis conjunto.';
+    if (duelContainer) duelContainer.innerHTML = '<p style="color: var(--text-muted); font-size: 0.9rem; padding: 1rem 0;">No hay duelos de tesis generados. Analiza vídeos con IA y pulsa Actualizar Meta-Análisis.</p>';
+    if (assetContainer) assetContainer.innerHTML = '<p style="color: var(--text-muted); font-size: 0.9rem; padding: 1rem 0;">Matriz de activos pendiente de análisis.</p>';
+    return;
+  }
 
   if (elTitle && meta.titulo) elTitle.textContent = meta.titulo;
   if (elDate && meta.fecha) elDate.textContent = `Última síntesis: ${meta.fecha}`;
@@ -1213,7 +1223,6 @@ function renderMetaTab() {
   if (elConsensusText && meta.consenso_macro) elConsensusText.textContent = meta.consenso_macro;
 
   // 1. Renderizar Duelo de Tesis
-  const duelContainer = document.getElementById('duelContainer');
   if (duelContainer) {
     if (!meta.duelo_tesis || meta.duelo_tesis.length === 0) {
       duelContainer.innerHTML = `<p style="color: var(--text-muted); font-size: 0.9rem;">No hay discrepancias registradas en el análisis actual.</p>`;
@@ -1251,7 +1260,6 @@ function renderMetaTab() {
   }
 
   // 2. Renderizar Matriz Agregada de Activos
-  const assetContainer = document.getElementById('assetMatrixContainer');
   if (assetContainer) {
     if (!meta.matriz_activos || meta.matriz_activos.length === 0) {
       assetContainer.innerHTML = `<p style="color: var(--text-muted); font-size: 0.9rem;">No hay matriz de activos disponible.</p>`;
@@ -3137,6 +3145,19 @@ function initEventListeners() {
     });
   }
 }
+
+// Reiniciar aplicación completamente a cero (biblioteca limpia y sin análisis)
+window.resetAllToFreshState = async function() {
+  if (!confirm('¿Estás seguro de que deseas reiniciar la biblioteca a cero? Se vaciarán los vídeos y el meta-análisis para empezar completamente desde el principio.')) return;
+  state.videos = [];
+  state.meta_analisis = null;
+  state.config.lastYoutubeScan = null;
+  localStorage.removeItem('macro_last_yt_scan');
+  localStorage.removeItem('macro_cached_canales');
+  await persistData(true);
+  renderAll();
+  showToast('✅ Biblioteca reiniciada a cero. ¡Lista para explorar!', 'success');
+};
 
 // Helpers
 function extractVideoId(url) {
