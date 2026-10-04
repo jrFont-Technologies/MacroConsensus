@@ -14,6 +14,7 @@ REGLAS DE ORO DE FILTRADO:
 1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, comentarios del tiempo, bromas, promoción de libros/cursos/servicios (ej. HOPLA) y cualquier mención a brokers patrocinadores (ej. Freedom24) o a los ETFs/productos comerciales que mencione solo como parte del anuncio del patrocinador. Quédate únicamente con el análisis puro del índice o activo subyacente (ej. el VIX, el SP500, el bono, el petróleo, el oro, Bitcoin).
 2. CAUSA -> EFECTO EN FRASES CORTAS (1 FRASE POR LÍNEA): Explica siempre los hechos conectando la causa con la consecuencia en 1 frase corta y llana por línea, sin adornos literarios ni parrafadas densas.
 3. CONSERVA DATOS TÉCNICOS, MECÁNICA Y NIVELES EXACTOS: Incluye siempre fechas concretas del gráfico (ej. días 17, 20 y 24), niveles y rangos numéricos exactos (ej. 7740 o zona 7850-8000 en SP500, 16-20 en VIX, 4500 en oro), plazos temporales (ej. 3ª semana de octubre, 3 de noviembre, agosto-septiembre) y la mecánica interna si se explica (triple hora bruja, expiración de opciones sobre VIX, gamma positiva, dealers sin coberturas, opciones Call/Put, cobertura de futuros por delta, recompra de deuda a largo plazo del Tesoro/Bessent, déficit/PIB, rebajas de rating).
+4. FECHAS ABSOLUTAS Y ANCLAJE TEMPORAL (OBLIGATORIO): Usa siempre la fecha de publicación del vídeo como punto de anclaje temporal de referencia. NUNCA dejes expresiones temporales relativas ambiguas (ej. "en 5 semanas", "el mes que viene", "este viernes", "en las próximas semanas"). Tradúcelas SIEMPRE a fechas de calendario absolutas con mes y año explícitos (ej. "a principios de noviembre de 2026", "semana del 9 al 15 de noviembre de 2026", "en diciembre de 2026"). Si menciona meses o estaciones (ej. "agosto o septiembre"), especifica siempre el año exacto (ej. "agosto-septiembre de 2026"). En "Fecha importante", pon siempre día, mes y año exacto (ej. "3 de noviembre de 2026").
 
 ESTRUCTURA OBLIGATORIA DEL RESUMEN:
 - Como se ve el mercado / los hechos:
@@ -103,6 +104,7 @@ REGLAS DE FILTRADO:
 1. CERO RELLENO: Ignora saludos, peticiones de "debatidlo en comentarios", promociones de cursos/universidad (OMMA), libros o patrocinadores.
 2. DATOS Y CAUSA -> EFECTO: Conserva siempre las cifras concretas que cita Rallo (porcentajes de deuda/PIB, déficit, inflación, compras de toneladas de oro por bancos centrales, tipos de interés, aranceles o impuestos) y conecta cada hecho con su consecuencia económica real.
 3. SI EL VÍDEO ES 100% POLÍTICA/SOCIEDAD LOCAL SIN IMPACTO ECONÓMICO: Clasifícalo como "politica_sociedad" y resume brevemente el conflicto legal/económico de fondo (ej. derechos de propiedad, inseguridad jurídica en vivienda, impuestos).
+4. FECHAS ABSOLUTAS Y ANCLAJE TEMPORAL (OBLIGATORIO): Ancla siempre el análisis a la fecha de publicación del vídeo. Prohibido usar expresiones temporales relativas ambiguas (ej. "en 3 semanas", "el mes que viene", "para el próximo año"). Tradúcelas siempre a fechas absolutas de calendario con mes y año explícitos (ej. "en noviembre de 2026", "a lo largo de 2027").
 
 ESTRUCTURA OBLIGATORIA DEL RESUMEN:
 - Como se ve el mercado / los hechos:
@@ -123,6 +125,7 @@ const DEFAULT_PROMPT_JON = `Actúa como un analista macro y de liquidez que toma
 REGLAS DE FILTRADO:
 1. CERO PUBLICIDAD: Ignora al 100% cualquier mención a Quantfury, enlaces de referido, sorteos o saludos iniciales.
 2. CONSERVA NIVELES Y DATOS MACRO: Incluye siempre los niveles exactos que menciona en bonos (rentabilidad del bono a 10 y 30 años), niveles de Bitcoin, S&P 500, Nasdaq, dólar (DXY), liquidez global (M2, balance de la Fed, TGA) y vencimientos de opciones.
+3. FECHAS ABSOLUTAS Y ANCLAJE TEMPORAL (OBLIGATORIO): Ancla siempre el análisis a la fecha de publicación del vídeo. Convierte cualquier plazo o mención relativa ("en 5 semanas", "el próximo mes", "este viernes", "en el próximo trimestre") en fechas absolutas de calendario con mes y año explícitos (ej. "mediados de noviembre de 2026", "viernes 9 de octubre de 2026", "Q4 2026").
 
 ESTRUCTURA OBLIGATORIA DEL RESUMEN:
 - Como se ve el mercado / los hechos:
@@ -144,6 +147,7 @@ REGLAS DE ORO DE FILTRADO:
 1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales (ej. desde qué calle o ciudad graba), peticiones de suscripción/comentarios/miembros y cualquier bloque patrocinado (ej. Trade Republic, Urbanitae, Mintos, etc.). Quédate únicamente con los datos económicos, financieros, energéticos, tecnológicos y geopolíticos.
 2. CAUSA -> EFECTO EN FRASES CORTAS (1 FRASE POR LÍNEA): Explica siempre los hechos conectando la causa con la consecuencia en 1 frase corta y llana por línea, sin adornos literarios ni introducciones narrativas.
 3. CONSERVA DATOS TÉCNICOS, INDICADORES Y NIVELES EXACTOS: Incluye siempre las cifras exactas que cita Marc Vidal (ej. VIX en 16, rentabilidad del bono a 10 años en 5,12% y a 30 años en 5,44%, spreads de crédito basura/High Yield en 268 pb, facilidad repo de la Fed en 0$, Treasury Basis Trade en 1,2 billones $, exportaciones de diésel a Europa en 110.000 bpd, Brent >104$, deuda de EE.UU. >40 billones $, tipos de la Fed 3,75%-4,00%, compras de toneladas de oro por bancos centrales, fechas clave del calendario macro).
+4. FECHAS ABSOLUTAS Y ANCLAJE TEMPORAL (OBLIGATORIO): Ancla siempre el análisis a la fecha de publicación del vídeo. Prohibido dejar plazos relativos ambiguos (ej. "en 5 semanas", "el mes que viene", "durante los próximos 90 días"). Tradúcelos siempre a fechas de calendario absolutas con mes y año explícitos (ej. "hacia mediados de noviembre de 2026", "diciembre de 2026"). Especifica siempre el año en cualquier mención a meses o trimestres (ej. "septiembre de 2026", "Q1 2027"). En "Fecha importante", especifica siempre día, mes y año exacto.
 
 ESTRUCTURA OBLIGATORIA DEL RESUMEN:
 - Como se ve el mercado / los hechos:
@@ -190,6 +194,7 @@ REGLAS DE ORO DE FILTRADO:
    - Fuerza relativa entre índices: Compara siempre la hegemonía del S&P 500 frente al resto del mundo (SPX/ACWX, SPX/EEM, Nikkei con doble suelo, IBEX 35 con máximos crecientes, Stoxx 600).
    - Niveles y soportes críticos exactos: Cita siempre las cotizaciones clave (ej. S&P 500 soporte en 6.340, directriz secular de 16 años del Nasdaq en 6.100, MSCI World ACWI en 134, Stoxx 600 en 561, MSCI Emerging Markets en 54,5, Nikkei 225 en 50.650, Bitcoin en 67.000$ / 83.000$, Brent en 108$).
    - Catálogo de riesgos macroeconómicos y múltiplos: Conserva menciones al CAPE de Shiller (múltiplos PER ~40x y percentiles), márgenes empresariales récord, deuda sobre PIB, margin debt/apalancamiento, rentabilidad del bono a 10 años frente al S&P 500, gestión pasiva vs activa, y riesgos de la economía circular en empresas de IA.
+4. FECHAS ABSOLUTAS Y ANCLAJE TEMPORAL (OBLIGATORIO): Ancla siempre el análisis a la fecha de publicación del vídeo. Prohibido dejar plazos o marcos temporales relativos ambiguos (ej. "en 5 semanas", "en las próximas semanas", "el mes que viene", "durante agosto o septiembre"). Conviértelos siempre en fechas absolutas de calendario con mes y año explícitos (ej. "primera quincena de noviembre de 2026", "agosto-septiembre de 2026"). En la fecha clave, especifica siempre día, mes y año exacto.
 
 ESTRUCTURA OBLIGATORIA DEL RESUMEN (4 BLOQUES):
 - Como se ve el mercado / los hechos:
@@ -418,15 +423,15 @@ function ensureChannelAndVideoPrompts() {
       c.defaultPrompt = c.defaultPrompt.trim().replace(/^`+|`+$/g, '').trim();
     }
     if (stored) {
-      // Si es Cava y tenía una versión antigua sin el Ejemplo 4, actualizar a la plantilla con los 4 ejemplos
-      if (c.id === 'cava' && !stored.includes('[EJEMPLO 4')) {
-        c.defaultPrompt = DEFAULT_PROMPT_CAVA;
-        localStorage.setItem('macro_channel_prompt_cava', DEFAULT_PROMPT_CAVA);
+      // Si el prompt guardado es antiguo y no tiene la regla de fechas absolutas, actualizar a la plantilla con dicha regla
+      if (!stored.includes('FECHAS ABSOLUTAS')) {
+        c.defaultPrompt = getBuiltInChannelDefaultPrompt(c.id);
+        localStorage.setItem('macro_channel_prompt_' + c.id, c.defaultPrompt);
       } else {
         c.defaultPrompt = stored;
         localStorage.setItem('macro_channel_prompt_' + c.id, stored);
       }
-    } else if (!c.defaultPrompt || (c.id === 'cava' && !c.defaultPrompt.includes('[EJEMPLO 4'))) {
+    } else if (!c.defaultPrompt || !c.defaultPrompt.includes('FECHAS ABSOLUTAS')) {
       c.defaultPrompt = getBuiltInChannelDefaultPrompt(c.id);
       localStorage.setItem('macro_channel_prompt_' + c.id, c.defaultPrompt);
     }
@@ -436,7 +441,7 @@ function ensureChannelAndVideoPrompts() {
   (state.videos || []).forEach(v => {
     if (!v) return;
     const chPrompt = v.canalId ? getEffectiveChannelPrompt(v.canalId) : getEffectiveMasterPrompt();
-    if (!v.prompt || !v.prompt.trim() || (!v.promptPersonalizado && v.canalId === 'cava' && !v.prompt.includes('[EJEMPLO 4'))) {
+    if (!v.prompt || !v.prompt.trim() || (!v.promptPersonalizado && !v.prompt.includes('FECHAS ABSOLUTAS'))) {
       v.prompt = chPrompt;
     }
   });
@@ -2487,6 +2492,12 @@ window.reanalyzeVideoById = async function(videoId) {
 
     const systemPrompt = `${videoPrompt}
 
+REGLA CRÍTICA OBLIGATORIA: FECHAS ABSOLUTAS Y ANCLAJE TEMPORAL
+La fecha de publicación del vídeo es: ${v.fecha || 'Fecha actual'}.
+QUEDA ESTRICTAMENTE PROHIBIDO usar expresiones temporales relativas ambiguas (ej. "en 5 semanas", "el mes que viene", "en las próximas semanas", "este viernes", "hace 3 semanas", "durante agosto o septiembre").
+Debes calcular y escribir SIEMPRE la fecha o rango de calendario absoluto con mes y año explícitos (ej. "a principios de noviembre de 2026", "semana del 9 al 15 de noviembre de 2026", "agosto-septiembre de 2026", "Q4 2026").
+En el campo "fecha_importante", especifica siempre día, mes y año exacto (ej. "3 de noviembre de 2026").
+
 IMPORTANTE: Devuelve SIEMPRE tu respuesta en formato JSON válido dentro de un bloque \`\`\`json.`;
 
     const contextBlock = transcript
@@ -2497,7 +2508,7 @@ IMPORTANTE: Devuelve SIEMPRE tu respuesta en formato JSON válido dentro de un b
 ANALIZA EL SIGUIENTE VÍDEO SIGUIENDO EL PROMPT DEL VÍDEO:
 - Título: ${v.title}
 - Analista / Canal: ${v.author || v.channel}
-- Fecha: ${v.fecha || ''}
+- Fecha de Publicación (PUNTO DE ANCLAJE TEMPORAL PARA CALCULAR FECHAS ABSOLUTAS): ${v.fecha || 'Fecha actual'}
 - URL: ${v.url}
 ${consulta ? `\n🎯 NOTAS O CONDICIONES ADICIONALES PARA ESTE VÍDEO:\n"${consulta}"\n` : ''}
 ${contextBlock}
@@ -2506,18 +2517,18 @@ Devuelve un bloque JSON válido con este formato exacto:
 \`\`\`json
 {
   "categoriaSugerida": "macro" o "politica_sociedad",
-  "hechos_mercado": "Texto directo para '- Como se ve el mercado / los hechos:' (ESCRIBE 1 FRASE CORTA POR LÍNEA separada con salto de línea \\n, lenguaje llano y directo como en los ejemplos).",
+  "hechos_mercado": "Texto directo para '- Como se ve el mercado / los hechos:' (ESCRIBE 1 FRASE CORTA POR LÍNEA separada con salto de línea \\n, lenguaje llano y directo como en los ejemplos; con fechas absolutas si se mencionan momentos).",
   "como_reaccionar": "Texto directo para '- Como reaccionar:' indicando qué comprar/vender y en qué nivel exacto (ej. 'Comprar futuros si el SP500 supera la zona de los 7740'). Si no da orden concreta, pon cadena vacía ''.",
-  "por_que_conclusion": "Texto directo para '- ¿por que? / conclusión:' (frases cortas separadas por salto de línea \\n con la deducción o previsión por activo y fecha, o '' si ya queda recogido en los otros bloques).",
-  "fecha_importante": "Fecha clave mencionada y qué ocurrirá antes y después (ej. '3 de noviembre elecciones, las bolsas subirán hasta el 3 de noviembre y después bajarán'). Si no hay fecha clave, pon ''.",
-  "otros_temas_maldades": "Texto directo para '- Otros temas / maldades / predicción:' (ESCRIBE 1 IDEA CORTA POR LÍNEA separada por \\n, sin parrafadas).",
+  "por_que_conclusion": "Texto directo para '- ¿por que? / conclusión:' (frases cortas separadas por salto de línea \\n con la deducción o previsión por activo y fecha absoluta, o '' si ya queda recogido en los otros bloques).",
+  "fecha_importante": "Fecha clave exacta con día, mes y año (ej. '3 de noviembre de 2026: elecciones en EE.UU., las bolsas subirán hasta el 3 de noviembre y después bajarán'). Si no hay fecha clave, pon ''.",
+  "otros_temas_maldades": "Texto directo para '- Otros temas / maldades / predicción:' (ESCRIBE 1 IDEA CORTA POR LÍNEA separada por \\n, sin parrafadas; con horizontes temporales en fechas absolutas con mes y año).",
   "matriz_activos": {
     "renta_variable": "sesgo y nivel clave",
     "bonos": "sesgo y motivo",
-    "oro": "sesgo y horizonte",
+    "oro": "sesgo y horizonte en fechas absolutas",
     "petroleo": "sesgo y motivo",
     "dolar": "sesgo",
-    "bitcoin": "sesgo y horizonte"
+    "bitcoin": "sesgo y horizonte en fechas absolutas"
   },
   "timestamps_citas": [
     "MM:SS - Hecho o nivel clave del vídeo",
@@ -2722,12 +2733,22 @@ async function handleAddVideo(e) {
     else if (authorLower.includes('pablo')) matchedCanalId = 'pablo';
 
     const copiedPrompt = getEffectiveChannelPrompt(matchedCanalId);
-    const systemPrompt = `${copiedPrompt}\n\nIMPORTANTE: Devuelve SIEMPRE tu respuesta en formato JSON dentro de un bloque markdown \`\`\`json.`;
+    const videoFecha = extractData?.fecha || new Date().toLocaleDateString('es-ES');
+    const systemPrompt = `${copiedPrompt}
+
+REGLA CRÍTICA OBLIGATORIA: FECHAS ABSOLUTAS Y ANCLAJE TEMPORAL
+La fecha de publicación del vídeo es: ${videoFecha}.
+QUEDA ESTRICTAMENTE PROHIBIDO usar expresiones temporales relativas ambiguas (ej. "en 5 semanas", "el mes que viene", "este viernes", "durante agosto o septiembre").
+Debes calcular y escribir SIEMPRE la fecha o rango de calendario absoluto con mes y año explícitos (ej. "a principios de noviembre de 2026", "semana del 9 al 15 de noviembre de 2026", "agosto-septiembre de 2026", "Q4 2026").
+En el campo "fecha_importante", especifica siempre día, mes y año exacto (ej. "3 de noviembre de 2026").
+
+IMPORTANTE: Devuelve SIEMPRE tu respuesta en formato JSON dentro de un bloque markdown \`\`\`json.`;
 
     const userPrompt = `
 ANALIZA EL SIGUIENTE VÍDEO SIGUIENDO EL PROMPT DEL VÍDEO:
 - Título: ${title}
 - Analista / Canal: ${author}
+- Fecha de Publicación (PUNTO DE ANCLAJE TEMPORAL PARA CALCULAR FECHAS ABSOLUTAS): ${videoFecha}
 - URL: ${rawUrl}
 ${consulta ? `\n🎯 NOTAS O CONDICIONES DEL USUARIO:\n"${consulta}"\n` : ''}
 TRANSCRIPCIÓN COMPLETA DEL VÍDEO:
@@ -2740,18 +2761,18 @@ Devuelve un bloque JSON válido con este formato:
 {
   "title": "${title}",
   "author": "${author}",
-  "hechos_mercado": "Texto para '- Como se ve el mercado / los hechos:'",
+  "hechos_mercado": "Texto para '- Como se ve el mercado / los hechos:' (1 frase por línea con fechas absolutas si se mencionan momentos)",
   "como_reaccionar": "Texto para '- Como reaccionar:' (o '' si no da orden concreta)",
-  "por_que_conclusion": "Texto para '- ¿por que? / conclusión:'",
-  "fecha_importante": "Fecha clave y qué pasará antes y después (o '' si no aplica)",
-  "otros_temas_maldades": "Texto para '- Otros temas / maldades / predicción:'",
+  "por_que_conclusion": "Texto para '- ¿por que? / conclusión:' (frases con deducción por activo y plazos en fechas absolutas con mes y año)",
+  "fecha_importante": "Fecha clave exacta con día, mes y año (o '' si no aplica)",
+  "otros_temas_maldades": "Texto para '- Otros temas / maldades / predicción:' (1 idea por línea; horizontes temporales en fechas absolutas)",
   "matriz_activos": {
     "renta_variable": "sesgo y nivel",
     "bonos": "sesgo y motivo",
-    "oro": "sesgo y horizonte",
+    "oro": "sesgo y horizonte en fechas absolutas",
     "petroleo": "sesgo y motivo",
     "dolar": "sesgo",
-    "bitcoin": "sesgo y horizonte"
+    "bitcoin": "sesgo y horizonte en fechas absolutas"
   },
   "timestamps_citas": [
     "MM:SS - Cita o nivel clave del vídeo",
@@ -2896,6 +2917,7 @@ CRITERIOS RIGUROSOS DE PONDERACIÓN TEMPORAL (DECAY):
 2. TIER 2 (16 a 45 días) sirve para validar la confirmación o maduración de tendencias.
 3. TIER 3 (46 a 90 días) sirve únicamente como contexto estructural de fondo. En ningún caso debe contradecir el pulso de los últimos 15 días.
 4. Ignora cualquier contenido puramente de política partidista, sociedad o entretenimiento para no enturbiar el análisis económico y de mercado.
+5. REGLA ESTRICTA DE FECHAS ABSOLUTAS: Expresa SIEMPRE los horizontes temporales, catalizadores, fechas clave y plazos de las predicciones con fechas de calendario absolutas con mes y año explícitos (ej. "noviembre de 2026", "primer trimestre de 2027", "finales de 2026"). Queda terminantemente prohibido utilizar expresiones relativas ambiguas como "en las próximas semanas", "en unos meses" o "el mes que viene".
 
 Tu labor es sintetizar el consenso real de mercado, contrastar posturas y aislar los "Duelos de Tesis" donde chocan frontalmente sus predicciones más actuales.
 Devuelve SIEMPRE tu respuesta en formato JSON dentro de un bloque markdown \`\`\`json con texto en perfecto español.`;
