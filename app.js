@@ -282,6 +282,13 @@ function getBuiltInChannelDefaultPrompt(canalId) {
   return DEFAULT_MASTER_PROMPT;
 }
 
+// Comprueba si un vídeo ya ha sido analizado en profundidad con IA y su prompt (4 bloques)
+function isVideoAnalyzed(video) {
+  if (!video || !video.resumen_estructurado) return false;
+  const est = video.resumen_estructurado;
+  return Boolean(est.hechos_mercado || est.por_que_conclusion);
+}
+
 // Estado Global
 const state = {
   config: {
@@ -1511,29 +1518,9 @@ function classifyAndBuildChannelVideo(item, canal) {
     thumbnail: item.thumbnail || `https://i.ytimg.com/vi/${item.videoId}/hqdefault.jpg`,
     prompt: getEffectiveChannelPrompt(canal.id),
     promptPersonalizado: false,
-    consulta: isOffTopic
-      ? 'Contenido de actualidad política o social descartado automáticamente de la síntesis macro.'
-      : '',
+    consulta: '',
     tags: tags.slice(0, 4),
-    resumen_estructurado: {
-      respuesta_consulta: item.description
-        ? item.description.slice(0, 280)
-        : `Análisis de ${canal.nombre} centrado en: ${item.title}.`,
-      tesis_macro: isOffTopic
-        ? 'Vídeo centrado en cuestiones políticas o sociales sin impacto operativo directo en la matriz de activos.'
-        : `Postura de ${canal.nombre} (${ item.fecha }): ${item.title}.`,
-      matriz_activos: {
-        renta_variable: tags.includes('Bolsas') ? 'En foco en el vídeo' : 'Neutral',
-        bonos: tags.includes('Deuda y Bonos') ? 'En foco en el vídeo' : 'Neutral',
-        oro: tags.includes('Oro') ? 'Favorable / Cobertura' : 'Neutral',
-        petroleo: tags.includes('Energía') ? 'En foco en el vídeo' : 'Neutral',
-        dolar: 'Neutral',
-        bitcoin: tags.includes('Bitcoin') ? 'En foco en el vídeo' : 'Neutral'
-      },
-      timestamps_citas: [
-        `00:00 - Publicado el ${item.fecha}: ${item.title}`
-      ]
-    }
+    resumen_estructurado: null
   };
 }
 
@@ -1696,7 +1683,7 @@ window.scanSingleChannel = async function(canalId, showFeedback = true) {
     }
 
     if (newVideoObjs.length > 0) {
-      await enrichNewChannelVideosWithAI(newVideoObjs, canal, rawItemsMap);
+      // Nuevos vídeos catalogados en estado pendiente (sin resumen preliminar ni llamadas apresuradas a IA)
       state.videos.unshift(...newVideoObjs);
       state.videos.sort((a, b) => (b.dateTimestamp || 0) - (a.dateTimestamp || 0));
     }
@@ -1910,6 +1897,8 @@ function renderChannelsView() {
   // 2. Estadísticas del Canal Activo
   const channelVideos = state.videos.filter(v => v.tipo === 'canal' && v.canalId === currentCanal.id);
   const totalChannelVideos = channelVideos.length;
+  const analyzedCount = channelVideos.filter(v => isVideoAnalyzed(v)).length;
+  const pendingCount = totalChannelVideos - analyzedCount;
   const includedCount = channelVideos.filter(v => v.incluidoEnSintesis !== false).length;
   const excludedCount = channelVideos.filter(v => v.incluidoEnSintesis === false).length;
   const macroCount = channelVideos.filter(v => v.categoriaSugerida === 'macro').length;
@@ -1962,30 +1951,32 @@ function renderChannelsView() {
         <div class="stat-box-label">Vídeos (Últimos 3 meses)</div>
       </div>
       <div class="stat-box">
+        <div class="stat-box-num" style="color: #34d399;">${analyzedCount}</div>
+        <div class="stat-box-label">✅ Analizados con IA</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-num" style="color: #fbbf24;">${pendingCount}</div>
+        <div class="stat-box-label">⏳ Pendientes de Analizar</div>
+      </div>
+      <div class="stat-box">
         <div class="stat-box-num" style="color: var(--accent-green);">${includedCount}</div>
-        <div class="stat-box-label">Incluidos en Síntesis Macro</div>
+        <div class="stat-box-label">Incluidos en Síntesis</div>
       </div>
       <div class="stat-box">
         <div class="stat-box-num" style="color: #f87171;">${tier1Count}</div>
-        <div class="stat-box-label">🔥 Tier 1: &lt;15 días (Máx. Peso)</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-box-num" style="color: #60a5fa;">${tier2Count}</div>
-        <div class="stat-box-label">⚡ Tier 2: 16-45 días</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-box-num" style="color: #94a3b8;">${tier3Count}</div>
-        <div class="stat-box-label">🕰️ Tier 3: 46-90 días</div>
+        <div class="stat-box-label">🔥 Tier 1 (&lt;15d)</div>
       </div>
     </div>
 
     <div class="channel-actions-toolbar">
       <div class="channel-subfilters">
         <button class="subfilter-btn ${state.channelSubfilter === 'all' ? 'active' : ''}" onclick="filterChannelSub('all')">Todos (${totalChannelVideos})</button>
+        <button class="subfilter-btn ${state.channelSubfilter === 'analyzed' ? 'active' : ''}" onclick="filterChannelSub('analyzed')">✅ Con Resumen IA (${analyzedCount})</button>
+        <button class="subfilter-btn ${state.channelSubfilter === 'pending' ? 'active' : ''}" onclick="filterChannelSub('pending')">⏳ Pendientes (${pendingCount})</button>
         <button class="subfilter-btn ${state.channelSubfilter === 'macro' ? 'active' : ''}" onclick="filterChannelSub('macro')">Solo Macro (${macroCount})</button>
-        <button class="subfilter-btn ${state.channelSubfilter === 'tier1' ? 'active' : ''}" onclick="filterChannelSub('tier1')">🔥 Últimos 15 días (${tier1Count})</button>
-        <button class="subfilter-btn ${state.channelSubfilter === 'tier2' ? 'active' : ''}" onclick="filterChannelSub('tier2')">Tier 2 (16-45d) (${tier2Count})</button>
-        <button class="subfilter-btn ${state.channelSubfilter === 'tier3' ? 'active' : ''}" onclick="filterChannelSub('tier3')">Tier 3 (46-90d) (${tier3Count})</button>
+        <button class="subfilter-btn ${state.channelSubfilter === 'tier1' ? 'active' : ''}" onclick="filterChannelSub('tier1')">🔥 &lt;15 días (${tier1Count})</button>
+        <button class="subfilter-btn ${state.channelSubfilter === 'tier2' ? 'active' : ''}" onclick="filterChannelSub('tier2')">Tier 2 (${tier2Count})</button>
+        <button class="subfilter-btn ${state.channelSubfilter === 'tier3' ? 'active' : ''}" onclick="filterChannelSub('tier3')">Tier 3 (${tier3Count})</button>
         <button class="subfilter-btn ${state.channelSubfilter === 'excluded' ? 'active' : ''}" onclick="filterChannelSub('excluded')">Descartados (${excludedCount})</button>
       </div>
       <div style="font-size: 0.8rem; color: var(--text-muted);">
@@ -1996,7 +1987,11 @@ function renderChannelsView() {
 
   // 3. Filtrar vídeos del canal según subfiltro
   let displayedVideos = channelVideos;
-  if (state.channelSubfilter === 'macro') {
+  if (state.channelSubfilter === 'analyzed') {
+    displayedVideos = channelVideos.filter(v => isVideoAnalyzed(v));
+  } else if (state.channelSubfilter === 'pending') {
+    displayedVideos = channelVideos.filter(v => !isVideoAnalyzed(v));
+  } else if (state.channelSubfilter === 'macro') {
     displayedVideos = channelVideos.filter(v => v.categoriaSugerida === 'macro');
   } else if (state.channelSubfilter === 'tier1') {
     displayedVideos = channelVideos.filter(v => v.recencyTier === 'tier1' || (v.diasAntiguedad != null && v.diasAntiguedad <= 15));
@@ -2021,11 +2016,11 @@ function renderChannelsView() {
     return;
   }
 
-  // 4. Renderizar Filas de Vídeos con Botón Directo de Actualizar Resumen IA y Desglose de 4 Bloques
+  // 4. Renderizar Filas de Vídeos con Estado de Análisis y Desglose
   listContainer.innerHTML = displayedVideos.map(video => {
     const isIncluded = video.incluidoEnSintesis !== false;
     const estructurado = video.resumen_estructurado || null;
-    const has4Blocks = Boolean(estructurado && estructurado.hechos_mercado);
+    const isAnalyzed = isVideoAnalyzed(video);
 
     let tierClass = 'recency-tier3';
     let tierLabel = '🕰️ 46-90 días (Estructural)';
@@ -2052,6 +2047,9 @@ function renderChannelsView() {
                 ${escapeHtml(video.title)}
               </div>
               <div class="channel-video-meta">
+                <span class="analysis-status-badge ${isAnalyzed ? 'status-analyzed' : 'status-pending'}">
+                  ${isAnalyzed ? '✅ Analizado con IA' : '⏳ Resumen pendiente'}
+                </span>
                 <span class="recency-badge ${tierClass}">${tierLabel}</span>
                 <span class="category-pill ${catClass}">${catLabel}</span>
                 <span style="color: var(--text-muted);">📅 ${escapeHtml(video.fecha)}</span>
@@ -2062,9 +2060,15 @@ function renderChannelsView() {
             </div>
           </div>
           <div class="channel-video-right">
-            <button class="btn btn-primary btn-sm" onclick="reanalyzeVideoById('${video.id}')" title="Extraer transcripción de YouTube y generar/actualizar el resumen usando el Prompt guardado en este vídeo">
-              🔄 Actualizar Resumen IA
-            </button>
+            ${isAnalyzed ? `
+              <button class="btn btn-secondary btn-sm" onclick="reanalyzeVideoById('${video.id}')" title="Volver a extraer transcripción de YouTube y actualizar el resumen">
+                🔄 Re-analizar con IA
+              </button>
+            ` : `
+              <button class="btn btn-primary btn-sm" onclick="reanalyzeVideoById('${video.id}')" style="font-weight: 700; box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);" title="Extraer transcripción de YouTube y generar el resumen con el Prompt de ${escapeHtml(video.author || currentCanal.nombre)}">
+                ⚡ Analizar con IA
+              </button>
+            `}
             <button class="btn btn-secondary btn-sm" onclick="editVideoQuery('${video.id}')" style="${video.promptPersonalizado ? 'border-color: var(--accent-indigo); color: #c7d2fe;' : ''}" title="Ver o editar el Prompt copiado en este vídeo y actualizar su resumen">
               ${video.promptPersonalizado ? '✏️ Prompt (Editado)' : '✏️ Prompt del Vídeo'}
             </button>
@@ -2080,11 +2084,11 @@ function renderChannelsView() {
         <div class="channel-video-body">
           <div class="summary-accordion" style="border-top: none; padding-top: 0.1rem; margin-top: 0;">
             <button class="accordion-toggle" onclick="toggleAccordion(this)">
-              <span>📋 ${has4Blocks ? 'Ver Resumen Operativo (4 Bloques)' : 'Ver Desglose Analítico IA'}</span>
-              <span class="accordion-arrow">${has4Blocks ? '▲' : '▼'}</span>
+              <span>📋 ${isAnalyzed ? 'Ver Resumen Operativo (4 Bloques)' : '⏳ Resumen pendiente (Pulse para ver / analizar)'}</span>
+              <span class="accordion-arrow">${isAnalyzed ? '▲' : '▼'}</span>
             </button>
-            <div class="accordion-content ${has4Blocks ? 'open' : ''}" id="acc_${video.id}">
-              ${renderStructuredSummary(estructurado, video.resumen, video.id)}
+            <div class="accordion-content ${isAnalyzed ? 'open' : ''}" id="acc_${video.id}">
+              ${renderStructuredSummary(estructurado, video.resumen, video.id, video.author || currentCanal.nombre)}
             </div>
           </div>
         </div>
@@ -2132,7 +2136,7 @@ function renderSueltosView() {
   grid.innerHTML = filteredVideos.map(video => {
     const isIncluded = video.incluidoEnSintesis !== false;
     const estructurado = video.resumen_estructurado || null;
-    const has4Blocks = Boolean(estructurado && estructurado.hechos_mercado);
+    const isAnalyzed = isVideoAnalyzed(video);
 
     return `
       <div class="video-card" data-id="${video.id}">
@@ -2148,6 +2152,12 @@ function renderSueltosView() {
         <div class="video-card-body">
           <h4 class="video-card-title" title="${escapeHtml(video.title)}">${escapeHtml(video.title)}</h4>
 
+          <div style="margin-bottom: 0.5rem;">
+            <span class="analysis-status-badge ${isAnalyzed ? 'status-analyzed' : 'status-pending'}">
+              ${isAnalyzed ? '✅ Analizado con IA' : '⏳ Resumen pendiente'}
+            </span>
+          </div>
+
           ${video.consulta ? `
           <div class="user-query-box">
             <strong>🎯 Notas del Vídeo:</strong>
@@ -2160,11 +2170,11 @@ function renderSueltosView() {
 
           <div class="summary-accordion">
             <button class="accordion-toggle" onclick="toggleAccordion(this)">
-              <span>📋 ${has4Blocks ? 'Ver Resumen Operativo (4 Bloques)' : 'Ver Desglose Analítico IA'}</span>
-              <span class="accordion-arrow">${has4Blocks ? '▲' : '▼'}</span>
+              <span>📋 ${isAnalyzed ? 'Ver Resumen Operativo (4 Bloques)' : '⏳ Resumen pendiente (Pulse para analizar)'}</span>
+              <span class="accordion-arrow">${isAnalyzed ? '▲' : '▼'}</span>
             </button>
-            <div class="accordion-content ${has4Blocks ? 'open' : ''}" id="acc_${video.id}">
-              ${renderStructuredSummary(estructurado, video.resumen, video.id)}
+            <div class="accordion-content ${isAnalyzed ? 'open' : ''}" id="acc_${video.id}">
+              ${renderStructuredSummary(estructurado, video.resumen, video.id, video.author || video.channel)}
             </div>
           </div>
         </div>
@@ -2175,9 +2185,15 @@ function renderSueltosView() {
             <span>En Meta-Análisis</span>
           </label>
           <div style="display: flex; gap: 0.35rem; flex-wrap: wrap;">
-            <button class="btn btn-primary btn-sm" onclick="reanalyzeVideoById('${video.id}')" title="Actualizar resumen con el Prompt Maestro actual">
-              🔄 Actualizar Resumen
-            </button>
+            ${isAnalyzed ? `
+              <button class="btn btn-secondary btn-sm" onclick="reanalyzeVideoById('${video.id}')" title="Actualizar resumen con el Prompt Maestro actual">
+                🔄 Re-analizar
+              </button>
+            ` : `
+              <button class="btn btn-primary btn-sm" onclick="reanalyzeVideoById('${video.id}')" style="font-weight: 700;" title="Analizar vídeo con el Prompt de este autor">
+                ⚡ Analizar con IA
+              </button>
+            `}
             <button class="btn btn-secondary btn-sm" onclick="editVideoQuery('${video.id}')" title="Editar Prompt / Notas y actualizar">
               ✏️ Prompt
             </button>
@@ -2194,81 +2210,75 @@ function renderSueltosView() {
   }).join('');
 }
 
-function renderStructuredSummary(est, fallbackText, videoId = '') {
+function renderStructuredSummary(est, fallbackText, videoId = '', authorName = '') {
+  const isAnalyzed = isVideoAnalyzed({ resumen_estructurado: est });
+
   const actionToolbar = videoId ? `
     <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px dashed rgba(255,255,255,0.1);">
       <button type="button" class="btn btn-secondary btn-sm" onclick="editVideoQuery('${videoId}')" style="font-size: 0.75rem; padding: 0.25rem 0.6rem;">
         ✏️ Cambiar Prompt / Notas
       </button>
       <button type="button" class="btn btn-primary btn-sm" onclick="reanalyzeVideoById('${videoId}')" style="font-size: 0.75rem; padding: 0.25rem 0.65rem;">
-        🔄 Actualizar Resumen con IA Ahora
+        ${isAnalyzed ? '🔄 Re-analizar con IA' : '⚡ Analizar con IA ahora'}
       </button>
     </div>
   ` : '';
 
-  if (!est) {
-    return `${actionToolbar}<div style="white-space: pre-wrap;">${escapeHtml(fallbackText || 'Sin resumen disponible')}</div>`;
+  if (!isAnalyzed) {
+    return `
+      ${actionToolbar}
+      <div class="pending-summary-box">
+        <div class="pending-summary-title">
+          <span>⏳</span> Resumen pendiente de análisis
+        </div>
+        <p class="pending-summary-desc">
+          Este vídeo aún no ha sido analizado con su transcripción real. Pulse el botón para extraer los subtítulos completos de YouTube y procesarlos con el Prompt correspondiente ${authorName ? 'de <strong>' + escapeHtml(authorName) + '</strong>' : 'del canal'}.
+        </p>
+        <button type="button" class="btn btn-primary btn-sm" onclick="reanalyzeVideoById('${videoId}')" style="font-size: 0.825rem; font-weight: 700; padding: 0.45rem 1.1rem; box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);">
+          ⚡ Analizar con IA (${authorName ? 'Prompt de ' + escapeHtml(authorName) : 'Prompt del Canal'})
+        </button>
+      </div>
+    `;
   }
 
   let html = actionToolbar;
 
-  // Nuevo formato de 4 bloques del usuario
-  if (est.hechos_mercado || est.por_que_conclusion || est.otros_temas_maldades) {
-    if (est.hechos_mercado) {
-      html += `
-        <div class="structured-block">
-          <div class="block-title" style="color: #60a5fa;">📊 - Como se ve el mercado / los hechos:</div>
-          <div style="white-space: pre-line; color: #e2e8f0;">${escapeHtml(est.hechos_mercado)}</div>
-        </div>
-      `;
-    }
+  // Formato de 4 bloques del usuario
+  if (est.hechos_mercado) {
+    html += `
+      <div class="structured-block">
+        <div class="block-title" style="color: #60a5fa;">📊 - Como se ve el mercado / los hechos:</div>
+        <div style="white-space: pre-line; color: #e2e8f0;">${escapeHtml(est.hechos_mercado)}</div>
+      </div>
+    `;
+  }
 
-    if (est.como_reaccionar && est.como_reaccionar.trim()) {
-      html += `
-        <div class="structured-block">
-          <div class="block-title" style="color: #34d399;">🎯 - Como reaccionar:</div>
-          <div style="white-space: pre-line; color: #d1fae5; font-weight: 600;">${escapeHtml(est.como_reaccionar)}</div>
-        </div>
-      `;
-    }
+  if (est.como_reaccionar && est.como_reaccionar.trim()) {
+    html += `
+      <div class="structured-block">
+        <div class="block-title" style="color: #34d399;">🎯 - Como reaccionar:</div>
+        <div style="white-space: pre-line; color: #d1fae5; font-weight: 600;">${escapeHtml(est.como_reaccionar)}</div>
+      </div>
+    `;
+  }
 
-    if (est.por_que_conclusion || est.fecha_importante) {
-      html += `
-        <div class="structured-block">
-          <div class="block-title" style="color: #fbbf24;">💡 - ¿por que? / conclusión:</div>
-          ${est.por_que_conclusion ? `<div style="white-space: pre-line; color: #e2e8f0;">${escapeHtml(est.por_que_conclusion)}</div>` : ''}
-          ${est.fecha_importante ? `<div style="margin-top: 0.4rem; padding: 0.4rem 0.65rem; background: rgba(245, 158, 11, 0.12); border-left: 3px solid var(--accent-amber); border-radius: 4px; color: #fde68a; font-weight: 600;">📅 Fecha importante: ${escapeHtml(est.fecha_importante)}</div>` : ''}
-        </div>
-      `;
-    }
+  if (est.por_que_conclusion || est.fecha_importante) {
+    html += `
+      <div class="structured-block">
+        <div class="block-title" style="color: #fbbf24;">💡 - ¿por que? / conclusión:</div>
+        ${est.por_que_conclusion ? `<div style="white-space: pre-line; color: #e2e8f0;">${escapeHtml(est.por_que_conclusion)}</div>` : ''}
+        ${est.fecha_importante ? `<div style="margin-top: 0.4rem; padding: 0.4rem 0.65rem; background: rgba(245, 158, 11, 0.12); border-left: 3px solid var(--accent-amber); border-radius: 4px; color: #fde68a; font-weight: 600;">📅 Fecha importante: ${escapeHtml(est.fecha_importante)}</div>` : ''}
+      </div>
+    `;
+  }
 
-    if (est.otros_temas_maldades) {
-      html += `
-        <div class="structured-block">
-          <div class="block-title" style="color: #c084fc;">🌶️ - Otros temas / maldades / predicción:</div>
-          <div style="white-space: pre-line; color: #e2e8f0;">${escapeHtml(est.otros_temas_maldades)}</div>
-        </div>
-      `;
-    }
-  } else {
-    // Formato clásico de respaldo para vídeos aún no actualizados
-    if (est.respuesta_consulta) {
-      html += `
-        <div class="structured-block">
-          <div class="block-title">🎯 Respuesta / Resumen previo:</div>
-          <div style="white-space: pre-line;">${escapeHtml(est.respuesta_consulta)}</div>
-        </div>
-      `;
-    }
-
-    if (est.tesis_macro) {
-      html += `
-        <div class="structured-block">
-          <div class="block-title">📈 Tesis Central y Catalizadores:</div>
-          <div style="white-space: pre-line;">${escapeHtml(est.tesis_macro)}</div>
-        </div>
-      `;
-    }
+  if (est.otros_temas_maldades) {
+    html += `
+      <div class="structured-block">
+        <div class="block-title" style="color: #c084fc;">🌶️ - Otros temas / maldades / predicción:</div>
+        <div style="white-space: pre-line; color: #e2e8f0;">${escapeHtml(est.otros_temas_maldades)}</div>
+      </div>
+    `;
   }
 
   if (est.matriz_activos && Object.keys(est.matriz_activos).length > 0) {
@@ -2798,7 +2808,7 @@ Devuelve un bloque JSON válido con este formato:
 
 function getVideoSynthesisText(v) {
   const est = v.resumen_estructurado;
-  if (!est) return v.resumen || v.consulta || '';
+  if (!est) return '';
   if (est.hechos_mercado || est.por_que_conclusion) {
     return [
       est.hechos_mercado ? `Hechos: ${est.hechos_mercado}` : '',
@@ -2808,14 +2818,14 @@ function getVideoSynthesisText(v) {
       est.otros_temas_maldades ? `Otros/Predicción: ${est.otros_temas_maldades}` : ''
     ].filter(Boolean).join(' | ');
   }
-  return est.tesis_macro || est.respuesta_consulta || v.resumen || v.consulta || '';
+  return '';
 }
 
 // Regenerar Meta-Análisis (Síntesis y Duelo de Tesis con Recency Decay)
 async function handleRegenerateMetaAnalysis() {
-  const selectedVideos = state.videos.filter(v => v.incluidoEnSintesis !== false);
+  const selectedVideos = state.videos.filter(v => v.incluidoEnSintesis !== false && isVideoAnalyzed(v));
   if (selectedVideos.length === 0) {
-    alert('No hay vídeos seleccionados para el Meta-Análisis. Marca al menos 1 o 2 vídeos.');
+    alert('No hay vídeos analizados con IA seleccionados para el Meta-Análisis. Analiza al menos 1 o 2 vídeos con el botón «⚡ Analizar con IA» para generar la síntesis.');
     return;
   }
 
