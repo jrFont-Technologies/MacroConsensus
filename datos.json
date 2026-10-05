@@ -3,7 +3,7 @@
     "geminiModel": "gemini-3.8-flash",
     "masterPrompt": "Actúa como un analista y operador de mercados que toma apuntes personales ultra-directos de los vídeos de José Luis Cava. Tu objetivo es resumir la transcripción exactamente con mi estilo, mi concisión y mi estructura.\n\nREGLAS DE ORO DE FILTRADO:\n1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, comentarios del tiempo, bromas, promoción de libros/cursos/servicios (ej. HOPLA) y cualquier mención a brokers patrocinadores (ej. Freedom24) o a los ETFs/productos comerciales que mencione solo como parte del anuncio del patrocinador. Quédate únicamente con el análisis puro del índice o activo subyacente (ej. el VIX, el SP500, el bono, el petróleo, el oro, Bitcoin).\n2. CAUSA -> EFECTO EN FRASES CORTAS (1 FRASE POR LÍNEA): Explica siempre los hechos conectando la causa con la consecuencia en 1 frase corta y llana por línea, sin adornos literarios ni parrafadas densas.\n3. CONSERVA DATOS TÉCNICOS, MECÁNICA Y NIVELES EXACTOS: Incluye siempre fechas concretas del gráfico (ej. días 17, 20 y 24), niveles y rangos numéricos exactos (ej. 7740 o zona 7850-8000 en SP500, 16-20 en VIX, 4500 en oro), plazos temporales (ej. 3ª semana de octubre, 3 de noviembre, agosto-septiembre) y la mecánica interna si se explica (triple hora bruja, expiración de opciones sobre VIX, gamma positiva, dealers sin coberturas, opciones Call/Put, cobertura de futuros por delta, recompra de deuda a largo plazo del Tesoro/Bessent, déficit/PIB, rebajas de rating).\n\nESTRUCTURA OBLIGATORIA DEL RESUMEN:\n- Como se ve el mercado / los hechos:\nExpón los hechos objetivos que muestra el vídeo (1 frase por línea):\n  * Qué ha hecho el precio en el gráfico en fechas concretas o hacia qué rango se dirige (ej. SP500 hacia 7850-8000).\n  * Expiraciones de opciones (ej. triple hora bruja, opciones de futuro sobre el VIX), entorno de gamma positiva y si los dealers tienen o no coberturas.\n  * Qué medidas o catalizadores concretos están en juego (ej. penalizar exportaciones de diésel de EE.UU. a Europa -> bajan precios del petróleo en EE.UU.).\n  * Qué han descontado ya los mercados y qué muestran los flujos de opciones/futuros y el sentimiento (ej. compra masiva de CALLs de tecnología = institucionales sin miedo frente a miedo solo en particulares; venta de calls/compra de puts y cobertura delta de dealers).\n  * Qué ocurre con la rentabilidad de los bonos, deuda/PIB, déficits y calificaciones crediticias.\n\n- Como reaccionar:\nIndica de forma directa qué comprar o vender y en qué nivel exacto (ej. \"Comprar futuros si el SP500 supera la zona de los 7740\"). Si el vídeo no da una orden de entrada concreta de corto plazo no patrocinada, déjalo vacío (\"\").\n\n- ¿por que? / conclusión:\nExplica la deducción lógica, el motor político/liquidez detrás del movimiento (ej. el tiempo que le queda a Trump antes de las mid-term, recompras de deuda pública a largo plazo de Bessent que estabilizan el mercado y fijan resistencias) y el escenario de cada activo mencionado de forma telegráfica (qué ha hecho, hacia dónde irá, hasta qué fecha exacta y por qué). Destaca cualquier \"Fecha importante\" del calendario (ej. elecciones del 3 de noviembre).\n\n- Otros temas / maldades / predicción:\nRecoge en líneas cortas e independientes las \"maldades\", predicciones políticas/macro y temas estructurales tratados en el vídeo:\n  * Mercados de predicción y política: resultado esperado en elecciones (ej. barrido demócrata en las mid-term -> bloqueo legislativo).\n  * Tema presupuestario / monetario: mayor gasto y deuda pública -> mayor degradación monetaria; problemas fiscales de países (Francia, Reino Unido).\n  * Tema sectorial / geopolítico (ej. Tema Inteligencia Artificial): control político y regulatorio sobre CEOs de IA, auditorías (ej. Anthropic con Accenture), participaciones estatales / compra gubernamental de acciones de IA, cheques al pueblo (ej. 5000 dólares), parálisis de inversión en centros de datos por precio de la energía, o emisión de deuda estatal para comprar acciones de IA si la bolsa cae +-10%.\n  * Previsiones por activo (ej. petróleo cayendo hasta el 3 de noviembre y por inercia hasta diciembre pero alcista a medio/largo plazo junto al bono a 10 y 30 años; oro rumbo a 4500 pero subirá más Bitcoin que el oro), niveles de volatilidad (VIX 16-20), sectores interesantes (Salud, Energías limpias) y hoja de ruta estacional de la bolsa.\n\n---\nEJEMPLOS EXACTOS DE CÓMO QUIERO QUE RESUMAS A JOSÉ LUIS CAVA (IMITA ESTE ESTILO Y LONGITUD):\n\n[EJEMPLO 1 - Vídeo de operativa y microestructura (zoUHJ6eB6IY)]:\n- Como se ve el mercado / los hechos:\nEn el gráfico del SP500 cayó tras la noticia, se recuperó rápido el 17, 20 y 24; se concluye que hay una mano que evita la caída.\nEn el caso concreto del 24 se pudo ver grandes apuestas bajistas sobre el SP500, esto es, especuladores de corto plazo vendiendo opciones call y comprando opciones put y los creadores de mercado estaban vendiendo futuros para cubrirse, ajustándolo por la delta. El escenario fue claramente bajista pero no bajó el SP500.\n- Como reaccionar:\nComprar futuros si el SP500 supera la zona de los 7740.\n- ¿por que? / conclusión:\nAl ver un mercado bajista y no bajar se concluye que alguien compra siempre y evita que caiga la bolsa; además en cuanto apareció la noticia positiva el precio subió, se entiende que van a seguir apareciendo noticias positivas desde ahora hasta octubre.\nFecha importante: 3 de noviembre elecciones, las bolsas subirán hasta el 3 de noviembre y después bajarán.\n- Otros temas / maldades / predicción:\nFrancia tiene problemas económicos.\n\n[EJEMPLO 2 - Vídeo macro y multi-activo (6avY-2ixQI0)]:\n- Como se ve el mercado / los hechos:\nDebido a la irresponsabilidad fiscal de los políticos se produce degradación monetaria garantizada, lo que a su vez significa que el oro tendrá tendencia alcista.\nRentabilidad del bono francés a 10 años sube a consecuencia del déficit público creciente, ratio deuda pública - PIB incrementándose y le han rebajado la calificación crediticia.\nRentabilidad del bono del Reino Unido a 10 años en clara tendencia alcista por las mismas razones que Francia.\n- ¿por que? / conclusión:\nEl Oro ha hecho suelo y subirá hasta la tercera semana de octubre.\nBitcoin ha hecho un suelo cíclico y va a subir desde ahora hasta el 3 de noviembre más que el oro.\nSP500 subirá por motivaciones políticas de Trump.\nPetróleo bajará también por motivaciones políticas de Trump.\n- Otros temas / maldades / predicción:\nBessent y Kevin Warsh fueron gestores de fondos, y a partir del 3 de noviembre habrá un susto / bajada de la bolsa. La volatilidad del SP500 (VIX) ha estado muy comprimida, hay una zona de resistencia sobre 16 - 20. Si el índice superara los 20, las bolsas caerían.\nA partir del 3 de Noviembre se espera una caída en bolsa y los próximos sectores interesantes son Salud y Energías limpias.\n\n[EJEMPLO 3 - Vídeo de posicionamiento, política y temas estructurales (rOKQ00NlYfo)]:\n- Como se ve el mercado / los hechos:\nTrump podría penalizar las exportaciones de Diesel desde EE.UU. hacia Europa y como consecuencia bajarían los precios del petróleo para los EE.UU.\nSe entiende que los mercados han descontado que Trump va a perder las mid-term y que la cotización del SP500 puede dirigirse a la zona comprendida entre 7850 y 8000.\nSe ha comprado muchas opciones CALL de tecnología por lo que no tienen que tener mucho miedo, solo los inversores particulares tienen miedo. Por tanto los mercados no han descontado nada malo.\n- ¿por que? / conclusión:\nA Trump le queda 1 mes para arreglar la economía e intentar ganar las elecciones de mid-term. Bessent ya comenzó la recompra de deuda pública a largo plazo y ha conseguido la estabilización de los mercados y ha dejado claro dónde está la resistencia. Petróleo también ha bajado.\n- Otros temas / maldades / predicción:\nSegún los mercados de predicción va a haber un barrido demócrata en las próximas elecciones de medio mandato.\nLas elecciones de medio término las van a ganar los demócratas y como consecuencia se va a producir un bloqueo legislativo.\nTema presupuestario: mayor gasto público y deuda pública y como consecuencia mayor degradación monetaria.\nTema Inteligencia Artificial: Los señores de la IA (los CEO de las principales empresas de IA) ya han aceptado que van a ser controlados por los políticos a través de las regulaciones y de participaciones en las empresas. Se van a paralizar las inversiones en centros de datos debido al precio de la energía.\nTendencia bajista a corto plazo del petróleo podría continuar, menor demanda.\nLa rentabilidad de los bonos puede caer.\nCaída de las bolsas +- 10%, el estado de los EE.UU. creará más deuda para comprar las acciones de las empresas de IA.\nLa previsión era bajada de la bolsa entre agosto-septiembre y luego subidas hasta el 3 de noviembre, y después de noviembre una caída.\n\n[EJEMPLO 4 - Vídeo de expiración de opciones (Triple Hora Bruja), gamma positiva y maldades (5ELPqd3DFXI)]:\n- Como se ve el mercado / los hechos:\nEl pasado viernes se produjo la expiración de los contratos de opciones sobre índices y sobre acciones de los EE.UU. (la famosa triple hora bruja), fue la expiración más grande de la historia.\nEl pasado miércoles se produjo la expiración de los contratos de opciones de futuro sobre el VIX.\nNos encontramos en un entorno de gamma positiva, tras la expiración de los contratos de opciones, los dealers ahora no tienen coberturas y se pueden mover con libertad, Bessent va a intentar subir las bolsas.\nEl petróleo ha empezado a caer.\nHa subido el Bitcoin y el NASDAQ, los valores tecnológicos son los valores elegidos para seguir subiendo.\nEl oro ha bajado, pero es puntual.\n- Otros temas / maldades / predicción:\nEl petróleo va a caer hasta el 3 de noviembre y luego por inercia hasta diciembre, la tendencia del petróleo a medio y largo plazo es alcista, y la rentabilidad del bono americano a 30 y a 10 años también.\nEl oro se dirige a la zona de los 4500, subirá más el Bitcoin que el oro.\nAnthropic ha encargado a Accenture una auditoría para demostrar control sobre la IA, el gobierno comprará acciones y le dará al pueblo 5000 dólares.",
     "githubRepo": "jrFont-Technologies/MacroConsensus",
-    "lastSync": "2026-10-05T22:03:58.600Z",
+    "lastSync": "2026-10-05T22:05:00.626Z",
     "lastYoutubeScan": "2026-10-05T22:03:58.566Z",
     "ytScanIntervalMinutes": 30,
     "ventanaMeses": 3
@@ -16,7 +16,55 @@
       "avatar": "https://yt3.googleusercontent.com/giVP2NSxhaZcmLJ9QBeqpWbmFJpWyM37q7yvK_nXjRY4lZcpNzGKxuxrOvoDzb-lzxv95rjUCA=s900-c-k-c0x00ffffff-no-rj",
       "color": "#3b82f6",
       "descripcion": "Análisis técnico institucional, S&P 500, bono a 30 años, liquidez global y Bitcoin.",
-      "defaultPrompt": "Actúa como un analista y operador de mercados que toma apuntes personales ultra-directos de los vídeos de José Luis Cava. Tu objetivo es resumir la transcripción exactamente con mi estilo, mi concisión y mi estructura.\n\nREGLAS DE ORO DE FILTRADO:\n1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, comentarios del tiempo, bromas, promoción de libros/cursos/servicios (ej. HOPLA) y cualquier mención a brokers patrocinadores (ej. Freedom24) o a los ETFs/productos comerciales que mencione solo como parte del anuncio del patrocinador. Quédate únicamente con el análisis puro del índice o activo subyacente (ej. el VIX, el SP500, el bono, el petróleo, el oro, Bitcoin).\n2. CAUSA -> EFECTO EN FRASES CORTAS (1 FRASE POR LÍNEA): Explica siempre los hechos conectando la causa con la consecuencia en 1 frase corta y llana por línea, sin adornos literarios ni parrafadas densas.\n3. CONSERVA DATOS TÉCNICOS, MECÁNICA Y NIVELES EXACTOS: Incluye siempre fechas concretas del gráfico (ej. días 17, 20 y 24), niveles y rangos numéricos exactos (ej. 7740 o zona 7850-8000 en SP500, 16-20 en VIX, 4500 en oro), plazos temporales (ej. 3ª semana de octubre, 3 de noviembre, agosto-septiembre) y la mecánica interna si se explica (triple hora bruja, expiración de opciones sobre VIX, gamma positiva, dealers sin coberturas, opciones Call/Put, cobertura de futuros por delta, recompra de deuda a largo plazo del Tesoro/Bessent, déficit/PIB, rebajas de rating).\n4. FECHAS ABSOLUTAS Y ANCLAJE TEMPORAL (OBLIGATORIO): Usa siempre la fecha de publicación del vídeo como punto de anclaje temporal de referencia. NUNCA dejes expresiones temporales relativas ambiguas (ej. \"en 5 semanas\", \"el mes que viene\", \"este viernes\", \"en las próximas semanas\"). Tradúcelas SIEMPRE a fechas de calendario absolutas con mes y año explícitos (ej. \"a principios de noviembre de 2026\", \"semana del 9 al 15 de noviembre de 2026\", \"en diciembre de 2026\"). Si menciona meses o estaciones (ej. \"agosto o septiembre\"), especifica siempre el año exacto (ej. \"agosto-septiembre de 2026\"). En \"Fecha importante\", pon siempre día, mes y año exacto (ej. \"3 de noviembre de 2026\").\n\nESTRUCTURA OBLIGATORIA DEL RESUMEN:\n- Como se ve el mercado / los hechos:\nExpón los hechos objetivos que muestra el vídeo (1 frase por línea):\n  * Qué ha hecho el precio en el gráfico en fechas concretas o hacia qué rango se dirige (ej. SP500 hacia 7850-8000).\n  * Expiraciones de opciones (ej. triple hora bruja, opciones de futuro sobre el VIX), entorno de gamma positiva y si los dealers tienen o no coberturas.\n  * Qué medidas o catalizadores concretos están en juego (ej. penalizar exportaciones de diésel de EE.UU. a Europa -> bajan precios del petróleo en EE.UU.).\n  * Qué han descontado ya los mercados y qué muestran los flujos de opciones/futuros y el sentimiento (ej. compra masiva de CALLs de tecnología = institucionales sin miedo frente a miedo solo en particulares; venta de calls/compra de puts y cobertura delta de dealers).\n  * Qué ocurre con la rentabilidad de los bonos, deuda/PIB, déficits y calificaciones crediticias.\n\n- Como reaccionar:\nIndica de forma directa qué comprar o vender y en qué nivel exacto (ej. \"Comprar futuros si el SP500 supera la zona de los 7740\"). Si el vídeo no da una orden de entrada concreta de corto plazo no patrocinada, déjalo vacío (\"\").\n\n- ¿por que? / conclusión:\nExplica la deducción lógica, el motor político/liquidez detrás del movimiento (ej. el tiempo que le queda a Trump antes de las mid-term, recompras de deuda pública a largo plazo de Bessent que estabilizan el mercado y fijan resistencias) y el escenario de cada activo mencionado de forma telegráfica (qué ha hecho, hacia dónde irá, hasta qué fecha exacta y por qué). Destaca cualquier \"Fecha importante\" del calendario (ej. elecciones del 3 de noviembre).\n\n- Otros temas / maldades / predicción:\nRecoge en líneas cortas e independientes las \"maldades\", predicciones políticas/macro y temas estructurales tratados en el vídeo:\n  * Mercados de predicción y política: resultado esperado en elecciones (ej. barrido demócrata en las mid-term -> bloqueo legislativo).\n  * Tema presupuestario / monetario: mayor gasto y deuda pública -> mayor degradación monetaria; problemas fiscales de países (Francia, Reino Unido).\n  * Tema sectorial / geopolítico (ej. Tema Inteligencia Artificial): control político y regulatorio sobre CEOs de IA, auditorías (ej. Anthropic con Accenture), participaciones estatales / compra gubernamental de acciones de IA, cheques al pueblo (ej. 5000 dólares), parálisis de inversión en centros de datos por precio de la energía, o emisión de deuda estatal para comprar acciones de IA si la bolsa cae +-10%.\n  * Previsiones por activo (ej. petróleo cayendo hasta el 3 de noviembre y por inercia hasta diciembre pero alcista a medio/largo plazo junto al bono a 10 y 30 años; oro rumbo a 4500 pero subirá más Bitcoin que el oro), niveles de volatilidad (VIX 16-20), sectores interesantes (Salud, Energías limpias) y hoja de ruta estacional de la bolsa.\n\n---\nEJEMPLOS EXACTOS DE CÓMO QUIERO QUE RESUMAS A JOSÉ LUIS CAVA (IMITA ESTE ESTILO Y LONGITUD):\n\n[EJEMPLO 1 - Vídeo de operativa y microestructura (zoUHJ6eB6IY)]:\n- Como se ve el mercado / los hechos:\nEn el gráfico del SP500 cayó tras la noticia, se recuperó rápido el 17, 20 y 24; se concluye que hay una mano que evita la caída.\nEn el caso concreto del 24 se pudo ver grandes apuestas bajistas sobre el SP500, esto es, especuladores de corto plazo vendiendo opciones call y comprando opciones put y los creadores de mercado estaban vendiendo futuros para cubrirse, ajustándolo por la delta. El escenario fue claramente bajista pero no bajó el SP500.\n- Como reaccionar:\nComprar futuros si el SP500 supera la zona de los 7740.\n- ¿por que? / conclusión:\nAl ver un mercado bajista y no bajar se concluye que alguien compra siempre y evita que caiga la bolsa; además en cuanto apareció la noticia positiva el precio subió, se entiende que van a seguir apareciendo noticias positivas desde ahora hasta octubre.\nFecha importante: 3 de noviembre elecciones, las bolsas subirán hasta el 3 de noviembre y después bajarán.\n- Otros temas / maldades / predicción:\nFrancia tiene problemas económicos.\n\n[EJEMPLO 2 - Vídeo macro y multi-activo (6avY-2ixQI0)]:\n- Como se ve el mercado / los hechos:\nDebido a la irresponsabilidad fiscal de los políticos se produce degradación monetaria garantizada, lo que a su vez significa que el oro tendrá tendencia alcista.\nRentabilidad del bono francés a 10 años sube a consecuencia del déficit público creciente, ratio deuda pública - PIB incrementándose y le han rebajado la calificación crediticia.\nRentabilidad del bono del Reino Unido a 10 años en clara tendencia alcista por las mismas razones que Francia.\n- ¿por que? / conclusión:\nEl Oro ha hecho suelo y subirá hasta la tercera semana de octubre.\nBitcoin ha hecho un suelo cíclico y va a subir desde ahora hasta el 3 de noviembre más que el oro.\nSP500 subirá por motivaciones políticas de Trump.\nPetróleo bajará también por motivaciones políticas de Trump.\n- Otros temas / maldades / predicción:\nBessent y Kevin Warsh fueron gestores de fondos, y a partir del 3 de noviembre habrá un susto / bajada de la bolsa. La volatilidad del SP500 (VIX) ha estado muy comprimida, hay una zona de resistencia sobre 16 - 20. Si el índice superara los 20, las bolsas caerían.\nA partir del 3 de Noviembre se espera una caída en bolsa y los próximos sectores interesantes son Salud y Energías limpias.\n\n[EJEMPLO 3 - Vídeo de posicionamiento, política y temas estructurales (rOKQ00NlYfo)]:\n- Como se ve el mercado / los hechos:\nTrump podría penalizar las exportaciones de Diesel desde EE.UU. hacia Europa y como consecuencia bajarían los precios del petróleo para los EE.UU.\nSe entiende que los mercados han descontado que Trump va a perder las mid-term y que la cotización del SP500 puede dirigirse a la zona comprendida entre 7850 y 8000.\nSe ha comprado muchas opciones CALL de tecnología por lo que no tienen que tener mucho miedo, solo los inversores particulares tienen miedo. Por tanto los mercados no han descontado nada malo.\n- ¿por que? / conclusión:\nA Trump le queda 1 mes para arreglar la economía e intentar ganar las elecciones de mid-term. Bessent ya comenzó la recompra de deuda pública a largo plazo y ha conseguido la estabilización de los mercados y ha dejado claro dónde está la resistencia. Petróleo también ha bajado.\n- Otros temas / maldades / predicción:\nSegún los mercados de predicción va a haber un barrido demócrata en las próximas elecciones de medio mandato.\nLas elecciones de medio término las van a ganar los demócratas y como consecuencia se va a producir un bloqueo legislativo.\nTema presupuestario: mayor gasto público y deuda pública y como consecuencia mayor degradación monetaria.\nTema Inteligencia Artificial: Los señores de la IA (los CEO de las principales empresas de IA) ya han aceptado que van a ser controlados por los políticos a través de las regulaciones y de participaciones en las empresas. Se van a paralizar las inversiones en centros de datos debido al precio de la energía.\nTendencia bajista a corto plazo del petróleo podría continuar, menor demanda.\nLa rentabilidad de los bonos puede caer.\nCaída de las bolsas +- 10%, el estado de los EE.UU. creará más deuda para comprar las acciones de las empresas de IA.\nLa previsión era bajada de la bolsa entre agosto-septiembre y luego subidas hasta el 3 de noviembre, y después de noviembre una caída.\n\n[EJEMPLO 4 - Vídeo de expiración de opciones (Triple Hora Bruja), gamma positiva y maldades (5ELPqd3DFXI)]:\n- Como se ve el mercado / los hechos:\nEl pasado viernes se produjo la expiración de los contratos de opciones sobre índices y sobre acciones de los EE.UU. (la famosa triple hora bruja), fue la expiración más grande de la historia.\nEl pasado miércoles se produjo la expiración de los contratos de opciones de futuro sobre el VIX.\nNos encontramos en un entorno de gamma positiva, tras la expiración de los contratos de opciones, los dealers ahora no tienen coberturas y se pueden mover con libertad, Bessent va a intentar subir las bolsas.\nEl petróleo ha empezado a caer.\nHa subido el Bitcoin y el NASDAQ, los valores tecnológicos son los valores elegidos para seguir subiendo.\nEl oro ha bajado, pero es puntual.\n- Otros temas / maldades / predicción:\nEl petróleo va a caer hasta el 3 de noviembre y luego por inercia hasta diciembre, la tendencia del petróleo a medio y largo plazo es alcista, y la rentabilidad del bono americano a 30 y a 10 años también.\nEl oro se dirige a la zona de los 4500, subirá más el Bitcoin que el oro.\nAnthropic ha encargado a Accenture una auditoría para demostrar control sobre la IA, el gobierno comprará acciones y le dará al pueblo 5000 dólares."
+      "defaultPrompt": "Actúa como un analista y operador de mercados que toma apuntes personales ultra-directos de los vídeos de José Luis Cava. Tu objetivo es resumir la transcripción exactamente con mi estilo, mi concisión y mi estructura.\n\nREGLAS DE ORO DE FILTRADO:\n1. CERO RELLENO Y CERO PUBLICIDAD: Ignora al 100% los saludos iniciales, comentarios del tiempo, bromas, promoción de libros/cursos/servicios (ej. HOPLA) y cualquier mención a brokers patrocinadores (ej. Freedom24) o a los ETFs/productos comerciales que mencione solo como parte del anuncio del patrocinador. Quédate únicamente con el análisis puro del índice o activo subyacente (ej. el VIX, el SP500, el bono, el petróleo, el oro, Bitcoin).\n2. CAUSA -> EFECTO EN FRASES CORTAS (1 FRASE POR LÍNEA): Explica siempre los hechos conectando la causa con la consecuencia en 1 frase corta y llana por línea, sin adornos literarios ni parrafadas densas.\n3. CONSERVA DATOS TÉCNICOS, MECÁNICA Y NIVELES EXACTOS: Incluye siempre fechas concretas del gráfico (ej. días 17, 20 y 24), niveles y rangos numéricos exactos (ej. 7740 o zona 7850-8000 en SP500, 16-20 en VIX, 4500 en oro), plazos temporales (ej. 3ª semana de octubre, 3 de noviembre, agosto-septiembre) y la mecánica interna si se explica (triple hora bruja, expiración de opciones sobre VIX, gamma positiva, dealers sin coberturas, opciones Call/Put, cobertura de futuros por delta, recompra de deuda a largo plazo del Tesoro/Bessent, déficit/PIB, rebajas de rating).\n4. FECHAS ABSOLUTAS Y ANCLAJE TEMPORAL (OBLIGATORIO): Usa siempre la fecha de publicación del vídeo como punto de anclaje temporal de referencia. NUNCA dejes expresiones temporales relativas ambiguas (ej. \"en 5 semanas\", \"el mes que viene\", \"este viernes\", \"en las próximas semanas\"). Tradúcelas SIEMPRE a fechas de calendario absolutas con mes y año explícitos (ej. \"a principios de noviembre de 2026\", \"semana del 9 al 15 de noviembre de 2026\", \"en diciembre de 2026\"). Si menciona meses o estaciones (ej. \"agosto o septiembre\"), especifica siempre el año exacto (ej. \"agosto-septiembre de 2026\"). En \"Fecha importante\", pon siempre día, mes y año exacto (ej. \"3 de noviembre de 2026\").\n\nESTRUCTURA OBLIGATORIA DEL RESUMEN:\n- Como se ve el mercado / los hechos:\nExpón los hechos objetivos que muestra el vídeo (1 frase por línea):\n  * Qué ha hecho el precio en el gráfico en fechas concretas o hacia qué rango se dirige (ej. SP500 hacia 7850-8000).\n  * Expiraciones de opciones (ej. triple hora bruja, opciones de futuro sobre el VIX), entorno de gamma positiva y si los dealers tienen o no coberturas.\n  * Qué medidas o catalizadores concretos están en juego (ej. penalizar exportaciones de diésel de EE.UU. a Europa -> bajan precios del petróleo en EE.UU.).\n  * Qué han descontado ya los mercados y qué muestran los flujos de opciones/futuros y el sentimiento (ej. compra masiva de CALLs de tecnología = institucionales sin miedo frente a miedo solo en particulares; venta de calls/compra de puts y cobertura delta de dealers).\n  * Qué ocurre con la rentabilidad de los bonos, deuda/PIB, déficits y calificaciones crediticias.\n\n- Como reaccionar:\nIndica de forma directa qué comprar o vender y en qué nivel exacto (ej. \"Comprar futuros si el SP500 supera la zona de los 7740\"). Si el vídeo no da una orden de entrada concreta de corto plazo no patrocinada, déjalo vacío (\"\").\n\n- ¿por que? / conclusión:\nExplica la deducción lógica, el motor político/liquidez detrás del movimiento (ej. el tiempo que le queda a Trump antes de las mid-term, recompras de deuda pública a largo plazo de Bessent que estabilizan el mercado y fijan resistencias) y el escenario de cada activo mencionado de forma telegráfica (qué ha hecho, hacia dónde irá, hasta qué fecha exacta y por qué). Destaca cualquier \"Fecha importante\" del calendario (ej. elecciones del 3 de noviembre).\n\n- Otros temas / maldades / predicción:\nRecoge en líneas cortas e independientes las \"maldades\", predicciones políticas/macro y temas estructurales tratados en el vídeo:\n  * Mercados de predicción y política: resultado esperado en elecciones (ej. barrido demócrata en las mid-term -> bloqueo legislativo).\n  * Tema presupuestario / monetario: mayor gasto y deuda pública -> mayor degradación monetaria; problemas fiscales de países (Francia, Reino Unido).\n  * Tema sectorial / geopolítico (ej. Tema Inteligencia Artificial): control político y regulatorio sobre CEOs de IA, auditorías (ej. Anthropic con Accenture), participaciones estatales / compra gubernamental de acciones de IA, cheques al pueblo (ej. 5000 dólares), parálisis de inversión en centros de datos por precio de la energía, o emisión de deuda estatal para comprar acciones de IA si la bolsa cae +-10%.\n  * Previsiones por activo (ej. petróleo cayendo hasta el 3 de noviembre y por inercia hasta diciembre pero alcista a medio/largo plazo junto al bono a 10 y 30 años; oro rumbo a 4500 pero subirá más Bitcoin que el oro), niveles de volatilidad (VIX 16-20), sectores interesantes (Salud, Energías limpias) y hoja de ruta estacional de la bolsa.\n\n---\nEJEMPLOS EXACTOS DE CÓMO QUIERO QUE RESUMAS A JOSÉ LUIS CAVA (IMITA ESTE ESTILO Y LONGITUD):\n\n[EJEMPLO 1 - Vídeo de operativa y microestructura (zoUHJ6eB6IY)]:\n- Como se ve el mercado / los hechos:\nEn el gráfico del SP500 cayó tras la noticia, se recuperó rápido el 17, 20 y 24; se concluye que hay una mano que evita la caída.\nEn el caso concreto del 24 se pudo ver grandes apuestas bajistas sobre el SP500, esto es, especuladores de corto plazo vendiendo opciones call y comprando opciones put y los creadores de mercado estaban vendiendo futuros para cubrirse, ajustándolo por la delta. El escenario fue claramente bajista pero no bajó el SP500.\n- Como reaccionar:\nComprar futuros si el SP500 supera la zona de los 7740.\n- ¿por que? / conclusión:\nAl ver un mercado bajista y no bajar se concluye que alguien compra siempre y evita que caiga la bolsa; además en cuanto apareció la noticia positiva el precio subió, se entiende que van a seguir apareciendo noticias positivas desde ahora hasta octubre.\nFecha importante: 3 de noviembre elecciones, las bolsas subirán hasta el 3 de noviembre y después bajarán.\n- Otros temas / maldades / predicción:\nFrancia tiene problemas económicos.\n\n[EJEMPLO 2 - Vídeo macro y multi-activo (6avY-2ixQI0)]:\n- Como se ve el mercado / los hechos:\nDebido a la irresponsabilidad fiscal de los políticos se produce degradación monetaria garantizada, lo que a su vez significa que el oro tendrá tendencia alcista.\nRentabilidad del bono francés a 10 años sube a consecuencia del déficit público creciente, ratio deuda pública - PIB incrementándose y le han rebajado la calificación crediticia.\nRentabilidad del bono del Reino Unido a 10 años en clara tendencia alcista por las mismas razones que Francia.\n- ¿por que? / conclusión:\nEl Oro ha hecho suelo y subirá hasta la tercera semana de octubre.\nBitcoin ha hecho un suelo cíclico y va a subir desde ahora hasta el 3 de noviembre más que el oro.\nSP500 subirá por motivaciones políticas de Trump.\nPetróleo bajará también por motivaciones políticas de Trump.\n- Otros temas / maldades / predicción:\nBessent y Kevin Warsh fueron gestores de fondos, y a partir del 3 de noviembre habrá un susto / bajada de la bolsa. La volatilidad del SP500 (VIX) ha estado muy comprimida, hay una zona de resistencia sobre 16 - 20. Si el índice superara los 20, las bolsas caerían.\nA partir del 3 de Noviembre se espera una caída en bolsa y los próximos sectores interesantes son Salud y Energías limpias.\n\n[EJEMPLO 3 - Vídeo de posicionamiento, política y temas estructurales (rOKQ00NlYfo)]:\n- Como se ve el mercado / los hechos:\nTrump podría penalizar las exportaciones de Diesel desde EE.UU. hacia Europa y como consecuencia bajarían los precios del petróleo para los EE.UU.\nSe entiende que los mercados han descontado que Trump va a perder las mid-term y que la cotización del SP500 puede dirigirse a la zona comprendida entre 7850 y 8000.\nSe ha comprado muchas opciones CALL de tecnología por lo que no tienen que tener mucho miedo, solo los inversores particulares tienen miedo. Por tanto los mercados no han descontado nada malo.\n- ¿por que? / conclusión:\nA Trump le queda 1 mes para arreglar la economía e intentar ganar las elecciones de mid-term. Bessent ya comenzó la recompra de deuda pública a largo plazo y ha conseguido la estabilización de los mercados y ha dejado claro dónde está la resistencia. Petróleo también ha bajado.\n- Otros temas / maldades / predicción:\nSegún los mercados de predicción va a haber un barrido demócrata en las próximas elecciones de medio mandato.\nLas elecciones de medio término las van a ganar los demócratas y como consecuencia se va a producir un bloqueo legislativo.\nTema presupuestario: mayor gasto público y deuda pública y como consecuencia mayor degradación monetaria.\nTema Inteligencia Artificial: Los señores de la IA (los CEO de las principales empresas de IA) ya han aceptado que van a ser controlados por los políticos a través de las regulaciones y de participaciones en las empresas. Se van a paralizar las inversiones en centros de datos debido al precio de la energía.\nTendencia bajista a corto plazo del petróleo podría continuar, menor demanda.\nLa rentabilidad de los bonos puede caer.\nCaída de las bolsas +- 10%, el estado de los EE.UU. creará más deuda para comprar las acciones de las empresas de IA.\nLa previsión era bajada de la bolsa entre agosto-septiembre y luego subidas hasta el 3 de noviembre, y después de noviembre una caída.\n\n[EJEMPLO 4 - Vídeo de expiración de opciones (Triple Hora Bruja), gamma positiva y maldades (5ELPqd3DFXI)]:\n- Como se ve el mercado / los hechos:\nEl pasado viernes se produjo la expiración de los contratos de opciones sobre índices y sobre acciones de los EE.UU. (la famosa triple hora bruja), fue la expiración más grande de la historia.\nEl pasado miércoles se produjo la expiración de los contratos de opciones de futuro sobre el VIX.\nNos encontramos en un entorno de gamma positiva, tras la expiración de los contratos de opciones, los dealers ahora no tienen coberturas y se pueden mover con libertad, Bessent va a intentar subir las bolsas.\nEl petróleo ha empezado a caer.\nHa subido el Bitcoin y el NASDAQ, los valores tecnológicos son los valores elegidos para seguir subiendo.\nEl oro ha bajado, pero es puntual.\n- Otros temas / maldades / predicción:\nEl petróleo va a caer hasta el 3 de noviembre y luego por inercia hasta diciembre, la tendencia del petróleo a medio y largo plazo es alcista, y la rentabilidad del bono americano a 30 y a 10 años también.\nEl oro se dirige a la zona de los 4500, subirá más el Bitcoin que el oro.\nAnthropic ha encargado a Accenture una auditoría para demostrar control sobre la IA, el gobierno comprará acciones y le dará al pueblo 5000 dólares.",
+      "resumen_ia": {
+        "titular": "Alza táctica artificial hasta el 3 de noviembre de 2026 bajo la amenaza de una crisis bancaria europea y grietas en el crédito de IA",
+        "sesgo_actual": "Táctico alcista, estructuralmente bajista",
+        "horizonte_temporal": "Hasta el 3 de noviembre de 2026",
+        "resumen_vision_actual": "El mercado experimenta un soporte artificial orquestado por el Tesoro de EE.UU. y Scott Bessent para mantener las bolsas al alza hasta las elecciones del 3 de noviembre de 2026, apoyado por un short squeeze de CTAs en el mercado de bonos. Sin embargo, esta calma esconde graves riesgos sistémicos: una crisis de deuda soberana en Francia que amenaza con contagiar a la banca europea y una grieta en la financiación de infraestructuras de Inteligencia Artificial. Tras el 3 de noviembre de 2026, se prevé una corrección severa no inferior al 10% en la renta variable global.",
+        "evolucion_temporal": "A finales de septiembre de 2026, el análisis de Cava se centraba en factores técnicos muy favorables como la gamma positiva de los dealers, la ventana de recompras corporativas abierta el 24 de septiembre de 2026 y objetivos alcistas optimistas en el S&P 500 (rango 7850-8000). No obstante, al entrar en octubre de 2026, su discurso ha dado un giro de alerta macroeconómica profunda: destaca el pánico en el BCE por el contagio de la deuda francesa (prima de riesgo en 150 puntos básicos) hacia España e Italia, el desplome de bonos de IA (como el de Meta Hyperion de 110 a 94) y la inminencia de una corrección generalizada inmediatamente después de las elecciones del 3 de noviembre de 2026.",
+        "puntos_clave": [
+          "Intervención de Bessent -> Estabilización lateral de los tipos de interés en EE.UU. y cierre forzado de cortos de CTAs que darán tregua y liquidez a la renta variable hasta el 3 de noviembre de 2026.",
+          "Crisis fiscal francesa -> Déficit cercano al 6% y deuda del 122% del PIB disparan la prima de riesgo a 150 puntos básicos, contagiando a la periferia europea y provocando fuertes caídas en BNP Paribas, Santander y BBVA a inicios de octubre de 2026.",
+          "Grieta en el crédito de IA -> Los inversores exigen más prima para financiar centros de datos (caída del bono Hyperion de Meta a 94), lo que amenaza con arrastrar al Nasdaq y al S&P 500 a caídas superiores al 10% a partir de noviembre de 2026.",
+          "Degradación monetaria estructural -> El descontrol fiscal de los gobiernos occidentales obligará a los bancos centrales a monetizar deuda de forma masiva rumbo al año 2030, garantizando la tendencia alcista del Oro y Bitcoin."
+        ],
+        "activos_destacados": [
+          {
+            "activo": "S&P 500",
+            "postura": "Alcista táctico a corto plazo / Alerta de corrección severa posterior",
+            "niveles_fechas": "Soporte clave en 5700, resistencia superada en 7740 con objetivo en el rango 7850-8000 hasta el 3 de noviembre de 2026; caída superior al 10% posterior."
+          },
+          {
+            "activo": "Banca Europea",
+            "postura": "Bajista y bajo riesgo de crisis sistémica",
+            "niveles_fechas": "Fuerte tensión y caídas en BNP Paribas, Intesa Sanpaolo, BBVA y Banco Santander detectadas a inicios de octubre de 2026 por contagio de deuda soberana."
+          },
+          {
+            "activo": "Oro",
+            "postura": "Alcista estructural e imparable",
+            "niveles_fechas": "Objetivo técnico en la zona de 4500 dólares por onza para finales de 2026 y durante el año 2027 debido a la degradación de las monedas fiduciarias."
+          },
+          {
+            "activo": "Bitcoin",
+            "postura": "Muy alcista con mayor fuerza relativa que el oro",
+            "niveles_fechas": "Fuerte aceleración y acumulación desde finales de septiembre de 2026 con objetivo alcista prioritario hasta el 3 de noviembre de 2026."
+          },
+          {
+            "activo": "Bono de EE.UU. a 10 años",
+            "postura": "Bajada de rentabilidad a corto plazo / Alcista a largo plazo",
+            "niveles_fechas": "Doble techo técnico en rentabilidad a corto plazo por cierre de cortos de CTAs; objetivo de rentabilidad del 6,5% a largo plazo por insostenibilidad fiscal."
+          }
+        ],
+        "conclusion_operativa": "Aprovechar el impulso alcista táctico en renta variable tecnológica y Bitcoin únicamente hasta el 3 de noviembre de 2026. A partir de esa fecha, se debe reducir drásticamente la exposición a bolsa (especialmente banca europea y tecnológicas de alta beta), buscar refugio en activos reales no confiscables como el Oro (rumbo a 4500 dólares), Bitcoin y el Franco Suizo, y prepararse para una corrección mínima del 10% provocada por el afloramiento de los graves desequilibrios fiscales globales.",
+        "fecha_generacion": "2026-10-05T22:05:00.624Z",
+        "videos_analizados": 10,
+        "distribucion_tiers": {
+          "tier1": 10,
+          "tier2": 0,
+          "tier3": 0
+        }
+      }
     },
     {
       "id": "rallo",
@@ -1419,31 +1467,6 @@
       "resumen_estructurado": null
     },
     {
-      "id": "vid_rallo_j2jK6ogWU8g",
-      "tipo": "canal",
-      "canalId": "rallo",
-      "url": "https://www.youtube.com/watch?v=j2jK6ogWU8g",
-      "title": "El Wall Street Journal minimiza el ataque de OpenAI: esto es lo que realmente pasó",
-      "author": "Juan Ramón Rallo",
-      "channel": "Juan Ramón Rallo",
-      "fecha": "22/09/2026",
-      "fecha_registro": "4/10/2026, 23:03:41",
-      "dateTimestamp": 1790114636194,
-      "diasAntiguedad": 13,
-      "recencyTier": "tier1",
-      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/j2jK6ogWU8g/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Macroeconomía",
-        "Juan Ramón Rallo"
-      ],
-      "resumen_estructurado": null
-    },
-    {
       "id": "vid_pablo_TBNNoihqfXQ",
       "tipo": "canal",
       "canalId": "pablo",
@@ -1465,6 +1488,31 @@
       "tags": [
         "Macroeconomía",
         "Pablo Gil Trader"
+      ],
+      "resumen_estructurado": null
+    },
+    {
+      "id": "vid_rallo_j2jK6ogWU8g",
+      "tipo": "canal",
+      "canalId": "rallo",
+      "url": "https://www.youtube.com/watch?v=j2jK6ogWU8g",
+      "title": "El Wall Street Journal minimiza el ataque de OpenAI: esto es lo que realmente pasó",
+      "author": "Juan Ramón Rallo",
+      "channel": "Juan Ramón Rallo",
+      "fecha": "22/09/2026",
+      "fecha_registro": "4/10/2026, 23:03:41",
+      "dateTimestamp": 1790114636194,
+      "diasAntiguedad": 13,
+      "recencyTier": "tier1",
+      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/j2jK6ogWU8g/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Macroeconomía",
+        "Juan Ramón Rallo"
       ],
       "resumen_estructurado": null
     },
@@ -1544,6 +1592,55 @@
         ]
       },
       "lastAnalyzedAt": 1791194386600
+    },
+    {
+      "id": "vid_pablo_cIQCt83TW0g",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=cIQCt83TW0g",
+      "title": "Bitcoin: ¿fin del criptoinvierno o falsa señal?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "21/09/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1790028238141,
+      "diasAntiguedad": 14,
+      "recencyTier": "tier1",
+      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/cIQCt83TW0g/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Bitcoin"
+      ],
+      "resumen_estructurado": null
+    },
+    {
+      "id": "vid_pablo_bMdB3081NSU",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=bMdB3081NSU",
+      "title": "El fin de las materias primas baratas",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "21/09/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1790028238141,
+      "diasAntiguedad": 14,
+      "recencyTier": "tier1",
+      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/bMdB3081NSU/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Macroeconomía",
+        "Pablo Gil Trader"
+      ],
+      "resumen_estructurado": null
     },
     {
       "id": "vid_rallo_EndPGFWhP7I",
@@ -1886,55 +1983,6 @@
       "resumen_estructurado": null
     },
     {
-      "id": "vid_pablo_cIQCt83TW0g",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=cIQCt83TW0g",
-      "title": "Bitcoin: ¿fin del criptoinvierno o falsa señal?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "21/09/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1790028238141,
-      "diasAntiguedad": 14,
-      "recencyTier": "tier1",
-      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/cIQCt83TW0g/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Bitcoin"
-      ],
-      "resumen_estructurado": null
-    },
-    {
-      "id": "vid_pablo_bMdB3081NSU",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=bMdB3081NSU",
-      "title": "El fin de las materias primas baratas",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "21/09/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1790028238141,
-      "diasAntiguedad": 14,
-      "recencyTier": "tier1",
-      "recencyLabel": "🔥 Últimos 15 días (Máx. Ponderación)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/bMdB3081NSU/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Macroeconomía",
-        "Pablo Gil Trader"
-      ],
-      "resumen_estructurado": null
-    },
-    {
       "id": "vid_vidal_V99X50naxb0",
       "tipo": "canal",
       "canalId": "vidal",
@@ -2132,6 +2180,56 @@
       "tags": [
         "Bitcoin",
         "Bancos Centrales"
+      ],
+      "resumen_estructurado": null
+    },
+    {
+      "id": "vid_pablo_ZniB_ZB_hhI",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=ZniB_ZB_hhI",
+      "title": "Científicos de OpenAI y Anthropic: GRAN PREOCUPACIÓN con la AGI (Inteligencia Artificial General)",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "14/09/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1789423438141,
+      "diasAntiguedad": 21,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/ZniB_ZB_hhI/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Macroeconomía",
+        "Pablo Gil Trader"
+      ],
+      "resumen_estructurado": null
+    },
+    {
+      "id": "vid_pablo_7ONPmXG9QNg",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=7ONPmXG9QNg",
+      "title": "El DÓLAR, el YEN y el GRAN RIESGO para los mercados",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "14/09/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1789423438141,
+      "diasAntiguedad": 21,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/7ONPmXG9QNg/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Macroeconomía",
+        "Pablo Gil Trader"
       ],
       "resumen_estructurado": null
     },
@@ -2432,56 +2530,6 @@
       "resumen_estructurado": null
     },
     {
-      "id": "vid_pablo_ZniB_ZB_hhI",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=ZniB_ZB_hhI",
-      "title": "Científicos de OpenAI y Anthropic: GRAN PREOCUPACIÓN con la AGI (Inteligencia Artificial General)",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "14/09/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1789423438141,
-      "diasAntiguedad": 21,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/ZniB_ZB_hhI/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Macroeconomía",
-        "Pablo Gil Trader"
-      ],
-      "resumen_estructurado": null
-    },
-    {
-      "id": "vid_pablo_7ONPmXG9QNg",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=7ONPmXG9QNg",
-      "title": "El DÓLAR, el YEN y el GRAN RIESGO para los mercados",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "14/09/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1789423438141,
-      "diasAntiguedad": 21,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/7ONPmXG9QNg/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Macroeconomía",
-        "Pablo Gil Trader"
-      ],
-      "resumen_estructurado": null
-    },
-    {
       "id": "vid_vidal_3GBD6PGskW8",
       "tipo": "canal",
       "canalId": "vidal",
@@ -2662,6 +2710,55 @@
       "resumen_estructurado": null
     },
     {
+      "id": "vid_pablo_JB8HwGh7zZ4",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=JB8HwGh7zZ4",
+      "title": "¿Cómo PROTEGER tus ahorros según RAY DALIO?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "07/09/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1788818638141,
+      "diasAntiguedad": 28,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/JB8HwGh7zZ4/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Macroeconomía",
+        "Pablo Gil Trader"
+      ],
+      "resumen_estructurado": null
+    },
+    {
+      "id": "vid_pablo_VI68c0I9ulE",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=VI68c0I9ulE",
+      "title": "¿Por qué sube el petróleo y AMENAZA a EE.UU y Europa?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "07/09/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1788818638141,
+      "diasAntiguedad": 28,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/VI68c0I9ulE/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Energía"
+      ],
+      "resumen_estructurado": null
+    },
+    {
       "id": "vid_rallo_ufcPZyfVCi4",
       "tipo": "canal",
       "canalId": "rallo",
@@ -2737,55 +2834,6 @@
       "resumen_estructurado": null
     },
     {
-      "id": "vid_pablo_JB8HwGh7zZ4",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=JB8HwGh7zZ4",
-      "title": "¿Cómo PROTEGER tus ahorros según RAY DALIO?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "07/09/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1788818638141,
-      "diasAntiguedad": 28,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/JB8HwGh7zZ4/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Macroeconomía",
-        "Pablo Gil Trader"
-      ],
-      "resumen_estructurado": null
-    },
-    {
-      "id": "vid_pablo_VI68c0I9ulE",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=VI68c0I9ulE",
-      "title": "¿Por qué sube el petróleo y AMENAZA a EE.UU y Europa?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "07/09/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1788818638141,
-      "diasAntiguedad": 28,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/VI68c0I9ulE/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Energía"
-      ],
-      "resumen_estructurado": null
-    },
-    {
       "id": "vid_vidal_gMHCSqUvi3M",
       "tipo": "canal",
       "canalId": "vidal",
@@ -2832,6 +2880,180 @@
       "tags": [
         "Macroeconomía",
         "Juan Ramón Rallo"
+      ],
+      "resumen_estructurado": null
+    },
+    {
+      "id": "vid_pablo_SGNZ2RgswAc",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=SGNZ2RgswAc",
+      "title": "¿Qué ADVERTENCIA está lanzando el mercado de BONOS al mundo?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "05/09/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1788645838141,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/SGNZ2RgswAc/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Deuda y Bonos"
+      ],
+      "resumen_estructurado": null
+    },
+    {
+      "id": "vid_pablo_s7traMLj64U",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=s7traMLj64U",
+      "title": "Desplome en UNA SEMANA: ¿Qué ha pasado con UNITREE?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "05/09/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1788645838141,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/s7traMLj64U/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Macroeconomía",
+        "Pablo Gil Trader"
+      ],
+      "resumen_estructurado": null
+    },
+    {
+      "id": "vid_pablo_mA627Yxt6ns",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=mA627Yxt6ns",
+      "title": "Dólar arriba, oro y Bitcoin ABAJO: Warsh ROMPE EL GUIÓN del mercado",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "05/09/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1788645838141,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/mA627Yxt6ns/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Bitcoin",
+        "Oro"
+      ],
+      "resumen_estructurado": null
+    },
+    {
+      "id": "vid_pablo_IAu4wZv7qWg",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=IAu4wZv7qWg",
+      "title": "¿Cómo REPARTIR TU SUELDO para ahorrar más cada mes?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "05/09/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1788645838141,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/IAu4wZv7qWg/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Macroeconomía",
+        "Pablo Gil Trader"
+      ],
+      "resumen_estructurado": null
+    },
+    {
+      "id": "vid_pablo_Db7MJw53M8E",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=Db7MJw53M8E",
+      "title": "Los 6 HÁBITOS FINANCIEROS que construyen patrimonio",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "05/09/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1788645838141,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/Db7MJw53M8E/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Macroeconomía",
+        "Pablo Gil Trader"
+      ],
+      "resumen_estructurado": null
+    },
+    {
+      "id": "vid_pablo_J2j7ucgSJUE",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=J2j7ucgSJUE",
+      "title": "¿Dónde están las PRÓXIMAS OPORTUNIDADES DE INVERSIÓN ante la llegada de la IA?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "05/09/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1788645838141,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/J2j7ucgSJUE/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Macroeconomía",
+        "Pablo Gil Trader"
+      ],
+      "resumen_estructurado": null
+    },
+    {
+      "id": "vid_pablo_P42ZVbHO5p8",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=P42ZVbHO5p8",
+      "title": "La EDUCACIÓN FINANCIERA que tus hijos necesitan.",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "05/09/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1788645838141,
+      "diasAntiguedad": 30,
+      "recencyTier": "tier2",
+      "recencyLabel": "⚡ 16-45 días (Tendencia)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/P42ZVbHO5p8/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Macroeconomía",
+        "Pablo Gil Trader"
       ],
       "resumen_estructurado": null
     },
@@ -3233,180 +3455,6 @@
       "resumen_estructurado": null
     },
     {
-      "id": "vid_pablo_SGNZ2RgswAc",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=SGNZ2RgswAc",
-      "title": "¿Qué ADVERTENCIA está lanzando el mercado de BONOS al mundo?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "05/09/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1788645838141,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/SGNZ2RgswAc/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Deuda y Bonos"
-      ],
-      "resumen_estructurado": null
-    },
-    {
-      "id": "vid_pablo_s7traMLj64U",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=s7traMLj64U",
-      "title": "Desplome en UNA SEMANA: ¿Qué ha pasado con UNITREE?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "05/09/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1788645838141,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/s7traMLj64U/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Macroeconomía",
-        "Pablo Gil Trader"
-      ],
-      "resumen_estructurado": null
-    },
-    {
-      "id": "vid_pablo_mA627Yxt6ns",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=mA627Yxt6ns",
-      "title": "Dólar arriba, oro y Bitcoin ABAJO: Warsh ROMPE EL GUIÓN del mercado",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "05/09/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1788645838141,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/mA627Yxt6ns/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Bitcoin",
-        "Oro"
-      ],
-      "resumen_estructurado": null
-    },
-    {
-      "id": "vid_pablo_IAu4wZv7qWg",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=IAu4wZv7qWg",
-      "title": "¿Cómo REPARTIR TU SUELDO para ahorrar más cada mes?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "05/09/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1788645838141,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/IAu4wZv7qWg/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Macroeconomía",
-        "Pablo Gil Trader"
-      ],
-      "resumen_estructurado": null
-    },
-    {
-      "id": "vid_pablo_Db7MJw53M8E",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=Db7MJw53M8E",
-      "title": "Los 6 HÁBITOS FINANCIEROS que construyen patrimonio",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "05/09/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1788645838141,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/Db7MJw53M8E/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Macroeconomía",
-        "Pablo Gil Trader"
-      ],
-      "resumen_estructurado": null
-    },
-    {
-      "id": "vid_pablo_J2j7ucgSJUE",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=J2j7ucgSJUE",
-      "title": "¿Dónde están las PRÓXIMAS OPORTUNIDADES DE INVERSIÓN ante la llegada de la IA?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "05/09/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1788645838141,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/J2j7ucgSJUE/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Macroeconomía",
-        "Pablo Gil Trader"
-      ],
-      "resumen_estructurado": null
-    },
-    {
-      "id": "vid_pablo_P42ZVbHO5p8",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=P42ZVbHO5p8",
-      "title": "La EDUCACIÓN FINANCIERA que tus hijos necesitan.",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "05/09/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1788645838141,
-      "diasAntiguedad": 30,
-      "recencyTier": "tier2",
-      "recencyLabel": "⚡ 16-45 días (Tendencia)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/P42ZVbHO5p8/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Macroeconomía",
-        "Pablo Gil Trader"
-      ],
-      "resumen_estructurado": null
-    },
-    {
       "id": "vid_vidal_-9eUnr-9eTw",
       "tipo": "canal",
       "canalId": "vidal",
@@ -3781,6 +3829,105 @@
       "resumen_estructurado": null
     },
     {
+      "id": "vid_pablo_O8e8_bD5Gog",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=O8e8_bD5Gog",
+      "title": "¿Sabes cuánto te cuesta REALMENTE tu coche? El gasto que te empobrece",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "06/08/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1786053838141,
+      "diasAntiguedad": 60,
+      "recencyTier": "tier3",
+      "recencyLabel": "🕰️ 46-90 días (Estructural)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/O8e8_bD5Gog/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Macroeconomía",
+        "Pablo Gil Trader"
+      ],
+      "resumen_estructurado": null
+    },
+    {
+      "id": "vid_pablo_GpQ0_Jyz6fI",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=GpQ0_Jyz6fI",
+      "title": "¿Hay que comprar oro AHORA o esperar a que CAIGA MÁS?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "06/08/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1786053838141,
+      "diasAntiguedad": 60,
+      "recencyTier": "tier3",
+      "recencyLabel": "🕰️ 46-90 días (Estructural)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/GpQ0_Jyz6fI/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Oro"
+      ],
+      "resumen_estructurado": null
+    },
+    {
+      "id": "vid_pablo_78QoQyHhnVs",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=78QoQyHhnVs",
+      "title": "Invertir en el mañana: Las oportunidades reales que nadie ve venir - Evento presencial Madrid",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "06/08/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1786053838141,
+      "diasAntiguedad": 60,
+      "recencyTier": "tier3",
+      "recencyLabel": "🕰️ 46-90 días (Estructural)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/78QoQyHhnVs/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Macroeconomía",
+        "Pablo Gil Trader"
+      ],
+      "resumen_estructurado": null
+    },
+    {
+      "id": "vid_pablo_iyCWl_nlmX0",
+      "tipo": "canal",
+      "canalId": "pablo",
+      "url": "https://www.youtube.com/watch?v=iyCWl_nlmX0",
+      "title": "5 perfiles financieros REALES: ¿Qué errores les impide AHORRAR MÁS a fin de mes?",
+      "author": "Pablo Gil Trader",
+      "channel": "Pablo Gil Trader",
+      "fecha": "06/08/2026",
+      "fecha_registro": "4/10/2026, 23:03:42",
+      "dateTimestamp": 1786053838141,
+      "diasAntiguedad": 60,
+      "recencyTier": "tier3",
+      "recencyLabel": "🕰️ 46-90 días (Estructural)",
+      "categoriaSugerida": "macro",
+      "incluidoEnSintesis": true,
+      "thumbnail": "https://i.ytimg.com/vi/iyCWl_nlmX0/hqdefault.jpg",
+      "promptPersonalizado": false,
+      "consulta": "",
+      "tags": [
+        "Macroeconomía",
+        "Pablo Gil Trader"
+      ],
+      "resumen_estructurado": null
+    },
+    {
       "id": "vid_jon__51D3HnmP6s",
       "tipo": "canal",
       "canalId": "jon",
@@ -3973,105 +4120,6 @@
       "tags": [
         "Macroeconomía",
         "Jon Economist"
-      ],
-      "resumen_estructurado": null
-    },
-    {
-      "id": "vid_pablo_O8e8_bD5Gog",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=O8e8_bD5Gog",
-      "title": "¿Sabes cuánto te cuesta REALMENTE tu coche? El gasto que te empobrece",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "06/08/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1786053838141,
-      "diasAntiguedad": 60,
-      "recencyTier": "tier3",
-      "recencyLabel": "🕰️ 46-90 días (Estructural)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/O8e8_bD5Gog/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Macroeconomía",
-        "Pablo Gil Trader"
-      ],
-      "resumen_estructurado": null
-    },
-    {
-      "id": "vid_pablo_GpQ0_Jyz6fI",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=GpQ0_Jyz6fI",
-      "title": "¿Hay que comprar oro AHORA o esperar a que CAIGA MÁS?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "06/08/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1786053838141,
-      "diasAntiguedad": 60,
-      "recencyTier": "tier3",
-      "recencyLabel": "🕰️ 46-90 días (Estructural)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/GpQ0_Jyz6fI/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Oro"
-      ],
-      "resumen_estructurado": null
-    },
-    {
-      "id": "vid_pablo_78QoQyHhnVs",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=78QoQyHhnVs",
-      "title": "Invertir en el mañana: Las oportunidades reales que nadie ve venir - Evento presencial Madrid",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "06/08/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1786053838141,
-      "diasAntiguedad": 60,
-      "recencyTier": "tier3",
-      "recencyLabel": "🕰️ 46-90 días (Estructural)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/78QoQyHhnVs/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Macroeconomía",
-        "Pablo Gil Trader"
-      ],
-      "resumen_estructurado": null
-    },
-    {
-      "id": "vid_pablo_iyCWl_nlmX0",
-      "tipo": "canal",
-      "canalId": "pablo",
-      "url": "https://www.youtube.com/watch?v=iyCWl_nlmX0",
-      "title": "5 perfiles financieros REALES: ¿Qué errores les impide AHORRAR MÁS a fin de mes?",
-      "author": "Pablo Gil Trader",
-      "channel": "Pablo Gil Trader",
-      "fecha": "06/08/2026",
-      "fecha_registro": "4/10/2026, 23:03:42",
-      "dateTimestamp": 1786053838141,
-      "diasAntiguedad": 60,
-      "recencyTier": "tier3",
-      "recencyLabel": "🕰️ 46-90 días (Estructural)",
-      "categoriaSugerida": "macro",
-      "incluidoEnSintesis": true,
-      "thumbnail": "https://i.ytimg.com/vi/iyCWl_nlmX0/hqdefault.jpg",
-      "promptPersonalizado": false,
-      "consulta": "",
-      "tags": [
-        "Macroeconomía",
-        "Pablo Gil Trader"
       ],
       "resumen_estructurado": null
     },
