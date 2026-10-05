@@ -2,6 +2,9 @@
   "version": 2,
   "rewrites": [
     { "source": "/api/extraer-video", "destination": "/api/extraer.js" },
-    { "source": "/api/explorar-canal", "destination": "/api/canal.js" }
+    { "source": "/api/explorar-canal", "destination": "/api/canal.js" },
+    { "source": "/api/gemini", "destination": "/api/gemini.js" },
+    { "source": "/api/guardar", "destination": "/api/guardar.js" },
+    { "source": "/api/config-local", "destination": "/api/config-local.js" }
   ]
 }

@@ -810,7 +810,12 @@ function mergeCanalesLists(...lists) {
         c.id = canonicalIdByHandle[normH];
       }
       const existing = canalMap.get(c.id);
-      canalMap.set(c.id, existing ? { ...existing, ...c, defaultPrompt: c.defaultPrompt || existing.defaultPrompt } : c);
+      canalMap.set(c.id, existing ? {
+        ...existing,
+        ...c,
+        defaultPrompt: c.defaultPrompt || existing.defaultPrompt,
+        resumen_ia: c.resumen_ia || existing.resumen_ia
+      } : c);
     }
   }
   return Array.from(canalMap.values());
@@ -1875,6 +1880,378 @@ window.handleAddChannelSubmit = async function(e) {
   await window.scanSingleChannel(id, true);
 };
 
+// ==========================================
+// RESUMEN IA DEL CANAL CON PONDERACIÓN TEMPORAL
+// ==========================================
+
+// Renderizado de la tarjeta de Resumen IA del Canal
+function renderChannelAISummarySection(currentCanal, totalChannelVideos, analyzedCount) {
+  const summary = currentCanal.resumen_ia || null;
+  const canalId = currentCanal.id;
+  const canalNombre = escapeHtml(currentCanal.nombre);
+
+  if (!summary) {
+    return `
+      <div class="channel-ai-summary-card empty-state" id="summaryCard_${canalId}">
+        <div class="channel-ai-summary-header">
+          <div class="channel-ai-summary-title">
+            <span class="channel-ai-icon">🧠</span>
+            <div>
+              <h4 style="margin: 0; font-size: 1.05rem; font-weight: 700; color: #fff;">
+                Resumen IA & Visión Ponderada de ${canalNombre}
+              </h4>
+              <div class="channel-ai-summary-meta">
+                <span class="recency-weight-label" title="Ponderación temporal estricta: los vídeos más recientes tienen mayor peso">
+                  🔥 Mayor peso a los vídeos más recientes
+                </span>
+                <span>·</span>
+                <span style="color: var(--text-muted);">Sin síntesis generada todavía</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            ${analyzedCount > 0 ? `
+              <button class="btn btn-primary btn-sm" onclick="generateChannelAISummary('${canalId}')" style="box-shadow: 0 0 12px rgba(99, 102, 241, 0.4); font-weight: 700;">
+                ✨ Generar Resumen IA del Canal (${analyzedCount} vídeos listos)
+              </button>
+            ` : `
+              <button class="btn btn-primary btn-sm" onclick="analyzeRecentAndSummarizeChannel('${canalId}')" style="box-shadow: 0 0 12px rgba(99, 102, 241, 0.4); font-weight: 700;">
+                ⚡ Analizar 3 vídeos recientes y Generar Resumen IA
+              </button>
+            `}
+          </div>
+        </div>
+        <div class="channel-ai-summary-empty-body">
+          <p style="margin: 0.4rem 0 0.2rem 0; font-size: 0.875rem; color: var(--text-secondary); line-height: 1.5;">
+            ${analyzedCount > 0 
+              ? `Hay <strong>${analyzedCount}</strong> vídeo(s) de <strong>${canalNombre}</strong> analizados con IA. Pulsa el botón para generar la síntesis global de su canal con IA, donde sus opiniones más recientes prevalecen sobre las antiguas.`
+              : `Este canal cuenta con <strong>${totalChannelVideos}</strong> vídeos monitorizados (últimos 3 meses), pero ninguno ha sido analizado con IA aún. Pulsa el botón para analizar automáticamente sus 3 vídeos más recientes de YouTube y sintetizar su visión de mercado con máxima actualidad.`
+            }
+          </p>
+        </div>
+      </div>
+    `;
+  }
+
+  const fechaGen = summary.fecha_generacion 
+    ? new Date(summary.fecha_generacion).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+    : 'Reciente';
+
+  const vCount = summary.videos_analizados || analyzedCount;
+  const sesgoLower = (summary.sesgo_actual || '').toLowerCase();
+  let sesgoBadgeClass = 'sesgo-neutral';
+  if (sesgoLower.includes('alcista') || sesgoLower.includes('bullish')) sesgoBadgeClass = 'sesgo-bullish';
+  else if (sesgoLower.includes('bajista') || sesgoLower.includes('bearish')) sesgoBadgeClass = 'sesgo-bearish';
+  else if (sesgoLower.includes('cautel') || sesgoLower.includes('alerta') || sesgoLower.includes('táctico') || sesgoLower.includes('tactico')) sesgoBadgeClass = 'sesgo-warning';
+
+  const hasNewVideosAnalyzed = analyzedCount > (summary.videos_analizados || 0);
+
+  return `
+    <div class="channel-ai-summary-card" id="summaryCard_${canalId}">
+      <div class="channel-ai-summary-header">
+        <div class="channel-ai-summary-title">
+          <span class="channel-ai-icon">🧠</span>
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+              <h4 style="margin: 0; font-size: 1.1rem; font-weight: 700; color: #fff;">
+                Resumen IA & Visión Ponderada de ${canalNombre}
+              </h4>
+              ${summary.sesgo_actual ? `
+                <span class="sesgo-badge ${sesgoBadgeClass}">
+                  ${escapeHtml(summary.sesgo_actual)}
+                </span>
+              ` : ''}
+              ${summary.horizonte_temporal ? `
+                <span class="horizonte-badge">⏱️ ${escapeHtml(summary.horizonte_temporal)}</span>
+              ` : ''}
+            </div>
+            <div class="channel-ai-summary-meta">
+              <span>📅 Generado: <strong>${fechaGen}</strong></span>
+              <span>·</span>
+              <span>📊 Basado en <strong>${vCount}</strong> vídeos analizados</span>
+              <span>·</span>
+              <span class="recency-weight-label" title="Ponderación temporal estricta: los vídeos de los últimos 15 días tienen máxima prioridad">
+                🔥 Mayor peso a los vídeos más recientes
+              </span>
+              ${hasNewVideosAnalyzed ? `
+                <span class="badge-new-data">✨ ${analyzedCount - summary.videos_analizados} nuevos vídeos listos</span>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+        <div class="channel-ai-summary-actions">
+          <button class="btn btn-secondary btn-sm" onclick="generateChannelAISummary('${canalId}', true)" title="Volver a generar el resumen con IA teniendo en cuenta todos los vídeos analizados actuales">
+            🔄 Actualizar Resumen IA
+          </button>
+          <button class="btn btn-secondary btn-sm" onclick="toggleChannelSummaryAccordion('${canalId}')" id="btnToggleSummary_${canalId}" title="Plegar / desplegar resumen">
+            ▲ Plegar
+          </button>
+        </div>
+      </div>
+
+      <div class="channel-ai-summary-content" id="summaryBody_${canalId}">
+        ${summary.titular ? `
+          <div class="channel-ai-titular">
+            <span class="titular-quote-icon">⚡</span>
+            <span>${escapeHtml(summary.titular)}</span>
+          </div>
+        ` : ''}
+
+        <div class="channel-ai-grid">
+          <!-- Bloque 1: Visión Macroeconómica y Postura Actual (Máx. Peso) -->
+          <div class="channel-ai-section-box primary-vision">
+            <div class="section-box-header" style="color: #60a5fa;">
+              <span>📈 Visión de Mercado Actual (Máxima Prioridad - Últimos Vídeos)</span>
+            </div>
+            <div class="section-box-body">
+              <p style="margin: 0; line-height: 1.6; color: #f1f5f9; font-size: 0.9rem;">
+                ${escapeHtml(summary.resumen_vision_actual || '')}
+              </p>
+            </div>
+          </div>
+
+          <!-- Bloque 2: Evolución Temporal del Discurso (Recency Decay) -->
+          ${summary.evolucion_temporal ? `
+            <div class="channel-ai-section-box timeline-evolution">
+              <div class="section-box-header" style="color: #fbbf24;">
+                <span>⏱️ Evolución Temporal & Giros de Visión (De lo Antiguo a lo Reciente)</span>
+              </div>
+              <div class="section-box-body">
+                <p style="margin: 0; line-height: 1.6; color: #fef3c7; font-size: 0.88rem;">
+                  ${escapeHtml(summary.evolucion_temporal)}
+                </p>
+              </div>
+            </div>
+          ` : ''}
+        </div>
+
+        <!-- Bloque 3: Puntos Clave Causa -> Efecto -->
+        ${Array.isArray(summary.puntos_clave) && summary.puntos_clave.length > 0 ? `
+          <div class="channel-ai-keypoints-box">
+            <div class="keypoints-title" style="color: #34d399;">
+              <span>🎯 Puntos Clave & Relaciones Causa ➔ Efecto:</span>
+            </div>
+            <ul class="keypoints-list">
+              ${summary.puntos_clave.map(pt => `
+                <li>${escapeHtml(pt)}</li>
+              `).join('')}
+            </ul>
+          </div>
+        ` : ''}
+
+        <!-- Bloque 4: Activos Destacados y Niveles -->
+        ${Array.isArray(summary.activos_destacados) && summary.activos_destacados.length > 0 ? `
+          <div class="channel-ai-assets-box">
+            <div class="assets-title" style="color: #c084fc;">
+              <span>💼 Posicionamiento por Activos & Niveles Clave:</span>
+            </div>
+            <div class="channel-assets-grid">
+              ${summary.activos_destacados.map(act => `
+                <div class="channel-asset-pill">
+                  <div class="asset-pill-top">
+                    <span class="asset-pill-name">${escapeHtml(act.activo)}</span>
+                    <span class="asset-pill-posture">${escapeHtml(act.postura || '')}</span>
+                  </div>
+                  <div class="asset-pill-detail">
+                    ${escapeHtml(act.niveles_fechas || act.detalle || '')}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : ''}
+
+        <!-- Bloque 5: Conclusión Operativa / Cómo Reaccionar -->
+        ${summary.conclusion_operativa ? `
+          <div class="channel-ai-operative-box">
+            <div class="operative-title" style="color: #38bdf8;">
+              <span>🧭 Conclusión Operativa & Gestión Patrimonial:</span>
+            </div>
+            <div class="operative-body">
+              ${escapeHtml(summary.conclusion_operativa)}
+            </div>
+          </div>
+        ` : ''}
+      </div>
+    </div>
+  `;
+}
+
+// Alternar despliegue del acordeón del resumen IA del canal
+window.toggleChannelSummaryAccordion = function(canalId) {
+  const body = document.getElementById(`summaryBody_${canalId}`);
+  const btn = document.getElementById(`btnToggleSummary_${canalId}`);
+  if (!body) return;
+  const isHidden = body.style.display === 'none';
+  body.style.display = isHidden ? 'block' : 'none';
+  if (btn) {
+    btn.textContent = isHidden ? '▲ Plegar' : '▼ Desplegar';
+  }
+};
+
+// Generar o regenerar Resumen IA del Canal con ponderación temporal (vídeos recientes > viejos)
+window.generateChannelAISummary = async function(canalId, forceRefresh = false) {
+  const canal = (state.canales || []).find(c => c.id === canalId);
+  if (!canal) return;
+
+  const channelVideos = state.videos.filter(v => v.tipo === 'canal' && v.canalId === canalId);
+  const analyzedVideos = channelVideos.filter(v => isVideoAnalyzed(v) && v.incluidoEnSintesis !== false);
+
+  if (analyzedVideos.length === 0) {
+    const confirmAuto = confirm(`Aún no hay vídeos analizados con IA de ${canal.nombre}.\n\n¿Deseas analizar automáticamente sus 3 vídeos más recientes de YouTube y generar el resumen con IA?`);
+    if (confirmAuto) {
+      await window.analyzeRecentAndSummarizeChannel(canalId);
+    }
+    return;
+  }
+
+  setLoading(true, `Generando Resumen IA de ${canal.nombre}...`, `Sintetizando ${analyzedVideos.length} vídeos ponderando los más recientes`);
+
+  try {
+    // Ordenar de más reciente a más viejo
+    analyzedVideos.sort((a, b) => (b.dateTimestamp || 0) - (a.dateTimestamp || 0));
+
+    // Segmentar por Tiers de antigüedad
+    const tier1Videos = analyzedVideos.filter(v => v.recencyTier === 'tier1' || (v.diasAntiguedad != null && v.diasAntiguedad <= 15));
+    const tier2Videos = analyzedVideos.filter(v => v.recencyTier === 'tier2' || (v.diasAntiguedad != null && v.diasAntiguedad > 15 && v.diasAntiguedad <= 45));
+    const tier3Videos = analyzedVideos.filter(v => v.recencyTier === 'tier3' || (v.diasAntiguedad != null && v.diasAntiguedad > 45 && v.diasAntiguedad <= 90));
+
+    let contextParts = [];
+
+    if (tier1Videos.length > 0) {
+      contextParts.push(`=== 🔥 TIER 1: VÍDEOS DE LOS ÚLTIMOS 15 DÍAS (MÁXIMA PRIORIDAD Y SESGO ACTUAL) ===`);
+      tier1Videos.forEach((v, i) => {
+        const est = v.resumen_estructurado || {};
+        contextParts.push(`[TIER 1 - #${i + 1}] Fecha: ${v.fecha} (hace ${v.diasAntiguedad || 0}d)
+Título: ${v.title}
+Hechos / Mercado: ${est.hechos_mercado || ''}
+Cómo reaccionar: ${est.como_reaccionar || ''}
+Conclusión / Por qué: ${est.por_que_conclusion || ''}
+Otros temas / Predicciones: ${est.otros_temas_maldades || ''}
+Activos: ${JSON.stringify(est.matriz_activos || {})}`);
+      });
+    }
+
+    if (tier2Videos.length > 0) {
+      contextParts.push(`\n=== ⚡ TIER 2: VÍDEOS DE 16 A 45 DÍAS (TENDENCIA INTERMEDIA Y DESARROLLO) ===`);
+      tier2Videos.forEach((v, i) => {
+        const est = v.resumen_estructurado || {};
+        contextParts.push(`[TIER 2 - #${i + 1}] Fecha: ${v.fecha} (hace ${v.diasAntiguedad || 0}d)
+Título: ${v.title}
+Hechos / Mercado: ${est.hechos_mercado || ''}
+Cómo reaccionar: ${est.como_reaccionar || ''}
+Conclusión / Por qué: ${est.por_que_conclusion || ''}
+Otros temas / Predicciones: ${est.otros_temas_maldades || ''}`);
+      });
+    }
+
+    if (tier3Videos.length > 0) {
+      contextParts.push(`\n=== 🕰️ TIER 3: VÍDEOS DE 46 A 90 DÍAS (FONDO ESTRUCTURAL HISTÓRICO - MÍNIMO PESO) ===`);
+      tier3Videos.forEach((v, i) => {
+        const est = v.resumen_estructurado || {};
+        contextParts.push(`[TIER 3 - #${i + 1}] Fecha: ${v.fecha} (hace ${v.diasAntiguedad || 0}d)
+Título: ${v.title}
+Conclusión: ${est.por_que_conclusion || ''}`);
+      });
+    }
+
+    const videosContext = contextParts.join('\n---\n');
+
+    const systemPrompt = `Eres un Chief Investment Officer (CIO) y estratega macroeconómico institucional de alto nivel.
+Tu tarea es generar un RESUMEN EJECUTIVO Y ANÁLISIS EVOLUTIVO de la visión y tesis de mercado del analista/YouTuber ${canal.nombre} a partir de sus vídeos en la ventana de los últimos 3 meses.
+
+CRITERIOS RIGUROSOS DE PONDERACIÓN TEMPORAL (RECENCY WEIGHTING):
+1. MÁXIMA PRIORIDAD A LOS VÍDEOS MÁS RECIENTES (TIER 1 / ÚLTIMOS DÍAS): La postura actual del analista es la que determinan sus últimos vídeos. Si en vídeos anteriores mantenía una tesis y en los vídeos más recientes la ha matizado, corregido o cambiado radicalmente, LA POSTURA MÁS RECIENTE PREVALECE E INVALIDA LA ANTERIOR.
+2. VÍDEOS INTERMEDIOS (TIER 2 / 16-45 DÍAS): Muestran el desarrollo y la maduración de sus tesis intermedias.
+3. VÍDEOS MÁS ANTIGUOS (TIER 3 / 46-90 DÍAS): Solo representan el trasfondo histórico o estructural. No deben utilizarse como sesgo actual si contradicen lo más reciente.
+4. IDENTIFICACIÓN DE EVOLUCIÓN TEMPORAL: Destaca con claridad cómo ha ido cambiando o reafirmando su discurso a lo largo del tiempo (ej. qué sostenía hace semanas vs qué alerta o recomienda en sus vídeos más recientes).
+5. REGLA ESTRICTA DE FECHAS ABSOLUTAS: Expresa SIEMPRE las fechas clave, horizontes temporales y plazos con fechas de calendario absolutas con mes y año explícitos (ej. 'noviembre de 2026', 'Q1 2027'). Queda terminantemente prohibido utilizar expresiones relativas ambiguas como 'en las próximas semanas' o 'el mes que viene'.
+6. NIVELES EXACTOS Y ACTIVOS: Conserva los niveles técnicos numéricos exactos (ej. 7740 en SP500, 16 en VIX, 4500 en oro) y los activos clave mencionados.
+7. CERO RELLENO: Sin saludos ni publicidad. Solo análisis macroeconómico, operativo y de mercados puro.
+Devuelve SIEMPRE tu respuesta en formato JSON dentro de un bloque markdown \`\`\`json con texto en perfecto español.`;
+
+    const userPrompt = `
+GENERA EL RESUMEN EJECUTIVO Y RADIOGRAFÍA TEMPORAL DE ${canal.nombre.toUpperCase()} BASÁNDOTE EN SUS VÍDEOS (ORDENADOS POR RECENCIA, DE MÁS NUEVO A MÁS VIEJO):
+${videosContext}
+
+Devuelve un JSON con este formato exacto:
+\`\`\`json
+{
+  "titular": "Titular conciso que resuma su postura y sesgo actual más reciente",
+  "sesgo_actual": "Alcista / Bajista / Cauteloso / Neutral / Rotación hacia defensivos (máx 3-4 palabras)",
+  "horizonte_temporal": "ej. Hasta noviembre de 2026",
+  "resumen_vision_actual": "Párrafo de 3-5 líneas con la tesis principal y visión de mercado actual del analista, basada prioritariamente en sus vídeos más recientes.",
+  "evolucion_temporal": "Párrafo explicando la evolución cronológica de su pensamiento: qué sostenía en los vídeos más viejos vs qué giros o alertas ha dado en los vídeos más recientes.",
+  "puntos_clave": [
+    "Punto clave 1 (Causa -> Efecto)",
+    "Punto clave 2...",
+    "Punto clave 3..."
+  ],
+  "activos_destacados": [
+    {
+      "activo": "Nombre del activo (ej. S&P 500, Oro, Bonos 10Y, Bitcoin)",
+      "postura": "Postura actual (ej. Alcista hasta 7850-8000 / Alerta de corrección)",
+      "niveles_fechas": "Niveles técnicos y fechas clave citadas con año (ej. Soporte 7740, fecha clave 3 de noviembre de 2026)"
+    }
+  ],
+  "conclusion_operativa": "Pauta de acción concreta o recomendación operativa/patrimonial que defiende el analista actualmente (o cómo proteger la cartera)."
+}
+\`\`\`
+`;
+
+    const aiRes = await callGeminiApi(userPrompt, systemPrompt, true);
+
+    canal.resumen_ia = {
+      ...aiRes,
+      fecha_generacion: new Date().toISOString(),
+      videos_analizados: analyzedVideos.length,
+      distribucion_tiers: {
+        tier1: tier1Videos.length,
+        tier2: tier2Videos.length,
+        tier3: tier3Videos.length
+      }
+    };
+
+    saveCanalesToLocalCache();
+    await persistData(true);
+    renderChannelsView();
+    showToast(`✅ Resumen IA generado con éxito para ${canal.nombre}`, 'success');
+  } catch (err) {
+    console.error('Error generando resumen de canal:', err);
+    alert('Error al generar resumen IA del canal: ' + err.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
+// Analizar automáticamente los 3 vídeos más recientes de un canal y generar su resumen
+window.analyzeRecentAndSummarizeChannel = async function(canalId) {
+  const canal = (state.canales || []).find(c => c.id === canalId);
+  if (!canal) return;
+
+  const channelVideos = state.videos.filter(v => v.tipo === 'canal' && v.canalId === canalId);
+  const pendingVideos = channelVideos
+    .filter(v => !isVideoAnalyzed(v))
+    .sort((a, b) => (b.dateTimestamp || 0) - (a.dateTimestamp || 0));
+
+  if (pendingVideos.length === 0) {
+    await window.generateChannelAISummary(canalId);
+    return;
+  }
+
+  const toAnalyze = pendingVideos.slice(0, 3);
+  for (let i = 0; i < toAnalyze.length; i++) {
+    const v = toAnalyze[i];
+    try {
+      await window.reanalyzeVideoById(v.id);
+    } catch (e) {
+      console.warn(`Error analizando vídeo ${v.id}:`, e);
+    }
+  }
+
+  await window.generateChannelAISummary(canalId);
+};
+
 // Subpestaña 1: Renderizado de Canales Monitorizados
 function renderChannelsView() {
   const pillsContainer = document.getElementById('channelsPillsList');
@@ -1922,6 +2299,9 @@ function renderChannelsView() {
   const lastScanText = state.config.lastYoutubeScan
     ? new Date(state.config.lastYoutubeScan).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })
     : 'Pendiente';
+
+  // Renderizar bloque de resumen IA del canal (justo debajo de la información y estadísticas del canal)
+  const summaryHtml = renderChannelAISummarySection(currentCanal, totalChannelVideos, analyzedCount);
 
   heroContainer.innerHTML = `
     <div class="channel-hero-top">
@@ -1980,6 +2360,8 @@ function renderChannelsView() {
         <div class="stat-box-label">🔥 Tier 1 (&lt;15d)</div>
       </div>
     </div>
+
+    ${summaryHtml}
 
     <div class="channel-actions-toolbar">
       <div class="channel-subfilters">
