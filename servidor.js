@@ -644,6 +644,36 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // 1c. Endpoint: Guardar credenciales locales si existen
+  if (req.method === 'POST' && reqUrl === '/api/config-local') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        const localCfgPath = path.join(__dirname, 'config.local.json');
+        let currentCfg = {};
+        if (fs.existsSync(localCfgPath)) {
+          try { currentCfg = JSON.parse(fs.readFileSync(localCfgPath, 'utf8')); } catch (e) {}
+        }
+        const incoming = JSON.parse(body || '{}');
+        const updatedCfg = { ...currentCfg, ...incoming };
+        fs.writeFileSync(localCfgPath, JSON.stringify(updatedCfg, null, 2), 'utf8');
+        res.writeHead(200, {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Access-Control-Allow-Origin': '*'
+        });
+        res.end(JSON.stringify({ ok: true }));
+      } catch (e) {
+        res.writeHead(500, {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Access-Control-Allow-Origin': '*'
+        });
+        res.end(JSON.stringify({ ok: false, error: e.message }));
+      }
+    });
+    return;
+  }
+
   // 2. Endpoint: Extraer transcripción y metadatos de YouTube
   if (req.method === 'POST' && reqUrl === '/api/extraer-video') {
     let body = '';
@@ -697,40 +727,78 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // 3. Endpoint Proxy para Gemini (opcional si el cliente prefiere llamar directo)
+  // 3. Endpoint Proxy para Gemini (con conmutación secuencial si fallan las claves)
   if (req.method === 'POST' && reqUrl === '/api/gemini') {
     let body = '';
     req.on('data', chunk => { body += chunk; });
     req.on('end', async () => {
       try {
-        const { prompt, systemPrompt, apiKey, model } = JSON.parse(body);
+        const { prompt, systemPrompt, apiKey, apiKeys, model } = JSON.parse(body || '{}');
         const chosenModel = model || 'gemini-3.8-flash';
-        const key = apiKey || process.env.GEMINI_API_KEY;
 
-        if (!key) {
+        let keyList = [];
+        if (Array.isArray(apiKeys) && apiKeys.length > 0) {
+          keyList = apiKeys.map(k => (typeof k === 'string' ? k.trim() : '')).filter(Boolean);
+        } else if (apiKey && typeof apiKey === 'string' && apiKey.trim()) {
+          keyList = [apiKey.trim()];
+        } else if (process.env.GEMINI_API_KEY) {
+          keyList = [process.env.GEMINI_API_KEY];
+        }
+
+        if (keyList.length === 0) {
           throw new Error('Clave de API de Gemini no proporcionada');
         }
 
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/${chosenModel}:generateContent?key=${key}`;
-        const geminiRes = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            systemInstruction: systemPrompt ? { parts: [{ text: systemPrompt }] } : undefined,
-            generationConfig: {
-              temperature: 0.2,
-              responseMimeType: "application/json"
-            }
-          })
-        });
+        let lastStatus = 500;
+        let lastData = null;
+        let lastError = null;
 
-        const geminiData = await geminiRes.json();
-        res.writeHead(geminiRes.status, {
+        for (let i = 0; i < keyList.length; i++) {
+          const key = keyList[i];
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${chosenModel}:generateContent?key=${encodeURIComponent(key)}`;
+          try {
+            const geminiRes = await fetch(url, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: systemPrompt ? { parts: [{ text: systemPrompt }] } : undefined,
+                generationConfig: {
+                  temperature: 0.2,
+                  responseMimeType: "application/json"
+                }
+              })
+            });
+
+            lastStatus = geminiRes.status;
+            lastData = await geminiRes.json();
+
+            if (geminiRes.ok) {
+              if (lastData && typeof lastData === 'object') {
+                lastData._usedKeyIndex = i;
+                lastData._usedKeyPrefix = key.substring(0, 14) + '...';
+              }
+              res.writeHead(200, {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Access-Control-Allow-Origin': '*'
+              });
+              res.end(JSON.stringify(lastData));
+              return;
+            } else {
+              lastError = lastData?.error?.message || `HTTP ${geminiRes.status}`;
+              console.warn(`[Proxy Local] Clave #${i + 1} (${key.substring(0, 12)}...) falló: ${lastError}. Probando siguiente clave...`);
+            }
+          } catch (fetchErr) {
+            lastError = fetchErr.message;
+            console.warn(`[Proxy Local] Error de red con clave #${i + 1}: ${lastError}`);
+          }
+        }
+
+        res.writeHead(lastStatus || 500, {
           'Content-Type': 'application/json; charset=UTF-8',
           'Access-Control-Allow-Origin': '*'
         });
-        res.end(JSON.stringify(geminiData));
+        res.end(JSON.stringify(lastData || { error: { message: `Todas las claves fallaron. Último error: ${lastError}` } }));
       } catch (e) {
         res.writeHead(500, {
           'Content-Type': 'application/json; charset=UTF-8',

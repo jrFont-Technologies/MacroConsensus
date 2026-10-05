@@ -298,6 +298,7 @@ function isVideoAnalyzed(video) {
 const state = {
   config: {
     geminiApiKey: '',
+    geminiApiKeys: [],
     geminiModel: 'gemini-3.8-flash',
     masterPrompt: DEFAULT_MASTER_PROMPT,
     githubRepo: 'jrFont-Technologies/MacroConsensus',
@@ -355,16 +356,64 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 });
 
-// Clave de API de Gemini y Token de GitHub por defecto (pre-activados para local, Vercel y móvil)
-const DEFAULT_GEMINI_KEY = atob('QVEuQWI4Uk42STZvV0NWejluOVd1aGs3cVo4ZjZnT21teUlPUWNDbXV6U1R2T1NFcGJZU1E=');
+// Claves de API de Gemini y Token de GitHub por defecto (pre-activados para local, Vercel y móvil)
+// Claves 1, 2 y 3 extraídas del archivo central 'Claves API GEMINI.txt'
+const DEFAULT_GEMINI_KEYS = [
+  atob('QVEuQWI4Uk42STZvV0NWejluOVd1aGs3cVo4ZjZnT21teUlPUWNDbXV6U1R2T1NFcGJZU1E='), // #1 Dashboard Económico (MacroConsensus)
+  atob('QVEuQWI4Uk42SkpTUWJqazRSOG5iSXV4b1Q3RFNRQmpuUDhPNUlCQ1JYYnpHZUFyV25NelE='), // #2 Google AI Studio (Recién creada)
+  atob('QVEuQWI4Uk42S1BYS3AzNVhkNV9LQmMzVEk4RmppQno5ak5COXBxTEZHNFF3YS1rbWlDOHc=')  // #3 MediTrack
+];
+const DEFAULT_GEMINI_KEY = DEFAULT_GEMINI_KEYS[0];
 const DEFAULT_GITHUB_TOKEN = atob('UmhoSE0zV3pYNXFkTXY5NnJIZkxFc2FhZTBYaWJ4d0x5U0p5X3BoZw==').split('').reverse().join('');
 
-function getEffectiveApiKey() {
+function getEffectiveApiKeys() {
+  // 1. Array en localStorage ('macro_gemini_api_keys')
+  const savedKeysJson = localStorage.getItem('macro_gemini_api_keys');
+  if (savedKeysJson) {
+    try {
+      const parsed = JSON.parse(savedKeysJson);
+      if (Array.isArray(parsed)) {
+        const clean = parsed.map(k => (typeof k === 'string' ? k.trim() : '')).filter(Boolean);
+        if (clean.length > 0) return clean;
+      }
+    } catch (e) {}
+  }
+
+  // 2. Clave única legacy en localStorage
   const customKey = localStorage.getItem('macro_gemini_api_key');
   if (customKey && customKey.trim()) {
-    return customKey.trim();
+    return [customKey.trim(), ...DEFAULT_GEMINI_KEYS.slice(1)];
   }
-  return DEFAULT_GEMINI_KEY;
+
+  // 3. state.config.geminiApiKeys (provenientes de /api/config-local o datos.json)
+  if (Array.isArray(state.config.geminiApiKeys) && state.config.geminiApiKeys.length > 0) {
+    const clean = state.config.geminiApiKeys.map(k => (typeof k === 'string' ? k.trim() : '')).filter(Boolean);
+    if (clean.length > 0) return clean;
+  }
+
+  if (state.config.geminiApiKey && state.config.geminiApiKey.trim()) {
+    return [state.config.geminiApiKey.trim(), ...DEFAULT_GEMINI_KEYS.slice(1)];
+  }
+
+  // 4. Claves por defecto (las 3 iniciales de Claves API GEMINI.txt)
+  return [...DEFAULT_GEMINI_KEYS];
+}
+
+function getEffectiveApiKey() {
+  const keys = getEffectiveApiKeys();
+  return keys[0] || DEFAULT_GEMINI_KEY;
+}
+
+// Devuelve un array de exactamente 10 elementos para los 10 slots
+function getApiKeysSlotsArray() {
+  const activeKeys = getEffectiveApiKeys();
+  const slots = new Array(10).fill('');
+  for (let i = 0; i < 10; i++) {
+    if (i < activeKeys.length) {
+      slots[i] = activeKeys[i];
+    }
+  }
+  return slots;
 }
 
 function getEffectiveGithubToken() {
@@ -650,11 +699,26 @@ window.saveModalPromptAsChannelDefault = async function() {
 // GESTIÓN DE CONFIGURACIÓN & STORAGE
 // ==========================================
 async function loadConfigFromStorage() {
-  const customKey = localStorage.getItem('macro_gemini_api_key');
-  if (customKey && customKey.trim()) {
-    state.config.geminiApiKey = customKey.trim();
+  // 1. Cargar pool de claves desde localStorage ('macro_gemini_api_keys')
+  const savedKeysJson = localStorage.getItem('macro_gemini_api_keys');
+  if (savedKeysJson) {
+    try {
+      const parsed = JSON.parse(savedKeysJson);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        state.config.geminiApiKeys = parsed.map(k => (typeof k === 'string' ? k.trim() : '')).filter(Boolean);
+        state.config.geminiApiKey = state.config.geminiApiKeys[0] || DEFAULT_GEMINI_KEY;
+      }
+    } catch (e) {}
   } else {
-    state.config.geminiApiKey = DEFAULT_GEMINI_KEY;
+    // Migración retrocompatible desde clave única
+    const customKey = localStorage.getItem('macro_gemini_api_key');
+    if (customKey && customKey.trim()) {
+      state.config.geminiApiKey = customKey.trim();
+      state.config.geminiApiKeys = [customKey.trim(), ...DEFAULT_GEMINI_KEYS.slice(1)];
+    } else {
+      state.config.geminiApiKeys = [...DEFAULT_GEMINI_KEYS];
+      state.config.geminiApiKey = DEFAULT_GEMINI_KEY;
+    }
   }
 
   const savedModel = localStorage.getItem('macro_gemini_model');
@@ -686,70 +750,235 @@ async function loadConfigFromStorage() {
     state.config.lastYoutubeScan = savedLastYtScan;
   }
 
-  // Si no hay token personalizado en localStorage, intentar cargarlo del servidor local o activar el token por defecto
-  if (!state.config.githubToken) {
-    try {
-      const locRes = await fetch('/api/config-local');
-      if (locRes.ok) {
-        const locCfg = await locRes.json();
-        if (locCfg.githubToken) {
-          state.config.githubToken = locCfg.githubToken;
-          localStorage.setItem('macro_github_token', locCfg.githubToken);
-        }
-        if (locCfg.githubRepo) {
-          state.config.githubRepo = locCfg.githubRepo;
-          localStorage.setItem('macro_github_repo', locCfg.githubRepo);
+  // Cargar configuración de servidor local /api/config-local si existe
+  try {
+    const locRes = await fetch('/api/config-local');
+    if (locRes.ok) {
+      const locCfg = await locRes.json();
+      if (Array.isArray(locCfg.geminiApiKeys) && locCfg.geminiApiKeys.length > 0) {
+        if (!localStorage.getItem('macro_gemini_api_keys')) {
+          state.config.geminiApiKeys = locCfg.geminiApiKeys;
+          state.config.geminiApiKey = locCfg.geminiApiKeys[0] || DEFAULT_GEMINI_KEY;
         }
       }
-    } catch (e) {}
-  }
+      if (locCfg.githubToken && !state.config.githubToken) {
+        state.config.githubToken = locCfg.githubToken;
+        localStorage.setItem('macro_github_token', locCfg.githubToken);
+      }
+      if (locCfg.githubRepo && !state.config.githubRepo) {
+        state.config.githubRepo = locCfg.githubRepo;
+        localStorage.setItem('macro_github_repo', locCfg.githubRepo);
+      }
+    }
+  } catch (e) {}
 
   if (!state.config.githubToken) {
     state.config.githubToken = getEffectiveGithubToken();
   }
 
   // Actualizar campos de la pestaña de configuración
-  const elKey = document.getElementById('settingApiKey');
   const elModel = document.getElementById('settingModel');
   const elRepo = document.getElementById('settingGithubRepo');
   const elToken = document.getElementById('settingGithubToken');
   const elYtInterval = document.getElementById('settingYtInterval');
 
-  if (elKey) {
-    if (customKey && customKey.trim()) {
-      elKey.value = customKey.trim();
-    } else {
-      elKey.value = '';
-      elKey.placeholder = '•••••••••••••••••••••••••••••••• (Clave predeterminada activa)';
-    }
-  }
   if (elModel) elModel.value = state.config.geminiModel;
   if (elRepo) elRepo.value = state.config.githubRepo;
   if (elToken) elToken.value = state.config.githubToken;
   if (elYtInterval) elYtInterval.value = String(state.config.ytScanIntervalMinutes ?? 30);
+
+  // Renderizar los 10 slots de claves con sus prefijos visibles
+  renderApiKeysUI();
   syncPromptInputsUI();
 }
 
+// Renderizado visual y reactivo de los 10 Slots de Claves API
+function renderApiKeysUI() {
+  const container = document.getElementById('apiKeysSlotsGrid');
+  const chipsContainer = document.getElementById('apiKeysSummaryChips');
+  const countBadge = document.getElementById('apiKeysCountBadge');
+  if (!container) return;
+
+  const currentSlots = getApiKeysSlotsArray();
+  const activeCount = currentSlots.filter(k => k && k.trim()).length;
+
+  if (countBadge) {
+    countBadge.textContent = `🟢 ${activeCount} / 10 activas`;
+    countBadge.className = `key-summary-chip ${activeCount > 0 ? 'active' : 'empty'}`;
+  }
+
+  // Renderizar chips de resumen superior con los primeros caracteres visibles
+  if (chipsContainer) {
+    chipsContainer.innerHTML = '';
+    currentSlots.forEach((key, idx) => {
+      const chip = document.createElement('span');
+      const isFilled = Boolean(key && key.trim());
+      chip.className = `key-summary-chip ${isFilled ? 'active' : 'empty'}`;
+      const prefix = isFilled ? `${key.trim().substring(0, 14)}...` : '(Vacía)';
+      const role = idx === 0 ? 'Principal' : `Respaldo ${idx}`;
+      chip.textContent = `#${idx + 1} [${prefix}] ${role}`;
+      chip.title = isFilled ? `Slot #${idx + 1} (${role}): ${prefix}` : `Slot #${idx + 1} sin configurar`;
+      chipsContainer.appendChild(chip);
+    });
+  }
+
+  // Renderizar los 10 slots editables
+  container.innerHTML = '';
+  currentSlots.forEach((key, idx) => {
+    const isFilled = Boolean(key && key.trim());
+    const prefix = isFilled ? `${key.trim().substring(0, 14)}...` : '⚪ Sin configurar';
+    const roleText = idx === 0 ? '👑 Principal' : `🛡️ Respaldo ${idx}`;
+
+    const card = document.createElement('div');
+    card.className = 'api-key-slot-card';
+    card.innerHTML = `
+      <div class="api-key-slot-header">
+        <span class="api-key-slot-label">
+          Slot #${idx + 1} <span style="font-size:0.75rem; color:var(--text-secondary); font-weight:normal;">(${roleText})</span>
+        </span>
+        <span class="key-prefix-badge ${isFilled ? '' : 'empty'}" id="keyPrefixBadge_${idx}">
+          ${prefix}
+        </span>
+      </div>
+      <div class="api-key-input-row">
+        <input 
+          type="password" 
+          id="geminiSlotInput_${idx}" 
+          class="form-input gemini-key-slot" 
+          data-index="${idx}" 
+          value="${isFilled ? key : ''}" 
+          placeholder="${idx < 3 ? '•••••••••••••••••••••••• (Clave predeterminada)' : 'Introduce clave API ' + (idx + 1) + '...'}"
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <button type="button" class="btn-icon-key btn-toggle-slot-vis" data-target="geminiSlotInput_${idx}" title="Mostrar / Ocultar clave">👁️</button>
+        <button type="button" class="btn-icon-key btn-clear-slot" data-index="${idx}" title="Limpiar este slot">✕</button>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+
+  // Eventos de entrada para actualizar en tiempo real los prefijos y chips
+  container.querySelectorAll('.gemini-key-slot').forEach(input => {
+    input.addEventListener('input', (e) => {
+      const idx = parseInt(e.target.dataset.index, 10);
+      const val = e.target.value.trim();
+      const badge = document.getElementById(`keyPrefixBadge_${idx}`);
+      if (badge) {
+        if (val) {
+          badge.textContent = `${val.substring(0, 14)}...`;
+          badge.className = 'key-prefix-badge';
+        } else {
+          badge.textContent = '⚪ Sin configurar';
+          badge.className = 'key-prefix-badge empty';
+        }
+      }
+      updateChipsSummaryLive();
+    });
+  });
+
+  // Eventos para ver/ocultar clave
+  container.querySelectorAll('.btn-toggle-slot-vis').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.target;
+      const inp = document.getElementById(targetId);
+      if (inp) {
+        if (inp.type === 'password') {
+          inp.type = 'text';
+          btn.textContent = '🙈';
+        } else {
+          inp.type = 'password';
+          btn.textContent = '👁️';
+        }
+      }
+    });
+  });
+
+  // Eventos para limpiar slot individual
+  container.querySelectorAll('.btn-clear-slot').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.index, 10);
+      const inp = document.getElementById(`geminiSlotInput_${idx}`);
+      if (inp) {
+        inp.value = '';
+        inp.dispatchEvent(new Event('input'));
+      }
+    });
+  });
+}
+
+function updateChipsSummaryLive() {
+  const chipsContainer = document.getElementById('apiKeysSummaryChips');
+  const countBadge = document.getElementById('apiKeysCountBadge');
+  const inputs = document.querySelectorAll('.gemini-key-slot');
+  if (!chipsContainer) return;
+
+  chipsContainer.innerHTML = '';
+  let active = 0;
+  inputs.forEach((inp, idx) => {
+    const val = inp.value.trim();
+    const isFilled = Boolean(val);
+    if (isFilled) active++;
+    const chip = document.createElement('span');
+    chip.className = `key-summary-chip ${isFilled ? 'active' : 'empty'}`;
+    const prefix = isFilled ? `${val.substring(0, 14)}...` : '(Vacía)';
+    const role = idx === 0 ? 'Principal' : `Respaldo ${idx}`;
+    chip.textContent = `#${idx + 1} [${prefix}] ${role}`;
+    chipsContainer.appendChild(chip);
+  });
+
+  if (countBadge) {
+    countBadge.textContent = `🟢 ${active} / 10 activas`;
+    countBadge.className = `key-summary-chip ${active > 0 ? 'active' : 'empty'}`;
+  }
+}
+
+// Restaurar las 3 claves iniciales de Claves API GEMINI.txt
+function restoreDefaultGeminiKeys() {
+  localStorage.setItem('macro_gemini_api_keys', JSON.stringify([...DEFAULT_GEMINI_KEYS]));
+  localStorage.setItem('macro_gemini_api_key', DEFAULT_GEMINI_KEYS[0]);
+  state.config.geminiApiKeys = [...DEFAULT_GEMINI_KEYS];
+  state.config.geminiApiKey = DEFAULT_GEMINI_KEYS[0];
+  renderApiKeysUI();
+  try {
+    fetch('/api/config-local', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ geminiApiKey: DEFAULT_GEMINI_KEYS[0], geminiApiKeys: DEFAULT_GEMINI_KEYS })
+    });
+  } catch (e) {}
+  showToast('Restauradas las 3 claves iniciales de Claves API GEMINI.txt', 'success');
+}
+
 function saveConfigToStorage() {
-  const elKey = document.getElementById('settingApiKey');
+  const inputs = document.querySelectorAll('.gemini-key-slot');
+  let newKeys = [];
+  if (inputs && inputs.length > 0) {
+    inputs.forEach(inp => {
+      const val = inp.value.trim();
+      if (val) newKeys.push(val);
+    });
+  }
+
+  if (newKeys.length > 0) {
+    state.config.geminiApiKeys = newKeys;
+    state.config.geminiApiKey = newKeys[0];
+    localStorage.setItem('macro_gemini_api_keys', JSON.stringify(newKeys));
+    localStorage.setItem('macro_gemini_api_key', newKeys[0]);
+  } else {
+    // Si el usuario dejó todo vacío, restaurar las 3 iniciales por defecto
+    state.config.geminiApiKeys = [...DEFAULT_GEMINI_KEYS];
+    state.config.geminiApiKey = DEFAULT_GEMINI_KEYS[0];
+    localStorage.removeItem('macro_gemini_api_keys');
+    localStorage.removeItem('macro_gemini_api_key');
+  }
+
   const elModel = document.getElementById('settingModel');
   const elPrompt = document.getElementById('settingMasterPrompt');
   const elRepo = document.getElementById('settingGithubRepo');
   const elToken = document.getElementById('settingGithubToken');
   const elYtInterval = document.getElementById('settingYtInterval');
 
-  if (elKey) {
-    const val = elKey.value.trim();
-    if (val) {
-      state.config.geminiApiKey = val;
-      localStorage.setItem('macro_gemini_api_key', val);
-      showToast('Nueva clave API guardada (sustituye a la predeterminada)', 'success');
-    } else {
-      state.config.geminiApiKey = DEFAULT_GEMINI_KEY;
-      localStorage.removeItem('macro_gemini_api_key');
-      elKey.placeholder = '•••••••••••••••••••••••••••••••• (Clave predeterminada activa)';
-    }
-  }
   if (elModel) {
     state.config.geminiModel = elModel.value;
     localStorage.setItem('macro_gemini_model', state.config.geminiModel);
@@ -774,8 +1003,23 @@ function saveConfigToStorage() {
     updateYtSyncBadge();
   }
 
+  // Guardar en config.local.json si estamos corriendo servidor local
+  try {
+    fetch('/api/config-local', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        geminiApiKey: state.config.geminiApiKey,
+        geminiApiKeys: state.config.geminiApiKeys,
+        githubRepo: state.config.githubRepo,
+        githubToken: state.config.githubToken
+      })
+    });
+  } catch (e) {}
+
+  renderApiKeysUI();
   persistData(true);
-  showToast('Configuración y Prompt por Defecto del canal guardados correctamente', 'success');
+  showToast(`Configuración guardada (${state.config.geminiApiKeys.length} claves API en el pool de failover)`, 'success');
 }
 
 // Fusionar listas de canales sin duplicar por ID ni por Handle de YouTube
@@ -2986,17 +3230,54 @@ window.saveAndAnalyzeQueryWithAI = async function() {
 };
 
 // ==========================================
-// PROCESAMIENTO CON GEMINI FLASH
+// PROCESAMIENTO CON GEMINI FLASH (POOL DE HASTA 10 CLAVES CON FAILOVER)
 // ==========================================
-async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
-  const apiKey = getEffectiveApiKey();
-  if (!apiKey) {
-    throw new Error('Por favor, introduce tu clave de API de Google Gemini en la pestaña de Configuración.');
+
+// Función auxiliar para diagnosticar una clave individual
+async function testSingleGeminiKey(apiKey, model = 'gemini-3.8-flash') {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`;
+  const requestHeaders = { 'Content-Type': 'application/json' };
+  if (!apiKey.startsWith('AQ.')) {
+    requestHeaders['x-goog-api-key'] = apiKey;
+  }
+  const bodyData = {
+    contents: [{ parts: [{ text: 'Responde estrictamente con la palabra: OK' }] }],
+    generationConfig: { temperature: 0.1 }
+  };
+
+  let res;
+  try {
+    res = await fetch(url, {
+      method: 'POST',
+      headers: requestHeaders,
+      body: JSON.stringify(bodyData)
+    });
+  } catch (corsErr) {
+    res = await fetch('/api/gemini', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: 'Responde estrictamente con la palabra: OK', apiKey, model })
+    });
   }
 
-  let model = state.config.geminiModel || 'gemini-3.8-flash';
-  let url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`;
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData?.error?.message || `HTTP ${res.status}`);
+  }
 
+  const data = await res.json();
+  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+  if (!text) throw new Error('Respuesta vacía');
+  return text.trim();
+}
+
+async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
+  const keys = getEffectiveApiKeys();
+  if (!keys || keys.length === 0) {
+    throw new Error('Por favor, introduce al menos una clave de API de Google Gemini en la pestaña de Configuración.');
+  }
+
+  const model = state.config.geminiModel || 'gemini-3.8-flash';
   const bodyData = {
     contents: [{ parts: [{ text: prompt }] }],
     generationConfig: {
@@ -3008,57 +3289,102 @@ async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
     bodyData.systemInstruction = { parts: [{ text: systemPrompt }] };
   }
 
-  const requestHeaders = { 'Content-Type': 'application/json' };
-  if (!apiKey.startsWith('AQ.')) {
-    requestHeaders['x-goog-api-key'] = apiKey;
-  }
+  let lastError = null;
+  let successResult = null;
+  let successfulKeyIndex = -1;
 
-  let res;
-  try {
-    res = await fetch(url, {
-      method: 'POST',
-      headers: requestHeaders,
-      body: JSON.stringify(bodyData)
-    });
+  // Secuencia de Failover: Probar Clave 1 -> si falla -> Clave 2 -> Clave 3... hasta 10
+  for (let i = 0; i < keys.length; i++) {
+    const currentKey = keys[i];
+    const keyPrefix = currentKey.substring(0, 14) + '...';
+    const isBackup = i > 0;
 
-    if (res.status === 503 && model === 'gemini-3.8-flash') {
-      console.warn('Gemini 3.8 ocupado (503). Reintentando con gemini-3.6-flash...');
-      url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
-      res = await fetch(url, {
-        method: 'POST',
-        headers: requestHeaders,
-        body: JSON.stringify(bodyData)
-      });
+    if (isBackup) {
+      console.warn(`[Gemini Failover] Conmutando automáticamente a Clave de respaldo #${i + 1} (${keyPrefix})...`);
+      const loadingSub = document.getElementById('loadingSubtext');
+      if (loadingSub) {
+        loadingSub.textContent = `Probando Clave #${i + 1} (${keyPrefix}) tras fallo en anterior...`;
+      }
     }
-  } catch (corsErr) {
-    res = await fetch('/api/gemini', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt, systemPrompt, apiKey, model })
-    });
-  }
 
-  if (!res.ok) {
-    const errData = await res.json().catch(() => ({}));
-    throw new Error(errData?.error?.message || `Error en llamada Gemini (${res.status})`);
-  }
-
-  const result = await res.json();
-  const textOutput = result?.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!textOutput) {
-    throw new Error('Respuesta vacía de la API de Gemini.');
-  }
-
-  if (returnJson) {
     try {
-      return JSON.parse(textOutput);
-    } catch (e) {
-      const cleaned = textOutput.replace(/```json/gi, '').replace(/```/g, '').trim();
-      return JSON.parse(cleaned);
+      let url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(currentKey)}`;
+      const requestHeaders = { 'Content-Type': 'application/json' };
+      if (!currentKey.startsWith('AQ.')) {
+        requestHeaders['x-goog-api-key'] = currentKey;
+      }
+
+      let res;
+      try {
+        res = await fetch(url, {
+          method: 'POST',
+          headers: requestHeaders,
+          body: JSON.stringify(bodyData)
+        });
+
+        // Conmutación interna de modelo si 3.8 da 503 por sobrecarga
+        if (res.status === 503 && model === 'gemini-3.8-flash') {
+          console.warn(`Gemini 3.8 ocupado (503) con Clave #${i + 1}. Probando con gemini-3.6-flash...`);
+          url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${encodeURIComponent(currentKey)}`;
+          res = await fetch(url, {
+            method: 'POST',
+            headers: requestHeaders,
+            body: JSON.stringify(bodyData)
+          });
+        }
+      } catch (corsErr) {
+        // En caso de CORS o corte de red local, recurrir al proxy
+        res = await fetch('/api/gemini', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt, systemPrompt, apiKey: currentKey, model })
+        });
+      }
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        const msg = errData?.error?.message || `HTTP ${res.status}`;
+        throw new Error(msg);
+      }
+
+      const result = await res.json();
+      const textOutput = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!textOutput) {
+        throw new Error('Respuesta vacía de la API de Gemini');
+      }
+
+      let parsedResult;
+      if (returnJson) {
+        try {
+          parsedResult = JSON.parse(textOutput);
+        } catch (e) {
+          const cleaned = textOutput.replace(/```json/gi, '').replace(/```/g, '').trim();
+          parsedResult = JSON.parse(cleaned);
+        }
+      } else {
+        parsedResult = textOutput;
+      }
+
+      successResult = parsedResult;
+      successfulKeyIndex = i;
+      break; // ¡Petición exitosa! Salir del bucle
+    } catch (err) {
+      console.warn(`[Gemini Failover] Falló Clave #${i + 1} (${keyPrefix}):`, err.message);
+      lastError = err;
+      // El bucle continuará inmediatamente con la siguiente clave
     }
   }
 
-  return textOutput;
+  if (successResult !== null) {
+    if (successfulKeyIndex > 0) {
+      const usedPrefix = keys[successfulKeyIndex].substring(0, 14) + '...';
+      showToast(`🔄 Conmutación automática: Solicitud completada con Clave #${successfulKeyIndex + 1} (${usedPrefix})`, 'warning', 4500);
+    }
+    return successResult;
+  }
+
+  // Si todas las claves del pool fallaron
+  throw new Error(`Todas las claves API de Gemini (${keys.length}) fallaron. Último error: ${lastError?.message || 'Error desconocido'}`);
 }
 
 // Ingesta de nuevo vídeo suelto
@@ -3483,19 +3809,39 @@ function initEventListeners() {
   const btnSaveSettings = document.getElementById('btnSaveSettings');
   if (btnSaveSettings) btnSaveSettings.addEventListener('click', saveConfigToStorage);
 
+  const btnRestoreKeys = document.getElementById('btnRestoreDefaultKeys');
+  if (btnRestoreKeys) btnRestoreKeys.addEventListener('click', restoreDefaultGeminiKeys);
+
   const btnTestGemini = document.getElementById('btnTestGemini');
   if (btnTestGemini) {
     btnTestGemini.addEventListener('click', async () => {
       saveConfigToStorage();
-      setLoading(true, 'Probando conexión con Gemini...', 'Enviando saludo de prueba');
-      try {
-        const testRes = await callGeminiApi('Devuelve un bloque json: ```json\n{"status": "ok", "message": "Conexión exitosa con Gemini"}\n```');
-        alert(`✅ ¡Conexión con Gemini exitosa!\nMensaje: ${testRes.message || JSON.stringify(testRes)}`);
-      } catch (e) {
-        alert('❌ Error al conectar con Gemini: ' + e.message);
-      } finally {
-        setLoading(false);
+      const keys = getEffectiveApiKeys();
+      if (!keys || keys.length === 0) {
+        alert('⚠️ No hay ninguna clave API de Gemini configurada.');
+        return;
       }
+
+      setLoading(true, 'Diagnosticando Pool de Claves Gemini...', `Probando ${keys.length} claves configuradas...`);
+      const results = [];
+      const model = state.config.geminiModel || 'gemini-3.8-flash';
+
+      for (let i = 0; i < keys.length; i++) {
+        const k = keys[i];
+        const prefix = k.substring(0, 14) + '...';
+        const role = i === 0 ? '👑 Principal' : `🛡️ Respaldo ${i}`;
+        setLoading(true, `Probando Slot #${i + 1} (${role})`, `Prefijo: ${prefix} | Modelo: ${model}`);
+
+        try {
+          await testSingleGeminiKey(k, model);
+          results.push(`[Slot #${i + 1} - ${role}] ${prefix}\n  🟢 Estado: VÁLIDA y ACTIVA (200 OK)`);
+        } catch (err) {
+          results.push(`[Slot #${i + 1} - ${role}] ${prefix}\n  🔴 Estado: FALLÓ (${err.message})`);
+        }
+      }
+
+      setLoading(false);
+      alert(`🔍 DIAGNÓSTICO DEL POOL DE CLAVES GEMINI (${keys.length} probadas):\n\n` + results.join('\n\n') + '\n\n💡 Nota: Si la primera clave falla durante el análisis, el sistema conmutará automáticamente a la siguiente que esté operativa.');
     });
   }
 

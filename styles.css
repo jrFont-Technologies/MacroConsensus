@@ -853,6 +853,128 @@ main.app-main {
   gap: 0.5rem;
 }
 
+/* Pool de Claves Gemini (10 Slots con Failover) */
+.api-keys-pool-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  background-color: rgba(17, 24, 39, 0.65);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+
+.api-keys-summary-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.key-summary-chip {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 4px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.key-summary-chip.active {
+  border-color: var(--accent-green);
+  color: #34d399;
+  background-color: var(--accent-green-bg);
+  font-weight: 600;
+}
+
+.key-summary-chip.empty {
+  opacity: 0.5;
+  border-style: dashed;
+}
+
+.api-keys-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0.75rem;
+}
+
+.api-key-slot-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: border-color 0.2s;
+}
+
+.api-key-slot-card:focus-within {
+  border-color: var(--border-focus);
+}
+
+.api-key-slot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.api-key-slot-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.key-prefix-badge {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  background-color: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.key-prefix-badge.empty {
+  background-color: rgba(148, 163, 184, 0.08);
+  color: var(--text-muted);
+  border-color: var(--border-color);
+}
+
+.api-key-input-row {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.api-key-input-row .form-input {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.82rem;
+  padding: 0.45rem 0.6rem;
+}
+
+.btn-icon-key {
+  padding: 0.4rem 0.6rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.btn-icon-key:hover {
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
 /* Loading Overlay */
 .loading-overlay {
   position: fixed;

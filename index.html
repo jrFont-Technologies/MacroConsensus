@@ -292,26 +292,53 @@
           <div class="settings-card-header">
             <h3>🧠 Motor de Inteligencia Artificial (Gemini)</h3>
           </div>
+          
           <div class="form-group">
-            <label class="form-label" for="settingApiKey">
-              Clave de API de Gemini
-              <span class="form-hint" style="color: var(--accent-green);">🟢 Clave por defecto ya activa</span>
-            </label>
-            <div style="position: relative;">
-              <input type="password" id="settingApiKey" class="form-input" placeholder="•••••••••••••••••••••••• (Clave predeterminada activa)">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <div>
+                <label class="form-label" style="margin-bottom: 0.2rem;">
+                  Pool de Claves API de Google Gemini (10 Slots con Conmutación por Fallo)
+                </label>
+                <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.15rem; line-height: 1.4;">
+                  Si la 1ª clave falla (cuota 429 agotada, saturación o bloqueo), el sistema conmuta automáticamente a la 2ª; si falla, a la 3ª y así sucesivamente hasta la 10ª.
+                </p>
+              </div>
+              <span id="apiKeysCountBadge" class="key-summary-chip active" style="flex-shrink: 0; font-size: 0.78rem;">
+                🟢 3 / 10 activas
+              </span>
             </div>
-            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.35rem;">
-              La clave predeterminada viene lista para usar. Si introduces una nueva aquí y guardas, reemplazará a la predeterminada. Si la dejas vacía, se restaurará la predeterminada.
-            </p>
+
+            <!-- Resumen de claves con primeros caracteres visibles -->
+            <div style="margin-bottom: 0.75rem; background: rgba(15, 23, 42, 0.45); padding: 0.6rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+              <span style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 600; display: block; margin-bottom: 0.35rem;">
+                🔍 Identificador de Claves Configuradas (primeros caracteres visibles):
+              </span>
+              <div id="apiKeysSummaryChips" class="api-keys-summary-chips">
+                <!-- Se rellena dinámicamente con JS -->
+              </div>
+            </div>
+
+            <!-- Contenedor con los 10 Slots de Claves -->
+            <div class="api-keys-pool-container">
+              <div class="api-keys-slots-grid" id="apiKeysSlotsGrid">
+                <!-- Se genera dinámicamente en JS (Slots 1 al 10) -->
+              </div>
+              <div style="display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 0.25rem;">
+                <button type="button" class="btn btn-secondary btn-sm" id="btnRestoreDefaultKeys" style="font-size: 0.75rem;">
+                  🔄 Restaurar 3 Claves Iniciales
+                </button>
+              </div>
+            </div>
           </div>
 
           <div class="form-group">
             <label class="form-label" for="settingModel">Modelo de Lenguaje</label>
             <select id="settingModel" class="form-select">
               <option value="gemini-3.8-flash" selected>Gemini 3.8 Flash (Predeterminado - Máxima velocidad y agudeza)</option>
-              <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
-              <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
-              <option value="gemini-1.5-flash">Gemini 1.5 Flash</option>
+              <option value="gemini-3.7-flash">Gemini 3.7 Flash</option>
+              <option value="gemini-3.6-flash">Gemini 3.6 Flash (Respaldo)</option>
+              <option value="gemini-3.5-flash">Gemini 3.5 Flash</option>
+              <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
             </select>
           </div>
 
@@ -334,7 +361,7 @@
               💾 Guardar Configuración
             </button>
             <button class="btn btn-secondary btn-sm" id="btnTestGemini">
-              ⚡ Probar Conexión con Gemini
+              ⚡ Probar Todas las Claves (1 a 10)
             </button>
           </div>
         </div>
