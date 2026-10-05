@@ -34,48 +34,62 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: { message: 'Clave de API de Gemini no proporcionada' } });
     }
 
-    let lastError = null;
+    const failedAttempts = [];
     let lastData = null;
     let lastStatus = 500;
 
     for (let i = 0; i < keyList.length; i++) {
       const key = keyList[i];
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${chosenModel}:generateContent?key=${encodeURIComponent(key)}`;
-      try {
-        const geminiRes = await fetch(url, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            systemInstruction: systemPrompt ? { parts: [{ text: systemPrompt }] } : undefined,
-            generationConfig: {
-              temperature: 0.2,
-              responseMimeType: 'application/json'
+      const prefix = key.substring(0, 14) + '...';
+      const modelsToTry = [chosenModel];
+      if (chosenModel === 'gemini-3.8-flash') {
+        modelsToTry.push('gemini-3.6-flash', 'gemini-3.5-flash');
+      }
+
+      for (const currentModel of modelsToTry) {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${currentModel}:generateContent?key=${encodeURIComponent(key)}`;
+        try {
+          const geminiRes = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: prompt }] }],
+              systemInstruction: systemPrompt ? { parts: [{ text: systemPrompt }] } : undefined,
+              generationConfig: {
+                temperature: 0.2,
+                responseMimeType: 'application/json'
+              }
+            })
+          });
+
+          lastStatus = geminiRes.status;
+          lastData = await geminiRes.json();
+
+          if (geminiRes.ok) {
+            if (lastData && typeof lastData === 'object') {
+              lastData._usedKeyIndex = i;
+              lastData._usedKeyPrefix = prefix;
+              lastData._usedModel = currentModel;
             }
-          })
-        });
-
-        lastStatus = geminiRes.status;
-        lastData = await geminiRes.json();
-
-        if (geminiRes.ok) {
-          // Inyectamos qué clave resolvió con éxito la petición (enmascarada)
-          if (lastData && typeof lastData === 'object') {
-            lastData._usedKeyIndex = i;
-            lastData._usedKeyPrefix = key.substring(0, 14) + '...';
+            return res.status(200).json(lastData);
+          } else {
+            const errStr = lastData?.error?.message || `HTTP ${geminiRes.status}`;
+            if ((geminiRes.status === 429 || geminiRes.status === 503) && currentModel !== modelsToTry[modelsToTry.length - 1]) {
+              console.warn(`[Proxy Gemini] Clave #${i + 1} dio ${geminiRes.status} con ${currentModel}. Probando modelo de relevo...`);
+              continue;
+            }
+            failedAttempts.push(`Slot #${i + 1} (${prefix}): ${errStr}`);
+            break;
           }
-          return res.status(200).json(lastData);
-        } else {
-          lastError = lastData?.error?.message || `HTTP ${geminiRes.status}`;
-          console.warn(`[Proxy Gemini] Clave #${i + 1} (${key.substring(0, 12)}...) falló: ${lastError}. Probando siguiente clave...`);
+        } catch (err) {
+          failedAttempts.push(`Slot #${i + 1} (${prefix}): ${err.message}`);
+          break;
         }
-      } catch (err) {
-        lastError = err.message;
-        console.warn(`[Proxy Gemini] Error de red en clave #${i + 1}: ${err.message}`);
       }
     }
 
-    return res.status(lastStatus || 500).json(lastData || { error: { message: `Todas las claves fallaron. Último error: ${lastError}` } });
+    const errorSummary = `Todas las claves API de Gemini fallaron:\n` + failedAttempts.map(f => `• ${f}`).join('\n');
+    return res.status(lastStatus || 500).json({ error: { message: errorSummary, failedAttempts } });
   } catch (err) {
     return res.status(500).json({ error: { message: err.message } });
   }

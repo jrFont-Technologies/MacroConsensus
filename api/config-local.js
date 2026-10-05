@@ -15,7 +15,8 @@ module.exports = async (req, res) => {
   const defaultKeys = [
     Buffer.from('QVEuQWI4Uk42STZvV0NWejluOVd1aGs3cVo4ZjZnT21teUlPUWNDbXV6U1R2T1NFcGJZU1E=', 'base64').toString('utf8'),
     Buffer.from('QVEuQWI4Uk42SkpTUWJqazRSOG5iSXV4b1Q3RFNRQmpuUDhPNUlCQ1JYYnpHZUFyV25NelE=', 'base64').toString('utf8'),
-    Buffer.from('QVEuQWI4Uk42S1BYS3AzNVhkNV9LQmMzVEk4RmppQno5ak5COXBxTEZHNFF3YS1rbWlDOHc=', 'base64').toString('utf8')
+    Buffer.from('QVEuQWI4Uk42S1BYS3AzNVhkNV9LQmMzVEk4RmppQno5ak5COXBxTEZHNFF3YS1rbWlDOHc=', 'base64').toString('utf8'),
+    Buffer.from('QUl6YVN5QXFHUUxjM1Fnd2w3QnlMYnlfbk5pWml6NS1SQWs5LUt3', 'base64').toString('utf8')
   ];
 
   const resolvedKeys = keysEnv.length > 0 

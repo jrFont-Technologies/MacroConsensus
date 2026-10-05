@@ -357,11 +357,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // Claves de API de Gemini y Token de GitHub por defecto (pre-activados para local, Vercel y móvil)
-// Claves 1, 2 y 3 extraídas del archivo central 'Claves API GEMINI.txt'
+// Claves 1, 2, 3 y 4 extraídas del archivo central 'Claves API GEMINI.txt'
 const DEFAULT_GEMINI_KEYS = [
   atob('QVEuQWI4Uk42STZvV0NWejluOVd1aGs3cVo4ZjZnT21teUlPUWNDbXV6U1R2T1NFcGJZU1E='), // #1 Dashboard Económico (MacroConsensus)
   atob('QVEuQWI4Uk42SkpTUWJqazRSOG5iSXV4b1Q3RFNRQmpuUDhPNUlCQ1JYYnpHZUFyV25NelE='), // #2 Google AI Studio (Recién creada)
-  atob('QVEuQWI4Uk42S1BYS3AzNVhkNV9LQmMzVEk4RmppQno5ak5COXBxTEZHNFF3YS1rbWlDOHc=')  // #3 MediTrack
+  atob('QVEuQWI4Uk42S1BYS3AzNVhkNV9LQmMzVEk4RmppQno5ak5COXBxTEZHNFF3YS1rbWlDOHc='), // #3 MediTrack
+  atob('QUl6YVN5QXFHUUxjM1Fnd2w3QnlMYnlfbk5pWml6NS1SQWs5LUt3')  // #4 Histórica Versiones 1.0/1.1 (Activa en Gemini 3.6/3.5)
 ];
 const DEFAULT_GEMINI_KEY = DEFAULT_GEMINI_KEYS[0];
 const DEFAULT_GITHUB_TOKEN = atob('UmhoSE0zV3pYNXFkTXY5NnJIZkxFc2FhZTBYaWJ4d0x5U0p5X3BoZw==').split('').reverse().join('');
@@ -3245,30 +3246,54 @@ async function testSingleGeminiKey(apiKey, model = 'gemini-3.8-flash') {
     generationConfig: { temperature: 0.1 }
   };
 
-  let res;
-  try {
-    res = await fetch(url, {
-      method: 'POST',
-      headers: requestHeaders,
-      body: JSON.stringify(bodyData)
-    });
-  } catch (corsErr) {
-    res = await fetch('/api/gemini', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt: 'Responde estrictamente con la palabra: OK', apiKey, model })
-    });
+  const modelsToTry = [model];
+  if (model === 'gemini-3.8-flash') {
+    modelsToTry.push('gemini-3.6-flash', 'gemini-3.5-flash');
   }
 
-  if (!res.ok) {
-    const errData = await res.json().catch(() => ({}));
-    throw new Error(errData?.error?.message || `HTTP ${res.status}`);
+  let lastErr = null;
+  for (const m of modelsToTry) {
+    let res;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${encodeURIComponent(apiKey)}`;
+    try {
+      res = await fetch(url, {
+        method: 'POST',
+        headers: requestHeaders,
+        body: JSON.stringify(bodyData)
+      });
+    } catch (corsErr) {
+      res = await fetch('/api/gemini', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: 'Responde estrictamente con la palabra: OK', apiKey, model: m })
+      });
+    }
+
+    if (res && res.ok) {
+      const data = await res.json().catch(() => ({}));
+      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (text) {
+        return {
+          ok: true,
+          model: m,
+          isRelay: (m !== model),
+          note: m !== model ? `(Válida vía modelo de relevo ${m})` : ''
+        };
+      }
+    }
+
+    const errData = await res?.json().catch(() => ({}));
+    const errMsg = errData?.error?.message || `HTTP ${res?.status || 500}`;
+    lastErr = new Error(`[${m}]: ${errMsg}`);
+
+    // Si fue 429 (cuota de 3.8) o 503, intentar el siguiente modelo de relevo
+    if ((res?.status === 429 || res?.status === 503) && m !== modelsToTry[modelsToTry.length - 1]) {
+      continue;
+    }
+    break;
   }
 
-  const data = await res.json();
-  const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!text) throw new Error('Respuesta vacía');
-  return text.trim();
+  throw lastErr || new Error('No se pudo verificar la clave');
 }
 
 async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
@@ -3289,102 +3314,129 @@ async function callGeminiApi(prompt, systemPrompt = '', returnJson = true) {
     bodyData.systemInstruction = { parts: [{ text: systemPrompt }] };
   }
 
-  let lastError = null;
+  const failedAttempts = [];
   let successResult = null;
   let successfulKeyIndex = -1;
+  let successfulModel = model;
 
   // Secuencia de Failover: Probar Clave 1 -> si falla -> Clave 2 -> Clave 3... hasta 10
   for (let i = 0; i < keys.length; i++) {
     const currentKey = keys[i];
     const keyPrefix = currentKey.substring(0, 14) + '...';
+    const role = i === 0 ? 'Principal' : `Respaldo ${i}`;
     const isBackup = i > 0;
 
     if (isBackup) {
-      console.warn(`[Gemini Failover] Conmutando automáticamente a Clave de respaldo #${i + 1} (${keyPrefix})...`);
+      console.warn(`[Gemini Failover] Conmutando a Clave #${i + 1} (${role}) [${keyPrefix}]...`);
       const loadingSub = document.getElementById('loadingSubtext');
       if (loadingSub) {
         loadingSub.textContent = `Probando Clave #${i + 1} (${keyPrefix}) tras fallo en anterior...`;
       }
     }
 
-    try {
-      let url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(currentKey)}`;
-      const requestHeaders = { 'Content-Type': 'application/json' };
-      if (!currentKey.startsWith('AQ.')) {
-        requestHeaders['x-goog-api-key'] = currentKey;
-      }
+    // Modelos a probar: modelo elegido, y si es 3.8 con 429/503, modelos de relevo 3.6 y 3.5
+    const modelsToTry = [model];
+    if (model === 'gemini-3.8-flash') {
+      modelsToTry.push('gemini-3.6-flash', 'gemini-3.5-flash');
+    }
 
-      let res;
+    let keySucceeded = false;
+    let keyErrors = [];
+
+    for (const currentModel of modelsToTry) {
       try {
-        res = await fetch(url, {
-          method: 'POST',
-          headers: requestHeaders,
-          body: JSON.stringify(bodyData)
-        });
+        let url = `https://generativelanguage.googleapis.com/v1beta/models/${currentModel}:generateContent?key=${encodeURIComponent(currentKey)}`;
+        const requestHeaders = { 'Content-Type': 'application/json' };
+        if (!currentKey.startsWith('AQ.')) {
+          requestHeaders['x-goog-api-key'] = currentKey;
+        }
 
-        // Conmutación interna de modelo si 3.8 da 503 por sobrecarga
-        if (res.status === 503 && model === 'gemini-3.8-flash') {
-          console.warn(`Gemini 3.8 ocupado (503) con Clave #${i + 1}. Probando con gemini-3.6-flash...`);
-          url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${encodeURIComponent(currentKey)}`;
+        let res;
+        try {
           res = await fetch(url, {
             method: 'POST',
             headers: requestHeaders,
             body: JSON.stringify(bodyData)
           });
+        } catch (corsErr) {
+          // En caso de CORS o corte de red local, recurrir al proxy
+          res = await fetch('/api/gemini', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prompt, systemPrompt, apiKey: currentKey, model: currentModel })
+          });
         }
-      } catch (corsErr) {
-        // En caso de CORS o corte de red local, recurrir al proxy
-        res = await fetch('/api/gemini', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ prompt, systemPrompt, apiKey: currentKey, model })
-        });
-      }
 
-      if (!res.ok) {
-        const errData = await res.json().catch(() => ({}));
-        const msg = errData?.error?.message || `HTTP ${res.status}`;
-        throw new Error(msg);
-      }
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          const errMsg = errData?.error?.message || `HTTP ${res.status}`;
+          keyErrors.push(`${currentModel}: ${errMsg}`);
 
-      const result = await res.json();
-      const textOutput = result?.candidates?.[0]?.content?.parts?.[0]?.text;
-      if (!textOutput) {
-        throw new Error('Respuesta vacía de la API de Gemini');
-      }
-
-      let parsedResult;
-      if (returnJson) {
-        try {
-          parsedResult = JSON.parse(textOutput);
-        } catch (e) {
-          const cleaned = textOutput.replace(/```json/gi, '').replace(/```/g, '').trim();
-          parsedResult = JSON.parse(cleaned);
+          // Si es 429 (cuota de 3.8 agotada) o 503, probar de inmediato con gemini-3.6-flash
+          if ((res.status === 429 || res.status === 503) && currentModel !== modelsToTry[modelsToTry.length - 1]) {
+            console.warn(`[Gemini] Clave #${i + 1} dio ${res.status} con ${currentModel}. Probando modelo de relevo...`);
+            continue;
+          }
+          throw new Error(errMsg);
         }
-      } else {
-        parsedResult = textOutput;
-      }
 
-      successResult = parsedResult;
-      successfulKeyIndex = i;
-      break; // ¡Petición exitosa! Salir del bucle
-    } catch (err) {
-      console.warn(`[Gemini Failover] Falló Clave #${i + 1} (${keyPrefix}):`, err.message);
-      lastError = err;
-      // El bucle continuará inmediatamente con la siguiente clave
+        const result = await res.json();
+        const textOutput = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (!textOutput) {
+          throw new Error('Respuesta vacía de la API de Gemini');
+        }
+
+        let parsedResult;
+        if (returnJson) {
+          try {
+            parsedResult = JSON.parse(textOutput);
+          } catch (e) {
+            const cleaned = textOutput.replace(/```json/gi, '').replace(/```/g, '').trim();
+            parsedResult = JSON.parse(cleaned);
+          }
+        } else {
+          parsedResult = textOutput;
+        }
+
+        successResult = parsedResult;
+        successfulKeyIndex = i;
+        successfulModel = currentModel;
+        keySucceeded = true;
+        break; // Éxito con esta clave
+      } catch (mErr) {
+        if (!keyErrors.includes(mErr.message)) {
+          keyErrors.push(mErr.message);
+        }
+      }
+    }
+
+    if (keySucceeded) {
+      break; // Salir del bucle de claves
+    } else {
+      const summaryErr = keyErrors.join(' | ');
+      failedAttempts.push({
+        slot: i + 1,
+        role: role,
+        prefix: keyPrefix,
+        error: summaryErr
+      });
+      console.warn(`[Gemini Failover] Falló Clave #${i + 1} (${keyPrefix}):`, summaryErr);
     }
   }
 
   if (successResult !== null) {
-    if (successfulKeyIndex > 0) {
+    if (successfulKeyIndex > 0 || successfulModel !== model) {
       const usedPrefix = keys[successfulKeyIndex].substring(0, 14) + '...';
-      showToast(`🔄 Conmutación automática: Solicitud completada con Clave #${successfulKeyIndex + 1} (${usedPrefix})`, 'warning', 4500);
+      const role = successfulKeyIndex === 0 ? 'Principal' : `Respaldo ${successfulKeyIndex}`;
+      const noteRelay = successfulModel !== model ? ` (modelo relevo: ${successfulModel})` : '';
+      showToast(`🔄 Conmutación exitosa: Se usó la Clave #${successfulKeyIndex + 1} (${role} - ${usedPrefix})${noteRelay}`, 'warning', 5000);
     }
     return successResult;
   }
 
-  // Si todas las claves del pool fallaron
-  throw new Error(`Todas las claves API de Gemini (${keys.length}) fallaron. Último error: ${lastError?.message || 'Error desconocido'}`);
+  // Si todas las claves del pool fallaron: Construir informe detallado especificando cada API que falló
+  const errorReport = failedAttempts.map(fa => `• Slot #${fa.slot} (${fa.role}) [${fa.prefix}]: ${fa.error}`).join('\n\n');
+  throw new Error(`Todas las claves API de Gemini (${keys.length}) fallaron:\n\n${errorReport}\n\n💡 Revisa tus claves en Configuración o añade una nueva.`);
 }
 
 // Ingesta de nuevo vídeo suelto
@@ -3833,8 +3885,9 @@ function initEventListeners() {
         setLoading(true, `Probando Slot #${i + 1} (${role})`, `Prefijo: ${prefix} | Modelo: ${model}`);
 
         try {
-          await testSingleGeminiKey(k, model);
-          results.push(`[Slot #${i + 1} - ${role}] ${prefix}\n  🟢 Estado: VÁLIDA y ACTIVA (200 OK)`);
+          const testRes = await testSingleGeminiKey(k, model);
+          const relayInfo = testRes?.isRelay ? `\n  ℹ️ ${testRes.note}` : '';
+          results.push(`[Slot #${i + 1} - ${role}] ${prefix}\n  🟢 Estado: VÁLIDA y ACTIVA (200 OK)${relayInfo}`);
         } catch (err) {
           results.push(`[Slot #${i + 1} - ${role}] ${prefix}\n  🔴 Estado: FALLÓ (${err.message})`);
         }
